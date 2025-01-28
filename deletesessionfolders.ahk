@@ -11,7 +11,7 @@ zipstr := ""
 
 deletesessionfolder()
 
-settimer, deletefolder, 300000
+settimer, deletefolder, 600000
 
 return
 
@@ -28,7 +28,7 @@ deletesessionfolder() {
 		csmstr := SubStr(A_Loopfilename, strlen(A_Loopfilename)-3 , 4)
 		zipstr := SubStr(A_Loopfilename, strlen(A_Loopfilename)-3 , 4)
 		mymstr := SubStr(A_Loopfilename, strlen(A_Loopfilename)-3 , 4)
-		if(A_Loopfilename == "themewii.exe") {
+		if(A_Loopfilename == "themething.exe") {
 			dir := A_LoopFileDir
 			FileGetTime, timecreated ,, C
 			timenow := a_now
