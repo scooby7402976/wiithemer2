@@ -55,7 +55,7 @@ deletesessionfolder() {
 			soundbeep, 150, 1500
 		}
 		else if(zipstr == ".zip") {
-			if(A_Loopfilename == "modmiithemesigner.zip")
+			if(A_Loopfilename == "black_pirate.zip")
 				continue
 			if(A_Loopfilename == "mymenuifymod.zip")
 				continue
