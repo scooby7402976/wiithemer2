@@ -12,6 +12,7 @@
 [BLKGD1] - Black Gold
 [BLMG01] - Black Mage
 [BLPR01] - Black Pirate
+[BLPR02] - Black Pirate v2
 [BLCH01] - Bleach
 [BOBO01] - BoBoBo
 [BDSTS1] - Boondock Saints
