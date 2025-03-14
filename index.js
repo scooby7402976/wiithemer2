@@ -11,7 +11,6 @@ var isWiiU = false;
 const Region = ["", "U", "E", "J", "K"];
 const region_wii = ["", "wii_U", "wii_E", "wii_J", "wii_K"];
 const region_vWii = ["", "vwii_U", "vwii_E", "vwii_J"];
-const regionkdarkredmessage = "Dark Wii Red was not offically made for the Korean region .<br>";
 const version = ["", "4.3", "4.2", "4.1", "4.0", "vWii (WiiU)"];
 const version40kmessage = "The Korean region did not have System Menu v4.0 .<br>";
 const vWii_regions = "vWii has no Korean Region .";
@@ -237,6 +236,7 @@ const completethemeinfo = [
 	{name:"Wii Party v2", ID:"WIIPT2", mainimg:"wiipartyv2.avif", secondaryimg:"wiipartyv2.png", mym:"wiipartyv2.mym", video:"https://www.youtube.com/embed/tfBqRua-dD4?si=GJXSxsYqam6OQPwY?autoplay=0&mute=1", downloads:"wiipartyv2.txt"},
 	{name:"Wii Sports", ID:"WSPOR1", mainimg:"wiisports.avif", secondaryimg:"wiisports.png", mym:"wii_sports.mym", video:"https://www.youtube.com/embed/nijDjtXZwTE?si=W6Ayevn-1xZUNo1D?autoplay=0&mute=1", downloads:"wiisports.txt"},
 	{name:"Wii U", ID:"WIIU01", mainimg:"wiiu.avif", secondaryimg:"wiiu.png", mym:"wii_u.mym", video:"https://www.youtube.com/embed/eAwrGrJQa3I?si=p--wxO_ygmTeAox_?autoplay=0&mute=1", downloads:"wiiu.txt"},
+	//{name:"Windows 7", ID:"", mainimg:"", secondaryimg:"", mym:"", video:"", downloads:""},
 	{name:"Win XP OS", ID:"WINXP1", mainimg:"winxpos.avif", secondaryimg:"windowsxp.png", mym:"win_xp_os.mym", video:"https://www.youtube.com/embed/CpMXYTumKEE?autoplay=0&mute=1", downloads:"win_xp_os.txt"},
 	{name:"Wolverine", ID:"WOLVE1", mainimg:"wolverine.avif", secondaryimg:"wolverine.png", mym:"wolverine.mym", video:"https://www.youtube.com/embed/S60LeJR6a54?autoplay=0&mute=1", downloads:"wolverine.txt"},
 	{name:"WWE Raw", ID:"WWERW1", mainimg:"wweraw.avif", secondaryimg:"wweraw.png", mym:"wwe_raw.mym", video:"https://www.youtube.com/embed/-wOT9u73m1M?si=cJSm8nPVI90DaOMr?autoplay=0&mute=1", downloads:"wweraw.txt"},
@@ -475,7 +475,7 @@ function image_controls(input_control) {
 	themeposition = themeposition + input_control;
 	if(themeposition < 0)
 		themeposition = theme_count - 1;
-	if(themeposition >= theme_count)
+	if(themeposition > theme_count)
 		themeposition = 0;
 	console.log("themeposition = " + themeposition);
 	document.getElementById("theme").selectedIndex = themeposition;
@@ -532,7 +532,7 @@ function get_build_options(input) {
 	else {
 		isWiiU = add_K_region(isWiiU);
 	}
-	if(region.length == 6) isWiiU = remove_K_region(isWiiU);
+	if(region.length >= 6) isWiiU = remove_K_region(isWiiU);
 	return;
 }
 function build_theme() {
