@@ -550,12 +550,14 @@
 						if($file2) {
 							if(add_mym_Extension($x)) {
 								for($y = 0; $y < 4; $y++) {
-									fwrite($file2, '"' . $array[$x] . " " .$regions[$y] . '",');
+									//fwrite($file2, '"' . $array[$x] . " " .$regions[$y] . '",');
+									fwrite($file2, $array[$x] . " " .$regions[$y]);
 									fwrite($file2, "\n");
 								}
 							}
 							else {
-								fwrite($file2, '"' . $array[$x] . '",');
+								//fwrite($file2, '"' . $array[$x] . '",');
+								fwrite($file2, $array[$x]);
 								fwrite($file2, "\n");
 							}
 						}
@@ -658,7 +660,7 @@
 		else return false;
 	}
 	function add_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 33) && $theme_Selected <= 40 ) || ($theme_Selected == 69) || ($theme_Selected == 180))
+		if((($theme_Selected >= 34) && $theme_Selected <= 41 ) || ($theme_Selected == 71) || ($theme_Selected == 187))
 			return true;
 		return false;
 	}

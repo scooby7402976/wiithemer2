@@ -19,6 +19,7 @@
 [BWSR01] - Bowser
 [BRLY01] - Broly
 [CODTY1] - Call of Duty
+[CSTLV1] - Castlevania
 [CAR001] - Car
 [CARS01] - Cars
 [CKMO01] - Check Mii Out
@@ -67,6 +68,7 @@
 [DIABL1] - Diablo 3
 [DSCRD1] - Discord
 [DGMN01] - Dog Man
+[DOLPH1] - Dolphins
 [DBLZ01] - Dragon Ball Z v1
 [DBLZ02] - Dragon Ball Z v2
 [DRWHO1] - Dr Who
@@ -145,7 +147,9 @@
 [MGSOL1] - Metal Gear Solid
 [MTLCA1] - Metallica
 [MTROD1] - Metroid
+[METPR1] - Metroid Prime
 [MTDSV1] - Metroid: Samus's Visor
+[METS01] - Mets
 [MISTF1] - Mist Forest
 [MNMS01] - M and M's
 [MONOW1] - Monopol - Wii
@@ -154,7 +158,9 @@
 [NARTO1] - Naruto
 [NMB4X1] - Nightmare B4 Xmas
 [NIDRM1] - Nights into Dreams
+[NRVNA1] - Nirvana
 [NOMRH1] - No More Heros
+[OASIS1] - Oasis
 [OKAMI1] - Okami
 [OSNIN1] - Old School Nintendo
 [OTLWS1] - Outlaw Star
@@ -181,6 +187,7 @@
 [RMORT1] - Rick and Morty
 [RCHCK1] - Robot Chicken
 [RBAND1] - Rockband 2
+[RBLOD1] - Rondo of Blood
 [SAW001] - Saw
 [SCRFC1] - ScarFace
 [SECOM1] - Secrets of Mana
@@ -246,6 +253,7 @@
 [WIIPT2] - Wii Party v2
 [WSPOR1] - Wii Sports
 [WIIU01] - Wii U
+[WIN701] - Windows 7
 [WINXP1] - Win XP OS
 [WOLVE1] - Wolverine
 [WWERW1] - WWE Raw
@@ -253,4 +261,5 @@
 [YUGIO1] - Yugi-oh
 [ZELDA1] - Zelda
 [ZELDA2] - Zelda: A Link to the Past
+[ZELDA3] - Zelda: Minish Cap
 [ZOMB01] - ZombWii
