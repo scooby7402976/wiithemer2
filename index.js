@@ -808,7 +808,7 @@ function close_download_no_update() {
 function close_download() {
 	clearInterval(timer);
 	if (themeInfo.versionselected == 5) {
-		$("#downloadtext").html("<br><p>Thank You for using Wii Themer .</p><p>Remember to grab an install app from links on the main page .</p> <p>WARNING : vWii themes have not been tested . Make sure you have Priiloader installed .</p>");
+		$("#downloadtext").html("<br><p>Thank You for using Wii Themer .</p><p>Remember to grab an install app from links on the main page .</p> <p>WARNING : vWii themes have not been tested . Make sure you have Priiloader installed . Only use Csm-Installer for vWii installs .</p>");
 		setTimeout(function() {
 			increase_data_File("vWii_downloads");
 		}, 1000);
@@ -867,7 +867,7 @@ function close_timer() {
 			x += " " + minutesleft + " minutes : " + b + " seconds .<br>";
 	}
 	$("#downloadtext").html(x);
-	if(closecntr == 0) {
+	if(closecntr <= 0) {
 		close_download_no_update();
 		clearInterval(timer);
 	}
