@@ -32,7 +32,7 @@
 		$multistage_theme = null;
 		$buildcomment = null;
 		$regionDLcnt = null;
-		$allfilesdeleted = null;
+		$files_not_deleted = null;
 		
 		switch($action) {
 			case "getsessionId": {
@@ -69,7 +69,7 @@
 									if(file_exists($sesId . "/" . $themeNoext . "/" . $file)) {
 										$x = unlink($sesId . "/" . $themeNoext . "/" . $file);
 										if($x == 0) {
-											$allfilesdeleted += 1;
+											$files_not_deleted += 1;
 										}
 										usleep(1000);
 									}
@@ -89,7 +89,7 @@
 								continue;
 							$x = unlink($sesId . "/" . $file);
 							if($x == 0) {
-								$allfilesdeleted += 1;
+								$files_not_deleted += 1;
 							}
 							usleep(1000);
 						}
@@ -99,7 +99,7 @@
 					rmdir($sesId);
 					//echo "file removal complete";
 				}
-				if($allfilesdeleted) {
+				if($files_not_deleted) {
 					sleep(2);
 					if (is_dir($sesId)) {
 						if ($dh = opendir($sesId)){
@@ -108,7 +108,7 @@
 									continue;
 								$x = unlink($sesId . "/" . $file);
 								if($x == 0) {
-									$allfilesdeleted += 1;
+									$files_not_deleted += 1;
 								}
 								usleep(1000);
 							}
@@ -125,7 +125,6 @@
 					if(isset($_POST['selectedtheme'])) $selectedtheme = $_POST['selectedtheme'];
 					$multistage_theme = checkfor2stagetheme($_POST['theme']);
 					//echo $_POST['theme'] . "<br>" . $selectedtheme;
-					//if(($selectedtheme >= 14) && ($selectedtheme <= 21)) 
 					$theme = "mym/" . $_POST['theme'];
 					$themenodir = $_POST['theme'];
 					$copytheme = copy($theme, $sesId . "/" . $themenodir);
@@ -143,8 +142,6 @@
 						}
 						$copycomplete = copy($theme, $str2 . "/" . $themenodir);
 					}
-					
-					
 					
 					if($_POST['spin'] == "fastspin") {
 						$spinmym = "mym/spins/fastspin.mym";
