@@ -364,6 +364,7 @@
 						execInBackground($str);
 						chdir($homedir);
 						$str = null;
+						$strnodir = $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
 						$str = $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
@@ -375,10 +376,12 @@
 							echo "Error = building multi section 3";
 							return;
 						}
+
 						#if($_POST['trans_chans'] == "true") {
 						#	rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".ap1");
-						#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $str;
+						#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $strnodir;
 						#}
+						#echo $str2;
 					}
 					else {
 						for($i = 0; $i < 6; $i++) {
@@ -422,9 +425,20 @@
 							$str = null;
 							$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 							$myfile = file_exists($str);
-							while(!$myfile and filesize($myfile) == 0) {
+							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 								$myfile = file_exists($str);
+								sleep(1);
+								$seccntr += 1;
 							}
+							if(!$myfile and $seccntr == $optimeout) {
+								echo "Error = building firstrun section";
+								return;
+							}
+
+							#if($_POST['trans_chans'] == "true") {
+								#	rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".ap1");
+								#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $str;
+							#}
 						}
 						else {
 							$str = "themething " . $_POST['theme'] . " " . $_POST['appfile'] . " 000000" . $_POST['appfile'] . ".app";
@@ -475,6 +489,11 @@
 								echo "Error = building section 2";
 								return;
 							}
+
+							#if($_POST['trans_chans'] == "true") {
+								#	rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".ap1");
+								#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $str;
+							#}
 						}
 					}
 					if($_POST['savesrc'] == "true") {
