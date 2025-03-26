@@ -423,6 +423,7 @@
 							execInBackground($str);
 							chdir($homedir);
 							$str = null;
+							$strnodir = $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 							$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 							$myfile = file_exists($str);
 							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
@@ -437,8 +438,9 @@
 
 							#if($_POST['trans_chans'] == "true") {
 								#	rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".ap1");
-								#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $str;
+								#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $strnodir;
 							#}
+							#echo $str2;
 						}
 						else {
 							$str = "themething " . $_POST['theme'] . " " . $_POST['appfile'] . " 000000" . $_POST['appfile'] . ".app";
@@ -477,7 +479,7 @@
 							execInBackground($str);
 							chdir($homedir);
 							$str = null;
-	
+							$strnodir = $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 							$str = $sesId . "/" . $themeNoext . "_" .$displayname . $spindisplay . ".csm";
 							$myfile = file_exists($str);
 							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
@@ -492,8 +494,9 @@
 
 							#if($_POST['trans_chans'] == "true") {
 								#	rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".ap1");
-								#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $str;
+								#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $strnodir;
 							#}
+							#echo $str2;
 						}
 					}
 					if($_POST['savesrc'] == "true") {
