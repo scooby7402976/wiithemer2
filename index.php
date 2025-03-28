@@ -694,7 +694,7 @@
 		else return false;
 	}
 	function add_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 34) && $theme_Selected <= 41 ) || ($theme_Selected == 71) || ($theme_Selected == 187))
+		if((($theme_Selected >= 42) && $theme_Selected <= 49) || ($theme_Selected == 80) || ($theme_Selected == 197))
 			return true;
 		return false;
 	}

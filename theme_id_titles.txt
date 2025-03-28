@@ -4,6 +4,7 @@
 [ANML02] - Animal Crossing v2
 [APPLE1] - Apple
 [ATHF01] - Aqua Teen Hunger Force
+[AODRK1] - Army of Darkness
 [BKGN01] - Bakugan
 [BTMN01] - Batman v1
 [BTMN02] - Batman v2
@@ -16,19 +17,26 @@
 [BLCH01] - Bleach
 [BOBO01] - BoBoBo
 [BDSTS1] - Boondock Saints
+[BSTRD1] - Boston Red Socks
 [BWSR01] - Bowser
 [BRLY01] - Broly
+[BILLS1] - Buffalo Bills
 [CODTY1] - Call of Duty
 [CSTLV1] - Castlevania
 [CAR001] - Car
+[PNTHR1] - Carolina Panthers
 [CARS01] - Cars
 [CKMO01] - Check Mii Out
+[BEARS1] - Chicago Bears
+[HAWKS1] - Chicago Black Hawks
+[BULLS1] - Chicago Bulls
 [CRTRG1] - Chrono Trigger
 [CLKWK1] - Clock Work Orange
 [CLBPN1] - Club Penguin
 [GEASS1] - Code Geass
 [CONDT1] - Conduit
 [CONST1] - Constantine
+[CWBYS1] - Dallas Cowboys
 [DKUB01] - Dark Umbra v1
 [DKUB02] - Dark Umbra v2
 [DWORI1] - Dark Wii Original
@@ -65,6 +73,7 @@
 [DWYLJ1] - Dark Wii Yellow
 [DWYLK1] - Dark Wii Yellow
 [DKLOK1] - Deth Klok
+[LIONS1] - Detroit Lions
 [DIABL1] - Diablo 3
 [DSCRD1] - Discord
 [DGMN01] - Dog Man
@@ -105,6 +114,7 @@
 [GSUN01] - Golden Sun
 [GOTH01] - Gothic
 [GRTFL1] - Grateful Dead
+[PCKRS1] - Green Bay Packers
 [HDRAW1] - Hand Drawn
 [HKITY1] - Hello Kitty
 [HELLK1] - Hell's Kitchen
