@@ -252,7 +252,7 @@
 						//echo $str ;
 						//return;
 						//execInBackground($str);
-						exec($str, $themething_Output);
+						exec($str);
 						//echo $themething_Output;
 						//flush();
 						chdir($homedir);
@@ -437,10 +437,10 @@
 							}
 
 							#if($_POST['trans_chans'] == "true") {
-								#	rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".ap1");
-								#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".ap1 " . $strnodir;
+							#	rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".app");
+							#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".app " . $strnodir;
 							#}
-							#echo $str2;
+							#echo $str2; return;
 						}
 						else {
 							$str = "themething " . $_POST['theme'] . " " . $_POST['appfile'] . " 000000" . $_POST['appfile'] . ".app";
@@ -694,7 +694,7 @@
 		else return false;
 	}
 	function add_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 42) && $theme_Selected <= 49) || ($theme_Selected == 80) || ($theme_Selected == 197))
+		if((($theme_Selected >= 46) && $theme_Selected <= 53) || ($theme_Selected == 84) || ($theme_Selected == 207))
 			return true;
 		return false;
 	}
