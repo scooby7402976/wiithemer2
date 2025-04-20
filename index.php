@@ -10,7 +10,7 @@
     );
 	setcookie("sesId", $sesId, $arr_cookie_options);
 	$action = null;
-	$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym");
+	$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym");
 	if(isset($_POST["action"])) {
 		$ret = null;
 		$readCount = null;
@@ -384,7 +384,7 @@
 						#echo $str2;
 					}
 					else {
-						for($i = 0; $i < 6; $i++) {
+						for($i = 0; $i < 7; $i++) {
 							if($theme == $runfirstthemes[$i]) {
 								$runfirst = 1;
 								break;
@@ -406,12 +406,32 @@
 							while(!$myfile and filesize($myfile) == 0) {
 								$myfile = file_exists($str);
 							}
+							/*
+							if($_POST['trans_chans'] == "true") {
+								
+								$str2 = "themething trans_chans.mym 000000" . $_POST['appfile'] . ".app " . "000000 " . $_POST['appfile'] . ".ap1";
+								$homedir = getcwd();
+								chdir($sesId);
+								execInBackground($str2);
+								chdir($homedir);
+								$str = $sesId . "/000000" . $_POST['appfile'] . ".app";
+								$myfile = file_exists($str);
+								while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
+									$myfile = file_exists($str);
+									sleep(1);
+									$seccntr += 1;
+								}
+								if(!$myfile and $seccntr == $optimeout) {
+									echo "Error = building firstrun trans_chans section";
+									return;
+								}
+							}*/
 							$str = null;
 							$str = $sesId . "/" . "000000" . $_POST['appfile'];
 							unlink($str);
 							$str = null;
 							$str = $sesId . "/" . "000000" . $_POST['appfile'] . ".app";
-							rename($str, $sesId . "/" . "000000" . $_POST['appfile']);
+							rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".app");
 							if(add_mym_Extension($selectedtheme))  // dark wii themes full metal storm
 							$themeNoext = substr($_POST['theme'], 0, strlen($theme) - 5);
 							else $themeNoext = substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
@@ -423,7 +443,7 @@
 							execInBackground($str);
 							chdir($homedir);
 							$str = null;
-							$strnodir = $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+							
 							$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 							$myfile = file_exists($str);
 							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
@@ -435,11 +455,6 @@
 								echo "Error = building firstrun section";
 								return;
 							}
-
-							#if($_POST['trans_chans'] == "true") {
-							#	rename($str, $sesId . "/" . "000000" . $_POST['appfile'] . ".app");
-							#	$str2 = "themething mym/spins/trans_chans.mym 000000" . $_POST['appfile'] . ".app " . $strnodir;
-							#}
 							#echo $str2; return;
 						}
 						else {
