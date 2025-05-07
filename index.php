@@ -548,8 +548,14 @@
 				$bool_write = $_POST['bool_write'];
 				$bool_ids = $_POST['bool_ids'];
 				$bool_titles = $_POST['bool_titles'];
+				$bool_pngs = $_POST['bool_pngs'];
+				$bool_myms = $_POST['bool_mym'];
+				$bool_txts = $_POST['bool_txts'];
 				$array = explode(chr(10), $_POST['title_str']);
 				$array1 = explode(chr(10), $_POST['id_str']);
+				$array2 = explode(chr(10), $_POST['png_str']);
+				$array3 = explode(chr(10), $_POST['mym_str']);
+				$array4 = explode(chr(10), $_POST['txt_str']);
 				if($bool_write) {
 					$file = fopen("theme_id_titles.txt", "a+");
 					while($array[$x] != null) {
@@ -599,20 +605,59 @@
 						if($file2) {
 							if(add_mym_Extension($x)) {
 								for($y = 0; $y < 4; $y++) {
-									//fwrite($file2, '"' . $array[$x] . " " .$regions[$y] . '",');
-									fwrite($file2, $array[$x] . " " .$regions[$y]);
+									fwrite($file2, '"' . $array[$x] . " " .$regions[$y] . '",');
+									//fwrite($file2, $array[$x] . " " .$regions[$y]);
 									fwrite($file2, "\n");
 								}
 							}
 							else {
-								//fwrite($file2, '"' . $array[$x] . '",');
-								fwrite($file2, $array[$x]);
+								fwrite($file2, '"' . $array[$x] . '",');
+								//fwrite($file2, $array[$x]);
 								fwrite($file2, "\n");
 							}
 						}
 						$x++;
 					}
 					fclose($file2);
+				}
+				if($bool_pngs) {
+					$file3 = fopen("theme_pngs.txt", "a+");
+					$x = 0;
+					while($array2[$x] != null) {
+						echo $array2[$x] . "\n"; 
+						if($file3) {
+							fwrite($file3, '"' . $array2[$x] . '",');
+							fwrite($file3, "\n");
+						}
+						$x++;
+					}
+					fclose($file3);
+				}
+				if($bool_myms) {
+					$file4 = fopen("theme_myms.txt", "a+");
+					$x = 0;
+					while($array3[$x] != null) {
+						echo $array3[$x] . "\n"; 
+						if($file4) {
+							fwrite($file4, '"' . $array3[$x] . '",');
+							fwrite($file4, "\n");
+						}
+						$x++;
+					}
+					fclose($file4);
+				}
+				if($bool_txts) {
+					$file5 = fopen("theme_txts.txt", "a+");
+					$x = 0;
+					while($array4[$x] != null) {
+						echo $array4[$x] . "\n"; 
+						if($file5) {
+							fwrite($file5, '"' . $array4[$x] . '",');
+							fwrite($file5, "\n");
+						}
+						$x++;
+					}
+					fclose($file5);
 				}
 			}break;
 		}

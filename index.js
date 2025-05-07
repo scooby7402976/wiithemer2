@@ -1091,10 +1091,14 @@ function reset_building() {
 	get_data_File(completethemeinfo[themeposition].downloads);
 	return;
 }
-function write_theme_Info(write, ID, TITLE) {
+function write_theme_Info(write, ID, TITLE, MYMS, PNGS, TXTS) {
 	var titles = "";
 	var ids = "";
-	if((!write) && (!ID) && (!TITLE)) return;
+	var myms = "";
+	var pngs = "";
+	var txts = "";
+
+	if((!write) && (!ID) && (!TITLE) && (MYMS) && (PNGS) && (TXTS)) return;
 	console.log("writing theme_titles.txt");
 	for(let i = 0; i < theme_count; i++){
 		titles += completethemeinfo[i].name + "\n";
@@ -1102,12 +1106,21 @@ function write_theme_Info(write, ID, TITLE) {
 	for(let i = 0; i < theme_count; i++){
 		ids += completethemeinfo[i].ID + "\n";
 	}
+	for(let i = 0; i < theme_count; i++){
+		myms += completethemeinfo[i].mym + "\n";
+	}
+	for(let i = 0; i < theme_count; i++){
+		pngs += completethemeinfo[i].secondaryimg + "\n";
+	}
+	for(let i = 0; i < theme_count; i++){
+		txts += completethemeinfo[i].downloads + "\n";
+	}
 	console.log(titles);
 	$.ajax({
 		url: "index.php",
 		type: "POST",
 		cache: false,
-		data: { action: "write_Titles", title_str: titles, id_str: ids, bool_write: write, bool_ids: ID, bool_titles: TITLE },
+		data: { action: "write_Titles", title_str: titles, id_str: ids, bool_write: write, bool_ids: ID, bool_titles: TITLE, bool_mym: MYMS, bool_pngs: PNGS, mym_str: myms, png_str: pngs, bool_txts: TXTS, txt_str: txts },
 		success: function(data) {
 			//alert(data);
 		},
