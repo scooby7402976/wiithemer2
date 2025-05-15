@@ -88,7 +88,7 @@
 					if(!$myfile) {
 						$homedir = getcwd();
 						chdir($sesId);
-						$str = "themewii.exe " . $GLOBALS['app'] . " wiithememanager_Scooby74029";
+						$str = "themething s f " . $GLOBALS['app'] ." Wii_Themer" ;
 						execInBackground($str);
 						chdir($homedir);
 						$str = $sesId . "/000000" . $GLOBALS['app'];
