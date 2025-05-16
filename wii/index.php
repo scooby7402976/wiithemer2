@@ -2,18 +2,21 @@
 	$sesId = NULL;
 	$app = NULL;
 	$displayname = NULL;
+	$action = NULL;
 
 	if(isset($_GET['action'])) {
 
 		$action = $_GET['action'];
 		$tooldir = "../tools";
 		$themedir = "../mym";
-		$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym");
+		$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym");
 		$themeNoext = NULL;
 		$str = NULL;
 		$spinmym = NULL;
 		$spindisplay = NULL;
 		$runfirst = false;
+		$selectedtheme = $_GET['selectedtheme'];
+		$multistage_theme = null;
 
 		switch($action) {
 			case "prepDir": 
@@ -21,6 +24,7 @@
 				session_start();
 				$sesId = session_id();
 				if(!empty($sesId)) {  // make session directory and copy needed files to it
+					$multistage_theme = checkfor2stagetheme($_GET['theme']);
 					if(!is_dir($sesId)) {
 						mkdir($sesId);
 					}
@@ -35,6 +39,17 @@
 							closedir($dh);
 						}
 					}
+					if($_POST['savesrc'] == "true") {
+						if(add_mym_Extension($selectedtheme))
+							$str = $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 5);
+						else {
+							if($multistage_theme) {
+								$str = $sesId . "/" . $multistage_theme;
+							}
+							else $str = $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 4);
+						}
+						mkdir($str);
+					}
 					if(is_dir($sesId)) {
 						if($copytools)
 							echo $sesId;
@@ -47,10 +62,16 @@
 				if(isset($_GET['sessionId'])) $sesId = $_GET['sessionId'];
 				//echo $sesId . "<br>\n";
 				if(isset($_GET['mymfile'])) $theme = $_GET['mymfile'];
+				$multistage_theme = checkfor2stagetheme($theme);
 				if(isset($theme)) {
 					$copytheme = NULL;
 					$themewdir = $themedir . "/" . $theme;
 					$copytheme = copy($themewdir, $sesId . "/" . $theme);
+					if($multistage_theme) {
+						$theme = $themedir . $multistage_theme . "stage2.mym";
+						$themenodir = $multistage_theme . "stage2.mym";
+						$copytheme = copy($theme, $sesId . "/" . $themenodir);	
+					}
 					if($copytheme)
 						echo "Copying Theme to Session Dir. Complete .\n";
 					else
@@ -81,6 +102,8 @@
 				if(isset($_GET['sessionId'])) $sesId = $_GET['sessionId'];
 				//echo $sesId . "<br>\n";
 				if(isset($_GET['version'])) $version = $_GET['version'];
+				if(isset($_GET['mymfile'])) $theme = $_GET['mymfile'];
+				if(isset($_Get['spinoption'])) $spinoption = $_GET['spinoption'];
 				if(isset($version)) { # download .app file from nus servers
 					getappndisplayname($version);
 					$str = $sesId . "/000000" . $GLOBALS['app'];
@@ -88,7 +111,7 @@
 					if(!$myfile) {
 						$homedir = getcwd();
 						chdir($sesId);
-						$str = "themething s f " . $GLOBALS['app'] ." Wii_Themer" ;
+						$str = "themething c 000000" . $GLOBALS['app'];
 						execInBackground($str);
 						chdir($homedir);
 						$str = $sesId . "/000000" . $GLOBALS['app'];
@@ -97,6 +120,12 @@
 							$myfile = file_exists($str);
 						}
 						$appfile = $GLOBALS['app'];
+						$homedir = getcwd();
+						chdir($sesId);
+						$str = "themething s 000000" . $GLOBALS['app'] . " " . $theme . " " . $spinoption . " Wii_Themer";
+						execInBackground($str);
+						chdir($homedir);
+						clearstatcache();
 					}
 					echo "Appfile download Complete .\n";
 				}
@@ -126,7 +155,7 @@
 					}
 					//echo $spinmym . "<br>" . $spindisplay . "<br>";
 					
-					for($i = 0; $i < 4; $i++) {
+					for($i = 0; $i < 7; $i++) {
 						if($theme == $runfirstthemes[$i]) {
 							$runfirst = true;
 							break;
@@ -304,5 +333,122 @@
 		}
 		return;
 	}
-	
+	function checkfor2stagetheme($input_mym) {
+		$str = strstr($input_mym, "stage1", true);
+		if($str) {
+			return $str;
+		}
+		else return false;
+	}
+	function add_mym_Extension($theme_Selected) {
+		if((($theme_Selected >= 49) && $theme_Selected <= 56) || ($theme_Selected == 89) || ($theme_Selected == 225))
+			return true;
+		return false;
+	}
+	function increase_data_File($which_file) {
+		$file_to_increase = null;
+		echo $which_file . "\n";
+		switch($which_file) {
+			case "visitors":
+				$file_to_increase = "res/visitors.txt";
+				break;
+			case "mymenuifymod":
+				$file_to_increase = "res/mymenuifymod_downloads.txt";
+				break;
+			case "wiithemer":
+				$file_to_increase = "res/wiithemer_downloads.txt";
+				break;
+			case "csminstaller":
+				$file_to_increase = "res/csminstaller.txt";
+				break;
+			case "wii_downloads":
+				$file_to_increase = "res/wii_downloads.txt";
+				break;
+			case "vWii_downloads":
+				$file_to_increase = "res/vwii_downloads.txt";
+				break;
+			case "wii_U":
+				$file_to_increase = "res/regions/wii_U.txt";
+				break;
+			case "wii_E":
+				$file_to_increase = "res/regions/wii_E.txt";
+				break;
+			case "wii_J":
+				$file_to_increase = "res/regions/wii_J.txt";
+				break;
+			case "wii_K":
+				$file_to_increase = "res/regions/wii_K.txt";
+				break;
+			case "vwii_U":
+				$file_to_increase = "res/regions/vwii_U.txt";
+				break;
+			case "vwii_E":
+				$file_to_increase = "res/regions/vwii_E.txt";
+				break;
+			case "vwii_J":
+				$file_to_increase = "res/regions/vwii_J.txt";
+				break;
+			default:
+				$file_to_increase = "res/indthemecnt/" . $which_file;
+				break;
+		}
+		$count = 1;
+		if(file_exists($file_to_increase)) 
+			$readCount = file_get_contents($file_to_increase);
+		$count = $count + $readCount;
+		file_put_contents($file_to_increase, $count, LOCK_EX);
+		echo $count;
+		return;
+	}
+	function get_data_File($which_file) {
+		$file_to_get = null;
+		//echo $which_file . "\n";
+		switch($which_file) {
+			case "visitors":
+				$file_to_get = "res/visitors.txt";
+				break;
+			case "mymenuifymod":
+				$file_to_get = "res/mymenuifymod_downloads.txt";
+				break;
+			case "wiithemer":
+				$file_to_get = "res/wiithemer_downloads.txt";
+				break;
+			case "csminstaller":
+				$file_to_get = "res/csminstaller.txt";
+				break;
+			case "wii_downloads":
+				$file_to_get = "res/wii_downloads.txt";
+				break;
+			case "vwii_downloads":
+				$file_to_get = "res/vwii_downloads.txt";
+				break;
+			case "wii_U":
+				$file_to_get = "res/regions/wii_U.txt";
+				break;
+			case "wii_E":
+				$file_to_get = "res/regions/wii_E.txt";
+				break;
+			case "wii_J":
+				$file_to_get = "res/regions/wii_J.txt";
+				break;
+			case "wii_K":
+				$file_to_get = "res/regions/wii_K.txt";
+				break;
+			case "vwii_U":
+				$file_to_get = "res/regions/vwii_U.txt";
+				break;
+			case "vwii_E":
+				$file_to_get = "res/regions/vwii_E.txt";
+				break;
+			case "vwii_J":
+				$file_to_get = "res/regions/vwii_J.txt";
+				break;
+			default:
+				$file_to_get = "res/indthemecnt/" . $which_file;
+				break;
+		}
+		$readCount = file_get_contents($file_to_get);
+		echo $readCount;
+		return;
+	}
 ?>

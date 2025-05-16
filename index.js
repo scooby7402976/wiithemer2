@@ -588,16 +588,16 @@ function get_build_options(input) {
 		isWiiU = add_K_region(isWiiU);
 	}
 	if(region.length >= 6) isWiiU = remove_K_region(isWiiU);
-	if(input == 5) {
-		if(themeInfo.trans == true) {
-			console.log("completethemeinfo[selected].trans_chans = " + completethemeinfo[selectedtheme].trans_chans);
-			if(completethemeinfo[selectedtheme].trans_chans == "0") {
-				document.getElementById('trans_spinbox').checked = false;
-				$("#message").html(transchans);
-				$("#message").show();
-			}
+	
+	if(themeInfo.trans == true) {
+		console.log("completethemeinfo[selected].trans_chans = " + completethemeinfo[selectedtheme].trans_chans);
+		if(completethemeinfo[selectedtheme].trans_chans == "0") {
+			document.getElementById('trans_spinbox').checked = false;
+			$("#message").html(transchans);
+			$("#message").show();
 		}
 	}
+	
 	return;
 }
 function build_theme() {
