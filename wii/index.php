@@ -18,7 +18,7 @@
 		$multistage_theme = null;
 
 		switch($action) {
-			case "prepDir": 
+			case "prep_Dir": 
 				$copytools = NULL;
 				session_start();
 				$sesId = session_id();
@@ -45,7 +45,7 @@
 					}
 				}
 			break;
-			case "copymymfiles": 
+			case "copy_mym_files": 
 				if(isset($_GET['sessionId'])) $sesId = $_GET['sessionId'];
 				//echo $sesId . "<br>\n";
 				if(isset($_GET['mymfile'])) $theme = $_GET['mymfile'];
@@ -60,9 +60,9 @@
 						$copytheme = copy($theme, $sesId . "/" . $themenodir);	
 					}
 					if($copytheme)
-						echo "Copying Theme to Session Dir. Complete .\n";
+						echo "OK";
 					else
-						echo "ERROR - Copying Theme to Session Dir. Failed .\n";
+						echo "ERROR - copy theme";
 				}
 				if(isset($_GET['spin'])) $spinselected = $_GET['spin'];
 				if(isset($spinselected)) {
@@ -80,12 +80,12 @@
 
 					$copyspin = copy($spinmym, $sesId . "/" . $spinselected);
 					if($copyspin)
-						echo "Copying Spin Option to Session Dir. Complete .\n";
+						echo "OK";
 					else
-						echo "ERROR - Copying Spin Option to Session Dir. Failed .\n";
+						echo "ERROR - copy spin";
 				}
 			break;
-			case "downloadappfile": 
+			case "download_content": 
 				$seccntr = NULL;
 				$optimeout = 60;
 				if(isset($_GET['sessionId'])) $sesId = $_GET['sessionId'];
@@ -130,7 +130,7 @@
 					echo "Appfile download Complete .\n";
 				}
 			break;
-			case "buildtheme":  
+			case "build_theme":  
 				if(isset($_GET['mymfile'])) $theme = $_GET['mymfile'];
 				//echo $theme . "<br>\n";
 				if(isset($_GET['sessionId'])) $sesId = $_GET['sessionId'];
@@ -283,7 +283,7 @@
 					else echo "http://wiithemer.org/wii/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 				}
 			break;
-			case "removesessionDir":  
+			case "remove_session_Dir":  
 				if(isset($_GET['sessionId'])) $sesId = $_GET['sessionId'];
 				if (is_dir($sesId)){
 					if ($dh = opendir($sesId)){
@@ -462,6 +462,9 @@
 			case "vwii_J":
 				$file_to_increase = "res/regions/vwii_J.txt";
 				break;
+			case "theme_manager":
+				$file_to_increase = "C://apache24/server/wiithemer/res/theme_manager_downloads.txt";
+				break;
 			default:
 				$file_to_increase = "res/indthemecnt/" . $which_file;
 				break;
@@ -516,6 +519,9 @@
 				break;
 			case "vwii_J":
 				$file_to_get = "res/regions/vwii_J.txt";
+				break;
+			case "theme_manager":
+				$file_to_get = "C://apache24/server/wiithemer/res/theme_manager_downloas.txt";
 				break;
 			default:
 				$file_to_get = "res/indthemecnt/" . $which_file;
