@@ -868,7 +868,7 @@ function close_download_no_update() {
 function close_download() {
 	clearInterval(timer);
 	if (themeInfo.versionselected == 5) {
-		$("#downloadtext").html("<br><p>Thank You for using Wii Themer .</p><p>Remember to grab an install app from links on the main page .</p> <p>WARNING : vWii themes have not been tested . Make sure you have Priiloader installed . Only use Csm-Installer for vWii installs .</p>");
+		$("#downloadtext").html("<br><p>Thank You for using Wii Themer .</p><p>Remember to grab an install app from links on the main page .</p> <p>WARNING : Make sure you have Priiloader installed .</p>");
 		setTimeout(function() {
 			increase_data_File("vWii_downloads");
 		}, 1000);
@@ -1111,24 +1111,28 @@ function write_theme_Info(write, ID, TITLE, MYMS, PNGS, TXTS) {
 	var pngs = "";
 	var txts = "";
 
-	if((!write) && (!ID) && (!TITLE) && (MYMS) && (PNGS) && (TXTS)) return;
+	if((!write) && (!ID) && (!TITLE) && (!MYMS) && (!PNGS) && (!TXTS)) return;
 	console.log("writing theme_titles.txt");
 	for(let i = 0; i < theme_count; i++){
 		titles += completethemeinfo[i].name + "\n";
 	}
+	console.log(titles);
 	for(let i = 0; i < theme_count; i++){
 		ids += completethemeinfo[i].ID + "\n";
 	}
+	console.log(ids);
 	for(let i = 0; i < theme_count; i++){
 		myms += completethemeinfo[i].mym + "\n";
 	}
+	console.log(myms);
 	for(let i = 0; i < theme_count; i++){
 		pngs += completethemeinfo[i].secondaryimg + "\n";
 	}
+	console.log(pngs);
 	for(let i = 0; i < theme_count; i++){
 		txts += completethemeinfo[i].downloads + "\n";
 	}
-	console.log(titles);
+	console.log(txts);
 	$.ajax({
 		url: "index.php",
 		type: "POST",

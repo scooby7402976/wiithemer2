@@ -521,7 +521,7 @@
 				$file_to_get = "res/regions/vwii_J.txt";
 				break;
 			case "theme_manager":
-				$file_to_get = "C://apache24/server/wiithemer/res/theme_manager_downloas.txt";
+				$file_to_get = "C://apache24/server/wiithemer/res/theme_manager_downloads.txt";
 				break;
 			default:
 				$file_to_get = "res/indthemecnt/" . $which_file;
