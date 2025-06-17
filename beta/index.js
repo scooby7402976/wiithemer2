@@ -7,9 +7,9 @@ var sessionid = null;
 var themevideomode = false;
 var completefileinfo = [null];
 var timer = null;
-var isWiiU = false;
+var addK_region = false;
 var filtered_list_position = [];
-var filtered_themeposition = 0;
+var filtered_themeposition;
 const Region = ["", "U", "E", "J", "K"];
 const region_wii = ["", "wii_U", "wii_E", "wii_J", "wii_K"];
 const region_vWii = ["", "vwii_U", "vwii_E", "vwii_J"];
@@ -18,7 +18,7 @@ const version40kmessage = "The Korean region did not have System Menu v4.0 .<br>
 const transchans = "This theme has the channels removed already .<br>";
 const vWii_regions = "vWii has no Korean Region .";
 const max_themes = 300;
-const filter_list = ["All", "Top 20 Downloads", "Top 20 Views", "Anime", "Movie/TV", "Cartoon", "Music", "Sports", "Game", "Dark Wii/Colors", "OS", "Individual", "Misc"];
+const filter_list = ["All", "Top 20 Downloads", "Top 20 Views", "Anime", "Movie/TV", "Cartoon", "Music", "Sports", "Games", "Dark Wii/Colors", "OS", "Individual", "Misc"];
 const completethemeinfo = [
 	//{name:"", ID:"", mainimg:"", secondaryimg:"", mym:"", video:"", downloads:"", trans_chans:"1""0", filter:""},
 	{name:"Among Us v1", ID:"AMONG1", mainimg: "amongusv1.avif", secondaryimg:"amongusv1.png", mym:"amongusv1.mym", video:"https://www.youtube.com/embed/nO1V_81oC1g?si=3ejJl9qmBal_R8r5?autoplay=0&mute=1", downloads:"amongusv1.txt", trans_chans:"1", filter:"game"},
@@ -332,27 +332,27 @@ function load_regions() {
 	}
 	return;
 }
-function add_K_region(input_in) {
-	console.log("add() before len = " + Region.length);
-	if(input_in) {
+function add_K_region() {
+	//console.log("add() before len = " + Region.length);
+	//if(input_in) {
 		$('#region').append($('<option>',
 				{
 					value: 4,
 					text : "K" 
 				}
 		));
-		input_in = false;
-	}
-	console.log("add() after len = " + Region.length);
+		//input_in = false;
+	//}
+	//console.log("add() after len = " + Region.length);
 
-	return input_in;
+	return //input_in;
 }
-function remove_K_region(input_in) {
-	console.log(" remove() before len = " + Region.length);
+function remove_K_region() {
+	//console.log(" remove() before len = " + Region.length);
 	document.getElementById("region").remove(4);
-	console.log(" remove() after len = " + Region.length);
-	input_in = true;
-	return input_in;
+	//console.log(" remove() after len = " + Region.length);
+	//input_in = true;
+	return //input_in;
 }
 function load_versions() {
 	for(let i = 0; i < version.length; i++) { 
@@ -385,7 +385,7 @@ function load_theme_list(filter_type) {
 	filtered_list_position = [];
 
 	for (let i = 0; i < theme_count; i++) { 
-		console.log("completethemeinfo[i].filter = " + completethemeinfo[i].filter + "\n");
+		//console.log("completethemeinfo[i].filter = " + completethemeinfo[i].filter + "\n");
 		if( filter_type == "game") {
 			if(completethemeinfo[i].filter) {
 				if(completethemeinfo[i].filter != "game") {
@@ -690,18 +690,16 @@ function image_controls(input_control) {
 	console.log("input_contrtol = " + input_control);
 	let filter_option = document.getElementById("filter").selectedIndex;
 	console.log(filter_option + " selected filter option");
-	let x =  filtered_themeposition + input_control;
+	filtered_themeposition = filtered_themeposition + input_control;
 
 	if(filter_option != 0) {
-		if(x < 0) {
-			x = filtered_list_position.length - 1;
+		if(filtered_themeposition < 0) {
+			filtered_themeposition = filtered_list_position.length - 1;
 		}
-		if(x >= filtered_list_position.length) {
-			x = 0;
+		if(filtered_themeposition >= filtered_list_position.length) {
+			filtered_themeposition = 0;
 		}
-		console.log("x = " + x);
-		themeposition = filtered_list_position[x];
-		filtered_themeposition = x;
+		themeposition = filtered_list_position[filtered_themeposition];
 		console.log("filtered_themeposition = " + filtered_themeposition);
 	}
 	else {
@@ -710,7 +708,7 @@ function image_controls(input_control) {
 			themeposition = theme_count - 1;
 		if(themeposition >= theme_count)
 			themeposition = 0;
-		console.log("themeposition = " + themeposition);
+		//console.log("themeposition = " + themeposition);
 	}
 	if(filter_option != 0)
 		document.getElementById("theme").selectedIndex = filtered_themeposition;
@@ -728,7 +726,7 @@ function find_image_path(input) {
 }
 function get_filter_option() {
 	let filter_option = document.getElementById("filter").selectedIndex;
-	console.log(filter_option + " selected filter option");
+	//console.log(filter_option + " selected filter option");
 	switch(filter_option) {
 		case 0: {// All
 			//alert("All Themes");
@@ -803,20 +801,30 @@ function get_build_options(input) {
 	let filter_option = document.getElementById("filter").selectedIndex;
 
 	themeInfo.trans = trans_channels.checked;
-	console.log("trans_chans = " + themeInfo.trans);
-	console.log(selectedversion + " selected version");
+	//console.log("trans_chans = " + themeInfo.trans);
+	//console.log(selectedversion + " selected version");
 	console.log(selectedtheme + " selected theme");
-	console.log(selectedregion + " selected region");
-	console.log("filter_option = " + filter_option);
+	//console.log(selectedregion + " selected region");
+	//console.log("filter_option = " + filter_option);
 
 	if(filter_option != 0) {
-		themeposition = selectedtheme = filtered_list_position[selectedtheme];
+		themeposition = filtered_list_position[selectedtheme];
 		filtered_themeposition = selectedtheme;
-		console.log("filtered_themeposition = " + filtered_themeposition);
+		//console.log("filtered_themeposition = " + filtered_themeposition);
 	}
 	if(input == 3) {
 		load_media();
-		get_data_File(completethemeinfo[selectedtheme].downloads);
+		get_data_File(completethemeinfo[themeposition].downloads);
+	}
+	else if(input == 2) {
+
+	}
+	else if(input == 1) {
+		if((selectedversion == 4) || (selectedversion == 5)) {
+			remove_K_region();
+		}
+		else
+			add_K_region();
 	}
 	if((selectedtheme >= 0) && (selectedversion > 0) && (selectedregion > 0)) {
 		if((selectedregion == 4) && (selectedversion == 4)) {
@@ -843,13 +851,6 @@ function get_build_options(input) {
 		$("#continue").slideUp();
 		$("#message").fadeOut();
 	}
-	if(selectedversion == 5) {
-		isWiiU = remove_K_region(isWiiU);
-	}
-	else {
-		isWiiU = add_K_region(isWiiU);
-	}
-	if(region.length >= 6) isWiiU = remove_K_region(isWiiU);
 	
 	if(themeInfo.trans == true) {
 		console.log("completethemeinfo[selected].trans_chans = " + completethemeinfo[selectedtheme].trans_chans);
