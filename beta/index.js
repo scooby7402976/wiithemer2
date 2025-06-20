@@ -1414,7 +1414,8 @@ function reset_building() {
 	document.getElementById('continue').style.display = "none";
 	$("#themevideocontainer").hide();
 	show_image(themeposition);
-	document.getElementById("theme").selectedIndex = themeposition;
+	if(filter_option == 0)
+		document.getElementById("theme").selectedIndex = themeposition;
 	get_data_File(completethemeinfo[themeposition].downloads);
 	return;
 }
