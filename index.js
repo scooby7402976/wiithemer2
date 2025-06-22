@@ -665,7 +665,7 @@ function showmodal(modaltype) {
         }break;
         case 4: {
             $("#modaltitle").text("Contact Info");
-            $(".modal-body").html('<div id="contact_container"><p>Contact Naythan with site issues and/or questions .</p><p>Email :<a href="mailto:nayte1976@gmail.com"><i>Naythan Morey</i></a>@ gmail</p><p>Email :<a href="mailto:scooby74029@yahoo.com"><i>Scooby74029 </i></a>from GbaTemp</p><p>Email :<a href="mailto:admin@wiithemer.org"><i>admin </i></a>@ wiithemer.org</p></div>');
+            $(".modal-body").html('<div id="contact_container"><p>Contact Naythan with site issues and/or questions .</p><p>Email :<a href="mailto:scooby74029@yahoo.com"><i>Scooby74029 </i></a>from GbaTemp</p><p>Email :<a href="mailto:admin@wiithemer.org"><i>admin </i></a>@ wiithemer.org</p></div>');
             }break;
     }
     $("#modal").slideDown("slow");
@@ -1459,7 +1459,7 @@ function write_theme_Info(write, ID, TITLE, MYMS, PNGS, TXTS) {
 	});
 	return;
 }
-function load_channel_Website(which_website) {
+function load_channel_Website(which_website, is_download) {
 	let website = null;
 
 	switch(which_website) {
@@ -1485,8 +1485,23 @@ function load_channel_Website(which_website) {
 			increase_data_File('csminstaller');
 		break;
 	}
-	
-	return window.open(website,  '_blank');
+	var result;
+	if(!is_download) {
+		result = window.confirm("Visit " + website + " ?\n\nThis will open a new tab in your browser.\n\nClick OK to continue or Cancel to close this message.");
+		if (result) {
+			// User clicked OK
+			return window.open(website,  '_blank');
+		}
+	}
+	else {
+		result = window.confirm("Download " + which_website + " ?\n\nThis will start a download in your browser.\n\nClick OK to continue or Cancel to close this message.");
+		if (result) {
+			// User clicked OK
+			return window.open(website, 'self', 'noopener,noreferrer');
+		}
+	}
+	// User clicked Cancel
+	return;
 }
 function increase_data_File(which_file) {
 	console.log("which_file = " + which_file);
