@@ -1419,14 +1419,14 @@ function reset_building() {
 	get_data_File(completethemeinfo[themeposition].downloads);
 	return;
 }
-function write_theme_Info(write, ID, TITLE, MYMS, PNGS, TXTS) {
+function write_theme_Info(ID_TITLE, ID, TITLE, MYMS, PNGS, TXTS) {
 	var titles = "";
 	var ids = "";
 	var myms = "";
 	var pngs = "";
 	var txts = "";
 
-	if((!write) && (!ID) && (!TITLE) && (!MYMS) && (!PNGS) && (!TXTS)) return;
+	if((!ID_TITLE) && (!ID) && (!TITLE) && (!MYMS) && (!PNGS) && (!TXTS)) return;
 	console.log("writing theme_titles.txt");
 	for(let i = 0; i < theme_count; i++){
 		titles += completethemeinfo[i].name + "\n";
@@ -1452,7 +1452,7 @@ function write_theme_Info(write, ID, TITLE, MYMS, PNGS, TXTS) {
 		url: "index.php",
 		type: "POST",
 		cache: false,
-		data: { action: "write_Titles", title_str: titles, id_str: ids, bool_write: write, bool_ids: ID, bool_titles: TITLE, bool_mym: MYMS, bool_pngs: PNGS, mym_str: myms, png_str: pngs, bool_txts: TXTS, txt_str: txts },
+		data: { action: "write_Info", title_str: titles, id_str: ids, bool_id_title: ID_TITLE, bool_ids: ID, bool_titles: TITLE, bool_mym: MYMS, bool_pngs: PNGS, mym_str: myms, png_str: pngs, bool_txts: TXTS, txt_str: txts },
 		success: function(data) {
 			//alert(data);
 		},

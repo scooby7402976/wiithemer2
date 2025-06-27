@@ -10,7 +10,7 @@
     );
 	setcookie("sesId", $sesId, $arr_cookie_options);
 	$action = null;
-	$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym", ); //"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
+	$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym", "darkwii_extendedJ.mym", "darkwii_extendedK.mym");
 	if(isset($_POST["action"])) {
 		$ret = null;
 		$readCount = null;
@@ -380,7 +380,7 @@
 						}
 					}
 					else {
-						for($i = 0; $i < 9; $i++) {
+						for($i = 0; $i < 11; $i++) {
 							if($theme == $runfirstthemes[$i]) {
 								$runfirst = 1;
 								break;
@@ -544,12 +544,12 @@
 					} 
 				}
 			}break;
-			case "write_Titles": {
+			case "write_Info": {
 				//echo $_POST['title_str'];
 				$regions = ["U", "E", "J", "K"];
 				$x = 0;
 				$y;
-				$bool_write = $_POST['bool_write'];
+				$bool_id_title = $_POST['bool_id_title'];
 				$bool_ids = $_POST['bool_ids'];
 				$bool_titles = $_POST['bool_titles'];
 				$bool_pngs = $_POST['bool_pngs'];
@@ -560,7 +560,7 @@
 				$array2 = explode(chr(10), $_POST['png_str']);
 				$array3 = explode(chr(10), $_POST['mym_str']);
 				$array4 = explode(chr(10), $_POST['txt_str']);
-				if($bool_write) {
+				if($bool_id_title) {
 					$file = fopen("theme_id_titles.txt", "a+");
 					while($array[$x] != null) {
 						echo $array[$x] . "\n"; 
