@@ -10,7 +10,7 @@
     );
 	setcookie("sesId", $sesId, $arr_cookie_options);
 	$action = null;
-	$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym", "darkwii_extendedJ.mym", "darkwii_extendedK.mym");
+	$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym", ); //"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
 	if(isset($_POST["action"])) {
 		$ret = null;
 		$readCount = null;
@@ -380,7 +380,7 @@
 						}
 					}
 					else {
-						for($i = 0; $i < 11; $i++) {
+						for($i = 0; $i < 9; $i++) {
 							if($theme == $runfirstthemes[$i]) {
 								$runfirst = 1;
 								break;
@@ -758,7 +758,7 @@
 		else return false;
 	}
 	function add_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 51) && $theme_Selected <= 58) || ($theme_Selected == 48)  || ($theme_Selected == 92) || ($theme_Selected == 231))
+		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 95) || ($theme_Selected == 237))
 			return true;
 		return false;
 	}
