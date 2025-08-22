@@ -764,7 +764,8 @@
 	}
 	function increase_data_File($which_file) {
 		$file_to_increase = null;
-		echo $which_file . "\n";
+		$backup_path = null;
+		//echo $which_file . "\n";
 		switch($which_file) {
 			case "visitors":
 				$file_to_increase = "res/visitors.txt";
@@ -810,8 +811,10 @@
 				break;
 		}
 		$count = 1;
-		if(file_exists($file_to_increase)) 
+		if(file_exists($file_to_increase)) {
 			$readCount = file_get_contents($file_to_increase);
+			
+		}
 		$count = $count + $readCount;
 		file_put_contents($file_to_increase, $count, LOCK_EX);
 		echo $count;
