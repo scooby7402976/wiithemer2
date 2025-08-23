@@ -764,7 +764,7 @@
 	}
 	function increase_data_File($which_file) {
 		$file_to_increase = null;
-		$backup_path = null;
+		$backup_path = $which_file . "_backup.txt";
 		//echo $which_file . "\n";
 		switch($which_file) {
 			case "visitors":
