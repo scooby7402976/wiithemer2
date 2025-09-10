@@ -101,24 +101,61 @@
 					//echo "file removal complete";
 				}
 				if($files_not_deleted) {
-					sleep(2);
-					if (is_dir($sesId)) {
-						if ($dh = opendir($sesId)){
-							while (($file = readdir($dh)) !== false){
-								if($file == "." or $file == "..")
-									continue;
-								$x = unlink($sesId . "/" . $file);
-								if($x == 0) {
-									$files_not_deleted += 1;
+					sleep(1);
+					while($files_not_deleted) {
+						$files_not_deleted = 0;
+						if(isset($_POST['selectedtheme'])) $selectedtheme = $_POST['selectedtheme'];
+						if(isset($_POST["savesrc"])) {
+							if($_POST['savesrc'] == "true") {
+								$multistage_theme = checkfor2stagetheme($_POST['theme']);
+								
+								if(add_mym_Extension($selectedtheme))
+								$themeNoext = substr($_POST['theme'], 0, strlen($_POST['theme']) - 5);
+								else {
+									if($multistage_theme)
+										$themeNoext = $multistage_theme;
+									else
+									$themeNoext = substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
 								}
-								usleep(1000);
+								if (is_dir($sesId . "/" . $themeNoext)) {
+									if ($dh = opendir($sesId . "/" . $themeNoext)){
+										while (($file = readdir($dh)) !== false){
+											if($file == "." or $file == "..")
+												continue;
+											if(file_exists($sesId . "/" . $themeNoext . "/" . $file)) {
+												$x = unlink($sesId . "/" . $themeNoext . "/" . $file);
+												if($x == 0) {
+													$files_not_deleted += 1;
+												}
+												usleep(1000);
+											}
+										}
+										closedir($dh);
+									}
+									usleep(1000);
+									rmdir($sesId . "/" . $themeNoext);
+									usleep(1000);
+								}
 							}
-							closedir($dh);
 						}
-						usleep(1000);
-						rmdir($sesId);
-						//echo "file removal complete";
-					}				
+						if (is_dir($sesId)) {
+							if ($dh = opendir($sesId)){
+								while (($file = readdir($dh)) !== false){
+									if($file == "." or $file == "..")
+										continue;
+									$x = unlink($sesId . "/" . $file);
+									if($x == 0) {
+										$files_not_deleted += 1;
+									}
+									usleep(1000);
+								}
+								closedir($dh);
+							}
+							usleep(1000);
+							rmdir($sesId);
+							//echo "file removal complete";
+						}			
+					}	
 				}
 			}break;
 			case "copythemetosessiondirectory": {
