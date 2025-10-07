@@ -11,6 +11,7 @@
 	setcookie("sesId", $sesId, $arr_cookie_options);
 	$action = null;
 	$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym", ); //"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
+	$spincolors = array("", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym");
 	if(isset($_POST["action"])) {
 		$ret = null;
 		$readCount = null;
@@ -206,6 +207,10 @@
 							$trans_copy = copy("mym/spins/trans_chans.mym", "working/" . $sesId . "/trans_chans.mym");
 						}
 					}
+					if($_POST['spin_color'] >= 1) {
+						$spin_color_mym = "mym/outline_colors/" . $spincolors[$_POST['spin_color']];
+						$copyspincolor = copy($spin_color_mym, "working/" . $sesId . "/" . $spincolors[$_POST['spin_color']]);
+					}
 					if($_POST['savesrc'] == "true") {
 						$str2 = null;
 						if(add_mym_Extension($selectedtheme)) {
@@ -229,6 +234,10 @@
 							$themenodir = $multistage_theme . "stage2.mym";
 							$copycomplete = copy($theme, $str2 . "/" . $themenodir);
 						}
+						if($_POST['spin_color'] >= 1) {
+						$spin_color_mym = "mym/outline_colors/" . $spincolors[$_POST['spin_color']];
+						$copyspincolor = copy($spin_color_mym, "working/" . $sesId . "/" . $themenodir . "/" . $spincolors[$_POST['spin_color']]);
+					}
 					}
 
 				}
@@ -394,6 +403,15 @@
 							return;
 						}
 						$str = null;
+						if($_POST['spin_color'] >= 1) {
+							$str = "themething b stage2.app " . $spincolors[$_POST['spin_color']] . " " . "stage2.app";
+							$homedir = getcwd();
+							chdir("working/" . $sesId);
+							execInBackground($str);
+							chdir($homedir);
+							$str = null;
+						}
+
 						if($_POST['trans_chans'] == "true") $str = "themething b stage2.app " . $_POST['spin'] . ".mym " . $multistage_theme . "_" . $displayname . $spindisplay . "_TC.csm";
 						else $str = "themething b stage2.app " . $_POST['spin'] . ".mym " . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
 						
@@ -445,6 +463,7 @@
 								echo "Error = building runfirst section 1";
 								return;
 							}
+							
 							if($_POST['trans_chans'] == "true") {
 								$homedir = getcwd();
 								chdir("working/" . $sesId);
@@ -478,6 +497,15 @@
 								echo "Error = building firstrun section";
 								return;
 							}
+							if($_POST['spin_color'] >= 1) {
+								$str2 = $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+								$str = "themething b ". $str2 . " " . $spincolors[$_POST['spin_color']] . " " . $str2;
+								$homedir = getcwd();
+								chdir("working/" . $sesId);
+								execInBackground($str);
+								chdir($homedir);
+								$str = null;
+							}
 							#echo $str2; return;
 						}
 						else {
@@ -499,6 +527,14 @@
 								echo "Error = building section 1";
 								return;
 							}
+							if($_POST['spin_color'] >= 1) {
+							$str = "themething b 1.app " . $spincolors[$_POST['spin_color']] . " " . "1.app";
+							$homedir = getcwd();
+							chdir("working/" . $sesId);
+							execInBackground($str);
+							chdir($homedir);
+							$str = null;
+						}
 							if($_POST['trans_chans'] == "true") {
 								$homedir = getcwd();
 								chdir("working/" . $sesId);
