@@ -235,11 +235,20 @@
 							$copycomplete = copy($theme, $str2 . "/" . $themenodir);
 						}
 						if($_POST['spin_color'] >= 1) {
-						$spin_color_mym = "mym/outline_colors/" . $spincolors[$_POST['spin_color']];
-						$copyspincolor = copy($spin_color_mym, "working/" . $sesId . "/" . $themenodir . "/" . $spincolors[$_POST['spin_color']]);
+							$spin_color_mym = "mym/outline_colors/" . $spincolors[$_POST['spin_color']];
+							$destination_str = null;
+							if(add_mym_Extension($selectedtheme)) {
+								$destination_str = "working/" . $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 5);
+							}
+							else {
+								if($multistage_theme)
+									$destination_str = "working/" . $sesId . "/" . $multistage_theme;
+								else
+								$destination_str = "working/" . $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
+							}
+							$copyspincolor = copy($spin_color_mym, $destination_str . "/" . $spincolors[$_POST['spin_color']]);
+						}
 					}
-					}
-
 				}
 			}break;
 			case "makesesdir": {
@@ -574,32 +583,32 @@
 					if($_POST['savesrc'] == "true") {
 						if($multistage_theme) {
 							if($_POST['trans_chans'] == "true") {
-								$str = $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . "_TC.csm";
-								copy($str, $sesId . "/" . $multistage_theme . "/" . $multistage_theme . "_" .  $displayname . $spindisplay . "_TC.csm");
+								$str = "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . "_TC.csm";
+								copy($str, "working/" . $sesId . "/" . $multistage_theme . "/" . $multistage_theme . "_" .  $displayname . $spindisplay . "_TC.csm");
 							}
 							else {
-								$str = $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
-								copy($str, $sesId . "/" . $multistage_theme . "/" . $multistage_theme . "_" .  $displayname . $spindisplay . ".csm");
+								$str = "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
+								copy($str, "working/" . $sesId . "/" . $multistage_theme . "/" . $multistage_theme . "_" .  $displayname . $spindisplay . ".csm");
 							}
 							sleep(1);
 							// remove beta @ update time
-							$makezipstr = "7z.exe a " . $multistage_theme . ".zip -tzip c:/apache24/server/wiithemer/" . $sesId . "/" . $multistage_theme;
+							$makezipstr = "7z.exe a " . $multistage_theme . ".zip -tzip c:/apache24/server/wiithemer/beta/working/" . $sesId . "/" . $multistage_theme;
 						}
 						else {
 							if($_POST['trans_chans'] == "true") {
-								$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . "_TC.csm";
-								copy($str, $sesId . "/" . $themeNoext . "/" . $themeNoext . "_" .  $displayname . $spindisplay . "_TC.csm");
+								$str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . "_TC.csm";
+								copy($str, "working/" . $sesId . "/" . $themeNoext . "/" . $themeNoext . "_" .  $displayname . $spindisplay . "_TC.csm");
 							}
 							else {
-								$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
-								copy($str, $sesId . "/" . $themeNoext . "/" . $themeNoext . "_" .  $displayname . $spindisplay . ".csm");
+								$str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+								copy($str, "working/" . $sesId . "/" . $themeNoext . "/" . $themeNoext . "_" .  $displayname . $spindisplay . ".csm");
 							}
 							sleep(1);
 							// remove beta @ update time
-							$makezipstr = "7z.exe a " . $themeNoext . ".zip -tzip c:/apache24/server/wiithemer/" . $sesId . "/" . $themeNoext;
+							$makezipstr = "7z.exe a " . $themeNoext . ".zip -tzip c:/apache24/server/wiithemer/beta/working/" . $sesId . "/" . $themeNoext;
 						}
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						execInBackground($makezipstr);
 						chdir($homedir);
 						if($multistage_theme) echo $sesId . "/" . $multistage_theme . ".zip";
