@@ -13,6 +13,7 @@ const Region = ["", "U", "E", "J", "K"];
 const region_wii = ["", "wii_U", "wii_E", "wii_J", "wii_K"];
 const region_vWii = ["", "vwii_U", "vwii_E", "vwii_J"];
 const version = ["", "4.3", "4.2", "4.1", "4.0", "vWii (WiiU)"];
+const outline_Color = ["", "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow"];
 const version40kmessage = "The Korean region did not have System Menu v4.0 .";
 const transchans = "This theme has the channels removed already .";
 const vWii_regions = "vWii has no Korean Region .";
@@ -358,7 +359,20 @@ function load_regions(bool_needs_K) {
 	}
 	return;
 }
+function load_outline_Color() {
+	$('#spin_color').empty();
+	for(let i = 0; i < outline_Color.length; i++) { 
+		$('#spin_color').append($('<option>',
+		{
+			value: i,
+			text : outline_Color[i] 
+		}
+		));
+	}
+	return;
+}
 function load_versions() {
+	$('#menuversion').empty();
 	for(let i = 0; i < version.length; i++) { 
 		$('#menuversion').append($('<option>',
 		{
@@ -373,6 +387,7 @@ function get_theme_count() {
 	return theme_count;
 }
 function load_filter_list() {
+	$('#filter').empty();
 	for (let i = 0; i < filter_list.length; i++) {
 		$('#filter').append($('<option>',
 			{
@@ -622,11 +637,12 @@ function showmodal(modaltype) {
 			setTimeout(function(){
 				$("#modaltitle").css("color", "black");
 			$("#modaltitle").text("Build A Custom Theme");
-            $(".modal-body").html('<div id="buildingcontainer" class=" text-white ID-black border-white border-radius border-white-shadow"><div id="previewcontainer" class=""><img title="Click to show Images of Theme ." class="preview" id="preview1" src="" alt="preview picture 1" onclick="show_dual_pictures()"></img><div id="themevideocontainer" class="border-radius hidden" ><iframe id="videoframe" class="border-radius" src="" title="" frameborder="0" allowfullscreen></iframe></div><div title="Previous Theme" id="larrow" class="text-center border-radius clearfix" onclick="image_controls(-1)">&lt;&lt;</div><div title="Next Theme" id="rarrow" class="text-center border-radius clearfix" onclick="image_controls(1)">&gt;&gt;</div><div title="Check out a video of the theme" id="checkpreview" class="text-center border-radius" onclick="swap_mode()">Theme Video Preview</div></div><div id="building" class=""><div><label for="filter" id="filter_label">Categories : </label><select class="buildselect" title="Choose a Category for the theme list ." id="filter" name="filter" onchange="get_filter_option()"></select></div><label for="themeset" id="themelabel"class="border-yellow border-radius border-yellow-shadow buildlabel ">Select Theme :</label><select title="Select a Theme" class="buildselect border-orange border-radius border-orange-shadow" name="themeset" id="theme" onchange="get_build_options(3)">	</select><br></br><label for="menuversionset" id="menuversionlabel" class="border-yellow border-radius border-yellow-shadow buildlabel ">Select System Menu Version :</label><select title="Select a Menu Version" class="buildselect border-orange border-radius border-orange-shadow" name="menuversionset" id="menuversion" onchange="get_build_options(1)"></select><br></br><label for="regionset" id="regionlabel" class="border-yellow border-radius border-yellow-shadow buildlabel ">Select System Region :</label><select title="Select a Region" class="buildselect border-orange border-radius border-orange-shadow" name="regionset" id="region" onchange="get_build_options(2)"></select><br></br><button title="Build and Download Theme" id="continue" class="text-white ID-black border-green border-radius border-green-shadow" onclick="build_theme()">Build Theme</button></div><div id="spinoption" class=""><div id="csmsourcelabel" class="border-orange border-radius border-orange-shadow buildlabel"><b><i>Optional</i></b> :</div><br><br><input type="checkbox" name="csmsource" id="csmsourcebox"></input><label for="csmsourcebox" title="check box to download zip file with theme source files{.mym, .app, spintype.mym} and theme file(.csm) ." id="csmsourceboxlabel">Theme source files</label><br></br><br></br><input type="checkbox" name="trans_spin" id="trans_spinbox" onchange="get_build_options(5)"></input><label for="trans_spinbox" title="check box to add transparent channels" id="trans_spinboxlabel">Transparent Channels</label><div id="optionlabel" class="border-orange border-radius border-orange-shadow buildlabel"><b><i>Optional</i></b> :</div><br><br><input type="radio" name="option" id="fastspin" value="fastspin"></input><label for="fastspin" id="fastspinlabel" title="A fast spinning channel outline">Fast Spin Channels</label><br><br><input type="radio" name="option" id="spin" value="spin"></input><label for="spin" id="spinlabel" title="A spinning chanel outline">Spin Channels</label><br><br><input type="radio" name="option" id="nospin" value="nospin" checked></input><label for="nospin" id="nospinlabel" title="A none spinning channel outline">No Spin Channels</label><br><br><div title="Your Selection Error Info." id="message" class="border-yellow border-radius border-yellow-shadow ID-black text-white hidden"></div><div id="downloadcnt">0 Downloads</div></div></div>');
+            $(".modal-body").html('<div id="buildingcontainer" class=" text-white ID-black border-white border-radius border-white-shadow"><div id="previewcontainer" class=""><img title="Click to show Images of Theme ." class="preview" id="preview1" src="" alt="preview picture 1" onclick="show_dual_pictures()"></img><div id="themevideocontainer" class="border-radius hidden" ><iframe id="videoframe" class="border-radius" src="" title="" frameborder="0" allowfullscreen></iframe></div><div title="Previous Theme" id="larrow" class="text-center border-radius clearfix" onclick="image_controls(-1)">&lt;&lt;</div><div title="Next Theme" id="rarrow" class="text-center border-radius clearfix" onclick="image_controls(1)">&gt;&gt;</div><div title="Check out a video of the theme" id="checkpreview" class="text-center border-radius" onclick="swap_mode()">Theme Video Preview</div></div><div id="building" class=""><div><label for="filter" id="filter_label">Categories : </label><select class="buildselect" title="Choose a Category for the theme list ." id="filter" name="filter" onchange="get_filter_option()"></select></div><label for="themeset" id="themelabel"class="border-yellow border-radius border-yellow-shadow buildlabel ">Select Theme :</label><select title="Select a Theme" class="buildselect border-orange border-radius border-orange-shadow" name="themeset" id="theme" onchange="get_build_options(3)">	</select><br></br><label for="menuversionset" id="menuversionlabel" class="border-yellow border-radius border-yellow-shadow buildlabel ">Select System Menu Version :</label><select title="Select a Menu Version" class="buildselect border-orange border-radius border-orange-shadow" name="menuversionset" id="menuversion" onchange="get_build_options(1)"></select><br></br><label for="regionset" id="regionlabel" class="border-yellow border-radius border-yellow-shadow buildlabel ">Select System Region :</label><select title="Select a Region" class="buildselect border-orange border-radius border-orange-shadow" name="regionset" id="region" onchange="get_build_options(2)"></select><br></br><button title="Build and Download Theme" id="continue" class="text-white ID-black border-green border-radius border-green-shadow" onclick="build_theme()">Build Theme</button></div><div id="spinoption" class=""><div id="csmsourcelabel" class="border-orange border-radius border-orange-shadow buildlabel"><b><i>Optional</i></b> :</div><br><br><input type="checkbox" name="csmsource" id="csmsourcebox"></input><label for="csmsourcebox" title="check box to download zip file with theme source files{.mym, .app, spintype.mym} and theme file(.csm) ." id="csmsourceboxlabel">Theme source files</label><br></br><br></br><input type="checkbox" name="trans_spin" id="trans_spinbox" onchange="get_build_options(5)"></input><label for="trans_spinbox" title="check box to add transparent channels" id="trans_spinboxlabel">Transparent Channels</label><div id="optionlabel" class="border-orange border-radius border-orange-shadow buildlabel"><b><i>Optional</i></b> :</div><br><br><input type="radio" name="option" id="fastspin" value="fastspin"></input><label for="fastspin" id="fastspinlabel" title="A fast spinning channel outline">Fast Spin Channels</label><br><br><input type="radio" name="option" id="spin" value="spin"></input><label for="spin" id="spinlabel" title="A spinning chanel outline">Spin Channels</label><br><br><input type="radio" name="option" id="nospin" value="nospin" checked></input><label for="nospin" id="nospinlabel" title="A none spinning channel outline">No Spin Channels</label><br><br><br><br><label for="spin_color" id="spincolor" class="buildlabel ">Spin Outline Color :</label><br></br><select title="Choose spinning outline color ." class="buildselect " name="spin_color" id="spin_color" onchange=""></select><br></br><div title="Selection Error Info." id="message" class="border-yellow border-radius border-yellow-shadow ID-black text-white hidden"></div><div id="downloadcnt">0 Downloads</div></div></div>');
 			load_filter_list();
 			load_theme_list("All");
 			load_versions();
 			load_regions();
+			load_outline_Color();
 			load_media();
 			get_data_File(completethemeinfo[themeposition].downloads);
 			//getsingleDLcnt(themeposition);
@@ -913,7 +929,8 @@ function build_theme() {
 	themeInfo.regionselected = document.getElementById("region").selectedIndex;
 	themeInfo.mymfile = find_MYM(themeInfo.themeselected, themeInfo.regionselected);
 	themeInfo.version = find_build_version(themeInfo.versionselected, themeInfo.regionselected);
-	
+	themeInfo.spin_color = document.getElementById("spin_color").selectedIndex;
+	//alert(themeInfo.spin_color);
 	themeInfo.name = completethemeinfo[themeInfo.themeselected].name;
 	let spinoption = document.getElementsByName('option');
 	let src = document.getElementById('csmsourcebox');
@@ -1212,10 +1229,10 @@ function close_timer() {
 		minutesleft -= 1;
 	}
 	if(themeInfo.themesrc == true) {
-		$("#downloadtext").html("<br><br><p><a title='click to download your theme' class='glowtext text-center border-orange border-radius border-shadow-orange ID-black text-white' onclick='closedownload()' href='" + completefileinfo[0] + "/" + completefileinfo[1] + "' id='csmfile'><b><i>" + completefileinfo[1] + "</b></i></a></p><br><br><p>Your download will expire in </p>");
+		$("#downloadtext").html("<br><br><p><a title='click to download your theme' class='glowtext text-center border-orange border-radius border-shadow-orange ID-black text-white' onclick='closedownload()' href='working/" + completefileinfo[0] + "/" + completefileinfo[1] + "' id='csmfile'><b><i>" + completefileinfo[1] + "</b></i></a></p><br><br><p>Your download will expire in </p>");
 	}
 	else {
-		$("#downloadtext").html("<br><br><p><a title='click to download your theme' class='glowtext text-center border-orange border-radius border-shadow-orange ID-black text-white' onclick='close_download()' href='" + completefileinfo[0] + "/" + completefileinfo[1] + completefileinfo[2] + ".csm' id='csmfile'><b><i>" + completefileinfo[1] + completefileinfo[2] + ".csm</b></i></a></p><br><br><p>Your download will expire in </p>");
+		$("#downloadtext").html("<br><br><p><a title='click to download your theme' class='glowtext text-center border-orange border-radius border-shadow-orange ID-black text-white' onclick='close_download()' href='working/" + completefileinfo[0] + "/" + completefileinfo[1] + completefileinfo[2] + ".csm' id='csmfile'><b><i>" + completefileinfo[1] + completefileinfo[2] + ".csm</b></i></a></p><br><br><p>Your download will expire in </p>");
 	}
 	
 	$("#downloadtext").slideDown("slow");
@@ -1251,9 +1268,10 @@ async function php_build_theme() {
 				url: "index.php",
 				type: "POST",
 				cache: false,
-				data: { action: "buildtheme", theme: themeInfo.mymfile, appfile: themeInfo.appfile, version: themeInfo.version, spin: themeInfo.spinselected, savesrc: themeInfo.themesrc, selectedtheme: themeInfo.themeselected, trans_chans: themeInfo.trans_chans },
+				data: { action: "buildtheme", theme: themeInfo.mymfile, appfile: themeInfo.appfile, version: themeInfo.version, spin: themeInfo.spinselected, savesrc: themeInfo.themesrc, selectedtheme: themeInfo.themeselected, trans_chans: themeInfo.trans_chans, spin_color: themeInfo.spin_color },
 				success: function(data) {
 					//console.log(data);
+					//alert(data);
 					completefileinfo = data.split("/");
 					let copymessage = document.getElementById("downloadtext");
 					copymessage.innerHTML += "Complete .<br>";
@@ -1271,7 +1289,7 @@ async function copy_theme_to_folder() {
 				url: "index.php",
 				type: "POST",
 				cache: false,
-				data: { action: "copythemetosessiondirectory", theme: themeInfo.mymfile, spin: themeInfo.spinselected, savesrc: themeInfo.themesrc, selectedtheme: themeInfo.themeselected, trans_chans: themeInfo.trans_chans },
+				data: { action: "copythemetosessiondirectory", theme: themeInfo.mymfile, spin: themeInfo.spinselected, savesrc: themeInfo.themesrc, selectedtheme: themeInfo.themeselected, trans_chans: themeInfo.trans_chans, spin_color: themeInfo.spin_color },
 				success: function(data) {
 					let copymessage = document.getElementById("downloadtext");
 					if(data == "Copy Theme OK Copy Spin OK") {

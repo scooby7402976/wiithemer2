@@ -11,6 +11,7 @@
 	setcookie("sesId", $sesId, $arr_cookie_options);
 	$action = null;
 	$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym", ); //"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
+	$spincolors = array("", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym");
 	if(isset($_POST["action"])) {
 		$ret = null;
 		$readCount = null;
@@ -62,13 +63,13 @@
 							else
 							$themeNoext = substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
 						}
-						if (is_dir($sesId . "/" . $themeNoext)) {
-							if ($dh = opendir($sesId . "/" . $themeNoext)){
+						if (is_dir("working/" . $sesId . "/" . $themeNoext)) {
+							if ($dh = opendir("working/" . $sesId . "/" . $themeNoext)){
 								while (($file = readdir($dh)) !== false){
 									if($file == "." or $file == "..")
 										continue;
-									if(file_exists($sesId . "/" . $themeNoext . "/" . $file)) {
-										$x = unlink($sesId . "/" . $themeNoext . "/" . $file);
+									if(file_exists("working/" . $sesId . "/" . $themeNoext . "/" . $file)) {
+										$x = unlink("working/" . $sesId . "/" . $themeNoext . "/" . $file);
 										if($x == 0) {
 											$files_not_deleted += 1;
 										}
@@ -78,17 +79,17 @@
 								closedir($dh);
 							}
 							usleep(1000);
-							rmdir($sesId . "/" . $themeNoext);
+							rmdir("working/" . $sesId . "/" . $themeNoext);
 							usleep(1000);
 						}
 					}
 				}
-				if (is_dir($sesId)) {
-					if ($dh = opendir($sesId)){
+				if (is_dir("working/" . $sesId)) {
+					if ($dh = opendir("working/" . $sesId)){
 						while (($file = readdir($dh)) !== false){
 							if($file == "." or $file == "..")
 								continue;
-							$x = unlink($sesId . "/" . $file);
+							$x = unlink("working/" . $sesId . "/" . $file);
 							if($x == 0) {
 								$files_not_deleted += 1;
 							}
@@ -97,28 +98,65 @@
 						closedir($dh);
 					}
 					usleep(1000);
-					rmdir($sesId);
+					rmdir("working/" . $sesId);
 					//echo "file removal complete";
 				}
 				if($files_not_deleted) {
-					sleep(2);
-					if (is_dir($sesId)) {
-						if ($dh = opendir($sesId)){
-							while (($file = readdir($dh)) !== false){
-								if($file == "." or $file == "..")
-									continue;
-								$x = unlink($sesId . "/" . $file);
-								if($x == 0) {
-									$files_not_deleted += 1;
+					sleep(1);
+					while($files_not_deleted) {
+						$files_not_deleted = 0;
+						if(isset($_POST['selectedtheme'])) $selectedtheme = $_POST['selectedtheme'];
+						if(isset($_POST["savesrc"])) {
+							if($_POST['savesrc'] == "true") {
+								$multistage_theme = checkfor2stagetheme($_POST['theme']);
+								
+								if(add_mym_Extension($selectedtheme))
+								$themeNoext = substr($_POST['theme'], 0, strlen($_POST['theme']) - 5);
+								else {
+									if($multistage_theme)
+										$themeNoext = $multistage_theme;
+									else
+									$themeNoext = substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
 								}
-								usleep(1000);
+								if (is_dir("working/" . $sesId . "/" . $themeNoext)) {
+									if ($dh = opendir("working/" . $sesId . "/" . $themeNoext)){
+										while (($file = readdir($dh)) !== false){
+											if($file == "." or $file == "..")
+												continue;
+											if(file_exists("working/" . $sesId . "/" . $themeNoext . "/" . $file)) {
+												$x = unlink("working/" . $sesId . "/" . $themeNoext . "/" . $file);
+												if($x == 0) {
+													$files_not_deleted += 1;
+												}
+												usleep(1000);
+											}
+										}
+										closedir($dh);
+									}
+									usleep(1000);
+									rmdir("working/" . $sesId . "/" . $themeNoext);
+									usleep(1000);
+								}
 							}
-							closedir($dh);
 						}
-						usleep(1000);
-						rmdir($sesId);
-						//echo "file removal complete";
-					}				
+						if (is_dir("working/" . $sesId)) {
+							if ($dh = opendir("working/" . $sesId)){
+								while (($file = readdir($dh)) !== false){
+									if($file == "." or $file == "..")
+										continue;
+									$x = unlink("working/" . $sesId . "/" . $file);
+									if($x == 0) {
+										$files_not_deleted += 1;
+									}
+									usleep(1000);
+								}
+								closedir($dh);
+							}
+							usleep(1000);
+							rmdir("working/" . $sesId);
+							//echo "file removal complete";
+						}			
+					}	
 				}
 			}break;
 			case "copythemetosessiondirectory": {
@@ -128,18 +166,18 @@
 					//echo $_POST['theme'] . "<br>" . $selectedtheme;
 					$theme = "mym/" . $_POST['theme'];
 					$themenodir = $_POST['theme'];
-					$copytheme = copy($theme, $sesId . "/" . $themenodir);
+					$copytheme = copy($theme, "working/" . $sesId . "/" . $themenodir);
 					if($copytheme)
 						echo "Copy Theme OK ";
 					else
 						echo "Copy Theme ERROR ";
 					if($_POST['savesrc'] == "true") {
 						if(add_mym_Extension($selectedtheme)) 
-						$str2 = $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 5);
+						$str2 = "working/" . $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 5);
 						else {
 							if($multistage_theme)
-								$str2 = $sesId . "/" . $multistage_theme;
-							else $str2 = $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
+								$str2 = "working/" . $sesId . "/" . $multistage_theme;
+							else $str2 = "working/" . $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
 						}
 						$copycomplete = copy($theme, $str2 . "/" . $themenodir);
 					}
@@ -153,7 +191,7 @@
 					else if($_POST['spin'] == "nospin") {
 						$spinmym = "mym/spins/nospin.mym";
 					}
-					$copyspin = copy($spinmym, $sesId . "/" . $_POST['spin'] . ".mym");
+					$copyspin = copy($spinmym, "working/" . $sesId . "/" . $_POST['spin'] . ".mym");
 					if($copyspin)
 						echo "Copy Spin OK";
 					else
@@ -161,24 +199,28 @@
 					if($multistage_theme) {
 						$theme = "mym/" . $multistage_theme . "stage2.mym";
 						$themenodir = $multistage_theme . "stage2.mym";
-						$copytheme = copy($theme, $sesId . "/" . $themenodir);	
+						$copytheme = copy($theme, "working/" . $sesId . "/" . $themenodir);	
 					}
 					if(isset($_POST["trans_chans"])) {
 						$trans_channels = $_POST["trans_chans"];
 						if($trans_channels == "true") {
-							$trans_copy = copy("mym/spins/trans_chans.mym", $sesId . "/trans_chans.mym");
+							$trans_copy = copy("mym/spins/trans_chans.mym", "working/" . $sesId . "/trans_chans.mym");
 						}
+					}
+					if($_POST['spin_color'] >= 1) {
+						$spin_color_mym = "mym/outline_colors/" . $spincolors[$_POST['spin_color']];
+						$copyspincolor = copy($spin_color_mym, "working/" . $sesId . "/" . $spincolors[$_POST['spin_color']]);
 					}
 					if($_POST['savesrc'] == "true") {
 						$str2 = null;
 						if(add_mym_Extension($selectedtheme)) {
-							$str2 = $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 5);
+							$str2 = "working/" . $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 5);
 						}
 						else {
 							if($multistage_theme)
-								$str2 = $sesId . "/" . $multistage_theme;
+								$str2 = "working/" . $sesId . "/" . $multistage_theme;
 							else
-							$str2 = $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
+							$str2 = "working/" . $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
 						}
 						$trans_channels = $_POST["trans_chans"];
 						if($trans_channels == "true") {
@@ -187,29 +229,42 @@
 						$copycomplete = copy($spinmym, $str2 ."/".$_POST['spin'] . ".mym");
 						
 						if($multistage_theme) {
-							$str2 = $sesId . "/" . $multistage_theme;
+							$str2 = "working/" . $sesId . "/" . $multistage_theme;
 							$theme = "mym/" . $multistage_theme . "stage2.mym";
 							$themenodir = $multistage_theme . "stage2.mym";
 							$copycomplete = copy($theme, $str2 . "/" . $themenodir);
 						}
+						if($_POST['spin_color'] >= 1) {
+							$spin_color_mym = "mym/outline_colors/" . $spincolors[$_POST['spin_color']];
+							$destination_str = null;
+							if(add_mym_Extension($selectedtheme)) {
+								$destination_str = "working/" . $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 5);
+							}
+							else {
+								if($multistage_theme)
+									$destination_str = "working/" . $sesId . "/" . $multistage_theme;
+								else
+								$destination_str = "working/" . $sesId . "/" . substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
+							}
+							$copyspincolor = copy($spin_color_mym, $destination_str . "/" . $spincolors[$_POST['spin_color']]);
+						}
 					}
-
 				}
 			}break;
 			case "makesesdir": {
 				if(!empty($sesId)) {
 					$multistage_theme = checkfor2stagetheme($_POST['name']);
 					if(isset($_POST['selectedtheme'])) $selectedtheme = $_POST['selectedtheme'];
-					if (!is_dir($sesId)) {
-						mkdir($sesId);
+					if (!is_dir("working/" . $sesId)) {
+						mkdir("working/" . $sesId);
 						if($_POST['savesrc'] == "true") {
 							if(add_mym_Extension($selectedtheme))
-							$str = $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 5);
+							$str = "working/" . $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 5);
 							else {
 								if($multistage_theme) {
-									$str = $sesId . "/" . $multistage_theme;
+									$str = "working/" . $sesId . "/" . $multistage_theme;
 								}
-								else $str = $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 4);
+								else $str = "working/" . $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 4);
 							}
 							mkdir($str);
 							//echo $str . "<br>";
@@ -220,7 +275,7 @@
 							while (($file = readdir($dh)) !== false){
 								if($file == "." or $file == "..")
 									continue;
-								copy($tooldir . "/" . $file, $sesId . "/" . $file );
+								copy($tooldir . "/" . $file, "working/" . $sesId . "/" . $file );
 								usleep(1000);
 							}
 							closedir($dh);
@@ -240,17 +295,17 @@
 					if(isset($_POST['selectedtheme'])) $selectedtheme = $_POST['selectedtheme'];
 					$version = $_POST['version'];
 					getappndisplayname($version);
-					$str = $sesId . "/000000" . $GLOBALS['app'];
-					$savestr = $sesId . "/000000" . $GLOBALS['app'];
+					$str = "working/" . $sesId . "/000000" . $GLOBALS['app'];
+					$savestr = "working/" . $sesId . "/000000" . $GLOBALS['app'];
 					$myfile = file_exists($str);
 					if(!$myfile) {
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						$str = "themething c 000000" . $GLOBALS['app'];
 						execInBackground($str);
 						chdir($homedir);
 						$str = null;
-						$str = $sesId . "/000000" . $GLOBALS['app'];
+						$str = "working/" . $sesId . "/000000" . $GLOBALS['app'];
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and ($seccntr < $optimeout)) {
 							$myfile = file_exists($str);
@@ -264,17 +319,17 @@
 					}
 					if($_POST['savesrc'] == "true") {
 						if(add_mym_Extension($selectedtheme))
-						$str2 = $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 5);
+						$str2 = "working/" . $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 5);
 						else {
 							if($multistage_theme)
-								$str2 = $sesId . "/" . $multistage_theme;
+								$str2 = "working/" . $sesId . "/" . $multistage_theme;
 							else
-							$str2 = $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 4);
+							$str2 = "working/" . $sesId . "/" . substr($_POST['name'], 0, strlen($_POST['name']) - 4);
 						}
 						copy($savestr, $str2 . "/000000" . $GLOBALS['app'] . ".app");
 					}
 					$homedir = getcwd();
-					chdir($sesId);
+					chdir("working/" . $sesId);
 					$str = "themething s 000000" . $GLOBALS['app'] . " " . $_POST['name'] . " " . $spin . " Wii_Themer";
 					execInBackground($str);
 					chdir($homedir);
@@ -309,7 +364,7 @@
 						//echo "Found multistage theme .\n";
 						if($_POST['trans_chans'] == "true") {
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							$str = null;
 							$str = "themething b 000000" . $_POST['appfile'] . " trans_chans.mym 1_TC.app";
 							execInBackground($str);
@@ -320,12 +375,12 @@
 						
 						//echo "str = " . $str; return;
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						execInBackground($str);
 						chdir($homedir);
 						$str = null;
-						if($_POST['trans_chans'] == "true") $str = $sesId . "/stage1_TC.app";
-						else $str = $sesId . "/stage1.app";
+						if($_POST['trans_chans'] == "true") $str = "working/" . $sesId . "/stage1_TC.app";
+						else $str = "working/" . $sesId . "/stage1.app";
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 							$myfile = file_exists($str);
@@ -341,11 +396,11 @@
 						else $str = "themething b stage1.app " . $multistage_theme . "stage2.mym stage2.app";
 						
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						execInBackground($str);
 						chdir($homedir);
 						$str = null;
-						$str = $sesId . "/stage2.app";
+						$str = "working/" . $sesId . "/stage2.app";
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 							$myfile = file_exists($str);
@@ -357,17 +412,26 @@
 							return;
 						}
 						$str = null;
+						if($_POST['spin_color'] >= 1) {
+							$str = "themething b stage2.app " . $spincolors[$_POST['spin_color']] . " " . "stage2.app";
+							$homedir = getcwd();
+							chdir("working/" . $sesId);
+							execInBackground($str);
+							chdir($homedir);
+							$str = null;
+						}
+
 						if($_POST['trans_chans'] == "true") $str = "themething b stage2.app " . $_POST['spin'] . ".mym " . $multistage_theme . "_" . $displayname . $spindisplay . "_TC.csm";
 						else $str = "themething b stage2.app " . $_POST['spin'] . ".mym " . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
 						
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						execInBackground($str);
 						chdir($homedir);
 						$str = null;
 						//$strnodir = $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
-						if($_POST['trans_chans'] == "true") $str = $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . "_TC.csm";
-						else $str = $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
+						if($_POST['trans_chans'] == "true") $str = "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . "_TC.csm";
+						else $str = "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 							$myfile = file_exists($str);
@@ -393,11 +457,11 @@
 							//echo  "$runfirst/$runfirst/$str";
 							//return;
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							execInBackground($str);
 							chdir($homedir);
 							$str = null;
-							$str = $sesId . "/runfirst.app";
+							$str = "working/" . $sesId . "/runfirst.app";
 							$myfile = file_exists($str);
 							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 								$myfile = file_exists($str);
@@ -408,9 +472,10 @@
 								echo "Error = building runfirst section 1";
 								return;
 							}
+							
 							if($_POST['trans_chans'] == "true") {
 								$homedir = getcwd();
-								chdir($sesId);
+								chdir("working/" . $sesId);
 								$str = null;
 								$str = "themething b runfirst.app trans_chans.mym runfirst_TC.app";
 								execInBackground($str);
@@ -425,12 +490,12 @@
 							else $str = "themething b runfirst.app " . $_POST['theme'] . " " . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 							
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							execInBackground($str);
 							chdir($homedir);
 							$str = null;
-							if($_POST['trans_chans'] == "true") $str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . "_TC.csm";
-							else $str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+							if($_POST['trans_chans'] == "true") $str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . "_TC.csm";
+							else $str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 							$myfile = file_exists($str);
 							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 								$myfile = file_exists($str);
@@ -441,30 +506,43 @@
 								echo "Error = building firstrun section";
 								return;
 							}
+							if($_POST['spin_color'] >= 1) {
+								$str2 = $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+								$str = "themething b ". $str2 . " " . $spincolors[$_POST['spin_color']] . " " . $str2;
+								$homedir = getcwd();
+								chdir("working/" . $sesId);
+								execInBackground($str);
+								chdir($homedir);
+								$str = null;
+							}
 							#echo $str2; return;
 						}
 						else {
 							$str = "themething b 000000" . $_POST['appfile'] . " " . $_POST['theme'] . " 1.app";
 							//echo "str = " . $str; return;
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							execInBackground($str);
 							chdir($homedir);
 							$str = null;
-							$str = $sesId . "/1.app";
+							$str = "working/" . $sesId . "/1.app";
 							$myfile = file_exists($str);
-							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
-								$myfile = file_exists($str);
-								sleep(1);
-								$seccntr += 1;
-							}
+							wait_for_file($str, 30);
 							if(!$myfile and $seccntr == $optimeout) {
 								echo "Error = building section 1";
 								return;
 							}
+							if($_POST['spin_color'] >= 1) {
+							$str = "themething b 1.app " . $spincolors[$_POST['spin_color']] . " " . "1.app";
+							$homedir = getcwd();
+							chdir("working/" . $sesId);
+							execInBackground($str);
+							chdir($homedir);
+							$str = null;
+						}
 							if($_POST['trans_chans'] == "true") {
 								$homedir = getcwd();
-								chdir($sesId);
+								chdir("working/" . $sesId);
 								$str = null;
 								$str = "themething b 1.app trans_chans.mym 1_TC.app";
 								execInBackground($str);
@@ -478,13 +556,13 @@
 							else $str = "themething b 1.app " . $_POST['spin'] . ".mym " . $themeNoext . "_" .$displayname . $spindisplay . ".csm";
 							//echo "str = " . $str; return;
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							execInBackground($str);
 							chdir($homedir);
 							$str = null;
 							//$strnodir = $themeNoext . "_" . $displayname . $spindisplay . ".csm";
-							if($_POST['trans_chans'] == "true") $str = $sesId . "/" . $themeNoext . "_" .$displayname . $spindisplay . "_TC.csm";
-							else $str = $sesId . "/" . $themeNoext . "_" .$displayname . $spindisplay . ".csm";
+							if($_POST['trans_chans'] == "true") $str = "working/" . $sesId . "/" . $themeNoext . "_" .$displayname . $spindisplay . "_TC.csm";
+							else $str = "working/" . $sesId . "/" . $themeNoext . "_" .$displayname . $spindisplay . ".csm";
 							$myfile = file_exists($str);
 							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 								$myfile = file_exists($str);
@@ -501,32 +579,32 @@
 					if($_POST['savesrc'] == "true") {
 						if($multistage_theme) {
 							if($_POST['trans_chans'] == "true") {
-								$str = $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . "_TC.csm";
-								copy($str, $sesId . "/" . $multistage_theme . "/" . $multistage_theme . "_" .  $displayname . $spindisplay . "_TC.csm");
+								$str = "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . "_TC.csm";
+								copy($str, "working/" . $sesId . "/" . $multistage_theme . "/" . $multistage_theme . "_" .  $displayname . $spindisplay . "_TC.csm");
 							}
 							else {
-								$str = $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
-								copy($str, $sesId . "/" . $multistage_theme . "/" . $multistage_theme . "_" .  $displayname . $spindisplay . ".csm");
+								$str = "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
+								copy($str, "working/" . $sesId . "/" . $multistage_theme . "/" . $multistage_theme . "_" .  $displayname . $spindisplay . ".csm");
 							}
 							sleep(1);
 							// remove beta @ update time
-							$makezipstr = "7z.exe a " . $multistage_theme . ".zip -tzip c:/apache24/server/wiithemer/" . $sesId . "/" . $multistage_theme;
+							$makezipstr = "7z.exe a " . $multistage_theme . ".zip -tzip c:/apache24/server/wiithemer/working/" . $sesId . "/" . $multistage_theme;
 						}
 						else {
 							if($_POST['trans_chans'] == "true") {
-								$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . "_TC.csm";
-								copy($str, $sesId . "/" . $themeNoext . "/" . $themeNoext . "_" .  $displayname . $spindisplay . "_TC.csm");
+								$str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . "_TC.csm";
+								copy($str, "working/" . $sesId . "/" . $themeNoext . "/" . $themeNoext . "_" .  $displayname . $spindisplay . "_TC.csm");
 							}
 							else {
-								$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
-								copy($str, $sesId . "/" . $themeNoext . "/" . $themeNoext . "_" .  $displayname . $spindisplay . ".csm");
+								$str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+								copy($str, "working/" . $sesId . "/" . $themeNoext . "/" . $themeNoext . "_" .  $displayname . $spindisplay . ".csm");
 							}
 							sleep(1);
 							// remove beta @ update time
-							$makezipstr = "7z.exe a " . $themeNoext . ".zip -tzip c:/apache24/server/wiithemer/" . $sesId . "/" . $themeNoext;
+							$makezipstr = "7z.exe a " . $themeNoext . ".zip -tzip c:/apache24/server/wiithemer/working/" . $sesId . "/" . $themeNoext;
 						}
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						execInBackground($makezipstr);
 						chdir($homedir);
 						if($multistage_theme) echo $sesId . "/" . $multistage_theme . ".zip";
@@ -764,7 +842,8 @@
 	}
 	function increase_data_File($which_file) {
 		$file_to_increase = null;
-		echo $which_file . "\n";
+		$backup_path = $which_file . "_backup.txt";
+		//echo $which_file . "\n";
 		switch($which_file) {
 			case "visitors":
 				$file_to_increase = "res/visitors.txt";
@@ -810,8 +889,10 @@
 				break;
 		}
 		$count = 1;
-		if(file_exists($file_to_increase)) 
+		if(file_exists($file_to_increase)) {
 			$readCount = file_get_contents($file_to_increase);
+			
+		}
 		$count = $count + $readCount;
 		file_put_contents($file_to_increase, $count, LOCK_EX);
 		echo $count;
@@ -866,6 +947,16 @@
 		}
 		$readCount = file_get_contents($file_to_get);
 		echo $readCount;
+		return;
+	}
+	function wait_for_file($file, $timeout) {
+		$seccntr = 0;
+		$myfile = file_exists($file);
+		while((!$myfile and filesize($myfile) == 0) and ($seccntr < $timeout)) {
+			$myfile = file_exists($file);
+			sleep(1);
+			$seccntr += 1;
+		}
 		return;
 	}
 ?>

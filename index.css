@@ -404,12 +404,13 @@ body {
 	width: fit-content;
 	padding: 3px;
 	margin: 0px auto;
+	cursor: url("img/wii_cursors/wiiopen.cur"), default;
 }
 #csmsourcelabel, #trans_spinboxlabel {
 	margin: 5px auto;
 	width: 100%;
 }
-#csmsourcebox, #csmsourceboxlabel, #fastspin, #fastspinlabel, #spin, #spinlabel,#nospin, #nospinlabel, #trans_spinboxlabel, #trans_spinbox {
+#csmsourcebox, #csmsourceboxlabel, #fastspin, #fastspinlabel, #spin, #spinlabel,#nospin, #nospinlabel, #trans_spinboxlabel, #trans_spinbox, #spin_color, #spin_colorlabel {
 	cursor: url("img/wii_cursors/wiipointer.cur"), default;
 }
 #downloadtext {

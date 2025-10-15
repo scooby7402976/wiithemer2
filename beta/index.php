@@ -63,13 +63,13 @@
 							else
 							$themeNoext = substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
 						}
-						if (is_dir($sesId . "/" . $themeNoext)) {
-							if ($dh = opendir($sesId . "/" . $themeNoext)){
+						if (is_dir("working/" . $sesId . "/" . $themeNoext)) {
+							if ($dh = opendir("working/" . $sesId . "/" . $themeNoext)){
 								while (($file = readdir($dh)) !== false){
 									if($file == "." or $file == "..")
 										continue;
-									if(file_exists($sesId . "/" . $themeNoext . "/" . $file)) {
-										$x = unlink($sesId . "/" . $themeNoext . "/" . $file);
+									if(file_exists("working/" . $sesId . "/" . $themeNoext . "/" . $file)) {
+										$x = unlink("working/" . $sesId . "/" . $themeNoext . "/" . $file);
 										if($x == 0) {
 											$files_not_deleted += 1;
 										}
@@ -79,17 +79,17 @@
 								closedir($dh);
 							}
 							usleep(1000);
-							rmdir($sesId . "/" . $themeNoext);
+							rmdir("working/" . $sesId . "/" . $themeNoext);
 							usleep(1000);
 						}
 					}
 				}
-				if (is_dir($sesId)) {
-					if ($dh = opendir($sesId)){
+				if (is_dir("working/" . $sesId)) {
+					if ($dh = opendir("working/" . $sesId)){
 						while (($file = readdir($dh)) !== false){
 							if($file == "." or $file == "..")
 								continue;
-							$x = unlink($sesId . "/" . $file);
+							$x = unlink("working/" . $sesId . "/" . $file);
 							if($x == 0) {
 								$files_not_deleted += 1;
 							}
@@ -98,7 +98,7 @@
 						closedir($dh);
 					}
 					usleep(1000);
-					rmdir($sesId);
+					rmdir("working/" . $sesId);
 					//echo "file removal complete";
 				}
 				if($files_not_deleted) {
@@ -118,13 +118,13 @@
 									else
 									$themeNoext = substr($_POST['theme'], 0, strlen($_POST['theme']) - 4);
 								}
-								if (is_dir($sesId . "/" . $themeNoext)) {
-									if ($dh = opendir($sesId . "/" . $themeNoext)){
+								if (is_dir("working/" . $sesId . "/" . $themeNoext)) {
+									if ($dh = opendir("working/" . $sesId . "/" . $themeNoext)){
 										while (($file = readdir($dh)) !== false){
 											if($file == "." or $file == "..")
 												continue;
-											if(file_exists($sesId . "/" . $themeNoext . "/" . $file)) {
-												$x = unlink($sesId . "/" . $themeNoext . "/" . $file);
+											if(file_exists("working/" . $sesId . "/" . $themeNoext . "/" . $file)) {
+												$x = unlink("working/" . $sesId . "/" . $themeNoext . "/" . $file);
 												if($x == 0) {
 													$files_not_deleted += 1;
 												}
@@ -134,17 +134,17 @@
 										closedir($dh);
 									}
 									usleep(1000);
-									rmdir($sesId . "/" . $themeNoext);
+									rmdir("working/" . $sesId . "/" . $themeNoext);
 									usleep(1000);
 								}
 							}
 						}
-						if (is_dir($sesId)) {
-							if ($dh = opendir($sesId)){
+						if (is_dir("working/" . $sesId)) {
+							if ($dh = opendir("working/" . $sesId)){
 								while (($file = readdir($dh)) !== false){
 									if($file == "." or $file == "..")
 										continue;
-									$x = unlink($sesId . "/" . $file);
+									$x = unlink("working/" . $sesId . "/" . $file);
 									if($x == 0) {
 										$files_not_deleted += 1;
 									}
@@ -153,7 +153,7 @@
 								closedir($dh);
 							}
 							usleep(1000);
-							rmdir($sesId);
+							rmdir("working/" . $sesId);
 							//echo "file removal complete";
 						}			
 					}	
@@ -527,11 +527,7 @@
 							$str = null;
 							$str = "working/" . $sesId . "/1.app";
 							$myfile = file_exists($str);
-							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
-								$myfile = file_exists($str);
-								sleep(1);
-								$seccntr += 1;
-							}
+							wait_for_file($str, 30);
 							if(!$myfile and $seccntr == $optimeout) {
 								echo "Error = building section 1";
 								return;
@@ -951,6 +947,16 @@
 		}
 		$readCount = file_get_contents($file_to_get);
 		echo $readCount;
+		return;
+	}
+	function wait_for_file($file, $timeout) {
+		$seccntr = 0;
+		$myfile = file_exists($file);
+		while((!$myfile and filesize($myfile) == 0) and ($seccntr < $timeout)) {
+			$myfile = file_exists($file);
+			sleep(1);
+			$seccntr += 1;
+		}
 		return;
 	}
 ?>
