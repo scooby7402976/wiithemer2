@@ -332,19 +332,31 @@ function show_home_img(imgnum) {
 	};
 	return
 }
-function load_stats_counts() {
-	const file_path = ["resources/stats/visitor_count.txt", "resources/stats/wii_downloads.txt", "resources/stats/vwii_downloads.txt"];
-	const element_name = ["visitor_count", "wii_downloads", "vwii_downloads"];
-	const xhttp = new XMLHttpRequest();
-
-	for (let i = 0; i < file_path.length; i++) {
-		xhttp.open("GET", file_path[i]);
-		xhttp.onload = function() {
-			document.getElementById(element_name[i]).innerHTML = this.responseText + " Downloads .";
-		};
-		xhttp.send();
-	}
-	return;
+function load_stats_counts(file_num) {
+	 const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    
+    if(file_num == 1) document.getElementById('visitor_count').innerHTML = this.responseText + " Downloads .";
+    else if(file_num == 2) document.getElementById('wii_downloads').innerHTML = this.responseText + " Downloads .";
+    else if(file_num == 3) document.getElementById('vwii_downloads').innerHTML = this.responseText + " Downloads .";
+  }
+  switch (file_num) {
+    case 1:
+        xhttp.open("GET", "resources/stats/visits.txt");
+        break;
+    case 2:
+        xhttp.open("GET", "resources/stats/wii.txt");
+        break;
+    case 3:
+        xhttp.open("GET", "resources/stats/vwii.txt");
+        break;
+    default:
+        break;
+  }
+  
+  xhttp.send();
+  for (let i = 0; i < 50000000; i++) {} 
+  return;
 }
 function wiithemer_navigate_page_tabs(tab_num) {
 	//alert("tab_num: " + tab_num);
@@ -355,7 +367,7 @@ function wiithemer_navigate_page_tabs(tab_num) {
 		case 1:
 			document.getElementById("tabcontent").innerHTML = "<h1>Welcome to the Wii System Menu Theme Building Home page!</h1><hr></hr>";
             document.getElementById("tabcontent").innerHTML  += "<div id='home_tab_img_container' class='flexrow'><img title='Click to enlarge image.' id='homeimg1' alt='homeimage1' src='resources/home/luigiv2.avif' onclick='show_home_img(1)'></img><img title='Click to enlarge image.' id='homeimg2' alt='homeimage2' src='resources/home/darkwii.avif'' onclick='show_home_img(2)'></img><img title='Click to enlarge image.' id='homeimg3' alt='homeimage3' src='resources/home/windowsxp.avif' ' onclick='show_home_img(3)'></img></div>";
-            document.getElementById("tabcontent").innerHTML  += "<p>Here, you can build and download custom themes for your Wii System Menu. Explore our collection of themes and enhance your Wii experience!<br></br>These are just a few examples of the 299 themes available. More Themes Coming Soon.....</p>";
+            document.getElementById("tabcontent").innerHTML  += "<div id='home_message'>Here, you can build and download custom themes for your Wii System Menu. Explore our collection of themes and enhance your Wii experience!<br></br>These are just a few examples of the 299 themes available. More Themes Coming Soon.....</div>";
            
 			break;
 		case 2:
@@ -371,11 +383,14 @@ function wiithemer_navigate_page_tabs(tab_num) {
 
 			break;
 		case 6:
-			load_stats_counts();
-            document.getElementById("tabcontent").innerHTML = "<p style='text-align:center'>Current Total Themes Available: " + theme_count + "</p><hr></hr><br></br><p>Site Visits <span id='visitor_count'></span></p><p>Wii Themes <span id='wii_downloads'></span></p><p>vWii Themes <span id='vwii_downloads'></span></p>";
+			
+            document.getElementById("tabcontent").innerHTML = "<div id='stats_message'>Current Total Themes Available: <span id='themecount'>" + theme_count + "</span><hr></hr><br></br><p>Site Visits<span id='visitor_count'></span></p><p>Wii Themes<span id='wii_downloads'></span></p><p>vWii Themes<span id='vwii_downloads'></span></div>";
+			load_stats_counts(1);
+			load_stats_counts(2);
+			load_stats_counts(3);
 			break;
 		case 7:
-			document.getElementById("tabcontent").innerHTML = "<p style='text-align:center'>Contact us with comments, issues, etc. .</p><hr></hr><br></br><p style='text-align:center'>Email :<a href='mailto:scooby74029@yahoo.com'><i>Scooby74029 </i></a>from GbaTemp<br></br>Email :<a href='mailto:admin@wiithemer.org'><i>admin </i></a>@ wiithemer.org</p><br></br><img id='mailimg' alt='mail gif' src='resources/contact/mail.gif' width='350px' height='200px'></img>";
+			document.getElementById("tabcontent").innerHTML = "<div id='mail_message'>Contact us with comments, issues, etc. .<hr></hr><br></br>Email :<a href='mailto:scooby74029@yahoo.com'><i>Scooby74029 </i></a>from GbaTemp<br></br>Email :<a href='mailto:admin@wiithemer.org'><i>admin </i></a>@ wiithemer.org<br></br></div><br></br><img id='mailimg' alt='mail gif' src='resources/contact/mail.gif' width='350px' height='200px'></img>";
 			break;
 	}
 	return;

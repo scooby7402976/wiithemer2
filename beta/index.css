@@ -81,8 +81,8 @@ body {
     text-align: center;
     font-size: 2vh;
 }
-#tabcontent p {
-    margin: 10px auto;
+#home_message, #mail_message {
+    margin: 5vh auto;
     padding: 15px;
     background-color: black;
     border-radius: 10px;
@@ -90,9 +90,16 @@ body {
     border-style: solid;
     border-width: 2px;
     width: 95%;
-    text-align: left;
+    text-align: center;
 }
-
+#mail_message a{
+    text-decoration: none;
+    color: rgb(255 128 15);
+}
+#mail_message a:hover {
+    text-decoration: underline;
+    color: rgb(255 255 255);
+}
 #home_tab_img_container {
     margin: 5% auto;
     padding: 5px;
@@ -112,6 +119,21 @@ body {
     border: 3px solid rgb(255 128 15);
     border-radius: 10px;
     margin: 10px auto;
+}
+#stats_message{
+    margin: 5vh auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(255 128 15);
+    border-style: solid;
+    border-width: 2px;
+    width: 95%;
+    text-align: left;
+}
+#visitor_count, #wii_downloads, #vwii_downloads, #themecount {
+    float: right;
+    margin-right: 10px;
 }
 
 #mailimg {
@@ -399,10 +421,7 @@ body {
     text-decoration: underline;
     color: rgb(255 255 255);
 }
-#visitor_count, #wii_downloads, #vwii_downloads {
-    float: right;
-    margin-right: 10px;
-}
+
 #preview_get_theme_btn {
     font-size: 2.5vh;
     padding: 5px 10px;
