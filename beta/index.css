@@ -55,7 +55,23 @@ body {
     border-color: rgb(255, 255, 0);
     color: rgba(255, 255, 255, 1);
 }
-
+#theme_img_enlarged {
+     width: 80vw;
+    height: 75vh;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: rgba(52, 63, 67, 0.75);
+    border-radius: 10px;
+    border-color: rgb(255, 128, 15);
+    border-style: solid;
+    border-width: 2px;
+    overflow-y: scroll;
+    display:none;
+    z-index: 20;
+    position: absolute;
+    top: 15vh;
+    left: 10vw;
+}
 #tabcontent {
     width: 80vw;
     height: 65vh;
@@ -69,9 +85,16 @@ body {
     overflow-y: scroll;
     text-align: center;
 }
-#tabcontent h1 {
+#tabcontent h2 {
     margin: 10px auto;
     padding: 10px;
+    background-color: black;
+    text-align: center;
+    font-size: 2vh;
+}
+#home_container {
+    margin: 5vh auto;
+    padding: 15px;
     background-color: black;
     border-radius: 10px;
     border-color: rgb(255 128 15);
@@ -79,9 +102,8 @@ body {
     border-width: 2px;
     width: 95%;
     text-align: center;
-    font-size: 2vh;
 }
-#home_message, #mail_message {
+#mail_message {
     margin: 5vh auto;
     padding: 15px;
     background-color: black;
@@ -94,7 +116,7 @@ body {
 }
 #mail_message a{
     text-decoration: none;
-    color: rgb(255 128 15);
+    color: rgb(255 95 0);
 }
 #mail_message a:hover {
     text-decoration: underline;
@@ -106,12 +128,12 @@ body {
     gap: 10px;
 }
 #home_tab_img_container img {
-    border: 3px solid rgb(255 128 15);
+    border: 5px solid rgb(255 128 15);
     border-radius: 10px;
     cursor: pointer;
 }
 #home_tab_img_container img:hover {
-    border: 3px solid rgb(255 200 50);
+    border: 5px solid rgb(255 200 50);
 }
 #home_tab_img_enlarged {
     width: 99%;
@@ -119,6 +141,136 @@ body {
     border: 3px solid rgb(255 128 15);
     border-radius: 10px;
     margin: 10px auto;
+}
+#build_gui_container {
+    margin: 1vh auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(255 128 15);
+    border-style: solid;
+    border-width: 2px;
+    width: 95%;
+    text-align: center;
+}
+#theme_gallery {
+    margin: 1vh auto;
+    padding: 5px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(255 128 15);
+    border-style: solid;
+    border-width: 2px;
+    width: 95%;
+    text-align: center;
+}
+#preview_select {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 2px solid rgb(255 128 15);
+    background-color: black;
+    color: rgb(255 128 15);
+}
+#preview_select:hover {
+    border: 2px solid rgb(255 200 50);
+    cursor: pointer;
+}
+#preview_select option {
+    background-color: black;
+    color: rgb(255 128 15);
+}
+#preview_select option:hover {
+    background-color: rgb(53, 62, 67);
+    cursor: pointer;
+}
+#preview_get_theme_btn:hover {
+    border: 3px solid rgb(255 200 50);
+    background-color: rgb(53, 62, 67);
+    color: rgb(255 255 255);
+}
+#preview_filter {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 2px solid rgb(255 128 15);
+    background-color: black;
+    color: rgb(255 128 15);
+    cursor: pointer;
+}
+#preview_filter:hover {
+    border: 2px solid rgb(255 200 50);
+}
+#preview_filter option {
+    background-color: black;
+    color: rgb(255 128 15);
+    cursor: pointer; 
+}
+#preview_filter option:hover {
+    background-color: rgb(53, 62, 67);
+}
+#loadnextbtn, #loadprevbtn {
+    padding: 5px 10px;
+    margin: 5px 15px;
+    border-radius: 10px;
+    border: 2px solid rgb(255 128 15);
+    background-color: black;
+    color: rgb(255 128 15);
+    cursor: pointer;
+}
+#loadnextbtn:hover, #loadprevbtn:hover {
+    border: 2px solid rgb(255 200 50);
+    background-color: rgb(53, 62, 67);
+}
+#preview_get_theme_btn {
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 3px solid rgb(255 128 15);
+    background-color: black;
+    color: rgb(255 128 15);
+    cursor: pointer;
+    float: left;
+}
+#num_theme_downloads {
+    float: right;
+    margin: 0 10px;
+}
+#preview_mainimg, #preview_secondaryimg {
+    border: 5px solid rgb(255 128 15);
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+#preview_mainimg:hover, #preview_secondaryimg:hover {
+    border: 5px solid rgb(255 200 50);
+    cursor: pointer;
+}
+#preview_video {
+    border: 5px solid rgb(255 128 15);
+    border-radius: 10px;
+    margin: 10px;
+}
+#theme_installers {
+    margin: 5vh auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(255 128 15);
+    border-style: solid;
+    border-width: 2px;
+    width: 95%;
+    text-align: center;
+}
+#downloadimg1, #downloadimg2, #downloadimg3, #homeimg1, #homeimg2, #homeimg3 {
+    border: 5px solid rgb(255 128 15);
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+#downloadimg1:hover, #downloadimg2:hover, #downloadimg3:hover, #homeimg1:hover, #homeimg2:hover, #homeimg3:hover {
+    border: 5px solid rgb(255 200 50);
+    cursor: pointer;
 }
 #stats_message{
     margin: 5vh auto;
@@ -131,11 +283,45 @@ body {
     width: 95%;
     text-align: left;
 }
-#visitor_count, #wii_downloads, #vwii_downloads, #themecount {
+#show_more_wii, #show_more_vwii, #showlessbtn1, #showlessbtn2 {
+    display: none;
+}
+#showmorebtn1, #showmorebtn2, #showlessbtn1, #showlessbtn2 {
+    background-color: black;
+    color: rgb(255 95 0);
+    margin: 0 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+#showmorebtn1:hover, #showmorebtn2:hover, #showlessbtn1:hover, #showlessbtn2:hover {
+    background-color: rgb(53, 62, 67);
+    color: rgb(255 255 255);
+}
+#visitor_count, #wii_downloads, #vwii_downloads, #themecount, #uwii, #ewii, #jwii, #kwii, #uvwii, #evwii, #jvwii {
     float: right;
     margin-right: 10px;
+    clear: both;
 }
-
+#links_container {
+    margin: 10px auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(255 128 15);
+    border-style: solid;
+    border-width: 2px;
+    width: 95%;
+    text-align: left;
+}
+#links_container a {
+    text-decoration: none;
+    color: rgb(255 95 0);
+}
+#links_container a:hover {
+    text-decoration: underline;
+    color: rgb(255 255 255);
+}
 #mailimg {
     border: 5px solid rgb(255 128 15);
     border-radius: 20px;
@@ -383,16 +569,7 @@ body {
     background-color: rgb(53, 62, 67);
     cursor: pointer;
 }
-#loadpreviewbtn {
-    font-size: 2vh;
-    padding: 5px 10px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
-    background-color: black;
-    color: rgb(255 128 15);
-    cursor: pointer;
-}
+
 #linknavcont {
     display: flex;
     justify-content: center;
@@ -432,32 +609,7 @@ body {
     color: rgb(255 128 15);
     cursor: pointer;
 }
-#preview_get_theme_btn:hover {
-    border: 3px solid rgb(255 200 50);
-    background-color: rgb(53, 62, 67);
-    cursor: pointer;
-}
-#preview_filter {
-    font-size: 2vh;
-    padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
-    background-color: black;
-    color: rgb(255 128 15);
-}
-#preview_filter:hover {
-    border: 3px solid rgb(255 200 50);
-    cursor: pointer;
-}
-#preview_filter option {
-    background-color: black;
-    color: rgb(255 128 15);
-}
-#preview_filter option:hover {
-    background-color: rgb(53, 62, 67);
-    cursor: pointer;
-}
+
 #version_selected, #spin_color {
     font-size: 2vh;
     padding: 5px;
