@@ -46,7 +46,7 @@ body {
 #tabcontainer div {
     text-align: center;
     flex: content;
-    padding: 10px;
+    padding: 3px 10px;
     margin: 3px;
    
 }
@@ -56,7 +56,7 @@ body {
     color: rgba(255, 255, 255, 1);
 }
 #theme_img_enlarged {
-     width: 80vw;
+    width: 80vw;
     height: 75vh;
     margin: 5px auto;
     padding: 5px;
@@ -64,7 +64,7 @@ body {
     border-radius: 10px;
     border-color: rgb(255, 128, 15);
     border-style: solid;
-    border-width: 2px;
+    border-width: 5px;
     overflow-y: scroll;
     display:none;
     z-index: 20;
@@ -135,23 +135,24 @@ body {
 #home_tab_img_container img:hover {
     border: 5px solid rgb(255 200 50);
 }
-#home_tab_img_enlarged {
-    width: 99%;
-    height: 99%;
-    border: 3px solid rgb(255 128 15);
-    border-radius: 10px;
-    margin: 10px auto;
-}
 #build_gui_container {
-    margin: 1vh auto;
+    margin: 2.5% auto;
     padding: 15px;
     background-color: black;
     border-radius: 10px;
     border-color: rgb(255 128 15);
     border-style: solid;
     border-width: 2px;
-    width: 95%;
+    width: 85%;
     text-align: center;
+}
+#build_gui_container h1 {
+    font-size: 3vh;
+    border-radius: none;
+    border-color: none;
+    border-style: none;
+    border-width: none;
+    width: auto;
 }
 #theme_gallery {
     margin: 1vh auto;
@@ -164,7 +165,22 @@ body {
     width: 95%;
     text-align: center;
 }
-#preview_select {
+#save_menu_label, #save_menu {
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+#select_region, #select_region_label {
+    float: right;
+    margin-left: 10px;
+    margin-top: 5px;
+    padding-left: 10px;
+}
+ #select_region_label {
+    margin-top: 10px;
+}
+#preview_select, #select_version, #select_region {
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
@@ -172,24 +188,24 @@ body {
     background-color: black;
     color: rgb(255 128 15);
 }
-#preview_select:hover {
+#preview_select:hover, #select_version:hover, #select_region:hover {
     border: 2px solid rgb(255 200 50);
     cursor: pointer;
 }
-#preview_select option {
+#preview_select option, #select_version option, #select_region option {
     background-color: black;
     color: rgb(255 128 15);
 }
-#preview_select option:hover {
+#preview_select option:hover, #select_version option:hover, #select_region option:hover {
     background-color: rgb(53, 62, 67);
     cursor: pointer;
 }
-#preview_get_theme_btn:hover {
+#preview_get_theme_btn:hover, #begin_build_btn:hover {
     border: 3px solid rgb(255 200 50);
     background-color: rgb(53, 62, 67);
     color: rgb(255 255 255);
 }
-#preview_filter {
+#preview_filter, #spin_color {
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
@@ -198,15 +214,48 @@ body {
     color: rgb(255 128 15);
     cursor: pointer;
 }
-#preview_filter:hover {
+#preview_filter:hover, #spin_color:hover {
     border: 2px solid rgb(255 200 50);
 }
-#preview_filter option {
+#preview_filter option, #spin_color option {
     background-color: black;
     color: rgb(255 128 15);
     cursor: pointer; 
 }
-#preview_filter option:hover {
+#spin_color_container, #spin_option_container {
+    width: 45%;
+    text-align: center;
+    display: inline-block;
+}
+#spin_color_label, #spin_color {
+    margin: 0 5px;
+}
+#fastspin, #spin, #nospin, #fastspinlabel, #spinlabel, #nospinlabel {
+    margin: 0 5px;
+    cursor: pointer;
+}
+#source_file_save, #trans_channels {
+    margin: 5px;
+}
+#source_file_save_label, #trans_channels_label {
+    margin: 5px;
+}
+#source_file_container, #trans_channels_container {
+    width: 40%;
+    text-align: center;
+    display: inline-block;
+}
+#begin_build_btn {
+    padding: 5px 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 3px solid rgb(255 128 15);
+    background-color: black;
+    color: rgb(255 128 15);
+    cursor: pointer;
+}
+#preview_filter option:hover, #spin_color option:hover {
     background-color: rgb(53, 62, 67);
 }
 #loadnextbtn, #loadprevbtn {
@@ -225,6 +274,7 @@ body {
 #preview_get_theme_btn {
     padding: 5px 10px;
     margin-left: 10px;
+    margin-top: 10px;
     border-radius: 10px;
     border: 3px solid rgb(255 128 15);
     background-color: black;
@@ -382,311 +432,7 @@ body {
 .closepreviewbtn:hover {
     background-color: rgb(53, 62, 67);
 }
-
-/*
-
-#header, #footer {
-    width: 90vw;
-    text-align: center;
-    padding: 5px;
-    margin: 2px;
-    border-radius: 10px;
-}
-#header h1 {
-    font-size: 5vh;
-    width: 80vw;
-    margin: 10px auto;
-    padding: 5px;
-    background-color: black;
-    border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
-}
-
-#tabcontent {
-    width: 80vw;
-    height: 70vh;
+.links_page {
+    width: 50%;
     margin: 5px auto;
-    padding: 5px;
-    background-color: rgba(52, 63, 67, 0.75);
-    border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
-    overflow-y: scroll;
-    text-align: center;
 }
-#tabcontent h1 {
-    margin: 5px auto;
-    padding: 5px;
-    background-color: black;
-    border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
-    width: 80%;
-    text-align: center;
-}
-#tabcontent p {
-    margin: 10px auto;
-    padding: 15px;
-    background-color: black;
-    border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
-    width: 80%;
-    text-align: left;
-}
-#img1, #img2, #img3 {
-    border: 3px solid rgb(255 128 15);
-    border-radius: 10px;
-    margin: 10px;
-}
-#img1:hover, #img2:hover, #img3:hover {
-    border: 3px solid rgb(255 200 50);
-    cursor: pointer;
-}
-#imgcontainer img {
-    width: 90vw;
-    height: 90vh;
-    margin: 20px;
-    border: 3px solid rgb(255 128 15);
-    border-radius: 10px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 5%;
-    left: 5%;
-    cursor: pointer;
-    z-index: 3;
-}
-#imgcontainer span {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    color: rgb(255 128 15);
-    background-color: black;
-    border-radius: 10px;
-    border: 2px solid rgb(255 255 0);
-    padding: 5px 10px;
-    cursor: pointer;
-    z-index: 1;
-}
-#imgcontainer span:hover {
-    background-color: rgb(53, 62, 67);
-    border-color: rgb(255 128 15);
-}
-
-
-#downloadimg1, #downloadimg2, #downloadimg3 {
-    border: 3px solid rgb(255 128 15);
-    border-radius: 10px;
-    margin: 10px;
-    cursor: pointer;
-}
-#downloadimg1:hover, #downloadimg2:hover, #downloadimg3:hover {
-    border: 3px solid rgb(255 200 50);
-    cursor: pointer;
-}
-#mailimg {
-    border: 2px solid rgb(255 128 15);
-    border-radius: 10px;
-    margin: 10px;
-}
-#previewcontainer {
-    width: 80vw;
-    height: 80vh;
-    margin: 10px;
-    padding: 5px;
-    background-color: rgba(52, 63, 67, 0.75);
-    border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
-    overflow-y: scroll;
-    display: none;
-    position: absolute;
-    top: 13%;
-    left: 10%;
-    z-index: 2;
-}
-#previewcontainer h1 {
-    font-size: 2.5vh;
-    margin: 10px auto;
-    padding: 5px;
-    background-color: black;
-    border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
-    width: 80%;
-    text-align: center;
-}
-#imgholder {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-#previewcontainer img {
-    margin: auto 0;
-    border: 3px solid rgb(255 128 15);
-    border-radius: 10px;
-}
-#previewcontainer img:hover {
-    border: 3px solid rgb(255 200 50);
-    cursor: pointer;
-}
-#previewcontainer iframe {
-    margin: auto;
-    border: 3px solid rgb(255 128 15);
-    border-radius: 10px;
-}
-#previewcontainer iframe:hover {
-    border: 3px solid rgb(255 200 50);
-    cursor: pointer;
-}
-
-#preview_select {
-    font-size: 2vh;
-    padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
-    background-color: black;
-    color: rgb(255 128 15);
-}
-#preview_select:hover {
-    border: 3px solid rgb(255 200 50);
-    cursor: pointer;
-}
-#preview_select option {
-    background-color: black;
-    color: rgb(255 128 15);
-}
-#preview_select option:hover {
-    background-color: rgb(53, 62, 67);
-    cursor: pointer;
-}
-
-#linknavcont {
-    display: flex;
-    justify-content: center;
-}
-#linknavcont div {
-    flex: 1;
-    text-align: center;
-    cursor: pointer;
-    width: 25vw;
-    margin: 5px;
-    padding: 5px 10px;
-    border: 2px solid rgb(255 128 15);
-    border-radius: 10px;
-    background-color: black;
-    color: rgb(255 128 15);
-}  
-#linknavcont div:hover {
-    background-color: rgb(53, 62, 67);
-    border-color: rgb(255 255 0);
-}       
-#tabcontent a {
-    text-decoration: none;
-    color: rgb(255 128 15);
-}
-#tabcontent a:hover {
-    text-decoration: underline;
-    color: rgb(255 255 255);
-}
-
-#preview_get_theme_btn {
-    font-size: 2.5vh;
-    padding: 5px 10px;
-    margin: 10px auto;
-    border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
-    background-color: black;
-    color: rgb(255 128 15);
-    cursor: pointer;
-}
-
-#version_selected, #spin_color {
-    font-size: 2vh;
-    padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
-    background-color: black;
-    color: rgb(255 128 15);
-    position: relative;
-}
-#version_selected:hover, #spin_color:hover {
-    border: 3px solid rgb(255 200 50);
-    cursor: pointer;
-}
-#version_selected option, #spin_color option {
-    background-color: black;
-    color: rgb(255 128 15);
-}
-#version_selected option:hover, #spin_color option:hover {
-    background-color: rgb(53, 62, 67);
-    cursor: pointer;
-}
-#region_selected {
-    font-size: 2vh;
-    padding: 5px;
-    margin: 10px;
-    border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
-    background-color: black;
-    color: rgb(255 128 15);
-    position: relative;
-}
-#region_selected:hover {
-    border: 3px solid rgb(255 200 50);
-    cursor: pointer;
-}
-#region_selected option {
-    background-color: black;
-    color: rgb(255 128 15);
-}
-#region_selected option:hover {
-    background-color: rgb(53, 62, 67);
-    cursor: pointer;
-}
-#source_files, #trans_channels {
-    cursor: pointer;
-}
-#source_files:hover, #trans_channels:hover {
-    text-decoration: underline;
-}  
-#buildthemebtn {
-    font-size: 2.5vh;
-    padding: 5px 10px;
-    margin: 10px auto;
-    border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
-    background-color: black;
-    color: rgb(255 128 15);
-    cursor: pointer;
-}
-#buildthemebtn:hover {
-    border: 3px solid rgb(255 200 50);
-    background-color: rgb(53, 62, 67);
-    cursor: pointer;
-}
-#theme_dialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(52, 63, 67, 0.95);
-    border: 2px solid rgb(255 128 15);
-    border-radius: 10px;
-    padding: 20px;
-    z-index: 4;
-    display: none;
-    text-align: center;
-    width: 60vw;
-    height: auto;
-}*/
