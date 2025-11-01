@@ -26,7 +26,7 @@ body {
 }
 #maincontainer h1 {
     text-align: center;
-    font-size: 5vh;
+    font-size: 30px;
     margin: 10px auto;
     padding: 5px;
     border-radius: 10px;
@@ -55,6 +55,7 @@ body {
     border-color: rgb(255, 255, 0);
     color: rgba(255, 255, 255, 1);
 }
+
 #theme_img_enlarged {
     width: 80vw;
     height: 75vh;
@@ -72,6 +73,7 @@ body {
     top: 15vh;
     left: 10vw;
 }
+
 #tabcontent {
     width: 80vw;
     height: 65vh;
@@ -86,12 +88,13 @@ body {
     text-align: center;
 }
 #tabcontent h2 {
-    margin: 10px auto;
+    margin: 5px auto;
     padding: 10px;
     background-color: black;
     text-align: center;
-    font-size: 2vh;
+    font-size: 22px;
 }
+
 #home_container {
     margin: 5vh auto;
     padding: 15px;
@@ -103,6 +106,7 @@ body {
     width: 95%;
     text-align: center;
 }
+
 #mail_message {
     margin: 5vh auto;
     padding: 15px;
@@ -122,6 +126,7 @@ body {
     text-decoration: underline;
     color: rgb(255 255 255);
 }
+
 #home_tab_img_container {
     margin: 5% auto;
     padding: 5px;
@@ -148,10 +153,7 @@ body {
 }
 #build_gui_container h1 {
     font-size: 3vh;
-    border-radius: none;
-    border-color: none;
     border-style: none;
-    border-width: none;
     width: auto;
 }
 #theme_gallery {
@@ -165,12 +167,20 @@ body {
     width: 95%;
     text-align: center;
 }
-#save_menu_label, #save_menu {
+#save_menu_btn, #delete_menu_btn {
     float: left;
-    margin-right: 10px;
-    margin-top: 10px;
-    padding-right: 10px;
+    border-radius: 10px;
+    border: 3px solid rgb(255 128 15);
+    background-color: black;
+    color: rgb(255 128 15);
+    cursor: pointer;
+    padding: 5px 15px;
+    margin-top: 0;
 }
+#selected_region {
+    float: right;
+}
+
 #select_region, #select_region_label {
     float: right;
     margin-left: 10px;
@@ -200,7 +210,7 @@ body {
     background-color: rgb(53, 62, 67);
     cursor: pointer;
 }
-#preview_get_theme_btn:hover, #begin_build_btn:hover {
+#preview_get_theme_btn:hover, #begin_build_btn:hover, #save_menu_btn:hover, #delete_menu_btn:hover {
     border: 3px solid rgb(255 200 50);
     background-color: rgb(53, 62, 67);
     color: rgb(255 255 255);
@@ -246,7 +256,7 @@ body {
     display: inline-block;
 }
 #begin_build_btn {
-    padding: 5px 10px;
+    padding: 5px 20px;
     margin-left: 10px;
     margin-top: 10px;
     border-radius: 10px;
@@ -272,7 +282,7 @@ body {
     background-color: rgb(53, 62, 67);
 }
 #preview_get_theme_btn {
-    padding: 5px 10px;
+    padding: 5px 15px;
     margin-left: 10px;
     margin-top: 10px;
     border-radius: 10px;

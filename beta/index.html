@@ -25,8 +25,8 @@
 				<div id="tab2" class="tab tab_inactive" onclick="wiithemer_navigate_page_tabs(2)">
 					Gallery
 				</div>
-				<div id="tab3" class="tab tab_inactive" onclick="wiithemer_navigate_page_tabs(3)">
-					Builder
+				<div id="tab3" class="tab tab_inactive">
+					
 				</div>
 				<div id="tab4" class="tab tab_inactive" onclick="wiithemer_navigate_page_tabs(4)">
 					Downloads
@@ -53,7 +53,11 @@
 				</p>
 			</div>
 			<script type="text/javascript">
-				check_4_new_visitor();
+				// add update visitors by 1
+				if(!check_4_new_visitor()) {
+					get_user_id();
+					set_data("visits");
+				}	
 				wiithemer_navigate_page_tabs(1);
 			</script>
 		</div>

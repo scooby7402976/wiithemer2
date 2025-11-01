@@ -307,34 +307,31 @@ var filtered_list_position = [];
 var tab_locked_building = false;
 var theme_index = 0;
 var single_theme_position = 0;
+var userId = null;
+var saved_menu_version = 0;
+var saved_region = 0;
+var data_saved = false;
 const filter_list = ["All", "Top 20 Downloads", "Top 20 Views", "Latest", "Anime", "Movie/TV", "Cartoon", "Music", "Sports", "Games", "Dark Wii/Colors", "OS", "Individual", "Misc"];
 const versions = ["", "4.3", "4.2", "4.1", "4.0", "vWii (WiiU)"];
 const regions = ["", "U", "E", "J", "K"];
 const outline_Color = ["", "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow"];
 
-function remove_active_tab() {
-	let tab_active;
-	for (let i = 1; i <= 7; i++) {
-		tab_active = document.getElementById('tab' + i).className;
-		if (tab_active === "tab tab_active") {
-			document.getElementById('tab' + i).className = "tab tab_inactive";
-		}
-	}
-	return;
-}
+// enlarging all images ========
 function show_theme_img(img_file) {
-	
-	//alert(img_file);
-	document.getElementById("theme_img_enlarged").innerHTML = "<span title='Close Window' class='closepreviewbtn'>&times;</span>";
+	document.getElementById("theme_img_enlarged").innerHTML = "<span title='Close Window' class='closepreviewbtn' onclick='close_theme_img()'>&times;</span>";
 	document.getElementById("theme_img_enlarged").style.backgroundImage = "url('" + img_file + "')";
 	document.getElementById("theme_img_enlarged").style.backgroundSize = "100% 100%";
 	document.getElementById("theme_img_enlarged").style.backgroundRepeat = "no-repeat";
 	document.getElementById("theme_img_enlarged").style.display = "block";
-	document.getElementsByClassName("closepreviewbtn")[0].onclick = function() {
-		document.getElementById("theme_img_enlarged").style.display = "none";
-	};
 	return
 }
+// close img container ---------
+function close_theme_img() {
+	document.getElementById("theme_img_enlarged").style.display = "none";
+	return;
+}
+// -----------------------------
+// all download counts ---------
 function load_installer_count(theme_count_file) {
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
@@ -413,19 +410,21 @@ function load_stats_counts(file_num) {
 	xhttp.send();
 	return;
 }
+// =============================
+// download theme installers ---
 function show_download_name(file_num) {
     switch (file_num) {
         case 1:
 			 load_installer_count(1);
-            document.getElementById("installer_name").innerHTML = "Download MyMenuifyMod Theme Installer (Wii/vWii) ... <span id='installer_downloads'></span><p>Recommended Installer for most users .</p>";
+            document.getElementById("installer_name").innerHTML = "Download MyMenuifyMod Theme Installer (Wii/vWii) ... <span id='installer_downloads'></span> Downloads<p>Recommended Installer for most users .</p>";
             break;
         case 2:
             load_installer_count(2);
-			document.getElementById("installer_name").innerHTML = "Download WiiThemer Theme Installer (Wii Only) ... <span id='installer_downloads'></span><br></br>";
+			document.getElementById("installer_name").innerHTML = "Download WiiThemer Theme Installer (Wii Only) ... <span id='installer_downloads'></span> Downloads";
             break;
         case 3:
 			load_installer_count(3);
-            document.getElementById("installer_name").innerHTML = "Download Csm-Installer Theme Installer (Wii/vWii) ... <span id='installer_downloads'></span><br></br>";
+            document.getElementById("installer_name").innerHTML = "Download Csm-Installer Theme Installer (Wii/vWii) ... <span id='installer_downloads'></span> Downloads";
             break;
         default:
             break;
@@ -472,6 +471,8 @@ function download_Installer(which_installer) { // remove beta at release time
 	// User clicked Cancel
 	return;
 }
+//------------------------------
+// build_gui -------------------
 function load_filter_list() {
 	document.getElementById("preview_filter").options.length = 0; // clear existing options
 	for(let i = 0; i < filter_list.length; i++) { 
@@ -789,6 +790,7 @@ function load_versions() {
 }
 function swap_regions_K() {
     let versionselected = document.getElementById("select_version").selectedIndex;
+	const regionIndex = document.getElementById("select_region").selectedIndex;
     if(versionselected >= 4) { //vWii selected
         load_regions_no_K(); //load no K region
     }
@@ -807,6 +809,30 @@ function check_build_params() {
     const outlineColorIndex = document.getElementById("spin_color").selectedIndex;
     // Here you would add the logic to build the theme based on the selected options.
     alert("Version: " + versionIndex + "\nRegion: " + regionIndex + "\n\nsave_system_info: " + save_system_info + "\n\nget source: " + sourceFilesChecked + "\n\nspin color: " + outlineColorIndex +  "\n\nspin type: " + spinOption + "\n\ntrans channels: " + transChannelsChecked + "\n\nTheme build process would start now.");
+	
+	return;
+}
+function show_saved_data() {
+	const versionIndex = document.getElementById("select_version").selectedIndex;
+	const regionIndex = document.getElementById("select_region").selectedIndex;
+	if(versionIndex == 0 || regionIndex == 0)
+		return;
+	localStorage.setItem("saved_version", versionIndex);
+	localStorage.setItem("saved_region", regionIndex);
+	document.getElementById("save_menu_code").innerHTML = "<button id='delete_menu_btn' onclick='delete_saved_data()'>Delete Menu Info</button><span id='selected_version'>Saved System Menu Version: " + versions[versionIndex] + "</span><span id='selected_region'>Saved System Menu  Region: " + regions[regionIndex] + "</span>";
+	data_saved = true;
+
+	return;
+}
+function delete_saved_data() {
+	document.getElementById("save_menu_code").innerHTML = "<button id='save_menu_btn' onclick='show_saved_data()'>Save Menu Info</button><label for='select_version'>Select System Menu Version</label><select id='select_version' onclick='check_main_options()'></select><select id='select_region'></select><label for='select_region' id='select_region_label'>Select System Menu Region</label>";
+	data_saved = false;
+	load_regions();
+	load_versions();
+
+	return;
+}
+function check_main_options() {
 	swap_regions_K();
 	return;
 }
@@ -821,9 +847,10 @@ function build_gui() {
 	//alert("Swapped to Build Mode .\n\n" + theme.name);
 	remove_active_tab();
 	document.getElementById('tab3').className = "tab tab_active";
+	document.getElementById('tab3').innerText = "Builder";
 	document.getElementById("tabcontent").innerHTML = "";
 	// Load Build GUI here .
-	document.getElementById("tabcontent").innerHTML = "<span title='Close Window' class='closepreviewbtn'>&times;</span><div id='build_gui_container'><h1>" + theme.name + "</h1><hr></hr><p><label for='save_menu' id='save_menu_label'>Save System Info</label><input type='checkbox' id='save_menu'></input><label for='select_version'>Select System Menu Version</label><select id='select_version'></select><select id='select_region'></select><label for='select_region' id='select_region_label'>Select System Menu Region</label></p><hr></hr><br></br><b><i>Optional</i></b> :<br></br><div id='spin_color_container'><label for='spin_color' id='spin_color_label'>Spinning Outline Color</label><select id='spin_color'  title='Choose spinning outline color .'></select></div><div id='spin_option_container'><label for='fastspin' id='fastspinlabel' title='A fast spinning channel outline'>Fast Spin Channels</label><input type='radio' name='option' id='fastspin' value='3'></input><label for='spin' id='spinlabel' title='A spinning chanel outline'>Spin Channels</label><input type='radio' name='option' id='spin' value='2'></input><label for='nospin' id='nospinlabel' title='A none spinning channel outline'>No Spin Channels</label><input type='radio' name='option' id='nospin' value='1' checked></input></div><hr></hr><br></br><b><i>Optional</i></b> :<br></br><div id='source_file_container'><label for='source_file_save' id='source_file_save_label'>Save Source Files</label><input type='checkbox' id='source_file_save'></input></div><div id='trans_channels_container'><label for='trans_channels' id='trans_channels_label'>Transparent Channels</label><input type='checkbox' id='trans_channels'></input></div><hr></hr><br></br><button id='begin_build_btn'>Build Theme</button></div>";
+	document.getElementById("tabcontent").innerHTML = "<span title='Close Window' class='closepreviewbtn'>&times;</span><div id='build_gui_container'><h1>" + theme.name + "</h1><hr></hr><p id='save_menu_code'><button id='save_menu_btn' onclick='show_saved_data()'>Save Menu Info</button><label for='select_version'>Select System Menu Version</label><select id='select_version' onclick='check_main_options()'></select><select id='select_region'></select><label for='select_region' id='select_region_label'>Select System Menu Region</label></p><hr></hr><br></br><b><i>Optional</i></b> :<br></br><div id='spin_color_container'><label for='spin_color' id='spin_color_label'>Spinning Outline Color</label><select id='spin_color'  title='Choose spinning outline color .'></select></div><div id='spin_option_container'><label for='fastspin' id='fastspinlabel' title='A fast spinning channel outline'>Fast Spin Channels</label><input type='radio' name='option' id='fastspin' value='3'></input><label for='spin' id='spinlabel' title='A spinning chanel outline'>Spin Channels</label><input type='radio' name='option' id='spin' value='2'></input><label for='nospin' id='nospinlabel' title='A none spinning channel outline'>No Spin Channels</label><input type='radio' name='option' id='nospin' value='1' checked></input></div><hr></hr><br></br><b><i>Optional</i></b> :<br></br><div id='source_file_container'><label for='source_file_save' id='source_file_save_label'>Save Source Files</label><input type='checkbox' id='source_file_save'></input></div><div id='trans_channels_container'><label for='trans_channels' id='trans_channels_label'>Transparent Channels</label><input type='checkbox' id='trans_channels'></input></div><hr></hr><br></br><button id='begin_build_btn'>Build Theme</button></div>";
 	tab_locked_building = true;
 	load_regions();
 	load_versions();
@@ -832,29 +859,43 @@ function build_gui() {
 	document.getElementsByClassName("closepreviewbtn")[0].onclick = function() {
 		tab_locked_building = false;
 		theme_index = 0;
+		document.getElementById('tab3').innerText = "";
 		wiithemer_navigate_page_tabs(1);
 	};
-	document.getElementById("select_version").onclick = function() {
-		//alert(document.getElementById(source_file_save).checked);
-		//if(document.getElementById("source_file_save".checked == "trur"))
-			alert("save version for user .")
-		check_build_params();
-	}
 	document.getElementById("select_region").onclick = function() {
-		//if(document.getElementById("source_file_save".checked == true))
-			alert("save region for user .")
-		check_build_params();
+		const versionIndex = document.getElementById("select_version").selectedIndex;
+    	const regionIndex = document.getElementById("select_region").selectedIndex;
+		
 	}
 	document.getElementById("begin_build_btn").onclick = function() {
-		alert("Build theme button pressed.");
-	}
-	document.getElementById("save_menu").onclick = function() {
-		alert("save menu checkbox clicked .");
+		const versionIndex = document.getElementById("select_version").selectedIndex;
+    	const regionIndex = document.getElementById("select_region").selectedIndex;
+		if(versionIndex > 0 && regionIndex > 0)
+			document.getElementById("save_menu").style.display = "block";
+		if(versionIndex == 0 || regionIndex == 0)
+			return;
+		check_build_params();
 	}
 	return;
 }
+// -----------------------------
+// main site navigation---------
+// tab color change ------------
+function remove_active_tab() {
+	let tab_active;
+	for (let i = 1; i <= 7; i++) {
+		tab_active = document.getElementById('tab' + i).className;
+		if (tab_active === "tab tab_active") {
+			document.getElementById('tab' + i).className = "tab tab_inactive";
+		}
+	}
+	return;
+}
+// -----------------------------
 function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 	if (tab_locked_building)
+		return;
+	if(tab_num == 3)
 		return;
 	remove_active_tab();
 	document.getElementById('tab' + tab_num).className = "tab tab_active";
@@ -884,7 +925,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 				theme_position = 0;
 				load_single_theme_count("resources/stats/indthemecnt/" + theme.downloads, 0);
 			}
-			document.getElementById("tabcontent").innerHTML = "<div id='theme_gallery'><button id='preview_get_theme_btn' onclick='build_gui()'>Get Theme</button><h3 id='gallery_header'>" + theme.name + "<span id='num_theme_downloads'></span></h3><hr></hr><button id='loadprevbtn'> &lt;&lt;</button><select id='preview_filter' onchange='get_filter_option()'></select><select id='preview_select' name='preview_select'></select><button id='loadnextbtn'> &gt;&gt;</button><div id='imgholder' class='flexrow'><div><img id='preview_mainimg' alt='preview_mainimg' src='resources/theme_main/" + theme.mainimg + "' width='350' height='200'></img><br></br><img id='preview_secondaryimg' alt='preview_secondaryimg' src='resources/theme_secondary/" + theme.secondaryimg + "' width='350' height='200'></img></div><iframe id='preview_video' width='550' height='400' src='' title='YouTube video player' frameborder='0' allowfullscreen></iframe></div></div>";
+			document.getElementById("tabcontent").innerHTML = "<div id='theme_gallery'><button id='preview_get_theme_btn' onclick='build_gui()'>Build Theme</button><h3 id='gallery_header'>" + theme.name + "<span id='num_theme_downloads'></span></h3><hr></hr><button id='loadprevbtn'> &lt;&lt;</button><select id='preview_filter' onchange='get_filter_option()'></select><select id='preview_select' name='preview_select'></select><button id='loadnextbtn'> &gt;&gt;</button><div id='imgholder' class='flexrow'><div><img id='preview_mainimg' alt='preview_mainimg' src='resources/theme_main/" + theme.mainimg + "' width='350' height='200'></img><br></br><img id='preview_secondaryimg' alt='preview_secondaryimg' src='resources/theme_secondary/" + theme.secondaryimg + "' width='350' height='200'></img></div><iframe id='preview_video' width='550' height='400' src='' title='YouTube video player' frameborder='0' allowfullscreen></iframe></div></div>";
 			// add theme.video to iframe src above 
 			load_filter_list();
             load_theme_list("All");
@@ -1001,14 +1042,10 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 			}
 
 			break;
-		case 3:
-			alert("Please choose a theme from the Gallery .\nUse the Get Theme Button to start building the theme .\n\nPress OK to be redirected to the Gallery .")
-			wiithemer_navigate_page_tabs(2);
-			break;
 		case 4:
 			document.getElementById("tabcontent").innerHTML = "<div id='theme_installers'><h3>Theme Installer Download Links<h3><hr></hr><p>Choose from :</p><br></br><img title='Click to download MyMenuifyMod Theme Installer.' id='downloadimg1' alt='installerimg1' src='resources/installers/MyMenuifyMod.avif' onclick='download_Installer(1)' onmouseover='show_download_name(1)' onmouseout='hide_download_name(1)'></img><img title='Click to download WiiThemer Theme Installer.' id='downloadimg2' alt='installerimg2' src='resources/installers/wiithemer.avif' onclick='download_Installer(2)' onmouseover='show_download_name(2)' onmouseout='hide_download_name(2)'></img><img title='Click to download Csm-Installer Theme Installer.' id='downloadimg3' alt='installerimg3' src='resources/installers/csminstaller.avif' onclick='download_Installer(3)' onmouseover='show_download_name(3)' onmouseout='hide_download_name(3)'></img><br></br><p id='installer_name'></p></div>";
 			break;
-		case 5: // remove beta at release
+		case 5: // remove beta in mym database at release
 			document.getElementById("tabcontent").innerHTML = "<div id='links_container'><h3 style='text-align:center'>GBATemp Links</h3><hr></hr><p class='links_page'><a target='blank' href='https://gbatemp.net'>GBAtemp</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The best gaming community .</p><p class='links_page'><a target='blank' href='https://gbatemp.net/threads/wii-themer-org.628144/'>Wii Themer</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on GBATemp . The best place for Wii Themes .</p><p class='links_page'><a target='blank' href='https://gbatemp.net/threads/best-way-to-mod-any-wii-modmii-for-windows-official-support-thread.207126/page-486'>ModMii</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on GBATemp . The best way to mod a wii .</p><p class='links_page'><a target='blank' href='https://gbatemp.net/threads/wii-theme-team-creations.260327/'> Wii Theme Team</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The team that made all the Dark Wii Colored themes . </p><p class='links_page'><a target='blank' href='https://www.youtube.com/user/McDiddy81/videos'>Diddy81 Youtube Channel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One of the main members of the Wii Theme Team .</p><br></br><h3 style='text-align:center'>Official Sites</h3><hr></hr><p class='links_page'><a target='blank' href='https://modmii.github.io/'>ModMii </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Official Site .</p><p class='links_page'><a target='blank' href='https://hbc.hackmii.com/'>Home Brew Channel</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Offical Site .</p><p class='links_page'><a target='blank' href='https://dolphin-emu.org/'>Dolphin Wii Emulator</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Official Site .</p><p class='links_page'><a target='blank' href='https://wii.guide/themes'>Wii Guide</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Guide : Installing Wii Menu Themes </p><p class='links_page'><a target='blank' href='https://wiibrew.org/wiki/System_Menu'>Wii Brew</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A great place to learn about the Wii's tech .</p><br></br><h3 style='text-align:center'>Wii Themer Mym Database</h3><hr></hr><p class='links_page'><a target='blank' href='https://www.wiithemer.org/beta/resources/mym/'>Theme Database</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A database of all the available theme .mym files @ WiiThemer.Org .</p></div>";
 			
 			break;
@@ -1031,21 +1068,44 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 			}
 			break;
 		case 7:
-			document.getElementById("tabcontent").innerHTML = "<div id='mail_message'>Contact us with comments, issues, etc. .<hr></hr><br></br>Email :<a href='mailto:scooby74029@yahoo.com'><i>Scooby74029 </i></a>from GbaTemp<br></br>Email :<a href='mailto:admin@wiithemer.org'><i>admin </i></a>@ wiithemer.org<br></br><br></br><img id='mailimg' alt='mail gif' src='resources/contact/mail.gif' width='350px' height='200px'></img></div>";
+			document.getElementById("tabcontent").innerHTML = "<div id='mail_message'>Contact us with comments, issues, etc. .<hr></hr><br></br>Email :<a href='mailto:scooby74029@yahoo.com'><i>Scooby74029 </i></a>from GbaTemp<br></br>Email :<a href='mailto:admin@wiithemer.org'><i>admin </i></a>@ wiithemer.org<br></br><br></br><hr></hr><img id='mailimg' alt='mail gif' src='resources/contact/mail.gif' width='350px' height='200px'></img></div>";
 			break;
 	}
 	return;
 }
+// -----------------------------
+// check for site visitors------
 function check_4_new_visitor() {
-	
+	let stored_info_found = false;
+	if(check_Cookie("user_id")) stored_info_found = true;
+	return stored_info_found;
+}
+function set_id(user_id) {
+	//alert("id: " + id);
+	return user_id;
+}
+function get_user_id() {
+	let user_id = "";
+	const xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState === 4 && xhttp.status === 200) {
+			user_id =  xhttp.responseText;
+			console.log("get_user_id-user_id: " + user_id);
+			set_Cookie("user_id", user_id);
+			set_id(user_id);
+		}
+	}
+	xhttp.open("GET", "index.php?command=get_user_id");
+	xhttp.send();
+}
+// ------------------------------
+// cookie functions--------------
+function set_Cookie(cookie_name, cookie_value) {
+	document.cookie = cookie_name + "=" + cookie_value + ";" + "Samesite=Strict;";
 	return;
 }
-function set_Cookie(cname, cvalue) {
-	document.cookie = cname + "=" + cvalue + ";" + "Samesite=Strict;";
-	return;
-}
-function get_Cookie(cname) {
-	let id = cname + "=";
+function get_Cookie(cookie_name) {
+	let id = cookie_name + "=";
 	let decodedCookie = decodeURIComponent(document.cookie);
   	let ca = decodedCookie.split(';');
  	for(let i = 0; i <ca.length; i++) {
@@ -1072,8 +1132,30 @@ function check_Cookie(cookie_name) {
 	}
 	return ret;
 }
-function check_visitor() {
-	let ided = false;
-	if(check_Cookie("Id")) ided = true;
-	return ided;
+// ------------------------------
+// update visitor count file on server
+function set_data(which_data) { // remove beta at release
+	const xhttp = new XMLHttpRequest();
+	let data_file_path = "";
+
+	switch(which_data) {
+		case "visits":
+			data_file_path = "resources/stats/visits.txt";
+			xhttp_file_path = "index.php?command=set_data&data_file_path=" + data_file_path;
+		break;
+		default:
+
+		break;
+	}
+	/* xhttp.onreadystatechange
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState === 4 && xhttp.status === 200) {
+			alert(xhttp.responseText);
+		}
+	}
+	*/
+	xhttp.open("GET", xhttp_file_path);
+	xhttp.send();
+	return;
 }
+// ------------------------------------
