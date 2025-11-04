@@ -1,4 +1,5 @@
- * {
+/* main tab container */
+* {
     box-sizing: border-box;
 }
 body {
@@ -11,7 +12,6 @@ body {
     background-repeat: no-repeat;
     color: rgb(255, 128, 0);
 }
-
 #maincontainer {
     width: 95vw;
     height: 95vh;
@@ -35,7 +35,7 @@ body {
     border-width: 3px;
     width: 80vw;
 }
-
+/* all tabs */
 #tabcontainer {
     width: 80vw;
     justify-content: center;
@@ -55,25 +55,7 @@ body {
     border-color: rgb(255, 255, 0);
     color: rgba(255, 255, 255, 1);
 }
-
-#theme_img_enlarged {
-    width: 80vw;
-    height: 75vh;
-    margin: 5px auto;
-    padding: 5px;
-    background-color: rgba(52, 63, 67, 0.75);
-    border-radius: 10px;
-    border-color: rgb(255, 128, 15);
-    border-style: solid;
-    border-width: 5px;
-    overflow-y: scroll;
-    display:none;
-    z-index: 20;
-    position: absolute;
-    top: 15vh;
-    left: 10vw;
-}
-
+/* all tabs content */
 #tabcontent {
     width: 80vw;
     height: 65vh;
@@ -94,7 +76,7 @@ body {
     text-align: center;
     font-size: 22px;
 }
-
+/* home tab */
 #home_container {
     margin: 5vh auto;
     padding: 15px;
@@ -106,27 +88,6 @@ body {
     width: 95%;
     text-align: center;
 }
-
-#mail_message {
-    margin: 5vh auto;
-    padding: 15px;
-    background-color: black;
-    border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
-    width: 95%;
-    text-align: center;
-}
-#mail_message a{
-    text-decoration: none;
-    color: rgb(255 95 0);
-}
-#mail_message a:hover {
-    text-decoration: underline;
-    color: rgb(255 255 255);
-}
-
 #home_tab_img_container {
     margin: 5% auto;
     padding: 5px;
@@ -140,6 +101,19 @@ body {
 #home_tab_img_container img:hover {
     border: 5px solid rgb(255 200 50);
 }
+/* build theme */
+#build_container {
+    margin: 5vh auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(255 128 15);
+    border-style: solid;
+    border-width: 2px;
+    width: 95%;
+    text-align: center;
+}
+/* build gui */
 #build_gui_container {
     margin: 2.5% auto;
     padding: 15px;
@@ -148,13 +122,31 @@ body {
     border-color: rgb(255 128 15);
     border-style: solid;
     border-width: 2px;
-    width: 85%;
+    width: 94%;
     text-align: center;
 }
 #build_gui_container h1 {
-    font-size: 3vh;
+    font-size: 24px;
     border-style: none;
     width: auto;
+}
+/* gallery tab */
+#theme_img_enlarged {
+    width: 80vw;
+    height: 75vh;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: rgba(52, 63, 67, 0.75);
+    border-radius: 10px;
+    border-color: rgb(255, 128, 15);
+    border-style: solid;
+    border-width: 5px;
+    overflow-y: scroll;
+    display:none;
+    z-index: 20;
+    position: absolute;
+    top: 15vh;
+    left: 10vw;
 }
 #theme_gallery {
     margin: 1vh auto;
@@ -180,7 +172,6 @@ body {
 #selected_region {
     float: right;
 }
-
 #select_region, #select_region_label {
     float: right;
     margin-left: 10px;
@@ -311,6 +302,7 @@ body {
     border-radius: 10px;
     margin: 10px;
 }
+/* downloads tab */
 #theme_installers {
     margin: 5vh auto;
     padding: 15px;
@@ -332,6 +324,7 @@ body {
     border: 5px solid rgb(255 200 50);
     cursor: pointer;
 }
+/* stats tab */
 #stats_message{
     margin: 5vh auto;
     padding: 15px;
@@ -363,6 +356,7 @@ body {
     margin-right: 10px;
     clear: both;
 }
+/* links tab */
 #links_container {
     margin: 10px auto;
     padding: 15px;
@@ -374,20 +368,45 @@ body {
     width: 95%;
     text-align: left;
 }
+#links_container  h3 {
+    text-decoration: underline;
+}
 #links_container a {
     text-decoration: none;
     color: rgb(255 95 0);
 }
 #links_container a:hover {
-    text-decoration: underline;
     color: rgb(255 255 255);
 }
+#arrow {
+    text-align: center;
+}
+/* mail tab */
 #mailimg {
     border: 5px solid rgb(255 128 15);
     border-radius: 20px;
     margin: 10px auto;
 }
-
+#mail_message {
+    margin: 5vh auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(255 128 15);
+    border-style: solid;
+    border-width: 2px;
+    width: 95%;
+    text-align: center;
+}
+#mail_message a{
+    text-decoration: none;
+    color: rgb(255 95 0);
+}
+#mail_message a:hover {
+    text-decoration: underline;
+    color: rgb(255 255 255);
+}
+/* footer */
 #footer p {
     width: 80vw;
     margin: 0 auto;
@@ -399,7 +418,9 @@ body {
     padding: 5px 0;
     text-align: center;
 }
-
+/* classes */
+/* --------------------------------------------------------- */
+/* element display */
 .flexrow {
     display: flex;
     flex-direction: row;
@@ -412,6 +433,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
 }
+/* tab active/non-active states */
 .tab {
     border-radius: 10px;
     border-style: solid;
@@ -429,6 +451,7 @@ body {
     border-color: rgb(255, 128, 15);
     color: rgb(255, 128, 15);
 }
+/* close button */
 .closepreviewbtn {
     float:right;
     background-color: black;
@@ -442,7 +465,8 @@ body {
 .closepreviewbtn:hover {
     background-color: rgb(53, 62, 67);
 }
+/* links tab */
 .links_page {
     width: 50%;
-    margin: 5px auto;
+    margin: 10px auto;
 }
