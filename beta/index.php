@@ -184,13 +184,42 @@
         return;
     }
     function  theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index) {
-       // echo "<br></br>" . $mym_theme . " <<< mym_theme<br></br>" . $spin_index . " <<< spin_index<br></br>" .  $spincolor_index . " <<< spincolor_index<br></br>" . $transchannels . " <<< trans_channels<br></br>" . $save_source . " <<< save_source<br></br>" .  $theme_position . " <<< theme_position<br></br>" . $version_index . " <<< version_index<br></br>" . $region_index . " <<< region_index<br></br>Complete .";
         global $theme_is_2_stage;
-        $theme_is_2_stage = is_theme_2_stage($mym_theme);
-        //echo $theme_is_2_stage . " <<< theme_is_2_stage .<br></br>";
         global $spin_first_themes;
-        $is_spin_first = false;
+        global $spincolors;
+        global $content_name;
+        global $spinmym_src_file;
+
+        $theme_is_2_stage = is_theme_2_stage($mym_theme);
         $id = session_id();
+        $theme_no_extension = name_2_stage_theme($mym_theme);
+        $is_spin_first = false;
+        $build_cmd = "";
+        $wait_file = "";
+        $error_themething = false;
+        $theme_finished_stage = -1;
+
+        # 2 stage themes
+        $cmd_2_stage1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " stage1.app";
+            
+        $cmd_2_stage2 = "themething b stage1.app " . $theme_no_extension . "_stage2.mym stage2.app";
+        $cmd_2_stage3 = "themething b stage2.app " . $spinmym_src_file[$spin_index] . " stage3.app";
+
+        $cmd_2_stage4 = "themething b stage3.app trans_chans.mym stage4.app";  
+        $cmd_2_stage5 = "themething b stage4.app " . $spincolors[$spincolor_index] . " stage5.app";
+
+        # spin first themes
+        $cmd_spin1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $spinmym_src_file[$spin_index] . " stage1.app";
+        $cmd_spin2 = "themething b stage1.app " . $mym_theme . " stage2.app";
+        
+        $cmd_spin3 =      
+        $cmd_spin4 = 
+        # regular theme themething commands
+        $cmd_reg1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " stage1.app";
+        $cmd_reg2 = "themething b stage1.app " . $spinmym_src_file[$spin_index] . " stage2.app";
+
+        $cmd_reg3 = 
+        $cmd_reg4 = "themething b stage3.app " . $spincolors[$spincolor_index] . " stage4.app";
 
         for($i = 0; $i < 9; $i++) {
 			if($mym_theme == $spin_first_themes[$i]) {
@@ -198,63 +227,110 @@
 			    break;
 			}
 		}
-        //echo $is_spin_first . " <<< is_spin_first .<br></br>";
-
-        # stage 1 ---------------------------------------
-        global $content_name;
-        global $spinmym_src_file;
-        $cmd_stage1 = "";
-        if($theme_is_2_stage) { # combine content/theme mym files (multi_stage theme)
-            $cmd_stage1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " stage1.app";
-        }
-        if($is_spin_first) { # combine content/trans_channel|spin_option mym files
-            if($transchannels == "true")
-                $cmd_stage1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . "trans_chans.mym stage1.app";
-            else 
-                $cmd_stage1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $spinmym_src_file[$spin_index] . " stage1.app";
-        }
-        if(!$is_spin_first && !$theme_is_2_stage)# combine content/theme mym files
-            $cmd_stage1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " stage1.app";
-        //echo $cmd_stage1 . " <<< cmd_stage1 .<br></br>";
-        $stage1_file = file_exists("stage1.app");
-        if(!$stage1_file) {
-            $homedir = getcwd();
-			chdir("resources/working/" . $id);
-            execInBackground($cmd_stage1);
-            $timed_out = wait_for_file(("stage1.app"), 15);
-            chdir($homedir);
-        }
-        # stage 2 ------------------------------------
         if($theme_is_2_stage) {
-            $theme_no_extension = name_2_stage_theme($mym_theme);
-            $cmd_stage2 = "themething b stage1.app " . $theme_no_extension . "_stage2.mym stage2.app";
+            $passes = 3;
+            $theme_type = 2;
+        } 
+        else if($is_spin_first) {
+            $passes = 2;
+            $theme_type = 1;
+        } 
+        else {
+            $passes = 2;
+            $theme_type = 0;
         }
-        if($is_spin_first) {
-            $cmd_stage2 = "themething b stage1.app " . $mym_theme . " stage2.app";
-        }
-        if(!$is_spin_first && !$theme_is_2_stage) {
-            if($transchannels == "true")
-                $cmd_stage2 = "themething b stage1.app " . $transchannels . " stage2.app";
-            else
-                $cmd_stage2 = "themething b stage1.app " . $spinmym_src_file[$spin_index] . " stage2.app";
-        }
-        echo $cmd_stage2 . " <<< cmd_stage1 .<br></br>";
-        $stage2_file = file_exists("stage2.app");
-        if(!$stage2_file) {
-            $homedir = getcwd();
-			chdir("resources/working/" . $id);
-            execInBackground($cmd_stage2);
-            $timed_out = wait_for_file(("stage2.app"), 15);
-            chdir($homedir);
-        }
-        # stage 3 ---------------------------------------------
         
-        if($timed_out)
-            echo "Failed .<br></br>theme_builder stage2 .<br></br>";
-        else
-            echo "Complete .<br></br>";
-
+        for($i = 0; $i < $passes; $i++) {
+            switch($i) {
+                case 0:
+                    if($theme_type == 0)
+                        $build_cmd = $cmd_reg1;
+                    else if($theme_type == 1)
+                        $build_cmd = $cmd_spin1;
+                    else if($theme_type == 2)
+                        $build_cmd = $cmd_2_stage1;
+                    $wait_file = "stage1.app";
+                    break;
+                case 1:
+                    if($theme_type == 0)
+                        $build_cmd = $cmd_reg2;
+                    else if($theme_type == 1) {
+                        if($transchannels == "true") {
+                            $build_cmd = "themething b stage1.app trans_chans.mym stage2.app";
+                            echo "<br></br>" . $passes . " <<< passes<br></br>";
+                            $passes++;
+                            echo $passes . " <<< passes<br></br>";
+                        }
+                        else {
+                            $build_cmd = $cmd_spin2;
+                            $theme_finished_stage = 2;
+                        }
+                        echo $build_cmd . " <<< build_cmd<br></br>";
+                    }
+                    else if($theme_type == 2)
+                        $build_cmd = $cmd_2_stage2;
+                    $wait_file = "stage2.app";
+                    break;
+                case 2:
+                    if($theme_type == 0) {
+                        if($transchannels == "true") {
+                            $passes++;
+                            $build_cmd = "themething b stage2.app trans_chans.mym stage3.app";
+                        }
+                        else {
+                            $theme_finished_stage = 2;
+                            break;
+                        }
+                    }
+                    else if($theme_type == 1) {
+                        if($spincolor_index >= 1) {
+                            $passes++;
+                            $build_cmd = "themething b stage2.app " . $spincolors[$spincolor_index] . " stage3.app";
+                        }
+                        else {
+                            $theme_finished_stage = 3;
+                            break;
+                        }
+                    }
+                    else if($theme_type == 2) 
+                        $build_cmd = $cmd_2_stage3;
+                    $wait_file = "stage3.app";
+                    break;
+                case 3:
+                    
+                    $wait_file = "stage4.app";
+                    break;
+                case 4:
+                    
+                    $wait_file = "stage5.app";
+                    break;
+            }
+            $wait_file_exists = file_exists($wait_file);
+            if(!$wait_file_exists)
+                if(!execute_themething_cmd($wait_file, $id, $build_cmd)) {
+                    $error_themething = true;
+                    break;
+                }
+        }
+        if(!$error_themething) echo "Complete .<br></br>";
+        echo $theme_finished_stage;
         return;
+    }
+    function  execute_themething_cmd($wait_file, $working_id, $themething_cmd) : bool {
+        $wait_file_exists = file_exists($wait_file);
+        if(!$wait_file_exists) {
+            $homedir = getcwd();
+			chdir("resources/working/" . $working_id);
+            execInBackground($themething_cmd);
+            $timed_out = wait_for_file(($wait_file), 15);
+            chdir($homedir);
+            if($timed_out) {
+                echo "Failed .<br></br> cmd -> " . $themething_cmd;
+                return false;
+            }
+                
+        }
+        return true;
     }
     function is_theme_2_stage($mym_file) : bool {
         $str = null;
