@@ -906,15 +906,15 @@ function build_theme_setup(theme_num) {
 	document.getElementById('server_message').innerHTML += "Copying " + build_theme_info.name + "  .mym files to work area ... <span id='response_copy'></span><br></br>";
 	document.getElementById('server_message').innerHTML += "Downloading content file " + content_name[regionIndex][versionIndex] + " to work area ... <span id='response_content'></span><br></br>";
 	document.getElementById('server_message').innerHTML += "building Theme " + build_theme_info.name + " ... <span id='response_build'></span><br></br>";
-	setTimeout(function() {
+	//setTimeout(function() {
 		server_setup(setup_responce);
-	},1000);
+	//},1000);
 	setTimeout(function() {
 		copy_theme_files(copy_responce, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.outlineColorIndex, build_theme_info.transChannels);
-	}, 2000);
+	}, 1000);
 	setTimeout(function() {
 		download_content(content_response, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.version, build_theme_info.region);
-	}, 3000);
+	}, 2000);
 	setTimeout(function() {
 		theme_builder(build_response, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.outlineColorIndex, build_theme_info.transChannels, build_theme_info.sourceFiles, build_theme_info.theme_index, build_theme_info.version, build_theme_info.region);
 	}, 4000);

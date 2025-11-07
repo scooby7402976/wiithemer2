@@ -218,9 +218,6 @@
         $cmd_reg1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " stage1.app";
         $cmd_reg2 = "themething b stage1.app " . $spinmym_src_file[$spin_index] . " stage2.app";
 
-        $cmd_reg3 = 
-        $cmd_reg4 = "themething b stage3.app " . $spincolors[$spincolor_index] . " stage4.app";
-
         for($i = 0; $i < 9; $i++) {
 			if($mym_theme == $spin_first_themes[$i]) {
 				$is_spin_first = true;
@@ -232,77 +229,139 @@
             $theme_type = 2;
         } 
         else if($is_spin_first) {
-            $passes = 2;
+            $passes = 4;
             $theme_type = 1;
         } 
         else {
             $passes = 2;
             $theme_type = 0;
         }
-        
+
         for($i = 0; $i < $passes; $i++) {
+           //echo $i . " <<< i<br></br>";
+           $build_cmd = "";
             switch($i) {
                 case 0:
-                    if($theme_type == 0)
+                    if($theme_type == 0) # combine content/theme mym
                         $build_cmd = $cmd_reg1;
-                    else if($theme_type == 1)
+                    else if($theme_type == 1)# combine content/spin mym
                         $build_cmd = $cmd_spin1;
-                    else if($theme_type == 2)
+                    else if($theme_type == 2)# combine content/theme mym
                         $build_cmd = $cmd_2_stage1;
                     $wait_file = "stage1.app";
+                    //echo " build_cmd -> " . $build_cmd . " .<br></br>";
                     break;
                 case 1:
-                    if($theme_type == 0)
+                    if($theme_type == 0) {# combine content-theme mym/spin
+                        if($transchannels == "true" | $spincolor_index >= 1) {
+                            $passes++;
+                        }
+                        else $theme_finished_stage = 2;
                         $build_cmd = $cmd_reg2;
-                    else if($theme_type == 1) {
+                        $wait_file = "stage2.app";
+                    }
+                    else if($theme_type == 1) { # combine-spin/transchannels mym
                         if($transchannels == "true") {
                             $build_cmd = "themething b stage1.app trans_chans.mym stage2.app";
-                            echo "<br></br>" . $passes . " <<< passes<br></br>";
                             $passes++;
-                            echo $passes . " <<< passes<br></br>";
+                            $wait_file = "stage2.app";
                         }
                         else {
-                            $build_cmd = $cmd_spin2;
-                            $theme_finished_stage = 2;
+                            $wait_file = "continue";
                         }
-                        echo $build_cmd . " <<< build_cmd<br></br>";
                     }
-                    else if($theme_type == 2)
+                    else if($theme_type == 2) { # combine content-theme mym1/theme mym2
                         $build_cmd = $cmd_2_stage2;
-                    $wait_file = "stage2.app";
+                        $wait_file = "stage2.app";
+                    }
+                    //echo " build_cmd -> " . $build_cmd . " .<br></br>";
                     break;
                 case 2:
                     if($theme_type == 0) {
-                        if($transchannels == "true") {
+                        if($spincolor_index >= 1) {
                             $passes++;
+                        }
+                        if($transchannels == "true") {
                             $build_cmd = "themething b stage2.app trans_chans.mym stage3.app";
+                            $wait_file = "stage3.app";
+                            $theme_finished_stage = 3;
                         }
-                        else {
-                            $theme_finished_stage = 2;
-                            break;
-                        }
+                        else $wait_file = "continue";
                     }
                     else if($theme_type == 1) {
                         if($spincolor_index >= 1) {
-                            $passes++;
-                            $build_cmd = "themething b stage2.app " . $spincolors[$spincolor_index] . " stage3.app";
+                            if($transchannels == "true")
+                                $build_cmd = "themething b stage2.app " . $spincolors[$spincolor_index] . " stage3.app"; 
+                            else
+                                $build_cmd = "themething b stage1.app " . $spincolors[$spincolor_index] . " stage3.app"; 
+                            $wait_file = "stage3.app";
                         }
                         else {
-                            $theme_finished_stage = 3;
-                            break;
+                            $wait_file = "continue";
                         }
                     }
-                    else if($theme_type == 2) 
+                    else if($theme_type == 2) {
+                        if($transchannels == "true" | $spincolor_index >= 1) $passes++;
+                        
                         $build_cmd = $cmd_2_stage3;
-                    $wait_file = "stage3.app";
+                        $wait_file = "stage3.app";
+                        
+                        if($transchannels == "false" & $spincolor_index == 0)
+                            $theme_finished_stage = 3;
+                    }
+                    //echo " build_cmd -> " . $build_cmd . " .<br></br>";
                     break;
                 case 3:
-                    
-                    $wait_file = "stage4.app";
+                    if($theme_type == 0) {
+                        if($transchannels == "true")
+                            $build_cmd = "themething b stage3.app " . $spincolors[$spincolor_index] . " stage4.app";
+                        else 
+                            $build_cmd = "themething b stage2.app " . $spincolors[$spincolor_index] . " stage4.app";
+                        $theme_finished_stage = 4;
+                    }
+                    else if($theme_type == 1) {
+                        if($transchannels == "true" & $spincolor_index == 0)
+                            $build_cmd = "themething b stage2.app " . $mym_theme . " stage4.app";
+                        else if($transchannels == "true" & $spincolor_index >= 1) {
+                            $build_cmd = "themething b stage3.app " . $mym_theme . " stage4.app";
+                        }
+                        if($transchannels == "false" & $spincolor_index == 0) {
+                            $build_cmd = "themething b stage1.app " . $mym_theme . " stage4.app";
+                        }
+                        if($transchannels == "false" & $spincolor_index >= 1) {
+                            $build_cmd = "themething b stage3.app " . $mym_theme . " stage4.app";
+                        }
+                        $theme_finished_stage = 4;
+                    }
+                    else if($theme_type == 2) {
+                        if($spincolor_index >= 1) {
+                            $passes++;
+                        }
+                        if($transchannels == "true" & $spincolor_index >= 1) {
+                            $build_cmd = "themething b stage3.app trans_chans.mym stage4.app";
+                            $wait_file = "stage4.app";
+                        }
+                        else if($transchannels == "true" & $spincolor_index == 0) {
+                            $build_cmd = "themething b stage3.app trans_chans.mym stage4.app";
+                            $theme_finished_stage = 4;
+                            $wait_file = "stage4.app";
+                        }
+                        else if($transchannels == "false" & $spincolor_index >= 1) {
+                            $wait_file = "continue";
+                        }
+                    }
+                    //echo " build_cmd -> " . $build_cmd . " .<br></br>";
                     break;
                 case 4:
+                    if($theme_type == 2) {
+                        if($transchannels == "true")
+                            $build_cmd = "themething b stage4.app " . $spincolors[$spincolor_index] . " stage5.app";
+                        else
+                            $build_cmd = "themething b stage3.app " . $spincolors[$spincolor_index] . " stage5.app";
+                        $wait_file = "stage5.app";
+                        $theme_finished_stage = 5;
+                    }
                     
-                    $wait_file = "stage5.app";
                     break;
             }
             $wait_file_exists = file_exists($wait_file);
@@ -313,10 +372,11 @@
                 }
         }
         if(!$error_themething) echo "Complete .<br></br>";
-        echo $theme_finished_stage;
+        //echo $theme_finished_stage;
         return;
     }
     function  execute_themething_cmd($wait_file, $working_id, $themething_cmd) : bool {
+        if($wait_file == "continue") return true;
         $wait_file_exists = file_exists($wait_file);
         if(!$wait_file_exists) {
             $homedir = getcwd();
