@@ -5,21 +5,30 @@
     $spincolors = array("", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym");
     $spinmym_src_file = array("", "nospin.mym", "spin.mym", "fastspin.mym");
     // Use 1-based indexing for regions; index 0 is a placeholder empty array
-    $download_version = [
-        [], // placeholder for index 0
-        [513, 481, 449, 417, 609], // U
-        [514, 482, 450, 418, 610], // E
-        [512, 480, 448, 416, 608], // J
-        [518, 486, 454] // K
-    ];
-    $content_name = [
-        [],
-        ["","00000097", "00000087", "0000007b", "00000072", "0000001f"], // U
-        ["","0000009a", "0000008a", "0000007e", "00000075", "00000022"], // E
-        ["","00000094", "00000084", "00000078", "0000006f", "0000001c"], // J
-        ["","0000009d", "0000008d", "00000081"] // K
-    ];
+    $download_version = array(
+        array(null), // placeholder for index 0
+        array(null, 513, 481, 449, 417, 609), // U
+        array(null, 514, 482, 450, 418, 610), // E
+        array(null, 512, 480, 448, 416, 608), // J
+        array(null, 518, 486, 454) // K
+    );
+    $display_version = array(
+        array(null), // placeholder for index 0
+        array(null, "4.3_U", "4.2_U", "4.1_U", "4.0_U", "4.3_U"), // U
+        array(null, "4.3_E", "4.2_E", "4.1_E", "4.0_E", "4.3_E"), // E
+        array(null, "4.3_J", "4.2_J", "4.1_J", "4.0_J", "4.3_J"), // J
+        array(null, "4.3_K", "4.2_K", "4.1_K") // K
+    );
+    $content_name = array(
+        array(null),// placeholder for index 0
+        array(null,"00000097", "00000087", "0000007b", "00000072", "0000001f"), // U
+        array(null,"0000009a", "0000008a", "0000007e", "00000075", "00000022"), // E
+        array(null,"00000094", "00000084", "00000078", "0000006f", "0000001c"), // J
+        array(null,"0000009d", "0000008d", "00000081") // K
+    );
+    $regions = ["", "u", "e", "j", "k"];
     $spin_first_themes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym"); //"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
+    $spin_display = array("", "_nospin", "_spin", "_fastspin");
 
     if(isset($_GET["command"])) {
         $command = $_GET["command"];
@@ -44,8 +53,10 @@
                 if(isset($_GET["spinindex"])) $spin_index = intval($_GET["spinindex"]);
                 if(isset($_GET["spincolor"])) $spincolor_index = intval($_GET["spincolor"]);
                 if(isset($_GET["trans_channels"])) $transchannels = $_GET["trans_channels"];
-               
-                copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels);
+                if(isset($_GET["region_index"])) $region_index = intval($_GET["region_index"]);
+                if(isset($_GET["theme_position"])) $theme_position = intval($_GET["theme_position"]);
+
+                copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels, $region_index, $theme_position);
                 break;
             case "download_content":
                 if(isset($_GET["mym_theme"])) $mym_theme = $_GET["mym_theme"];
@@ -119,16 +130,27 @@
            echo "Complete .\n";
         return;
     }
-    function  copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels) {
+    function  copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels , $region_index, $theme_position) {
+        global $spinmym_src_file;
+        global $spincolors;
+        global $regions;
+        
         $id = session_id();
+        $multi_region_theme = theme_needs_mym_Extension($theme_position);
+        //echo $multi_region_theme . " <<< multi_region_theme (copy).<br></br>";
+        if($multi_region_theme) {
+            $mym_theme = $mym_theme . $regions[$region_index] . ".mym";
+        }
         $theme_src_pth = "resources/mym/" . $mym_theme;
         $theme_dst_pth = "resources/working/" . $id . "/" . $mym_theme;
         $theme_is_2_stage = is_theme_2_stage($mym_theme);
-        global $spinmym_src_file;
-        global $spincolors;
+        
         # copy theme mym file(s) to working folder -----------
-        if(!copy($theme_src_pth, $theme_dst_pth))
+        if(!copy($theme_src_pth, $theme_dst_pth)) {
             echo "Failed . (copy theme)\n";
+            return;
+        }
+            
         if($theme_is_2_stage) {
             $theme_no_extension = name_2_stage_theme($mym_theme);
             $theme_src_pth = "resources/mym/" . $theme_no_extension . "_stage2.mym";
@@ -183,12 +205,16 @@
             echo "Complete .\n";
         return;
     }
-    function  theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index) {
+    function  theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index) { // needs zip ---------------------------------
         global $theme_is_2_stage;
         global $spin_first_themes;
         global $spincolors;
         global $content_name;
         global $spinmym_src_file;
+        global $regions;
+        global $download_version;
+        global $display_version;
+        global $spin_display;
 
         $theme_is_2_stage = is_theme_2_stage($mym_theme);
         $id = session_id();
@@ -198,22 +224,18 @@
         $wait_file = "";
         $error_themething = false;
         $theme_finished_stage = -1;
-
+        $multi_region_theme = theme_needs_mym_Extension($theme_position);
+        $multi_region_save_dir = "";
+        if($multi_region_theme) {
+            $multi_region_save_dir = $mym_theme;
+            $mym_theme = $mym_theme . $regions[$region_index] . ".mym";
+        }
         # 2 stage themes
         $cmd_2_stage1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " stage1.app";
-            
         $cmd_2_stage2 = "themething b stage1.app " . $theme_no_extension . "_stage2.mym stage2.app";
         $cmd_2_stage3 = "themething b stage2.app " . $spinmym_src_file[$spin_index] . " stage3.app";
-
-        $cmd_2_stage4 = "themething b stage3.app trans_chans.mym stage4.app";  
-        $cmd_2_stage5 = "themething b stage4.app " . $spincolors[$spincolor_index] . " stage5.app";
-
         # spin first themes
         $cmd_spin1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $spinmym_src_file[$spin_index] . " stage1.app";
-        $cmd_spin2 = "themething b stage1.app " . $mym_theme . " stage2.app";
-        
-        $cmd_spin3 =      
-        $cmd_spin4 = 
         # regular theme themething commands
         $cmd_reg1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " stage1.app";
         $cmd_reg2 = "themething b stage1.app " . $spinmym_src_file[$spin_index] . " stage2.app";
@@ -274,7 +296,7 @@
                         $build_cmd = $cmd_2_stage2;
                         $wait_file = "stage2.app";
                     }
-                    //echo " build_cmd -> " . $build_cmd . " .<br></br>";
+                   // echo " build_cmd -> " . $build_cmd . " .<br></br>";
                     break;
                 case 2:
                     if($theme_type == 0) {
@@ -317,12 +339,13 @@
                             $build_cmd = "themething b stage3.app " . $spincolors[$spincolor_index] . " stage4.app";
                         else 
                             $build_cmd = "themething b stage2.app " . $spincolors[$spincolor_index] . " stage4.app";
+                        $wait_file = "stage4.app";
                         $theme_finished_stage = 4;
                     }
                     else if($theme_type == 1) {
                         if($transchannels == "true" & $spincolor_index == 0)
                             $build_cmd = "themething b stage2.app " . $mym_theme . " stage4.app";
-                        else if($transchannels == "true" & $spincolor_index >= 1) {
+                        if($transchannels == "true" & $spincolor_index >= 1) {
                             $build_cmd = "themething b stage3.app " . $mym_theme . " stage4.app";
                         }
                         if($transchannels == "false" & $spincolor_index == 0) {
@@ -332,6 +355,7 @@
                             $build_cmd = "themething b stage3.app " . $mym_theme . " stage4.app";
                         }
                         $theme_finished_stage = 4;
+                        $wait_file = "stage4.app";
                     }
                     else if($theme_type == 2) {
                         if($spincolor_index >= 1) {
@@ -371,8 +395,67 @@
                     break;
                 }
         }
-        if(!$error_themething) echo "Complete .<br></br>";
-        //echo $theme_finished_stage;
+        if(!$error_themething) echo "Complete ./" . $id;
+        if($save_source == "true") {
+            $save_dir = "";
+            $source_file = "";
+
+            if($theme_is_2_stage)
+                $save_dir = "resources/working/" . $id . "/" . $theme_no_extension;
+            if($multi_region_theme)
+                $save_dir = "resources/working/" . $id . "/" . $multi_region_save_dir;
+            else
+                $save_dir = "resources/working/" . $id . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4);
+            //echo $save_dir . " <<< save dir .<br></br>";
+            if(!is_dir($save_dir))
+                mkdir($save_dir);
+            $source_file = ($content_name[$region_index][$version_index] ?? '');
+            if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
+                echo "Failed .(copy content)<br></br>";
+            $source_file = $spinmym_src_file[$spin_index];
+            if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
+                echo "Failed .(copy spin)<br></br>";
+            if($transchannels == "true") {
+                $source_file = "trans_chans.mym";
+                if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
+                    echo "Failed .(copy transchannels)<br></br>";
+            }
+            if($spincolor_index >= 1) {
+                $source_file = $spincolors[$spincolor_index];
+                if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
+                    echo "Failed .(copy spin_colr)<br></br>";
+            }
+            $source_file = $mym_theme;
+            if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
+                echo "Failed .(copy theme mym)<br></br>";
+            if($theme_is_2_stage) {
+                $source_file = $theme_no_extension . "_stage2.mym";
+                if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
+                    echo "Failed .(copy theme mym2)<br></br>";
+            }
+
+            $csm = "";
+            $source_file = "resources/working/" . $id . "/stage" . $theme_finished_stage . ".app";
+            if($theme_is_2_stage) $csm = $save_dir . "/" . $theme_no_extension . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? '') . $spin_display[$spin_index] . ".csm";
+            else if($multi_region_theme) $csm = $save_dir . "/" . $multi_region_save_dir . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+            else $csm = $save_dir . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4) . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+            $save_source = $csm;
+            //echo $source_file . " <<< source file .<br></br>";
+            //echo $save_source . " <<< save file .<br></br>";
+            if(!copy($source_file, $save_source))
+               echo "Failed .(copy csm)<br></br>";
+        }
+        $save_dir = "resources/working/" . $id;
+        $csm = "";
+        $source_file = "resources/working/" . $id . "/stage" . $theme_finished_stage . ".app";
+        if($theme_is_2_stage) $csm = $save_dir . "/" . $theme_no_extension . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+        else if($multi_region_theme) $csm = $save_dir . "/" . $multi_region_save_dir . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+        else $csm = $save_dir . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4) . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+        $save_source = $csm;
+        if(!rename($source_file, $save_source))
+            echo "Failed .(rename csm)<br></br>";
+        // zip file here -----------------------------
+
         return;
     }
     function  execute_themething_cmd($wait_file, $working_id, $themething_cmd) : bool {
@@ -388,7 +471,6 @@
                 echo "Failed .<br></br> cmd -> " . $themething_cmd;
                 return false;
             }
-                
         }
         return true;
     }
@@ -425,5 +507,10 @@
             return true;
         else
             return false;
+	}
+    function theme_needs_mym_Extension($theme_Selected) {
+		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 96) || ($theme_Selected == 242))
+			return true;
+		return false;
 	}
 ?>

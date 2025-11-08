@@ -303,6 +303,22 @@ const completethemeinfo = [
 	{name:"ZombWii", ID:"ZOMB01", mainimg:"zombwii.avif", secondaryimg:"zombwii.png", mym:"zombwii.mym", video:"https://www.youtube.com/embed/3A-N2TKvvro?si=4osUusbbeCAC8rp9?autoplay=0&mute=1", downloads:"zombwii.txt", trans_chans:"1", filter:"misc"},
 ];
 const theme_count = completethemeinfo.length;
+const filter_list = ["All", "Top 20 Downloads", "Top 20 Views", "Latest", "Anime", "Movie/TV", "Cartoon", "Music", "Sports", "Games", "Dark Wii/Colors", "OS", "Individual", "Misc"];
+const versions = ["", "4.3", "4.2", "4.1", "4.0", "vWii (WiiU)"];
+const regions = ["", "U", "E", "J", "K"];
+const outline_Color = ["", "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow"];
+const find_display_version = [[], [, "4.3_v513", "4.2_v481", "4.1_v449", "4.0_v417", "4.3_v609"], [, "4.3_v514", "4.2_v482", "4.1_v450", "4.0_v418", "4.3_v610"], [, "4.3_v512", "4.2_v480", "4.1_v448", "4.0_v416", "4.3_v608"], [,"4.3_v518", "4.2_v486", "4.1_v454"]];
+const download_display_version = [[], [, "4.3_U_v513", "4.2_U_v481", "4.1_U_v449", "4.0_U_v417", "4.3_U_v609"], [, "4.3_E_v514", "4.2_E_v482", "4.1_E_v450", "4.0_E_v418", "4.3_E_v610"], [, "4.3_J_v512", "4.2_J_v480", "4.1_J_v448", "4.0_J_v416", "4.3_J_v608"], [,"4.3_K_v518", "4.2_K_v486", "4.1_K_v454"]];
+const content_name = [
+    [null],// placeholder for index 0
+    [null,"00000097", "00000087", "0000007b", "00000072", "0000001f"], // U
+    [null,"0000009a", "0000008a", "0000007e", "00000075", "00000022"], // E
+    [null,"00000094", "00000084", "00000078", "0000006f", "0000001c"], // J
+    [null,"0000009d", "0000008d", "00000081"] // K
+];
+const spins = ["", "No Spinning Outline", "Spinning Outline", "Fast Spinning Outline"];
+const spin_display = ["", "_nospin", "_spin", "_fastspin"];
+
 var filtered_list_position = [];
 var tab_locked_building = false;
 var theme_index = 0;
@@ -313,10 +329,11 @@ var saved_region = 0;
 var data_saved = false;
 var show_more_btn_clicked = false;
 var build_theme_info = [];
-const filter_list = ["All", "Top 20 Downloads", "Top 20 Views", "Latest", "Anime", "Movie/TV", "Cartoon", "Music", "Sports", "Games", "Dark Wii/Colors", "OS", "Individual", "Misc"];
-const versions = ["", "4.3", "4.2", "4.1", "4.0", "vWii (WiiU)"];
-const regions = ["", "U", "E", "J", "K"];
-const outline_Color = ["", "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow"];
+var downloadtimer = null;
+var closecntr = 180;
+var minutesleft = 2;
+var seccntr = 0;
+var session_id = null;
 
 // enlarging all images ========
 function show_theme_img(img_file) {
@@ -791,7 +808,11 @@ function load_versions() {
 	return;
 }
 function build_response(response) {
-	document.getElementById('response_build').innerHTML = response;
+	let split_response = response.split("/");
+	session_id = split_response[1];
+	document.getElementById('response_build').innerHTML = split_response[0];
+	set_download_button(build_theme_info.version, build_theme_info.region, build_theme_info.spinOption, build_theme_info.name, build_theme_info.outlineColorIndex);
+	document.getElementById("download_csm_btn").style.display = "block";
 	return;
 }
 async function theme_builder(build_response, mym_file, spin_option, spin_color, trans_channels, save_source, theme_position, version, region) {
@@ -810,6 +831,8 @@ return;
 }
 function content_response(response) {
 	document.getElementById('response_content').innerHTML = response;
+	theme_builder(build_response, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.outlineColorIndex, build_theme_info.transChannels, build_theme_info.sourceFiles, build_theme_info.theme_index, build_theme_info.version, build_theme_info.region);
+	document.getElementById('server_message').innerHTML += "Building Theme : " + build_theme_info.name + " ... <span id='response_build'></span><br></br>";
 	return;
 }
 async function download_content(content_response, mym_file, spin_option, version, region) {
@@ -828,9 +851,11 @@ return;
 }
 function copy_responce(response) {
 	document.getElementById('response_copy').innerHTML = response;
+	download_content(content_response, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.version, build_theme_info.region);
+	document.getElementById('server_message').innerHTML += "Downloading content file " + content_name[build_theme_info.region][build_theme_info.version] + " to work area ... <span id='response_content'></span><br></br>";
 	return;
 }
-async function copy_theme_files(copy_responce, mym_file, spin_option, spin_color, trans_channels) {
+async function copy_theme_files(copy_responce, mym_file, spin_option, spin_color, trans_channels, region, theme_position) {
 	
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
@@ -841,12 +866,14 @@ async function copy_theme_files(copy_responce, mym_file, spin_option, spin_color
 			copy_responce("Error: " + xhttp.status);
 		}
 	}
-	xhttp.open("GET", "index.php?command=copy_theme_files&mym_theme=" + mym_file + "&spinindex=" + spin_option + "&spincolor=" + spin_color + "&trans_channels=" + trans_channels);
+	xhttp.open("GET", "index.php?command=copy_theme_files&mym_theme=" + mym_file + "&spinindex=" + spin_option + "&spincolor=" + spin_color + "&trans_channels=" + trans_channels + "&region_index=" + region + "&theme_position=" + theme_position);
 	xhttp.send();
 	return;
 }
 function setup_responce(response) {
 	document.getElementById('responce_setup').innerHTML = response;
+	copy_theme_files(copy_responce, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.outlineColorIndex, build_theme_info.transChannels, build_theme_info.region, build_theme_info.theme_index);
+	document.getElementById('server_message').innerHTML += "Copying " + build_theme_info.name + "  .mym files to work area ... <span id='response_copy'></span><br></br>";
 	return;
 }
 async function server_setup(_response) {
@@ -862,6 +889,7 @@ async function server_setup(_response) {
 	}
 	xhttp.open("GET", "index.php?command=server_setup");
 	xhttp.send();
+	
 	return;
 }
 function build_theme_setup(theme_num) {
@@ -903,21 +931,124 @@ function build_theme_setup(theme_num) {
 		wiithemer_navigate_page_tabs(1);
 	};
 	document.getElementById('server_message').innerHTML = "Setting Up Server to build theme ... <span id='responce_setup'></span><br></br>";
-	document.getElementById('server_message').innerHTML += "Copying " + build_theme_info.name + "  .mym files to work area ... <span id='response_copy'></span><br></br>";
-	document.getElementById('server_message').innerHTML += "Downloading content file " + content_name[regionIndex][versionIndex] + " to work area ... <span id='response_content'></span><br></br>";
-	document.getElementById('server_message').innerHTML += "building Theme " + build_theme_info.name + " ... <span id='response_build'></span><br></br>";
-	//setTimeout(function() {
-		server_setup(setup_responce);
-	//},1000);
-	setTimeout(function() {
-		copy_theme_files(copy_responce, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.outlineColorIndex, build_theme_info.transChannels);
-	}, 1000);
-	setTimeout(function() {
-		download_content(content_response, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.version, build_theme_info.region);
-	}, 2000);
-	setTimeout(function() {
-		theme_builder(build_response, build_theme_info.mym, build_theme_info.spinOption, build_theme_info.outlineColorIndex, build_theme_info.transChannels, build_theme_info.sourceFiles, build_theme_info.theme_index, build_theme_info.version, build_theme_info.region);
-	}, 4000);
+	
+	server_setup(setup_responce);
+
+	return;
+}
+function close_download_cancel() {
+	clearInterval(downloadtimer);
+	document.getElementById("build_container").innerHTML = "<p><br />The download has been cancelled .<br /><br />Thank You for using Wii Themer .</p>";
+
+	return;
+}
+function close_download_no_update() {
+	clearInterval(downloadtimer);
+	document.getElementById("build_container").innerHTML = "<p><br />Your download has expired .<br /><br />Thank You for using Wii Themer .</p>";
+	
+	return;
+}
+function close_download() {
+	clearInterval(downloadtimer);
+	document.getElementById("build_container").innerHTML = "<p><br />Thank You for using Wii Themer .</p><p>Remember to grab an Installer app from links on the Downloads page .</p>"
+
+	return;
+}
+function download_timer() {
+
+	closecntr -= 1;
+	seccntr += 1;
+	let seconds_remaining = 60 - seccntr;
+	let timer_message = document.getElementById("download_timer").innerHTML;
+	if(seconds_remaining < 0) {
+		seccntr = 1;
+		seconds_remaining = 59;
+		minutesleft -= 1;
+	}
+	if(seconds_remaining < 10) {
+		if(minutesleft < 1)
+			timer_message = "0 " + " minutes : 0" + seconds_remaining + " seconds .<br>";
+		else
+			timer_message = " " + minutesleft + " minutes : 0" + seconds_remaining + " seconds .<br>";
+	}
+	else {
+		if(minutesleft < 1)
+			timer_message = "0 " + " minutes : " + seconds_remaining + " seconds .<br>";
+		else
+			timer_message = " " + minutesleft + " minutes : " + seconds_remaining + " seconds .<br>";
+	}
+	document.getElementById("download_timer").innerHTML = timer_message;
+	if(closecntr <= 0) {
+		close_download_no_update();
+		clearInterval(downloadtimer);
+	}
+	
+	return;
+}
+function start_download_timer() {
+	downloadtimer = setInterval(download_timer, 1000);
+	return;
+}
+function set_download_button(version, region, spin_option, theme_name, spin_color_index) {
+	//document.getElementById('server_message').innerHTML = "";
+	document.getElementById("build_container").innerHTML += "<hr></hr><p>Syste Menu Version : " + find_display_version[region][version] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System Menu Region : " + regions[region] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Channel Spin Option : " + spins[spin_option] + "</p><p>Options : <br />";
+	if(spin_color_index >= 1) {
+		document.getElementById("build_container").innerHTML += "Channel Outline Spin Color : " + outline_Color[spin_color_index]  + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
+	if(build_theme_info.transChannels == true) {
+		document.getElementById("build_container").innerHTML += "Trans-Parent Channels : true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
+	if(build_theme_info.sourceFiles == true) {
+		document.getElementById("build_container").innerHTML += "Save Source Files : true&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	}
+	document.getElementById("build_container").innerHTML += "</p><hr /><button id='download_csm_btn' title='Click to download your theme .' onclick='start_download()'>Download "+ theme_name + "</button><p>Download will expire in <span id='download_timer'></span> .</p>";
+	start_download_timer();
+	download_timer();
+	return;
+}
+function is_theme_2_stage(mym_file) {
+    let str = null;
+	str = mym_file.search("_stage1");
+	console.log("str : " + str);
+	if(str == -1)
+		return false;
+	else return true;
+}
+function is_theme_region_specific(theme_num) {
+    if(((theme_num >= 54) && theme_num <= 61) || (theme_num == 51)  || (theme_num == 96) || (theme_num == 242))
+		return true;
+	return false;
+}
+function start_download() { // remove beta @ release time
+	let csm_name = "";
+	let theme_is_specific = false;
+
+	let website = "https://www.wiithemer.org/beta/resources/working/" + session_id + "/";
+    let display_name = build_theme_info.name;
+	let theme_is_2_stage = is_theme_2_stage(build_theme_info.mym);
+	if(theme_is_2_stage)
+		csm_name = build_theme_info.mym.substring(0, build_theme_info.mym.length - 11) + "_" + download_display_version[build_theme_info.region][build_theme_info.version] + spin_display[build_theme_info.spinOption] + ".csm";
+	else {
+		theme_is_specific = is_theme_region_specific(build_theme_info.theme_index);
+		if(theme_is_specific)
+			csm_name = build_theme_info.mym + "_" + download_display_version[build_theme_info.region][build_theme_info.version] + spin_display[build_theme_info.spinOption] + ".csm";
+		else
+			csm_name = build_theme_info.mym.substring(0, build_theme_info.mym.length - 4) + "_" + download_display_version[build_theme_info.region][build_theme_info.version] + spin_display[build_theme_info.spinOption] + ".csm";
+	}
+		
+	console.log("csm_name : " + csm_name)
+	clearInterval(downloadtimer);
+	
+	let result = window.confirm("Download " + display_name + " ?\n\nClick OK to continue or Cancel to close this message.");
+	if (result) {
+		// User clicked OK
+		close_download();
+		return window.open(website + csm_name, 'self', 'noopener,noreferrer');
+		//alert(website + download_name);
+	}
+	// User clicked Cancel
+	close_download_cancel();
+
 	return;
 }
 function show_saved_data() {
@@ -1248,13 +1379,14 @@ function check_4_new_visitor() {
 }
 function get_user_id() {
 	let user_id = "";
+	//localStorage.clear(); 
 	const xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState === 4 && xhttp.status === 200) {
 			user_id =  xhttp.responseText;
 			console.log("get_user_id-user_id: " + user_id);
 			set_Cookie("user_id", user_id);
-			localStorage.setItem("user_id", user_id);
+			//localStorage.setItem("user_id", user_id);
 		}
 	}
 	xhttp.open("GET", "index.php?command=get_user_id");
