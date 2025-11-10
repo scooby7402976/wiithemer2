@@ -88,7 +88,7 @@
         #echo "set_data-data_file_path: " . $data_file_path . "\n";
         $data_file_contents = 0;
         if(file_exists($data_file_path))
-            $data_file_contents = file_get_contents($data_file_path);
+            $data_file_contents = intval(file_get_contents($data_file_path));
         $temp_data = $data_file_contents + 1;
         file_put_contents($data_file_path, $temp_data, LOCK_EX);
         #echo "set_data-temp_data: " . $temp_data . "\n";
@@ -205,7 +205,7 @@
             echo "Complete .\n";
         return;
     }
-    function  theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index) { // needs zip ---------------------------------
+    function  theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index) { // remove beta @ release
         global $theme_is_2_stage;
         global $spin_first_themes;
         global $spincolors;
@@ -401,8 +401,8 @@
             $source_file = "";
 
             if($theme_is_2_stage)
-                $save_dir = "resources/working/" . $id . "/" . $theme_no_extension;
-            if($multi_region_theme)
+                $save_dir = "resources/working/" . $id . "/" . substr($mym_theme, 0, strlen($mym_theme) - 11);
+            else if($multi_region_theme)
                 $save_dir = "resources/working/" . $id . "/" . $multi_region_save_dir;
             else
                 $save_dir = "resources/working/" . $id . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4);
@@ -433,17 +433,41 @@
                 if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
                     echo "Failed .(copy theme mym2)<br></br>";
             }
-
+            // --------------- remove beta @ release ----------------------------
             $csm = "";
             $source_file = "resources/working/" . $id . "/stage" . $theme_finished_stage . ".app";
-            if($theme_is_2_stage) $csm = $save_dir . "/" . $theme_no_extension . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? '') . $spin_display[$spin_index] . ".csm";
-            else if($multi_region_theme) $csm = $save_dir . "/" . $multi_region_save_dir . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
-            else $csm = $save_dir . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4) . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+            if($theme_is_2_stage) {
+                $csm = $save_dir . "/" . substr($mym_theme, 0, strlen($mym_theme) - 11) . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? '') . $spin_display[$spin_index] . ".csm";
+                $makezipstr = "7z.exe a " . substr($mym_theme, 0, strlen($mym_theme) - 11) . ".zip -tzip c:/apache24/server/wiithemer/beta/resources/working/" . $id . "/" . substr($mym_theme, 0, strlen($mym_theme) - 11);
+                $wait_file = substr($mym_theme, 0, strlen($mym_theme) - 11) . ".zip";
+            }
+            else if($multi_region_theme) {
+                $csm = $save_dir . "/" . $multi_region_save_dir . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+                $makezipstr = "7z.exe a " . $multi_region_save_dir . ".zip -tzip c:/apache24/server/wiithemer/beta/resources/working/" . $id . "/" . $multi_region_save_dir;
+                $wait_file = $multi_region_save_dir . ".zip";
+            }
+            else {
+                $csm = $save_dir . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4) . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+                $makezipstr = "7z.exe a " . substr($mym_theme, 0, strlen($mym_theme) - 4) . ".zip -tzip c:/apache24/server/wiithemer/beta/resources/working/" . $id . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4);
+                $wait_file = substr($mym_theme, 0, strlen($mym_theme) - 4) . ".zip";
+            }     
             $save_source = $csm;
             //echo $source_file . " <<< source file .<br></br>";
             //echo $save_source . " <<< save file .<br></br>";
             if(!copy($source_file, $save_source))
                echo "Failed .(copy csm)<br></br>";
+            // zip file here -----------------------------
+            $wait_file_exists = file_exists($wait_file);
+            if(!$wait_file_exists) {
+                 $homedir = getcwd();
+                chdir("resources/working/" . $id);
+                execInBackground($makezipstr);
+                $timed_out = wait_for_file(($wait_file), 15);
+                chdir($homedir);
+                if($timed_out) {
+                    echo "Failed .<br></br> makezipstr -> " . $makezipstr;
+                }
+            }
         }
         $save_dir = "resources/working/" . $id;
         $csm = "";
@@ -454,8 +478,6 @@
         $save_source = $csm;
         if(!rename($source_file, $save_source))
             echo "Failed .(rename csm)<br></br>";
-        // zip file here -----------------------------
-
         return;
     }
     function  execute_themething_cmd($wait_file, $working_id, $themething_cmd) : bool {

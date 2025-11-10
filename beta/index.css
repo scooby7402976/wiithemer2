@@ -421,6 +421,13 @@ body {
     color: rgb(255 255 255);
 }
 /* footer */
+#footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
 #footer p {
     width: 80vw;
     margin: 0 auto;
@@ -431,6 +438,19 @@ body {
     border-width: 2px;
     padding: 5px 0;
     text-align: center;
+}
+#site_settings {
+    padding: 5px 10px;
+    margin: 0 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(255 128 15);
+    background-color: black;
+    color: rgb(255 128 15);
+    cursor: pointer;
+}
+#site_settings:hover {
+    border: 2px solid rgb(255 200 50);
+    background-color: rgb(53, 62, 67);
 }
 /* classes */
 /* --------------------------------------------------------- */
