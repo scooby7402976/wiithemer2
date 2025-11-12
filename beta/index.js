@@ -315,6 +315,13 @@ const regions = [
 const outline_Color = [
 	"", "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow"
 ];
+const settings_colors = [
+	"", "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow"
+];
+const settings_colors_rgba = [
+	"",
+
+];
 const find_display_version = [
 	[], [, "4.3_v513", "4.2_v481", "4.1_v449", "4.0_v417", "4.3_v609"], [, "4.3_v514", "4.2_v482", "4.1_v450", "4.0_v418", "4.3_v610"], [, "4.3_v512", "4.2_v480", "4.1_v448", "4.0_v416", "4.3_v608"], [,"4.3_v518", "4.2_v486", "4.1_v454"]
 ];
@@ -350,6 +357,7 @@ var closecntr = 180;
 var minutesleft = 2;
 var seccntr = 0;
 var session_id = null;
+var settings_saved = false;
 
 // enlarging all images ========
 function show_theme_img(img_file) {
@@ -498,9 +506,7 @@ function set_data(which_data) { // remove beta at release
 	
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState === 4 && xhttp.status === 200) {
-			for (let i = 1; i < 11; i++) {
-				load_stats_counts(i);
-			}
+			
 		}
 	}
 	
@@ -861,51 +867,51 @@ function load_settings_Color() {
 	document.getElementById("text_color").options.length = 0;
 	document.getElementById("text_color_highlight").options.length = 0;
 
-	for(let i = 0; i < outline_Color.length; i++) { 
+	for(let i = 0; i < settings_colors.length; i++) { 
 		let option = document.createElement("option");
-        option.text = outline_Color[i];
+        option.text = settings_colors[i];
         option.value = i;
         document.getElementById("black_BG").add(option);
 	}
-	for(let i = 0; i < outline_Color.length; i++) { 
+	for(let i = 0; i < settings_colors.length; i++) { 
 		let option = document.createElement("option");
-        option.text = outline_Color[i];
+        option.text = settings_colors[i];
         option.value = i;
 		document.getElementById("gunmetal_BG").add(option);
 	}
-	for(let i = 0; i < outline_Color.length; i++) { 
+	for(let i = 0; i < settings_colors.length; i++) { 
 		let option = document.createElement("option");
-        option.text = outline_Color[i];
+        option.text = settings_colors[i];
         option.value = i;
 		document.getElementById("btn_borders").add(option);
 	}
-	for(let i = 0; i < outline_Color.length; i++) { 
+	for(let i = 0; i < settings_colors.length; i++) { 
 		let option = document.createElement("option");
-        option.text = outline_Color[i];
+        option.text = settings_colors[i];
         option.value = i;
 		document.getElementById("btn_borders_highlight").add(option);
 	}
-	for(let i = 0; i < outline_Color.length; i++) { 
+	for(let i = 0; i < settings_colors.length; i++) { 
 		let option = document.createElement("option");
-        option.text = outline_Color[i];
+        option.text = settings_colors[i];
         option.value = i;
 		document.getElementById("btn_background").add(option);
 	}
-	for(let i = 0; i < outline_Color.length; i++) { 
+	for(let i = 0; i < settings_colors.length; i++) { 
 		let option = document.createElement("option");
-        option.text = outline_Color[i];
+        option.text = settings_colors[i];
         option.value = i;
 		document.getElementById("btn_background_highlight").add(option);
 	}
-	for(let i = 0; i < outline_Color.length; i++) { 
+	for(let i = 0; i < settings_colors.length; i++) { 
 		let option = document.createElement("option");
-        option.text = outline_Color[i];
+        option.text = settings_colors[i];
         option.value = i;
 		document.getElementById("text_color").add(option);
 	}
-	for(let i = 0; i < outline_Color.length; i++) { 
+	for(let i = 0; i < settings_colors.length; i++) { 
 		let option = document.createElement("option");
-        option.text = outline_Color[i];
+        option.text = settings_colors[i];
         option.value = i;
 		document.getElementById("text_color_highlight").add(option);
 	}
@@ -1542,9 +1548,10 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 		case 6:
             document.getElementById("tabcontent").innerHTML = "<div id='stats_message'></div>";
 			document.getElementById("stats_message").innerHTML = "<p>Current Total Themes Available : <span id='themecount'>" + theme_count + "</span></p><hr></hr><br></br><p>Site Visits :<span id='visitor_count'></span><hr></hr><br></br></p><p>Wii Themes Downloaded<span id='wii_downloads'></span><button id='showmorebtn1' onclick='show_more_btn(1)'>Show More</button><hr></hr><div id='show_more_wii'><p>U Region Downloads<span id='uwii'></span></p><p>E Region Downloads<span id='ewii'></span></p><p>J Region Downloads<span id='jwii'></span></p><p>K Region Downloads<span id='kwii'></span></p></div></p><br></br><p>vWii Themes Downloaded<span id='vwii_downloads'></span><button id='showmorebtn2' onclick='show_more_btn(2)'>Show More</button><hr></hr><div id='show_more_vwii'><p>U Region Downloads<span id='uvwii'></span></p><p>E Region Downloads<span id='evwii'></span></p><p>J Region Downloads<span id='jvwii'></span></p></div></p>";
-			for (let i = 1; i <= 10; i++) {
-				load_stats_counts(i);
-			}
+			
+			load_stats_counts(1);
+			load_stats_counts(2);
+			load_stats_counts(3);
 
 			break;
 		// contact tab
@@ -1563,19 +1570,31 @@ function check_4_new_visitor() {
 	return stored_info_found;
 }
 function get_user_id() {
-	let user_id = "";
+	let id = "";
 	//localStorage.clear(); 
 	const xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState === 4 && xhttp.status === 200) {
-			user_id =  xhttp.responseText;
-			console.log("get_user_id-user_id: " + user_id);
-			set_Cookie("user_id", user_id);
-			//localStorage.setItem("user_id", user_id);
+			id =  xhttp.responseText;
+			console.log("get_user_id-user_id: " + id + "\n");
+			set_Cookie("user_id", id);
+			userId = id;
+			localStorage.setItem("unique_id", userId);
 		}
 	}
 	xhttp.open("GET", "index.php?command=get_user_id");
 	xhttp.send();
+	
+	return;
+}
+function unique_id_found() {
+	//localStorage.clear();
+	let found_id = null;
+	found_id = localStorage.getItem("unique_id");
+	console.log("found_id: " + found_id + "\n");
+	
+		
+	return;
 }
 // ------------------------------
 // cookie functions--------------
@@ -1613,6 +1632,80 @@ function check_Cookie(cookie_name) {
 }
 // ------------------------------
 // --------- setting menu -------
+function settings_change_color(settings_num) {
+	let main_color_index = null;
+	let main_color_index1 = null;
+	let main_color_index2 = null;
+	let color_chose = null;
+	console.log("settings_num:  " + settings_num);
+	switch(settings_num) {
+		case 1:
+			main_color_index = document.getElementById("black_BG").selectedIndex;
+			if(main_color_index == 1) color_chose = "rgba(0, 0, 0, 1)";
+			else if(main_color_index == 2) color_chose = "rgba(0, 0, 255, 1)";
+			else if(main_color_index == 3) color_chose = "rgba(0, 255, 0, 1)";
+			else if(main_color_index == 4) color_chose = "rgba(255, 165, 0, 1)";
+			else if(main_color_index == 5) color_chose = "rgba(255, 192, 203, 1)";
+			else if(main_color_index == 6) color_chose = "rgba(128, 0, 128, 1)";
+			else if(main_color_index == 7) color_chose = "rgba(255, 0, 0, 1)";
+			else if(main_color_index == 8) color_chose = "rgba(255, 255, 255, 1)";
+			else if(main_color_index == 9) color_chose = "rgba(255, 255, 0, 1)";
+			document.getElementById("maincontainer").style.backgroundColor = color_chose;
+			console.log("color index: " + main_color_index + "\ncolor: " + color_chose);
+			//document.getElementById("home_container").style.backgroundColor = outline_Color[settings_num];
+		break;
+		case 2:
+			main_color_index = document.getElementById("gunmetal_BG").selectedIndex;
+			if(main_color_index == 1) color_chose = "rgba(0, 0, 0, 1)";
+			else if(main_color_index == 2) color_chose = "rgba(0, 0, 255, 1)";
+			else if(main_color_index == 3) color_chose = "rgba(0, 255, 0, 1)";
+			else if(main_color_index == 4) color_chose = "rgba(255, 165, 0, 1)";
+			else if(main_color_index == 5) color_chose = "rgba(255, 192, 203, 1)";
+			else if(main_color_index == 6) color_chose = "rgba(128, 0, 128, 1)";
+			else if(main_color_index == 7) color_chose = "rgba(255, 0, 0, 1)";
+			else if(main_color_index == 8) color_chose = "rgba(255, 255, 255, 1)";
+			else if(main_color_index == 9) color_chose = "rgba(255, 255, 0, 1)";
+			//main_color_index = document.getElementById("gunmetal_BG").selectedIndex;
+			document.getElementById("tabcontent").style.backgroundColor = outline_Color[main_color_index];
+			console.log("color index: " + main_color_index + "\ncolor: " + outline_Color[main_color_index]);
+		break;
+		case 3:
+			main_color_index = document.getElementById("borders_btn").selectedIndex;
+			if(main_color_index == 1) color_chose = "rgba(0, 0, 0, 1)";
+			else if(main_color_index == 2) color_chose = "rgba(0, 0, 255, 1)";
+			else if(main_color_index == 3) color_chose = "rgba(0, 255, 0, 1)";
+			else if(main_color_index == 4) color_chose = "rgba(255, 165, 0, 1)";
+			else if(main_color_index == 5) color_chose = "rgba(255, 192, 203, 1)";
+			else if(main_color_index == 6) color_chose = "rgba(128, 0, 128, 1)";
+			else if(main_color_index == 7) color_chose = "rgba(255, 0, 0, 1)";
+			else if(main_color_index == 8) color_chose = "rgba(255, 255, 255, 1)";
+			else if(main_color_index == 9) color_chose = "rgba(255, 255, 0, 1)";
+			//main_color_index = document.getElementById("btn_borders").selectedIndex;
+			document.getElementById("save_settings_btn").style.borderColor = color_chose;
+			console.log("color index: " + main_color_index + "\ncolor: " + color_chose);
+		break;
+		case 7:
+			main_color_index = document.getElementById("text_color").selectedIndex;
+			if(main_color_index == 1) color_chose = "rgba(0, 0, 0, 1)";
+			else if(main_color_index == 2) color_chose = "rgba(0, 0, 255, 1)";
+			else if(main_color_index == 3) color_chose = "rgba(0, 255, 0, 1)";
+			else if(main_color_index == 4) color_chose = "rgba(255, 165, 0, 1)";
+			else if(main_color_index == 5) color_chose = "rgba(255, 192, 203, 1)";
+			else if(main_color_index == 6) color_chose = "rgba(128, 0, 128, 1)";
+			else if(main_color_index == 7) color_chose = "rgba(255, 0, 0, 1)";
+			else if(main_color_index == 8) color_chose = "rgba(255, 255, 255, 1)";
+			else if(main_color_index == 9) color_chose = "rgba(255, 255, 0, 1)";
+			//main_color_index = document.getElementById("text_color").selectedIndex;
+			document.getElementById("body").style.color = color_chose;
+			console.log("color index: " + main_color_index + "\ncolor: " + color_chose);
+			for(let i = 0; i < 7; i++) {
+				document.getElementsByClassName("tab_inactive")[i].style.color = color_chose;
+			}
+			
+		break;
+	}
+	return;
+}
 function settings_menu() {
 	tab_locked = true;
 
@@ -1626,14 +1719,14 @@ function settings_menu() {
 	document.getElementById("tabcontent").innerHTML = "";
 	document.getElementById("tabcontent").innerHTML = "<span title='Close Window' class='closepreviewbtn'>&times;</span><div id='build_gui_container'></div>";
 
-	document.getElementById("build_gui_container").innerHTML = "<h3>Backgrounds</h3><hr /><p><label for='black_BG' id='black_BG_label' title='Click to change the black backgrounds .'>Replace black backgrounds.</label><select id='black_BG'></select></p>";
-	document.getElementById("build_gui_container").innerHTML += "<p><label for='gunmetal_BG' id='gunmetal_BG_label' title='Click to change the gunmetal gray backgrounds .'>Replace gunmetal gray backgrounds.</label><select id='gunmetal_BG'></select></p><br />";
-	document.getElementById("build_gui_container").innerHTML += "<h3>Borders</h3><hr /><p><label for='btn_borders' id='btn_borders_label' title='Click to change the Border color .'>Replace border color .</label><select id='btn_borders'></select></p><br />";
-	document.getElementById("build_gui_container").innerHTML += "<h3>Buttons</h3><hr /><p><label for='btn_borders_highlight' id='btn_borders_highlight_label' title='Click to change the Border color highlight .'>Replace border color highlight .</label><select id='btn_borders_highlight'></select></p>";
-	document.getElementById("build_gui_container").innerHTML += "<p><label for='btn_background' id='btn_background_label' title='Click to change the Button background color .'>Replace button background color .</label><select id='btn_background'></select></p>";
-	document.getElementById("build_gui_container").innerHTML += "<p><label for='btn_background_highlight' id='btn_background_highlight_label' title='Click to change the Button background color highlight .'>Replace button background  color highlight .</label><select id='btn_background_highlight'></select></p><br />";
-	document.getElementById("build_gui_container").innerHTML += "<h3>Text Color</h3><hr /><p><label for='text_color' id='text_color_label' title='Click to replace the text color .'>Replace text color .</label><select id='text_color'></select></p>";
-	document.getElementById("build_gui_container").innerHTML += "<p><label for='text_color_highlight' id='text_color_highlight_label' title='Click to replace the text color highlight .'>Replace text color highlight.</label><select id='text_color_highlight'></select></p>";
+	document.getElementById("build_gui_container").innerHTML = "<h3>Backgrounds</h3><hr /><p><label for='black_BG' id='black_BG_label' title='Click to change the black backgrounds .'>Replace black backgrounds.</label><select id='black_BG' onchange='settings_change_color(1)'></select></p>";
+	document.getElementById("build_gui_container").innerHTML += "<p><label for='gunmetal_BG' id='gunmetal_BG_label' title='Click to change the gunmetal gray backgrounds .'>Replace gunmetal gray backgrounds.</label><select id='gunmetal_BG' onchange='settings_change_color(2)'></select></p><br />";
+	document.getElementById("build_gui_container").innerHTML += "<h3>Borders</h3><hr /><p><label for='btn_borders' id='btn_borders_label' title='Click to change the Border color .'>Replace border color .</label><select id='btn_borders' onchange='settings_change_color(3)'></select></p><br />";
+	document.getElementById("build_gui_container").innerHTML += "<h3>Buttons</h3><hr /><p><label for='btn_borders_highlight' id='btn_borders_highlight_label' title='Click to change the Border color highlight .'>Replace border color highlight .</label><select id='btn_borders_highlight' onchange='settings_change_color(4)'></select></p>";
+	document.getElementById("build_gui_container").innerHTML += "<p><label for='btn_background' id='btn_background_label' title='Click to change the Button background color .'>Replace button background color .</label><select id='btn_background' onchange='settings_change_color(5)'></select></p>";
+	document.getElementById("build_gui_container").innerHTML += "<p><label for='btn_background_highlight' id='btn_background_highlight_label' title='Click to change the Button background color highlight .'>Replace button background  color highlight .</label><select id='btn_background_highlight' onchange='settings_change_color(6)'></select></p><br />";
+	document.getElementById("build_gui_container").innerHTML += "<h3>Text Color</h3><hr /><p><label for='text_color' id='text_color_label' title='Click to replace the text color .'>Replace text color .</label><select id='text_color' onchange='settings_change_color(7)'></select></p>";
+	document.getElementById("build_gui_container").innerHTML += "<p><label for='text_color_highlight' id='text_color_highlight_label' title='Click to replace the text color highlight .'>Replace text color highlight.</label><select id='text_color_highlight'></select></p><button id='save_settings_btn' onclick='save_settings(8)'>Save Settings</button>";
 
 	load_settings_Color();
 	document.getElementsByClassName("closepreviewbtn")[0].onclick = function() {
