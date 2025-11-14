@@ -10,64 +10,89 @@ body {
     background-size: 100vw 100vh;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    color: rgb(255, 128, 0);
+    color: rgb(255, 255, 230);
 }
 #maincontainer {
     width: 95vw;
     height: 95vh;
     border-radius: 10px;
-    border-color: rgb(255, 128, 15);
-    border-style: solid;
+    border-color: rgb(0, 255, 0);
+    border-bottom-style: outset;
     border-width: 5px;
     margin: 2vh auto;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 1);
-    box-shadow: 5px 5px 15px rgba(255, 128, 15, 1);
+    background-color: rgba(0, 0, 0, 0.75);
+    box-shadow: 5px 5px 15px rgba(0, 255, 0, 1);
 }
 #maincontainer h1 {
     text-align: center;
     font-size: 30px;
-    margin: 10px auto;
+    margin: auto;
     padding: 5px;
     border-radius: 10px;
-    border-color: rgb(255, 128, 15);
-    border-style: solid;
-    border-width: 3px;
-    width: 80vw;
+    border-color: rgb(0, 255, 0);
+    border-bottom-style: outset;
+    border-width: 5px;
+    width: 90vw;
 }
 /* all tabs */
 #tabcontainer {
-    width: 80vw;
+    width: 85vw;
     justify-content: center;
-    margin: 5px;
     padding: 5px;
     align-items: center;
+    display: flexbox;
 }
 #tabcontainer div {
     text-align: center;
     flex: content;
     padding: 3px 10px;
-    margin: 3px;
-   
+    margin: 5px;
 }
-#tabcontainer div:hover {
+#tab1, #tab2, #tab3, #tab4, #tab5, #tab6, #tab7 {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 230);
+    border-radius: 10px;
+    border-top: 3px outset rgb(255, 235, 200);
+}
+#tab1:hover, #tab2:hover, #tab3:hover, #tab4:hover, #tab5:hover, #tab6:hover, #tab7:hover {
+    background-blend-mode: lighten;
     background-color: rgb(53, 62, 67);
-    border-color: rgb(255, 255, 0);
-    color: rgba(255, 255, 255, 1);
+}
+#tab3 {
+    border-top-color:rgb(57, 255, 20);
+    
+}
+#tab1:hover {
+    border-top-color:rgb(255, 165, 0);
+    
+}
+#tab4:hover {
+    border-top-color: rgb(0, 0, 255);
+}
+#tab5:hover {
+    border-top-color: rgb(255, 0, 255);
+}
+#tab6:hover {
+    border-top-color: rgb(255, 255, 0);
+}
+#tab7:hover {
+    border-top-color: rgb(255, 0, 0);
 }
 /* all tabs content */
 #tabcontent {
-    width: 80vw;
-    height: 65vh;
-    margin: 5px auto;
+    width: 80%;
+    height: 90%;
+    margin: 2.5% auto;
     padding: 5px;
     background-color: rgba(52, 63, 67, 0.75);
     border-radius: 10px;
-    border-color: rgb(255, 128, 15);
-    border-style: solid;
-    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    border-bottom-style: outset;
+    border-width: 4px;
     overflow-y: scroll;
     text-align: center;
+    box-shadow: 2px 4px 10px rgba(255, 255, 255, 1);
 }
 #tabcontent h2 {
     margin: 5px auto;
@@ -80,12 +105,15 @@ body {
 #home_container {
     margin: 5vh auto;
     padding: 15px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.75);
     border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
+    border-bottom-color: rgb(255 165 0);
+    border-top-color: rgb(255 235 200);
+    border-bottom-style: outset;
+    border-top-style: outset;
+    border-width: 3px;
     width: 95%;
+    height: max-content;
     text-align: center;
 }
 #home_tab_img_container {
@@ -93,38 +121,31 @@ body {
     padding: 5px;
     gap: 10px;
 }
-#home_tab_img_container img {
-    border: 5px solid rgb(255 128 15);
-    border-radius: 10px;
-    cursor: pointer;
-}
-#home_tab_img_container img:hover {
-    border: 5px solid rgb(255 200 50);
-}
 /* build theme */
 #build_container {
-    margin: 5vh auto;
+    margin: 1% auto;
     padding: 15px;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
+    border-color: rgb(0 0 255);
+    border-bottom-style: outset;
     border-width: 2px;
     width: 95%;
+    height: max-content;
     text-align: center;
 }
 #download_csm_btn {
     padding: 5px 10px;
     margin: 10px auto;
     border-radius: 10px;
-    border: 2px solid rgb(255 128 15);
+    border-top: 2px outset rgb(255 128 15);
     background-color: black;
-    color: rgb(255 128 15);
+    color: rgb(255 255 230);
     cursor: pointer;
     display: none;
 }
 #download_csm_btn:hover {
-    border: 2px solid rgb(255 200 50);
+    border-color:  rgb(255 200 50);
     background-color: rgb(53, 62, 67);
 }
 /* build gui */
@@ -152,8 +173,9 @@ body {
     padding: 5px;
     background-color: rgba(52, 63, 67, 0.75);
     border-radius: 10px;
-    border-color: rgb(255, 128, 15);
-    border-style: solid;
+    border-color: rgb(255, 255, 240);
+    border-bottom-style: outset;
+    border-top-style: outset;
     border-width: 5px;
     overflow-y: scroll;
     display:none;
@@ -176,7 +198,7 @@ body {
 #save_menu_btn, #delete_menu_btn {
     float: left;
     border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
+    border-top: 3px solid rgb(255 128 15);
     background-color: black;
     color: rgb(255 128 15);
     cursor: pointer;
@@ -199,7 +221,7 @@ body {
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
-    border: 2px solid rgb(255 128 15);
+    border-top: 2px solid rgb(255 128 15);
     background-color: black;
     color: rgb(255 128 15);
 }
@@ -290,12 +312,12 @@ body {
     padding: 5px 15px;
     margin-left: 10px;
     margin-top: 10px;
-    border-radius: 10px;
-    border: 3px solid rgb(255 128 15);
+    border-bottom: 3px solid rgb(255 128 15);
     background-color: black;
     color: rgb(255 128 15);
     cursor: pointer;
     float: left;
+    font-size: 18px;
 }
 #num_theme_downloads {
     float: right;
@@ -318,35 +340,48 @@ body {
 }
 /* downloads tab */
 #theme_installers {
-    margin: 5vh auto;
+    margin: 2.5% auto;
     padding: 15px;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
+    border-color: rgb(0 0 255);
+    border-bottom-style: outset;
+    border-width: 3px;
     width: 95%;
+    height: 90%;
     text-align: center;
 }
+#downloadimg1, #downloadimg2, #downloadimg3 {
+    border-bottom: 5px outset rgb(0 0 255);
+}
+#homeimg1, #homeimg2, #homeimg3 {
+    border-bottom: 5px outset rgb(255 128 0);
+}
 #downloadimg1, #downloadimg2, #downloadimg3, #homeimg1, #homeimg2, #homeimg3 {
-    border: 5px solid rgb(255 128 15);
+    border-top: 5px outset rgb(255 255 240);
     border-radius: 10px;
     margin: 10px;
     cursor: pointer;
 }
-#downloadimg1:hover, #downloadimg2:hover, #downloadimg3:hover, #homeimg1:hover, #homeimg2:hover, #homeimg3:hover {
-    border: 5px solid rgb(255 200 50);
+#downloadimg1:hover, #downloadimg2:hover, #downloadimg3:hoverr {
+    border-top-color: rgb(255 255 0);
+    border-bottom-color: rgb(255 255 240);
+    cursor: pointer;
+}
+#homeimg1:hover, #homeimg2:hover, #homeimg3:hover {
+    border-top-color: rgb(255 255 0);
+    border-bottom-color: rgb(255 255 240);
     cursor: pointer;
 }
 /* stats tab */
 #stats_message{
-    margin: 5vh auto;
+    margin: 2.5% auto;
     padding: 15px;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
+    border-color: rgb(255 255 0);
+    border-bottom-style: outset;
+    border-width: 4px;
     width: 95%;
     text-align: left;
 }
@@ -355,15 +390,16 @@ body {
 }
 #showmorebtn1, #showmorebtn2, #showlessbtn1, #showlessbtn2 {
     background-color: black;
-    color: rgb(255 95 0);
+    color: rgb(255 255 230);
     margin: 0 20px;
     cursor: pointer;
     border-radius: 10px;
+    border-top: 3px outset rgb(255 255 0);
     padding: 5px 10px;
 }
 #showmorebtn1:hover, #showmorebtn2:hover, #showlessbtn1:hover, #showlessbtn2:hover {
     background-color: rgb(53, 62, 67);
-    color: rgb(255 255 255);
+    border-top-color: rgb(255 255 240);
 }
 #visitor_count, #wii_downloads, #vwii_downloads, #themecount, #uwii, #ewii, #jwii, #kwii, #uvwii, #evwii, #jvwii {
     float: right;
@@ -372,14 +408,15 @@ body {
 }
 /* links tab */
 #links_container {
-    margin: 10px auto;
+    margin: 1.5% auto;
     padding: 15px;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
+    border-color: rgb(255 0 255);
+    border-bottom-style: outset;
+    border-width: 3px;
     width: 95%;
+    height: 90%;
     text-align: left;
 }
 #links_container  h3 {
@@ -396,20 +433,34 @@ body {
     text-align: center;
 }
 /* mail tab */
-#mailimg {
-    border: 5px solid rgb(255 128 15);
-    border-radius: 20px;
-    margin: 10px auto;
+#mail_img_container {
+    border-bottom: 5px outset rgb(255 0 0);
+    border-radius: 10px;
+    margin: 10px auto; 
+    width: 30%;
+}
+@media screen and (max-width: 600px) {
+    #mailimg {
+        width: 250px;
+        height: 125px;
+    }
+    #mail_message {
+        padding: 3px;
+        margin: 3px auto;
+    }
 }
 #mail_message {
-    margin: 5vh auto;
+    margin: 2% auto;
     padding: 15px;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
+    border-top-color: rgb(255 255 255);
+    border-bottom-color: rgb(255 0 0);
+    border-bottom-style: outset;
+    border-top-style: outset;
+    border-width: 3px;
     width: 95%;
+    height: 90%;
     text-align: center;
 }
 #mail_message a{
@@ -425,32 +476,18 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
 }
 #footer p {
-    width: 80vw;
+    width: 30vw;
     margin: 0 auto;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
+    border-color: rgb(0 255 0);
+    border-bottom-style: outset;
     border-width: 2px;
     padding: 5px 0;
     text-align: center;
-}
-#site_settings {
-    padding: 5px 10px;
-    margin: 0 10px;
-    border-radius: 10px;
-    border: 2px solid rgb(255 128 15);
-    background-color: black;
-    color: rgb(255 128 15);
-    cursor: pointer;
-}
-#site_settings:hover {
-    border: 2px solid rgb(255 200 50);
-    background-color: rgb(53, 62, 67);
+    height: max-content;
 }
 
 /* classes */
@@ -468,30 +505,12 @@ body {
     justify-content: space-evenly;
     align-items: center;
 }
-/* tab active/non-active states */
-.tab {
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
-    cursor: pointer;
-}
-.tab_active {
-    background-color: rgb(255, 128, 15);
-    border-color: rgb(255, 255, 0);
-    color: rgb(255, 255, 255);
-}
-.tab_inactive {
-    background-blend-mode: lighten;
-    background-color: rgba(0, 0, 0, 1);
-    border-color: rgb(255, 128, 15);
-    color: rgb(255, 128, 15);
-}
 /* close button */
 .closepreviewbtn {
     float:right;
     background-color: black;
-    color: rgb(255 128 15);
-    border: 2px solid rgb(255 128 15);
+    color: rgb(255 255 230);
+    border: 2px solid rgb(255 255 240);
     border-radius: 10px;
     padding: 5px 10px;
     cursor: pointer;
@@ -502,6 +521,6 @@ body {
 }
 /* links tab */
 .links_page {
-    width: 50%;
+    width: 60%;
     margin: 10px auto;
 }

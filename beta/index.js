@@ -315,13 +315,6 @@ const regions = [
 const outline_Color = [
 	"", "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow"
 ];
-const settings_colors = [
-	"", "Black", "Blue", "Green", "Orange", "Pink", "Purple", "Red", "White", "Yellow"
-];
-const settings_colors_rgba = [
-	"",
-
-];
 const find_display_version = [
 	[], [, "4.3_v513", "4.2_v481", "4.1_v449", "4.0_v417", "4.3_v609"], [, "4.3_v514", "4.2_v482", "4.1_v450", "4.0_v418", "4.3_v610"], [, "4.3_v512", "4.2_v480", "4.1_v448", "4.0_v416", "4.3_v608"], [,"4.3_v518", "4.2_v486", "4.1_v454"]
 ];
@@ -857,66 +850,6 @@ function is_themelist_filtered() {
 	else
 		return false;
 }
-function load_settings_Color() {
-	document.getElementById("black_BG").options.length = 0; // clear existing options
-	document.getElementById("gunmetal_BG").options.length = 0;
-	document.getElementById("btn_borders").options.length = 0;
-	document.getElementById("btn_borders_highlight").options.length = 0;
-	document.getElementById("btn_background").options.length = 0;
-	document.getElementById("btn_background_highlight").options.length = 0;
-	document.getElementById("text_color").options.length = 0;
-	document.getElementById("text_color_highlight").options.length = 0;
-
-	for(let i = 0; i < settings_colors.length; i++) { 
-		let option = document.createElement("option");
-        option.text = settings_colors[i];
-        option.value = i;
-        document.getElementById("black_BG").add(option);
-	}
-	for(let i = 0; i < settings_colors.length; i++) { 
-		let option = document.createElement("option");
-        option.text = settings_colors[i];
-        option.value = i;
-		document.getElementById("gunmetal_BG").add(option);
-	}
-	for(let i = 0; i < settings_colors.length; i++) { 
-		let option = document.createElement("option");
-        option.text = settings_colors[i];
-        option.value = i;
-		document.getElementById("btn_borders").add(option);
-	}
-	for(let i = 0; i < settings_colors.length; i++) { 
-		let option = document.createElement("option");
-        option.text = settings_colors[i];
-        option.value = i;
-		document.getElementById("btn_borders_highlight").add(option);
-	}
-	for(let i = 0; i < settings_colors.length; i++) { 
-		let option = document.createElement("option");
-        option.text = settings_colors[i];
-        option.value = i;
-		document.getElementById("btn_background").add(option);
-	}
-	for(let i = 0; i < settings_colors.length; i++) { 
-		let option = document.createElement("option");
-        option.text = settings_colors[i];
-        option.value = i;
-		document.getElementById("btn_background_highlight").add(option);
-	}
-	for(let i = 0; i < settings_colors.length; i++) { 
-		let option = document.createElement("option");
-        option.text = settings_colors[i];
-        option.value = i;
-		document.getElementById("text_color").add(option);
-	}
-	for(let i = 0; i < settings_colors.length; i++) { 
-		let option = document.createElement("option");
-        option.text = settings_colors[i];
-        option.value = i;
-		document.getElementById("text_color_highlight").add(option);
-	}
-	return;
-}
 function load_outline_Color() {
 	document.getElementById("spin_color").options.length = 0; // clear existing options
 	for(let i = 0; i < outline_Color.length; i++) { 
@@ -1277,9 +1210,9 @@ function set_build_gui() {
 		regionIndex = localStorage.getItem("saved_region");
 	}
 	 
-	document.getElementById('tab2').className = "tab tab_inactive";
-	document.getElementById('tab3').className = "tab tab_active";
-	document.getElementById('tab3').innerText = "Builder";
+	document.getElementById('tab2').borderTopColor = "rgb(255, 235, 200)";
+	document.getElementById('tab3').borderTopColor = "rgb(57, 255, 20)";
+	//document.getElementById('tab3').innerText = "Builder";
 	document.getElementById("tabcontent").innerHTML = "";
 	// Load Build GUI here .
 	document.getElementById("tabcontent").innerHTML = "<span title='Close Window' class='closepreviewbtn'>&times;</span><div id='build_gui_container'></div>";
@@ -1299,7 +1232,7 @@ function set_build_gui() {
 	document.getElementsByClassName("closepreviewbtn")[0].onclick = function() {
 		tab_locked = false;
 		theme_index = 0;
-		document.getElementById('tab3').innerText = "";
+		//document.getElementById('tab3').innerText = "";
 		wiithemer_navigate_page_tabs(1);
 	};
 	document.getElementById("begin_build_btn").onclick = function() {
@@ -1353,15 +1286,35 @@ function mouse_out(link_num) {
 // main site navigation---------
 // tab color change ------------
 function toggle_active_tab(tab_num) {
-	let tab_active = "";
+	let tab_active_color = "";
 
 	for (let i = 1; i <= 7; i++) {
-		tab_active = document.getElementById('tab' + i).className;
-		if (tab_active === "tab tab_active") {
-			document.getElementById('tab' + i).className = "tab tab_inactive";
-		}
+		document.getElementById('tab' + i).style.borderTopColor = "rgb(255, 235, 200)";
 	}
-	document.getElementById('tab' + tab_num).className = "tab tab_active";
+	switch(tab_num) {
+		case 1:
+			tab_active_color = "rgb(255, 165, 0)";
+		break;
+		case 2:
+			tab_active_color = "rgb(255, 106, 180)";
+		break;
+		case 3:
+			tab_active_color = "rgb(57, 255, 20)";
+		break;
+		case 4:
+			tab_active_color = "rgb(0, 0, 255)";
+			break;
+		case 5:
+			tab_active_color = "rgb(157, 0, 255)";
+			break;
+		case 6:
+			tab_active_color = "rgb(255, 255, 0)";
+		break;
+		case 7:
+			tab_active_color = "rgb(255, 0, 0)";
+		break;
+	}
+	document.getElementById('tab' + tab_num).style.borderTopColor = tab_active_color;
 
 	return;
 }
@@ -1398,7 +1351,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 			let is_filtered = is_themelist_filtered();
 			theme = completethemeinfo[theme_position];
 			
-			document.getElementById("tabcontent").innerHTML = "<div id='theme_gallery'><button id='preview_get_theme_btn' onclick='set_build_gui()' title='Click to start building this theme .'>Build Theme</button><h3 id='gallery_header'>" + theme.name + "<span id='num_theme_downloads'></span></h3><hr></hr><button id='loadprevbtn' title='Click to see previous Theme .'> &lt;&lt;</button><select id='preview_filter' onchange='get_filter_option()' title='Click to filter the theme list .'></select><select id='preview_select' name='preview_select' title='Click to select a theme .'></select><button id='loadnextbtn' title='Click to see next Theme .'> &gt;&gt;</button><div id='imgholder' class='flexrow'><div><img id='preview_mainimg' alt='preview_mainimg' src='resources/theme_main/" + theme.mainimg + "' width='350' height='200' title='Click to enlarge image .'></img><br></br><img id='preview_secondaryimg' alt='preview_secondaryimg' src='resources/theme_secondary/" + theme.secondaryimg + "' width='350' height='200' title='Click to enlarge image .'></img></div><iframe id='preview_video' width='550' height='400' src='" + theme.video + "' title='YouTube Theme video player' frameborder='0' allowfullscreen></iframe></div></div>";
+			document.getElementById("tabcontent").innerHTML = "<div id='theme_gallery'><div id='preview_get_theme_btn' onclick='set_build_gui()' title='Click to start building this theme .'>&nbsp;&nbsp;Build Theme&nbsp;&nbsp;</div><h3 id='gallery_header'>" + theme.name + "<span id='num_theme_downloads'></span></h3><hr></hr><button id='loadprevbtn' title='Click to see previous Theme .'> &lt;&lt;</button><select id='preview_filter' onchange='get_filter_option()' title='Click to filter the theme list .'></select><select id='preview_select' name='preview_select' title='Click to select a theme .'></select><button id='loadnextbtn' title='Click to see next Theme .'> &gt;&gt;</button><div id='imgholder' class='flexrow'><div><img id='preview_mainimg' alt='preview_mainimg' src='resources/theme_main/" + theme.mainimg + "' width='350' height='200' title='Click to enlarge image .'></img><br></br><img id='preview_secondaryimg' alt='preview_secondaryimg' src='resources/theme_secondary/" + theme.secondaryimg + "' width='350' height='200' title='Click to enlarge image .'></img></div><iframe id='preview_video' width='550' height='400' src='" + theme.video + "' title='YouTube Theme video player' frameborder='0' allowfullscreen></iframe></div></div>";
 			// add theme.video to iframe src above 
 			if(is_filtered) {
 				theme_position = filtered_list_position[theme_index];
@@ -1557,7 +1510,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 		// contact tab
 		case 7:
 			document.getElementById("tabcontent").innerHTML = "<div id='mail_message'></div>";
-			document.getElementById("mail_message").innerHTML = "Contact us with comments, issues, etc. .<hr></hr><br></br>Email :<a href='mailto:scooby74029@yahoo.com' title='Click to Email .'><i>Scooby74029 </i></a>from GbaTemp<br></br>Email :<a href='mailto:admin@wiithemer.org' title='Click to Email .'><i>admin </i></a>@ wiithemer.org<br></br><br></br><hr></hr><img id='mailimg' alt='mail gif' src='resources/contact/mail.gif' width='350px' height='200px'></img>";
+			document.getElementById("mail_message").innerHTML = "<p>Contact us with comments, issues, etc. .</p><br /><hr></hr><br /><p>Email : <a href='mailto:scooby74029@yahoo.com' title='Click to Email .'><i>&nbsp;&nbsp;Scooby74029&nbsp;&nbsp;</i></a> from GbaTemp</p><p>Email : <a href='mailto:admin@wiithemer.org' title='Click to Email .'><i>&nbsp;&nbsp;admin&nbsp;&nbsp;</i></a> @ wiithemer.org</p><br></br><hr></hr><br /><div id='mail_img_container'><img id='mailimg' alt='mail gif' src='resources/contact/mail.gif' width='350px' height='200px'></img></div>";
 			break;
 	}
 	return;
@@ -1567,6 +1520,9 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 function check_4_new_visitor() {
 	let stored_info_found = false;
 	if(check_Cookie("user_id")) stored_info_found = true;
+	else {
+		confirm("This site uses cookies to store theme building information and a unique id per visitor .")
+	}
 	return stored_info_found;
 }
 function get_user_id() {
@@ -1631,108 +1587,3 @@ function check_Cookie(cookie_name) {
 	return ret;
 }
 // ------------------------------
-// --------- setting menu -------
-function settings_change_color(settings_num) {
-	let main_color_index = null;
-	let main_color_index1 = null;
-	let main_color_index2 = null;
-	let color_chose = null;
-	console.log("settings_num:  " + settings_num);
-	switch(settings_num) {
-		case 1:
-			main_color_index = document.getElementById("black_BG").selectedIndex;
-			if(main_color_index == 1) color_chose = "rgba(0, 0, 0, 1)";
-			else if(main_color_index == 2) color_chose = "rgba(0, 0, 255, 1)";
-			else if(main_color_index == 3) color_chose = "rgba(0, 255, 0, 1)";
-			else if(main_color_index == 4) color_chose = "rgba(255, 165, 0, 1)";
-			else if(main_color_index == 5) color_chose = "rgba(255, 192, 203, 1)";
-			else if(main_color_index == 6) color_chose = "rgba(128, 0, 128, 1)";
-			else if(main_color_index == 7) color_chose = "rgba(255, 0, 0, 1)";
-			else if(main_color_index == 8) color_chose = "rgba(255, 255, 255, 1)";
-			else if(main_color_index == 9) color_chose = "rgba(255, 255, 0, 1)";
-			document.getElementById("maincontainer").style.backgroundColor = color_chose;
-			console.log("color index: " + main_color_index + "\ncolor: " + color_chose);
-			//document.getElementById("home_container").style.backgroundColor = outline_Color[settings_num];
-		break;
-		case 2:
-			main_color_index = document.getElementById("gunmetal_BG").selectedIndex;
-			if(main_color_index == 1) color_chose = "rgba(0, 0, 0, 1)";
-			else if(main_color_index == 2) color_chose = "rgba(0, 0, 255, 1)";
-			else if(main_color_index == 3) color_chose = "rgba(0, 255, 0, 1)";
-			else if(main_color_index == 4) color_chose = "rgba(255, 165, 0, 1)";
-			else if(main_color_index == 5) color_chose = "rgba(255, 192, 203, 1)";
-			else if(main_color_index == 6) color_chose = "rgba(128, 0, 128, 1)";
-			else if(main_color_index == 7) color_chose = "rgba(255, 0, 0, 1)";
-			else if(main_color_index == 8) color_chose = "rgba(255, 255, 255, 1)";
-			else if(main_color_index == 9) color_chose = "rgba(255, 255, 0, 1)";
-			//main_color_index = document.getElementById("gunmetal_BG").selectedIndex;
-			document.getElementById("tabcontent").style.backgroundColor = outline_Color[main_color_index];
-			console.log("color index: " + main_color_index + "\ncolor: " + outline_Color[main_color_index]);
-		break;
-		case 3:
-			main_color_index = document.getElementById("borders_btn").selectedIndex;
-			if(main_color_index == 1) color_chose = "rgba(0, 0, 0, 1)";
-			else if(main_color_index == 2) color_chose = "rgba(0, 0, 255, 1)";
-			else if(main_color_index == 3) color_chose = "rgba(0, 255, 0, 1)";
-			else if(main_color_index == 4) color_chose = "rgba(255, 165, 0, 1)";
-			else if(main_color_index == 5) color_chose = "rgba(255, 192, 203, 1)";
-			else if(main_color_index == 6) color_chose = "rgba(128, 0, 128, 1)";
-			else if(main_color_index == 7) color_chose = "rgba(255, 0, 0, 1)";
-			else if(main_color_index == 8) color_chose = "rgba(255, 255, 255, 1)";
-			else if(main_color_index == 9) color_chose = "rgba(255, 255, 0, 1)";
-			//main_color_index = document.getElementById("btn_borders").selectedIndex;
-			document.getElementById("save_settings_btn").style.borderColor = color_chose;
-			console.log("color index: " + main_color_index + "\ncolor: " + color_chose);
-		break;
-		case 7:
-			main_color_index = document.getElementById("text_color").selectedIndex;
-			if(main_color_index == 1) color_chose = "rgba(0, 0, 0, 1)";
-			else if(main_color_index == 2) color_chose = "rgba(0, 0, 255, 1)";
-			else if(main_color_index == 3) color_chose = "rgba(0, 255, 0, 1)";
-			else if(main_color_index == 4) color_chose = "rgba(255, 165, 0, 1)";
-			else if(main_color_index == 5) color_chose = "rgba(255, 192, 203, 1)";
-			else if(main_color_index == 6) color_chose = "rgba(128, 0, 128, 1)";
-			else if(main_color_index == 7) color_chose = "rgba(255, 0, 0, 1)";
-			else if(main_color_index == 8) color_chose = "rgba(255, 255, 255, 1)";
-			else if(main_color_index == 9) color_chose = "rgba(255, 255, 0, 1)";
-			//main_color_index = document.getElementById("text_color").selectedIndex;
-			document.getElementById("body").style.color = color_chose;
-			console.log("color index: " + main_color_index + "\ncolor: " + color_chose);
-			for(let i = 0; i < 7; i++) {
-				document.getElementsByClassName("tab_inactive")[i].style.color = color_chose;
-			}
-			
-		break;
-	}
-	return;
-}
-function settings_menu() {
-	tab_locked = true;
-
-	for (let i = 1; i <= 7; i++) {
-		tab_active = document.getElementById('tab' + i).className;
-		if (tab_active === "tab tab_active") {
-			document.getElementById('tab' + i).className = "tab tab_inactive";
-		}
-	}
-
-	document.getElementById("tabcontent").innerHTML = "";
-	document.getElementById("tabcontent").innerHTML = "<span title='Close Window' class='closepreviewbtn'>&times;</span><div id='build_gui_container'></div>";
-
-	document.getElementById("build_gui_container").innerHTML = "<h3>Backgrounds</h3><hr /><p><label for='black_BG' id='black_BG_label' title='Click to change the black backgrounds .'>Replace black backgrounds.</label><select id='black_BG' onchange='settings_change_color(1)'></select></p>";
-	document.getElementById("build_gui_container").innerHTML += "<p><label for='gunmetal_BG' id='gunmetal_BG_label' title='Click to change the gunmetal gray backgrounds .'>Replace gunmetal gray backgrounds.</label><select id='gunmetal_BG' onchange='settings_change_color(2)'></select></p><br />";
-	document.getElementById("build_gui_container").innerHTML += "<h3>Borders</h3><hr /><p><label for='btn_borders' id='btn_borders_label' title='Click to change the Border color .'>Replace border color .</label><select id='btn_borders' onchange='settings_change_color(3)'></select></p><br />";
-	document.getElementById("build_gui_container").innerHTML += "<h3>Buttons</h3><hr /><p><label for='btn_borders_highlight' id='btn_borders_highlight_label' title='Click to change the Border color highlight .'>Replace border color highlight .</label><select id='btn_borders_highlight' onchange='settings_change_color(4)'></select></p>";
-	document.getElementById("build_gui_container").innerHTML += "<p><label for='btn_background' id='btn_background_label' title='Click to change the Button background color .'>Replace button background color .</label><select id='btn_background' onchange='settings_change_color(5)'></select></p>";
-	document.getElementById("build_gui_container").innerHTML += "<p><label for='btn_background_highlight' id='btn_background_highlight_label' title='Click to change the Button background color highlight .'>Replace button background  color highlight .</label><select id='btn_background_highlight' onchange='settings_change_color(6)'></select></p><br />";
-	document.getElementById("build_gui_container").innerHTML += "<h3>Text Color</h3><hr /><p><label for='text_color' id='text_color_label' title='Click to replace the text color .'>Replace text color .</label><select id='text_color' onchange='settings_change_color(7)'></select></p>";
-	document.getElementById("build_gui_container").innerHTML += "<p><label for='text_color_highlight' id='text_color_highlight_label' title='Click to replace the text color highlight .'>Replace text color highlight.</label><select id='text_color_highlight'></select></p><button id='save_settings_btn' onclick='save_settings(8)'>Save Settings</button>";
-
-	load_settings_Color();
-	document.getElementsByClassName("closepreviewbtn")[0].onclick = function() {
-		tab_locked = false;
-		theme_index = 0;
-		wiithemer_navigate_page_tabs(1);
-	};
-	return;
-}
