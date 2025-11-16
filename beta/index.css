@@ -6,23 +6,20 @@ body {
     margin:0;
     padding:0;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('resources/home/background.avif');
-    background-size: 100vw 100vh;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
     color: rgb(255, 255, 230);
+    background-color: rgba(0, 0, 0, 1);
 }
 #maincontainer {
-    width: 95vw;
-    height: 95vh;
+    width: 98vw;
+    height: 98vh;
     border-radius: 10px;
     border-color: rgb(0, 255, 0);
     border-bottom-style: outset;
     border-width: 5px;
-    margin: 2vh auto;
+    margin: 1vh auto;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.75);
-    box-shadow: 5px 5px 15px rgba(0, 255, 0, 1);
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 2px 4px 10px rgba(0, 255, 0, 1);
 }
 #maincontainer h1 {
     text-align: center;
@@ -32,7 +29,7 @@ body {
     border-radius: 10px;
     border-color: rgb(0, 255, 0);
     border-bottom-style: outset;
-    border-width: 5px;
+    border-width: 2px;
     width: 90vw;
 }
 /* all tabs */
@@ -41,50 +38,60 @@ body {
     justify-content: center;
     padding: 5px;
     align-items: center;
-    display: flexbox;
+    display: flex;
 }
 #tabcontainer div {
     text-align: center;
     flex: content;
-    padding: 3px 10px;
+    padding: 8px 15px;
     margin: 5px;
+    font-weight: bold;
 }
 #tab1, #tab2, #tab3, #tab4, #tab5, #tab6, #tab7 {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 230);
     border-radius: 10px;
-    border-top: 3px outset rgb(255, 235, 200);
+    border-top: 5px outset rgb(255, 235, 220);
+    cursor: pointer;
 }
 #tab1:hover, #tab2:hover, #tab3:hover, #tab4:hover, #tab5:hover, #tab6:hover, #tab7:hover {
     background-blend-mode: lighten;
     background-color: rgb(53, 62, 67);
 }
-#tab3 {
-    border-top-color:rgb(57, 255, 20);
-    
-}
 #tab1:hover {
-    border-top-color:rgb(255, 165, 0);
-    
+    border-top-color: rgb(255, 165, 0);
+    box-shadow: 1px 1px 3px rgb(255, 165, 0);
+}
+#tab2:hover {
+    border-top-color: rgb(255, 106, 180);
+    box-shadow: 1px 1px 3px rgb(255, 106, 180);
+}
+#tab3:hover {
+    border-top-color: rgb(57, 255, 20);
+    box-shadow: 1px 1px 3px rgb(57, 255, 20);
 }
 #tab4:hover {
     border-top-color: rgb(0, 0, 255);
+    box-shadow: 1px 1px 3px rgb(0, 0, 255);
 }
 #tab5:hover {
-    border-top-color: rgb(255, 0, 255);
+    border-top-color: rgb(157, 0, 255);
+    box-shadow: 1px 1px 3px rgb(157, 0, 255);
 }
 #tab6:hover {
     border-top-color: rgb(255, 255, 0);
+    box-shadow: 1px 1px 3px rgb(255, 255, 0);
 }
 #tab7:hover {
     border-top-color: rgb(255, 0, 0);
+    box-shadow: 1px 1px 3px rgb(255, 0, 0);
 }
 /* all tabs content */
 #tabcontent {
-    width: 80%;
-    height: 90%;
-    margin: 2.5% auto;
-    padding: 5px;
+    width: 90%;
+    height: 95%;
+    margin: .5% auto;
+    padding: 15px;
     background-color: rgba(52, 63, 67, 0.75);
     border-radius: 10px;
     border-color: rgb(255, 255, 255);
@@ -103,18 +110,29 @@ body {
 }
 /* home tab */
 #home_container {
-    margin: 5vh auto;
+    margin: 1.5% auto;
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.75);
     border-radius: 10px;
-    border-bottom-color: rgb(255 165 0);
-    border-top-color: rgb(255 235 200);
-    border-bottom-style: outset;
-    border-top-style: outset;
-    border-width: 3px;
+    border-top: 3px outset rgb(255 128 0);
+    border-bottom: 5px outset rgb(255 128 0);
+    box-shadow: 1px 3px 6px rgb(255 128 0);
     width: 95%;
-    height: max-content;
+    height: 90%;
     text-align: center;
+}
+#homeimg1, #homeimg2, #homeimg3 {
+    border-top: 3px outset rgb(255 128 0);
+    border-bottom: 5px outset rgb(255 128 0);
+    box-shadow: 1px 3px 6px rgb(255 128 0);
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+#homeimg1:hover, #homeimg2:hover, #homeimg3:hover {
+    border-top-color: rgb(255 255 0);
+    border-bottom-color: rgb(255 255 0);
+    box-shadow: 1px 3px 6px rgb(255 255 0);
 }
 #home_tab_img_container {
     margin: 5% auto;
@@ -131,7 +149,7 @@ body {
     border-bottom-style: outset;
     border-width: 2px;
     width: 95%;
-    height: max-content;
+    height: 90%;
     text-align: center;
 }
 #download_csm_btn {
@@ -165,36 +183,7 @@ body {
     border-style: none;
     width: auto;
 }
-/* gallery tab */
-#theme_img_enlarged {
-    width: 80vw;
-    height: 75vh;
-    margin: 5px auto;
-    padding: 5px;
-    background-color: rgba(52, 63, 67, 0.75);
-    border-radius: 10px;
-    border-color: rgb(255, 255, 240);
-    border-bottom-style: outset;
-    border-top-style: outset;
-    border-width: 5px;
-    overflow-y: scroll;
-    display:none;
-    z-index: 20;
-    position: absolute;
-    top: 15vh;
-    left: 10vw;
-}
-#theme_gallery {
-    margin: 1vh auto;
-    padding: 5px;
-    background-color: black;
-    border-radius: 10px;
-    border-color: rgb(255 128 15);
-    border-style: solid;
-    border-width: 2px;
-    width: 95%;
-    text-align: center;
-}
+
 #save_menu_btn, #delete_menu_btn {
     float: left;
     border-radius: 10px;
@@ -217,7 +206,7 @@ body {
  #select_region_label {
     margin-top: 10px;
 }
-#preview_select, #select_version, #select_region {
+#select_version, #select_region {
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
@@ -225,24 +214,19 @@ body {
     background-color: black;
     color: rgb(255 128 15);
 }
-#preview_select:hover, #select_version:hover, #select_region:hover {
+#select_version:hover, #select_region:hover {
     border: 2px solid rgb(255 200 50);
     cursor: pointer;
 }
-#preview_select option, #select_version option, #select_region option {
+#select_version option, #select_region option {
     background-color: black;
     color: rgb(255 128 15);
 }
-#preview_select option:hover, #select_version option:hover, #select_region option:hover {
+#select_version option:hover, #select_region option:hover {
     background-color: rgb(53, 62, 67);
     cursor: pointer;
 }
-#preview_get_theme_btn:hover, #begin_build_btn:hover, #save_menu_btn:hover, #delete_menu_btn:hover {
-    border: 3px solid rgb(255 200 50);
-    background-color: rgb(53, 62, 67);
-    color: rgb(255 255 255);
-}
-#preview_filter, #spin_color {
+#spin_color {
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
@@ -251,10 +235,10 @@ body {
     color: rgb(255 128 15);
     cursor: pointer;
 }
-#preview_filter:hover, #spin_color:hover {
+#spin_color:hover {
     border: 2px solid rgb(255 200 50);
 }
-#preview_filter option, #spin_color option {
+#spin_color option {
     background-color: black;
     color: rgb(255 128 15);
     cursor: pointer; 
@@ -292,6 +276,40 @@ body {
     color: rgb(255 128 15);
     cursor: pointer;
 }
+#begin_build_btn:hover, #save_menu_btn:hover, #delete_menu_btn:hover {
+    border: 3px solid rgb(255 200 50);
+    background-color: rgb(53, 62, 67);
+    color: rgb(255 255 255);
+}
+
+/* gallery tab */
+#theme_img_enlarged {
+    width: 85vw;
+    height: 80vh;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: rgba(52, 63, 67, 0.75);
+    border-radius: 10px;
+    border-top: 10px outset rgb(255, 165, 0);
+    border-bottom: 15px outset rgb(255, 165, 0);
+    overflow-y: scroll;
+    display:none;
+    z-index: 20;
+    position: absolute;
+    top: 13vh;
+    left: 7.5vw;
+}
+#theme_gallery {
+    margin: 25px auto;
+    padding: 10px 20px;
+    background-color: black;
+    border-radius: 10px;
+    border-top: 3px outset rgb(255, 106, 180);
+    border-bottom: 5px outset rgb(255, 106, 180);
+    box-shadow: 1px 3px 6px rgb(255, 106, 180);
+    width: 95%;
+    text-align: center;
+}
 #preview_filter option:hover, #spin_color option:hover {
     background-color: rgb(53, 62, 67);
 }
@@ -299,44 +317,101 @@ body {
     padding: 5px 10px;
     margin: 5px 15px;
     border-radius: 10px;
-    border: 2px solid rgb(255 128 15);
+    border-top: 2px solid rgb(255 106 180);
     background-color: black;
-    color: rgb(255 128 15);
+    color: rgb(255 255 230);
     cursor: pointer;
+    font-weight: bold;
 }
 #loadnextbtn:hover, #loadprevbtn:hover {
-    border: 2px solid rgb(255 200 50);
     background-color: rgb(53, 62, 67);
+    box-shadow: 1px 1px 3px rgb(255 106 180);
 }
+#preview_select, #preview_filter {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    border-top: 2px solid rgb(255 106 180);
+    background-color: black;
+    color: rgb(255 255 230);
+    font-weight: bold;
+    cursor: pointer;
+}
+#preview_select:hover, #preview_select option, #preview_filter:hover, #preview_filter option {
+    background-color: rgb(53, 62, 67);
+    box-shadow: 1px 1px 3px rgb(255 106 180);
+    color: rgb(241, 150, 196);
+    cursor: pointer;
+}
+#preview_select option, #preview_filter option {
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer;
+    text-align: center;
+}
+#gallery_header_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-evenly;
+    justify-content: space-evenly;
+}
+/* build theme button */
 #preview_get_theme_btn {
     padding: 5px 15px;
-    margin-left: 10px;
-    margin-top: 10px;
-    border-bottom: 3px solid rgb(255 128 15);
+    border-radius: 10px;
+    border-top: 3px outset rgb(255 106 180);
     background-color: black;
-    color: rgb(255 128 15);
+    color: rgb(255 255 230);
     cursor: pointer;
-    float: left;
-    font-size: 18px;
+    margin: 5px auto;
+    font-weight: bold;
+}
+#preview_get_theme_btn:hover {
+    background-color: rgb(53, 62, 67);
+    box-shadow: 1px 1px 3px rgb(255 106 180);
 }
 #num_theme_downloads {
-    float: right;
-    margin: 0 10px;
+    margin: 5px auto;
+    border-radius: 10px;
+    border-bottom: 2px outset rgb(255 106 180);
+    font-weight: bold;
+}
+#gallery_header {
+    border-radius: 10px;
+    border-bottom: 2px outset rgb(255 106 180);
+    width: 50%;
+    text-align: center;
+    margin: 5px auto;
+    padding: 5px 15px;
+    font-weight: bold;
 }
 #preview_mainimg, #preview_secondaryimg {
-    border: 5px solid rgb(255 128 15);
-    border-radius: 10px;
-    margin: 10px;
+    box-shadow: 1px 1px 3px rgb(255 106 180);
+    width: 75%;
+    height: 45%;
+    margin: 10px auto;
     cursor: pointer;
 }
 #preview_mainimg:hover, #preview_secondaryimg:hover {
-    border: 5px solid rgb(255 200 50);
+    box-shadow: 1px 1px 3px rgb(255 255 0);
     cursor: pointer;
 }
+#img_main, #img_secondary {
+    width: 90%;
+    height: 45%;
+}
 #preview_video {
-    border: 5px solid rgb(255 128 15);
-    border-radius: 10px;
-    margin: 10px;
+    box-shadow: 1px 1px 3px rgb(255 106 180);
+}
+#preview_imgs_container {
+    flex-wrap: nowrap;
+    width: 95%;
+    height: 90%;
+}
+#preview_imgs {
+    width: 40%;
+    height: 90%;
 }
 /* downloads tab */
 #theme_installers {
@@ -346,6 +421,8 @@ body {
     border-radius: 10px;
     border-color: rgb(0 0 255);
     border-bottom-style: outset;
+    border-top-style: outset;
+    box-shadow: 2px 3px 8px rgb(0 0 255);
     border-width: 3px;
     width: 95%;
     height: 90%;
@@ -353,24 +430,16 @@ body {
 }
 #downloadimg1, #downloadimg2, #downloadimg3 {
     border-bottom: 5px outset rgb(0 0 255);
-}
-#homeimg1, #homeimg2, #homeimg3 {
-    border-bottom: 5px outset rgb(255 128 0);
-}
-#downloadimg1, #downloadimg2, #downloadimg3, #homeimg1, #homeimg2, #homeimg3 {
-    border-top: 5px outset rgb(255 255 240);
+    border-top: 3px outset rgb(0 0 255);
+    box-shadow: 1px 3px 6px rgb(0 0 255);
     border-radius: 10px;
     margin: 10px;
     cursor: pointer;
 }
-#downloadimg1:hover, #downloadimg2:hover, #downloadimg3:hoverr {
+#downloadimg1:hover, #downloadimg2:hover, #downloadimg3:hover {
     border-top-color: rgb(255 255 0);
-    border-bottom-color: rgb(255 255 240);
-    cursor: pointer;
-}
-#homeimg1:hover, #homeimg2:hover, #homeimg3:hover {
-    border-top-color: rgb(255 255 0);
-    border-bottom-color: rgb(255 255 240);
+    border-bottom-color: rgb(255 255 0);
+    box-shadow: 1px 3px 6px rgb(255 255 0);
     cursor: pointer;
 }
 /* stats tab */
@@ -379,10 +448,14 @@ body {
     padding: 15px;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(255 255 0);
+    border-top-color: rgb(255 255 0);
+    border-bottom-color: rgb(255 255 0);
+    box-shadow: 2px 3px 8px rgb(255 255 0);
     border-bottom-style: outset;
-    border-width: 4px;
+    border-top-style: outset;
+    border-width: 3px;
     width: 95%;
+    height: max-content;
     text-align: left;
 }
 #show_more_wii, #show_more_vwii, #showlessbtn1, #showlessbtn2 {
@@ -399,7 +472,8 @@ body {
 }
 #showmorebtn1:hover, #showmorebtn2:hover, #showlessbtn1:hover, #showlessbtn2:hover {
     background-color: rgb(53, 62, 67);
-    border-top-color: rgb(255 255 240);
+    border-top-color: rgb(255 255 0);
+    box-shadow: 1px 1px 3px rgb(255 255 0);
 }
 #visitor_count, #wii_downloads, #vwii_downloads, #themecount, #uwii, #ewii, #jwii, #kwii, #uvwii, #evwii, #jvwii {
     float: right;
@@ -412,8 +486,10 @@ body {
     padding: 15px;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(255 0 255);
+    border-color: rgb(157 0 255);
+    box-shadow: 2px 3px 8px rgb(157, 0, 255);
     border-bottom-style: outset;
+    border-top-style: outset;
     border-width: 3px;
     width: 95%;
     height: 90%;
@@ -424,37 +500,25 @@ body {
 }
 #links_container a {
     text-decoration: none;
-    color: rgb(255 95 0);
+    color: rgb(255 255 230);
 }
 #links_container a:hover {
-    color: rgb(255 255 255);
+    color: rgb(255 248 0);
 }
 #arrow {
     text-align: center;
 }
 /* mail tab */
 #mail_img_container {
-    border-bottom: 5px outset rgb(255 0 0);
-    border-radius: 10px;
     margin: 10px auto; 
     width: 30%;
-}
-@media screen and (max-width: 600px) {
-    #mailimg {
-        width: 250px;
-        height: 125px;
-    }
-    #mail_message {
-        padding: 3px;
-        margin: 3px auto;
-    }
 }
 #mail_message {
     margin: 2% auto;
     padding: 15px;
     background-color: black;
     border-radius: 10px;
-    border-top-color: rgb(255 255 255);
+    border-top-color: rgb(255 0 0);
     border-bottom-color: rgb(255 0 0);
     border-bottom-style: outset;
     border-top-style: outset;
@@ -462,6 +526,7 @@ body {
     width: 95%;
     height: 90%;
     text-align: center;
+    box-shadow: 2px 3px 8px rgb(255 0 0);
 }
 #mail_message a{
     text-decoration: none;

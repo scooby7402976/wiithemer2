@@ -531,7 +531,7 @@
             return false;
 	}
     function theme_needs_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 96) || ($theme_Selected == 242))
+		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 98) || ($theme_Selected == 245))
 			return true;
 		return false;
 	}
