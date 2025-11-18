@@ -57,15 +57,14 @@
 			</div>
 			<script type="text/javascript">
 				// update visitors by 1
-				if(!check_4_new_visitor()) {
-					get_user_id();
-					set_data("visits");
-					unique_id_found();
-				}	
-				//document.getElementById("tab" + tab_num).onmouseover = function() {
-				//	alert(tab_num);
-				//}
-				wiithemer_navigate_page_tabs(1);
+				window.onload = function() {
+					if(!check_4_new_visitor()) {
+						get_user_id();
+						set_data("visits");
+						unique_id_found();
+					}
+					wiithemer_navigate_page_tabs(1);
+				};
 			</script>
 		</div>
 	</body>

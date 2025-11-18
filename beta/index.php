@@ -4,7 +4,6 @@
     $command = null;
     $spincolors = array("", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym");
     $spinmym_src_file = array("", "nospin.mym", "spin.mym", "fastspin.mym");
-    // Use 1-based indexing for regions; index 0 is a placeholder empty array
     $download_version = array(
         array(null), // placeholder for index 0
         array(null, 513, 481, 449, 417, 609), // U
@@ -26,9 +25,15 @@
         array(null,"00000094", "00000084", "00000078", "0000006f", "0000001c"), // J
         array(null,"0000009d", "0000008d", "00000081") // K
     );
-    $regions = ["", "u", "e", "j", "k"];
-    $spin_first_themes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym"); //"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
-    $spin_display = array("", "_nospin", "_spin", "_fastspin");
+    $regions = array(
+        "", "u", "e", "j", "k"
+    );
+    $spin_first_themes = array(
+        "black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym"
+    ); //"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
+    $spin_display = array(
+        "", "_nospin", "_spin", "_fastspin"
+    );
 
     if(isset($_GET["command"])) {
         $command = $_GET["command"];
@@ -96,6 +101,7 @@
         return;
     }
     function get_user_id() {
+        global $session_id;
         $session_id = session_id();
         echo $session_id;
         return;
@@ -504,12 +510,12 @@
 		}
 		else return false;
 	}
-    function name_2_stage_theme(string $name) : string {
+    function name_2_stage_theme(string $name) : string|bool {
         $str = null;
 		$str = strstr($name, "_stage1", true);
 		if($str)
             return $str;
-        return "";
+        return false;
     }
     function execInBackground($cmd) {
 		if (substr(php_uname(), 0, 7) == "Windows"){
@@ -530,8 +536,8 @@
         else
             return false;
 	}
-    function theme_needs_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 98) || ($theme_Selected == 245))
+    function theme_needs_mym_Extension($theme_Selected) : bool {
+		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 99) || ($theme_Selected == 251))
 			return true;
 		return false;
 	}
