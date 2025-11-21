@@ -119,6 +119,7 @@ const completethemeinfo = [
 	{name:"HomeStar Runner", ID:"HMESTR", mainimg:"homestar.avif", secondaryimg:"homestar.png", mym:"homestar.mym", video:"https://www.youtube.com/embed/Em-DkvRXLxs?si=mu8hYkot2jPougyA?autoplay=0&mute=1", downloads:"homestar.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Hot Wheels", ID:"WHEEL1", mainimg:"hot_wheels.avif", secondaryimg:"hot_wheels.png", mym:"hot_wheels.mym", video:"", downloads:"hot_wheels.txt", trans_chans:"1", filter:"game"},
 	{name:"The Hundreds", ID:"HNDRD1", mainimg:"hundreds.avif", secondaryimg:"hundreds.png", mym:"hundreds.mym", video:"https://www.youtube.com/embed/mCGMAJkoQp4?si=qq2S6uyJYOkl3mBk?autoplay=0&mute=1", downloads:"hundreds.txt", trans_chans:"0", filter:"anime"},
+	{name:"Icarly", ID:"ICARLY", mainimg:"icarly.avif", secondaryimg:"icarly.png", mym:"icarly.mym", video:"https://www.youtube.com/embed/CnNLT5LKF9Q?si=c5qI-WijHzx7VhPM?autoplay=0&mute=1", downloads:"icarly.txt", trans_chans:"0", filter:"movie/new"},
 	{name:"Illusions of Gaia", ID:"ILLOG1", mainimg:"illusionsofgaia.avif", secondaryimg:"illusionsofgaia.png", mym:"illusionsofgaia.mym", video:"https://www.youtube.com/embed/nPaNCfmKKIA?si=yN1ldPBI9TR4uOBH?autoplay=0&mute=1", downloads:"illusionsofgaia.txt", trans_chans:"1", filter:"game"},
 	{name:"Imports", ID:"IMPOR1", mainimg:"imports.avif", secondaryimg:"imports.png", mym:"imports.mym", video:"https://www.youtube.com/embed/49LLOgWKxJI?si=ZaPDRGHkUVw4QDTb?autoplay=0&mute=1", downloads:"imports.txt", trans_chans:"1", filter:"misc"},
 	{name:"In Betweeners", ID:"INBET1", mainimg:"inbetweeners.avif", secondaryimg:"inbetweeners.png", mym:"in_betweeners.mym", video:"https://www.youtube.com/embed/Ng8-yaNi1gE?autoplay=0&mute=1",downloads:"in_betweeners.txt", trans_chans:"1", filter:"movie"},
@@ -139,6 +140,7 @@ const completethemeinfo = [
 	{name:"Kiss", ID:"KISS01", mainimg:"kiss.avif", secondaryimg:"kiss.png", mym:"kiss_stage1.mym", video:"https://www.youtube.com/embed/hyQfXng5CyI?si=v23yevJjLo4leCBH?autoplay=0&mute=1", downloads:"kiss.txt", trans_chans:"1", filter:"music"},
 	{name:"Korn", ID:"KORN01", mainimg:"korn.avif", secondaryimg:"korn.png", mym:"korn.mym", video:"https://www.youtube.com/embed/WJM0t8M3Q9s?autoplay=0&mute=1", downloads:"korn.txt", trans_chans:"1", filter:"music"},
 	{name:"Lego", ID:"LEGO01", mainimg:"lego.avif", secondaryimg:"lego.png", mym:"lego.mym", video:"https://www.youtube.com/embed/DK6KeheL6PM?si=sOM5Hollyrq6qsxI?autoplay=0&mute=1", downloads:"lego.txt", trans_chans:"1", filter:"game"},
+	{name:"Lego Batman", ID:"LGOBTM", mainimg:"legobatman.avif", secondaryimg:"legobatman.png", mym:"legobatman.mym", video:"https://www.youtube.com/embed/jUeylIJ-cZc?si=RUqFpnC5GrYYGhhj?autoplay=0&mute=1", downloads:"legobatman.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Leopard OS", ID:"LEOPA1", mainimg:"leopardos.avif", secondaryimg:"leopardos.png", mym:"leopard_os.mym", video:"https://www.youtube.com/embed/yZsh5Eiys04?autoplay=0&mute=1", downloads:"leopard_os.txt", trans_chans:"0", filter:"top20/os"},
 	{name:"Lime Wii", ID:"LIME01", mainimg:"limewii.avif", secondaryimg:"limewii.png", mym:"lime_wii.mym", video:"https://www.youtube.com/embed/_L1V84YnIi4?autoplay=0&mute=1", downloads:"lime_wii.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Looney Toons", ID:"LTOON1", mainimg:"looneytoons.avif", secondaryimg:"looneytoons.png", mym:"looney_toons.mym", video:"https://www.youtube.com/embed/D5dFtKsQhYE?autoplay=0&mute=1", downloads:"looney_toons.txt", trans_chans:"1", filter:"cartoon"},
@@ -1373,7 +1375,8 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 			
 			document.getElementById("tabcontent").innerHTML = "<div id='theme_gallery'></div>";
 			document.getElementById("theme_gallery").innerHTML = 
-			"<div id='gallery_header_container'><div id='preview_get_theme_btn' onclick='set_build_gui()' title='Click to start building this theme .'>&nbsp;&nbsp;Build Theme&nbsp;&nbsp;</div><div id='gallery_header'>" + theme.name + "</div><div id='num_theme_downloads'></div></div><hr></hr>";document.getElementById("theme_gallery").innerHTML += "<div id='theme_controls_container' class='flexrow'><div id='loadprevbtn' title='Click to see previous Theme .'>&lt;&lt;</div><select id='preview_filter' onchange='get_filter_option()' title='Click to filter the theme list .'></select><select id='preview_select' name='preview_select' title='Click to select a theme .'></select><div id='loadnextbtn' title='Click to see next Theme .'> &gt;&gt;</div></div>";
+			"<div id='gallery_header_container'><div id='preview_get_theme_btn' onclick='set_build_gui()' title='Click to start building this theme .'>&nbsp;&nbsp;Build Theme&nbsp;&nbsp;</div><div id='gallery_header'>" + theme.name + "</div><div id='num_theme_downloads'></div></div><hr></hr>";
+			document.getElementById("theme_gallery").innerHTML += "<div id='theme_controls_container' class='flexrow'><div id='loadprevbtn' title='Click to see previous Theme .'>&lt;&lt;</div><select id='preview_filter' onchange='get_filter_option()' title='Click to filter the theme list .'></select><select id='preview_select' name='preview_select' title='Click to select a theme .'></select><div id='loadnextbtn' title='Click to see next Theme .'> &gt;&gt;</div></div>";
 			document.getElementById("theme_gallery").innerHTML += "<div id='preview_imgs_container' class='flexrow'></div>";
 			document.getElementById("preview_imgs_container").innerHTML = "<div id='preview_imgs'><div id='preview_mainimg' title='Click to enlarge image .'><img id='img_main' src='resources/theme_main/" + theme.mainimg + "' alt='theme_img_1' width='' height=''></img></div><div id='preview_secondaryimg' title='Click to enlarge image .'><img id='img_secondary' src='resources/theme_secondary/" + theme.secondaryimg + "' alt='theme_img_2' width='' height=''></img></div></div><iframe id='preview_video' width='780' height='430' src='" + theme.video + "' title='YouTube Theme video player' frameborder='0' allowfullscreen></iframe>";
 			// add theme.video to iframe src above /**/
@@ -1553,10 +1556,14 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 function check_4_new_visitor() {
 	let stored_info_found = false;
 	let result = -1;
-	if(check_Cookie("user_id")) stored_info_found = true;
-	else {
-		result = confirm("This site uses cookies to store theme building information and a unique id per visitor .\n\nBy clicking Ok you agree to have this sites cookies saved to your device .")
+	if(check_Cookie("user_id")) {
+		stored_info_found = true;
 	}
+	else {
+		result = confirm("This site uses cookies to store theme building information and a unique id per visitor .\n\nBy clicking Ok you agree to our cookie use .");
+		if(result) get_user_id();
+	}
+	
 	return stored_info_found;
 }
 function get_user_id() {
@@ -1570,9 +1577,11 @@ function get_user_id() {
 			set_Cookie("user_id", id);
 			userId = id;
 			localStorage.setItem("unique_id", userId);
+			set_data("visits");
+			unique_id_found();
 		}
 	}
-	xhttp.open("GET", "index.php?command=get_user_id");
+	xhttp.open("GET", "index.php?command=get_user_id&uniqueid=");
 	xhttp.send();
 	
 	return;
@@ -1589,7 +1598,7 @@ function unique_id_found() {
 // ------------------------------
 // cookie functions--------------
 function set_Cookie(cookie_name, cookie_value) {
-	document.cookie = cookie_name + "=" + cookie_value + ";" + "Samesite=Strict;";
+	document.cookie = cookie_name + "=" + cookie_value + ";" + "expires=1 Jan 3500 00:00:00 UTC";  + "secure=httponly;" + "Samesite=Strict;";
 	return;
 }
 function get_Cookie(cookie_name) {

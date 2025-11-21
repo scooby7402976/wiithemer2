@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     $session_id = null;
     $command = null;
     $spincolors = array("", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym");
@@ -43,7 +43,9 @@
 
         switch($command) {
             case "get_user_id":
-                get_user_id();
+                if(!empty($_GET["uniqueid"]))
+                    $session_id = $_GET["uniqueid"];
+                get_user_id($session_id);
                 break;
             case "set_data":
                 if(isset($_GET["data_file_path"]))
@@ -100,9 +102,17 @@
         echo $temp_data;
         return;
     }
-    function get_user_id() {
+    function get_user_id($id_input) {
         global $session_id;
-        $session_id = session_id();
+
+        if($id_input == null) {
+            session_start();
+            $session_id = session_id();
+        }
+        else {
+            $session_id = session_id($id_input);
+            session_start();
+        }
         echo $session_id;
         return;
     }
@@ -537,7 +547,7 @@
             return false;
 	}
     function theme_needs_mym_Extension($theme_Selected) : bool {
-		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 99) || ($theme_Selected == 251))
+		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 99) || ($theme_Selected == 253))
 			return true;
 		return false;
 	}
