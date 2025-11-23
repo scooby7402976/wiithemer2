@@ -1,9 +1,13 @@
 <?php
-    
+    session_start();
     $session_id = null;
     $command = null;
-    $spincolors = array("", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym");
-    $spinmym_src_file = array("", "nospin.mym", "spin.mym", "fastspin.mym");
+    $spincolors = array(
+        "", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym"
+    );
+    $spinmym_src_file = array(
+        "", "nospin.mym", "spin.mym", "fastspin.mym"
+    );
     $download_version = array(
         array(null), // placeholder for index 0
         array(null, 513, 481, 449, 417, 609), // U
@@ -43,9 +47,7 @@
 
         switch($command) {
             case "get_user_id":
-                if(!empty($_GET["uniqueid"]))
-                    $session_id = $_GET["uniqueid"];
-                get_user_id($session_id);
+                get_user_id();
                 break;
             case "set_data":
                 if(isset($_GET["data_file_path"]))
@@ -100,19 +102,12 @@
         file_put_contents($data_file_path, $temp_data, LOCK_EX);
         #echo "set_data-temp_data: " . $temp_data . "\n";
         echo $temp_data;
+        sleep(1);
         return;
     }
-    function get_user_id($id_input) {
+    function get_user_id() {
         global $session_id;
-
-        if($id_input == null) {
-            session_start();
-            $session_id = session_id();
-        }
-        else {
-            $session_id = session_id($id_input);
-            session_start();
-        }
+        $session_id = session_id();
         echo $session_id;
         return;
     }

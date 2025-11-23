@@ -398,7 +398,7 @@ function load_installer_count(theme_count_file) {
 	xhttp.send();
 	return;
 }
-function load_single_theme_count(theme_file, position) {
+function load_single_theme_count(theme_file) {
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
 		document.getElementById("num_theme_downloads").innerHTML = "&nbsp;&nbsp;&nbsp;" + this.responseText + "&nbsp;Downloads&nbsp;&nbsp;&nbsp;";
@@ -434,46 +434,71 @@ function load_vwii_stats() {
 	vwii_request.send();
 	return;
 }
-function load_stats_counts(file_num) {
-	
-	const xhttp = new XMLHttpRequest();
-  	xhttp.onload = function() {
-		if(file_num == 4) document.getElementById('uwii').innerHTML = this.responseText;
-		else if(file_num == 5) document.getElementById('ewii').innerHTML = this.responseText;
-		else if(file_num == 6) document.getElementById('jwii').innerHTML = this.responseText;
-		else if(file_num == 7) document.getElementById('kwii').innerHTML = this.responseText;
-		else if(file_num == 8) document.getElementById('uvwii').innerHTML = this.responseText;
-		else if(file_num == 9) document.getElementById('evwii').innerHTML = this.responseText;
-		else if(file_num == 10) document.getElementById('jvwii').innerHTML = this.responseText;
+function load_wii_u_region_stats() {
+	const wii_u_region = new XMLHttpRequest();
+	wii_u_region.onload = function() {
+		document.getElementById('uwii').innerHTML = wii_u_region.responseText;
 	}
-	switch (file_num) {
-		case 4:
-			xhttp.open("GET", "resources/stats/regions/wii_U.txt");
-			break;
-		case 5:
-			xhttp.open("GET", "resources/stats/regions/wii_E.txt");
-			break;
-		case 6:
-			xhttp.open("GET", "resources/stats/regions/wii_J.txt");
-			break;
-		case 7:
-			xhttp.open("GET", "resources/stats/regions/wii_K.txt");
-			break;
-		case 8:
-			xhttp.open("GET", "resources/stats/regions/vwii_U.txt");
-			break;
-		case 9:
-			xhttp.open("GET", "resources/stats/regions/vwii_E.txt");
-			break;
-		case 10:
-			xhttp.open("GET", "resources/stats/regions/vwii_J.txt");
-			break;
+	wii_u_region.open("GET", "resources/stats/regions/wii_U.txt");
+	wii_u_region.send();
+	return;
+}
+function load_wii_e_region_stats() {
+	const wii_e_region = new XMLHttpRequest();
+	wii_e_region.onload = function() {
+		document.getElementById('ewii').innerHTML = wii_e_region.responseText;
 	}
-	xhttp.send();
+	wii_e_region.open("GET", "resources/stats/regions/wii_E.txt");
+	wii_e_region.send();
+	return;
+}
+function load_wii_j_region_stats() {
+	const wii_j_region = new XMLHttpRequest();
+	wii_j_region.onload = function() {
+		document.getElementById('jwii').innerHTML = wii_j_region.responseText;
+	}
+	wii_j_region.open("GET", "resources/stats/regions/wii_J.txt");
+	wii_j_region.send();
+	return;
+}
+function load_wii_k_region_stats() {
+	const wii_k_region = new XMLHttpRequest();
+	wii_k_region.onload = function() {
+		document.getElementById('kwii').innerHTML = wii_k_region.responseText;
+	}
+	wii_k_region.open("GET", "resources/stats/regions/wii_K.txt");
+	wii_k_region.send();
+	return;
+}
+function load_vwii_u_region_stats() {
+	const vwii_u_region = new XMLHttpRequest();
+	vwii_u_region.onload = function() {
+		document.getElementById('uvwii').innerHTML = vwii_u_region.responseText;
+	}
+	vwii_u_region.open("GET", "resources/stats/regions/vwii_U.txt");
+	vwii_u_region.send();
+	return;
+}
+function load_vwii_e_region_stats() {
+	const vwii_e_region = new XMLHttpRequest();
+	vwii_e_region.onload = function() {
+		document.getElementById('evwii').innerHTML = vwii_e_region.responseText;
+	}
+	vwii_e_region.open("GET", "resources/stats/regions/vwii_E.txt");
+	vwii_e_region.send();
+	return;
+}
+function load_vwii_j_region_stats() {
+	const vwii_j_region = new XMLHttpRequest();
+	vwii_j_region.onload = function() {
+		document.getElementById('jvwii').innerHTML = vwii_j_region.responseText;
+	}
+	vwii_j_region.open("GET", "resources/stats/regions/vwii_J.txt");
+	vwii_j_region.send();
 	return;
 }
 // update download count files on server
-function set_data(which_data) { // remove beta at release
+function set_data(which_data) { 
 	const xhttp = new XMLHttpRequest();
 	let data_file_path = "";
 
@@ -1061,7 +1086,16 @@ function close_download() {
 	clearInterval(downloadtimer);
 	document.getElementById("build_container").innerHTML = "<p><br />Thank You for using Wii Themer .</p><p>Remember to grab an Installer app from the links on the Downloads tab .</p>"
 	// ------    add 1 to download counts and save
-	if(build_theme_info.version >= 1 & build_theme_info.version <= 4) {
+	if(build_theme_info.version == 5) {
+		set_data("vWii");
+		if(build_theme_info.region == 1)
+			set_data("uvwii");
+		else if(build_theme_info.region == 2)
+			set_data("evwii");
+		else if(build_theme_info.region == 3)
+			set_data("jvwii");
+	} 
+	else {
 		set_data("Wii");
 		if(build_theme_info.region == 1)
 			set_data("uwii");
@@ -1072,16 +1106,7 @@ function close_download() {
 		else if(build_theme_info.region == 4)
 			set_data("kwii");
 	}
-	else if(build_theme_info.version == 5) {
-		set_data("vWii");
-		if(build_theme_info.region == 1)
-			set_data("uvwii");
-		else if(build_theme_info.region == 2)
-			set_data("evwii");
-		else if(build_theme_info.region == 3)
-			set_data("jvwii");
-	}
-		set_data("single");
+	set_data("single");
 	return;
 }
 function download_timer() {
@@ -1283,9 +1308,13 @@ function show_more_btn(btn_number) {
 		(btn_number == 1) ? document.getElementById("show_more_wii").style.display = "block" : document.getElementById("show_more_vwii").style.display = "block";
 		document.getElementById("showmorebtn" + btn_number).innerHTML = "Show Less";
 		show_more_btn_clicked = true;
-		for (let i = 4; i <= 10; i++) {
-			load_stats_counts(i);
-		}
+		load_wii_u_region_stats();
+		load_wii_e_region_stats();
+		load_wii_j_region_stats();
+		load_wii_k_region_stats();
+		load_vwii_u_region_stats();
+		load_vwii_e_region_stats();
+		load_vwii_j_region_stats();
 	}
 	else {
 		(btn_number == 1) ? document.getElementById("show_more_wii").style.display = "none" : document.getElementById("show_more_vwii").style.display = "none";
@@ -1347,6 +1376,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 	// lock tabs when building theme - clicks do nothing
 	if (tab_locked)
 		return;
+	//console.log("userId: " + userId + "\n");
 	// toggles active tab
 	toggle_active_tab(tab_num);
 	// remove tab content
@@ -1453,7 +1483,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 				console.log("theme_index: " + theme_index);
 			};
 			document.getElementById("preview_select").onchange = function() { // theme names
-				alert(document.getElementById("preview_select").selectedIndex);
+				//alert(document.getElementById("preview_select").selectedIndex);
 				var theme = 0;
 				let is_filtered = is_themelist_filtered();
 				if(is_filtered) {
@@ -1556,8 +1586,13 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 function check_4_new_visitor() {
 	let stored_info_found = false;
 	let result = -1;
-	if(check_Cookie("user_id")) {
+	let cname = "";
+
+	if(check_Cookie("unique_id")) {
 		stored_info_found = true;
+		cname = get_Cookie("unique_id");
+		console.log("cname: " + cname + "\n");
+		//get_user_id();
 	}
 	else {
 		result = confirm("This site uses cookies to store theme building information and a unique id per visitor .\n\nBy clicking Ok you agree to our cookie use .");
@@ -1573,15 +1608,13 @@ function get_user_id() {
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState === 4 && xhttp.status === 200) {
 			id =  xhttp.responseText;
-			console.log("get_user_id-user_id: " + id + "\n");
-			set_Cookie("user_id", id);
-			userId = id;
-			localStorage.setItem("unique_id", userId);
+			console.log("unique_id: " + id + "\n");
+			set_Cookie("unique_id", id);
 			set_data("visits");
-			unique_id_found();
+			
 		}
 	}
-	xhttp.open("GET", "index.php?command=get_user_id&uniqueid=");
+	xhttp.open("GET", "index.php?command=get_user_id");
 	xhttp.send();
 	
 	return;
@@ -1630,3 +1663,7 @@ function check_Cookie(cookie_name) {
 	return ret;
 }
 // ------------------------------
+function delete_session_folder() {
+
+	return;
+}
