@@ -87,6 +87,19 @@
 
                 theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index);
                 break;
+            case "delete_session_folder":
+                $id = session_id();
+                $session_folder = "resources/working/" . $id;
+                if(is_dir($session_folder)) {
+                    $files = scandir($session_folder);
+                    foreach($files as $file) {
+                        if($file != "." && $file != "..") {
+                            unlink($session_folder . "/" . $file);
+                        }
+                    }
+                    rmdir($session_folder);
+                }
+                break;
             default:
 
                 break;
@@ -102,7 +115,7 @@
         file_put_contents($data_file_path, $temp_data, LOCK_EX);
         #echo "set_data-temp_data: " . $temp_data . "\n";
         echo $temp_data;
-        sleep(1);
+        //sleep(1);
         return;
     }
     function get_user_id() {
@@ -542,7 +555,7 @@
             return false;
 	}
     function theme_needs_mym_Extension($theme_Selected) : bool {
-		if((($theme_Selected >= 54) && $theme_Selected <= 61) || ($theme_Selected == 51)  || ($theme_Selected == 99) || ($theme_Selected == 253))
+		if((($theme_Selected >= 57) && $theme_Selected <= 64) || ($theme_Selected == 54)  || ($theme_Selected == 102) || ($theme_Selected == 257))
 			return true;
 		return false;
 	}
