@@ -33,6 +33,7 @@ const completethemeinfo = [
 	{name:"Buffalo Bills", ID:"BILLS1", mainimg:"buffalo_bills.avif", secondaryimg:"buffalo_bills.png", mym:"bills.mym", video:"https://www.youtube.com/embed/F6-XuSJcC20?si=-l2Sb2MsnF-kQAJZ?autoplay=0&mute=1", downloads:"buffalo_bills.txt", trans_chans:"0", filter:"sports"},
 	{name:"Busy Town", ID:"BUSYTN", mainimg:"busytown.avif", secondaryimg:"busytown.png", mym:"busytown.mym", video:"https://www.youtube.com/embed/MkyvRJvlb3E?si=aJlELKxE98BAH02R?autoplay=0&mute=1", downloads:"busytown.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Call of Duty", ID:"CODTY1", mainimg:"callofduty.avif", secondaryimg:"callofduty.png", mym:"call_of_duty.mym", video:"https://www.youtube.com/embed/zaHUh0pinlA?autoplay=0&mute=1", downloads:"call_of_duty.txt", trans_chans:"1", filter:"game"},
+	{name:"Captain Caveman", ID:"CPTCMN", mainimg:"caveman.avif", secondaryimg:"caveman.png", mym:"caveman.mym", video:"https://www.youtube.com/embed/TG4SbaW8Zho?si=8cR8EzgIjrClSnJf?autoplay=0&mute=1", downloads:"caveman.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Car", ID:"CAR001", mainimg:"car.avif", secondaryimg:"car.png", mym:"car.mym", video:"https://www.youtube.com/embed/425H8lC96es?autoplay=0&mute=1", downloads:"car.txt", trans_chans:"1", filter:"misc"},
 	{name:"Carolina Panthers", ID:"PNTHR1", mainimg:"carolina_panthers.avif", secondaryimg:"carolina_panthers.png", mym:"panthers.mym", video:"https://www.youtube.com/embed/SVfQNEQ8I5g?si=0osMMhk3QiwaTYRR?autoplay=0&mute=1", downloads:"panthers.txt", trans_chans:"1", filter:"sports"},
 	{name:"Cars", ID:"CARS01", mainimg:"cars.avif", secondaryimg:"cars.png", mym:"cars_stage1.mym", video:"https://www.youtube.com/embed/FNyt_khFHsI?autoplay=0&mute=1", downloads:"cars.txt", trans_chans:"1", filter:"movie"},
@@ -67,6 +68,7 @@ const completethemeinfo = [
 	{name:"Dark Wii Yellow", ID:"DWYL", mainimg:"darkwiiyellow.avif", secondaryimg:"darkwiiyellow.png", mym:"dark_wii_yellow", video:"https://www.youtube.com/embed/R9sX3SzzzKA?autoplay=0&mute=1", downloads:"dark_wii_yellow.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Dark Wii SE", ID:"DKWSCB", mainimg:"dark_scooby.avif", secondaryimg:"dark_scooby.png", mym:"darkwii_SE.mym", video:"https://www.youtube.com/embed/066_rRBLMcg?si=Tu4o_7S7bJ--eVDT?autoplay=0&mute=1", downloads:"dark_scooby.txt", trans_chans:"1", filter:"darkwii/new"},
 	{name:"Death Note", ID:"DNOTE1", mainimg:"deathnote.avif", secondaryimg:"deathnote.png", mym:"deathnote.mym", video:"https://www.youtube.com/embed/29RXZSyLnUc?si=6ZJQUSM2QRaYh0G5?autoplay=0&mute=1", downloads:"deathnote.txt", trans_chans:"1", filter:"anime"},
+	{name:"Demon Slayer", ID:"DMNSLR", mainimg:"demonslayer.avif", secondaryimg:"demonslayer.png", mym:"demonslayer.mym", video:"https://www.youtube.com/embed/ix6a9FVNHxY?si=qKokFR5jqg2tjAXE?autoplay=0&mute=1", downloads:"demonslayer.txt", trans_chans:"1", filter:"anime/new"},
 	{name:"Deth Klok", ID:"DKLOK1", mainimg:"dethklok.avif", secondaryimg:"dethklok.png", mym:"deth_klok.mym", video:"https://www.youtube.com/embed/gvJGiuJiEbA?autoplay=0&mute=1", downloads:"deth_klok.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Detroit Lions", ID:"LIONS1", mainimg:"detroit_lions.avif", secondaryimg:"detroit_lions.png", mym:"lions_stage1.mym", video:"https://www.youtube.com/embed/tL6PIuNIRX8?si=yNws3MzyYVVyGY_o?autoplay=0&mute=1", downloads:"lions.txt", trans_chans:"0", filter:"sports"},
 	{name:"Dexter's Laboratory", ID:"DEXLAB", mainimg:"dexters_lab.avif", secondaryimg:"dexters_lab.png", mym:"dexterslab.mym", video:"https://www.youtube.com/embed/9G9-Dvj0tUI?si=gAxQhmenfdv2T-_z?autoplay=0&mute=1", downloads:"dexterslab.txt", trans_chans:"1", filter:"cartoon/new"},
@@ -664,8 +666,13 @@ function load_theme_list(filter_type) {
 		}
 		else if( filter_type == "anime") {
 			if(completethemeinfo[i].filter) {
-				if(completethemeinfo[i].filter != "anime") continue;
-				else filtered_list_position.push(i); // if filter set to anime, add this theme to filtered list
+				if(completethemeinfo[i].filter != "anime") {
+					if(completethemeinfo[i].filter == "anime/new")
+						filtered_list_position.push(i);
+					else continue; 
+				}
+				else filtered_list_position.push(i); // if filter set to music, add this theme to filtered list
+				
 			}
 			else continue; // if no filter set, skip this theme
 		}
@@ -1178,7 +1185,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 57) && theme_num <= 64) || (theme_num == 54)  || (theme_num == 102) || (theme_num == 257))
+    if(((theme_num >= 58) && theme_num <= 65) || (theme_num == 55)  || (theme_num == 104) || (theme_num == 259))
 		return true;
 	return false;
 }
@@ -1252,7 +1259,7 @@ function delete_user_data() {
 	delete_Cookie("saved_region");
 	localStorage.removeItem("saved_version");
 	localStorage.removeItem("saved_region");
-	
+
 	return;
 }
 function check_main_options() {
@@ -1603,13 +1610,20 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 // check for site visitors------
 function check_4_new_visitor() {
 	let stored_info_found = false;
-	let result = -1;
+	let result = -1, version_index = -1, region_index = -1;
 	let cname = "";
 
 	if(check_Cookie("unique_id")) {
 		stored_info_found = true;
 		cname = get_Cookie("unique_id");
 		console.log("cname: " + cname + "\n");
+		version_index = get_Cookie("saved_version");
+		region_index = get_Cookie("saved_region");
+		if(version_index != "") {
+			localStorage.setItem("saved_version", version_index);
+			localStorage.setItem("saved_region", region_index);
+			data_saved = true;
+		}
 		//get_user_id();
 	}
 	else {
@@ -1635,15 +1649,6 @@ function get_user_id() {
 	xhttp.open("GET", "index.php?command=get_user_id");
 	xhttp.send();
 	
-	return;
-}
-function unique_id_found() {
-	//localStorage.clear();
-	let found_id = null;
-	found_id = localStorage.getItem("unique_id");
-	console.log("found_id: " + found_id + "\n");
-	
-		
 	return;
 }
 // ------------------------------
