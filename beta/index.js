@@ -51,6 +51,7 @@ const completethemeinfo = [
 	{name:"Conduit", ID:"CONDT1", mainimg:"conduit.avif", secondaryimg:"conduit.png", mym:"conduit.mym", video:"https://www.youtube.com/embed/z2Tu0qbCgg0?si=7t8ZT5OpR-ngUjUu?autoplay=0&mute=1", downloads:"conduit.txt", trans_chans:"0", filter:"game"},
 	{name:"Constantine", ID:"CONST1", mainimg:"constantine.avif", secondaryimg:"constantine.png", mym:"constantine.mym", video:"https://www.youtube.com/embed/fR8xS8I8vgU?autoplay=0&mute=1", downloads:"constantine.txt", trans_chans:"1", filter:"movie"},
 	{name:"Creature Cases", ID:"CRETUR", mainimg:"creature_cases.avif", secondaryimg:"creature_cases.png", mym:"creature_cases.mym", video:"https://www.youtube.com/embed/o3mAkQ2zqek?si=xOOE4dAzydc-0iQJ?autoplay=0&mute=1", downloads:"creature_cases.txt", trans_chans:"1", filter:"cartoon/new"},
+	{name:"Daisy Blaize", ID:"DAISYB", mainimg:"daisy.avif", secondaryimg:"daisy.png", mym:"daisy.mym", video:"https://www.youtube.com/embed/Q3UNVtwsHX8?si=9q7YpspZgUniO-sC?autoplay=0&mute=1", downloads:"daisy.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Dallas Cowboys", ID:"CWBYS1", mainimg:"dallas_cowboys.avif", secondaryimg:"dallas_cowboys.png", mym:"dallas.mym", video:"https://www.youtube.com/embed/fNys6Go7yFc?si=vMl4ZK02wcrxamxh?autoplay=0&mute=1", downloads:"cowboys.txt", trans_chans:"1", filter:"sports"},
 	{name:"Dan Da Dan", ID:"DANDAN", mainimg:"dandadan.avif", secondaryimg:"dandadan.png", mym:"dandadan.mym", video:"https://www.youtube.com/embed/Yp6M5OJni3Q?si=W1LzJA0YKzTSC7Cr?autoplay=0&mute=1", downloads:"dandadan.txt", trans_chans:"1", filter:"anime/new"},
 	{name:"Dark Umbra v1", ID:"DKUB01", mainimg:"dark_umbra_v1.avif", secondaryimg:"dark_umbra_v1.png", mym:"dark_umbra_v1.mym", video:"https://www.youtube.com/embed/WD2SuUG4Mbs?si=8Gti_3j2T_DUnpsA?autoplay=0&mute=1", downloads:"dark_umbra_v1.txt", trans_chans:"1", filter:"misc"},
@@ -117,6 +118,7 @@ const completethemeinfo = [
 	{name:"Grateful Dead", ID:"GRTFL1", mainimg:"gratefuldead.avif", secondaryimg:"gratefuldead.png", mym:"grateful_dead_stage1.mym", video:"https://www.youtube.com/embed/LURcBb9sF98?si=oebw46IB5hS1hxDU?autoplay=0&mute=1", downloads:"gratefuldead.txt", trans_chans:"1", filter:"music"},
 	{name:"Green Bay Packers", ID:"PCKRS1", mainimg:"greenbay_packers.avif", secondaryimg:"greenbay_packers.png", mym:"packers_stage1.mym", video:"https://www.youtube.com/embed/mfmglgxpV3M?si=yKq_eYg4s0BnJQFU?autoplay=0&mute=1", downloads:"packers.txt", trans_chans:"1", filter:"sports"},
 	{name:"Hand Drawn", ID:"HDRAW1", mainimg:"HandDrawn.avif", secondaryimg:"handdrawn.png", mym:"hand_drawn.mym", video:"https://www.youtube.com/embed/e19Hk1Zbp0c?autoplay=0&mute=1", downloads:"hand_drawn.txt", trans_chans:"1", filter:"game"},
+	{name:"Happy Tree Friends", ID:"HAPYTF", mainimg:"treefriends.avif", secondaryimg:"treefriends.png", mym:"treefriends.mym", video:"https://www.youtube.com/embed/wygXrk94WQ8?si=xoZvuME_ZENtZir6?autoplay=0&mute=1", downloads:"treefriends.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Hello Kitty", ID:"HKITY1", mainimg:"HelloKitty.avif", secondaryimg:"hellokitty.png", mym:"hello_kitty.mym", video:"https://www.youtube.com/embed/Rh-_PneEKCY?autoplay=0&mute=1", downloads:"hello_kitty.txt", trans_chans:"0", filter:"cartoon"},
 	{name:"Hell's Kitchen", ID:"HELLK1", mainimg:"hellskitchen.avif", secondaryimg:"hellskitchen.png", mym:"hellskitchen.mym", video:"https://www.youtube.com/embed/rhZvXoDqJx4?si=dsfWlztTT2Fz_RR3?autoplay=0&mute=1", downloads:"hellskitchen.txt", trans_chans:"1", filter:"movie"},
 	{name:"He-Man", ID:"HEMAN1", mainimg:"heman.avif", secondaryimg:"heman.png", mym:"he-man_stage1.mym", video:"https://www.youtube.com/embed/vUzusxTYj9w?si=UNjjoXBw-c4BJBWc?autoplay=0&mute=1", downloads:"heman.txt", transchans:"1", filter:"cartoon"},
@@ -1185,7 +1187,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 58) && theme_num <= 65) || (theme_num == 55)  || (theme_num == 104) || (theme_num == 259))
+    if(((theme_num >= 59) && theme_num <= 66) || (theme_num == 56)  || (theme_num == 105) || (theme_num == 261))
 		return true;
 	return false;
 }
