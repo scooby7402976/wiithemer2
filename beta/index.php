@@ -171,37 +171,39 @@
         
         # copy theme mym file(s) to working folder -----------
         if(!copy($theme_src_pth, $theme_dst_pth)) {
-            echo "Failed . (copy theme)\n";
+            echo "Failed .";
             return;
         }
-            
+        else
+            echo "Complete .\n";
+        
         if($theme_is_2_stage) {
             $theme_no_extension = name_2_stage_theme($mym_theme);
             $theme_src_pth = "resources/mym/" . $theme_no_extension . "_stage2.mym";
             $theme_dst_pth = "resources/working/" . $id . "/" . $theme_no_extension . "_stage2.mym";
             if(!copy($theme_src_pth, $theme_dst_pth))
-                echo "Failed . (copy theme _stage2)\n";
+                echo "Failed .";
         }
         # copy spin mym to working folder -----------------
         $spin_src_pth = "resources/mym/spins/" . $spinmym_src_file[$spin_index];
         $spin_dst_pth = "resources/working/" . $id . "/" . $spinmym_src_file[$spin_index];
         if(!copy($spin_src_pth, $spin_dst_pth))
-            echo "Failed . (copy spin)\n";
+            echo "Failed .";
         # copy spin color mym to working folder -----------
         $spin_color_src_pth = "resources/mym/outline_colors/" . $spincolors[$spincolor_index];
         $spin_color_dst_pth = "resources/working/" . $id . "/" . $spincolors[$spincolor_index];
         if($spincolor_index >= 1) {
             if(!copy($spin_color_src_pth, $spin_color_dst_pth))
-                echo "Failed . (copy spin)\n";
+                echo "Failed .";
         }
         # copy trans channels mym to working folder --------
         $trans_src_pth = "resources/mym/spins/trans_chans.mym";
         $trans_dst_pth = "resources/working/" . $id . "/" . "trans_chans.mym";
         if($transchannels == "true") {
             if(!copy($trans_src_pth, $trans_dst_pth))
-                echo "Failed . (copy trans channels)\n";
+                echo "Failed .";
         }
-        echo "Complete .\n";
+        
         return;
     }
     function download_content($mym_theme, $spin_index, $version_index, $region_index) {
@@ -555,7 +557,7 @@
             return false;
 	}
     function theme_needs_mym_Extension($theme_Selected) : bool {
-		if((($theme_Selected >= 59) && $theme_Selected <= 66) || ($theme_Selected == 56)  || ($theme_Selected == 105) || ($theme_Selected == 261))
+		if((($theme_Selected >= 60) && $theme_Selected <= 67) || ($theme_Selected == 57)  || ($theme_Selected == 106) || ($theme_Selected == 268))
 			return true;
 		return false;
 	}

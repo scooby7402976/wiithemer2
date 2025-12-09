@@ -49,6 +49,7 @@ const completethemeinfo = [
 	{name:"Club Penguin", ID:"CLBPN1", mainimg:"clubpenguin.avif", secondaryimg:"clubpenguin.png", mym:"clubpenguin.mym", video:"https://www.youtube.com/embed/QwJMxmJ4tqg?si=EPT7yC-o_K9JViug?autoplay=0&mute=1", downloads:"clubpenguin.txt", trans_chans:"1", filter:"game"},
 	{name:"Code Geass", ID:"GEASS1", mainimg:"codegeass.avif", secondaryimg:"codegeass.png", mym:"code_geass.mym", video:"https://www.youtube.com/embed/X38-YkQwEL4?autoplay=0&mute=1", downloads:"code_geass.txt", trans_chans:"1", filter:"anime"},
 	{name:"Conduit", ID:"CONDT1", mainimg:"conduit.avif", secondaryimg:"conduit.png", mym:"conduit.mym", video:"https://www.youtube.com/embed/z2Tu0qbCgg0?si=7t8ZT5OpR-ngUjUu?autoplay=0&mute=1", downloads:"conduit.txt", trans_chans:"0", filter:"game"},
+	{name:"Conduit v2", ID:"CONDT2", mainimg:"conduitv2.avif", secondaryimg:"conduitv2.png", mym:"conduitv2.mym", video:"https://www.youtube.com/embed/dttj-sfiSJk?si=Z1qkmrHw5nkU3RSp?autoplay=0&mute=1", downloads:"conduitv2.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Constantine", ID:"CONST1", mainimg:"constantine.avif", secondaryimg:"constantine.png", mym:"constantine.mym", video:"https://www.youtube.com/embed/fR8xS8I8vgU?autoplay=0&mute=1", downloads:"constantine.txt", trans_chans:"1", filter:"movie"},
 	{name:"Creature Cases", ID:"CRETUR", mainimg:"creature_cases.avif", secondaryimg:"creature_cases.png", mym:"creature_cases.mym", video:"https://www.youtube.com/embed/o3mAkQ2zqek?si=xOOE4dAzydc-0iQJ?autoplay=0&mute=1", downloads:"creature_cases.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Daisy Blaize", ID:"DAISYB", mainimg:"daisy.avif", secondaryimg:"daisy.png", mym:"daisy.mym", video:"https://www.youtube.com/embed/Q3UNVtwsHX8?si=9q7YpspZgUniO-sC?autoplay=0&mute=1", downloads:"daisy.txt", trans_chans:"1", filter:"cartoon/new"},
@@ -108,6 +109,7 @@ const completethemeinfo = [
 	{name:"Full Metal Alchemist", ID:"FMTL", mainimg:"fullmetalalchemist.avif", secondaryimg:"fullmetalalchemist.png", mym:"full_metal_alchemist", video:"https://www.youtube.com/embed/ZpPcjebgEUY?autoplay=0&mute=1", downloads:"full_metal_alchemist.txt", trans_chans:"1", filter:"anime"},
 	{name:"Futurama", ID:"FUTUR1", mainimg:"futurama.avif", secondaryimg:"futurama.png", mym:"futurama.mym", video:"https://www.youtube.com/embed/x0mCDuiWYpA?autoplay=0&mute=1", downloads:"futurama.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Gaara", ID:"GAARA1", mainimg:"gaara.avif", secondaryimg:"gaara.png", mym:"gaara.mym", video:"https://www.youtube.com/embed/nEofNIw_Xps?autoplay=0&mute=1", downloads:"gaara.txt", trans_chans:"1", filter:"anime"},
+	{name:"Gambit", ID:"GAMBIT", mainimg:"gambit.avif", secondaryimg:"gambit.png", mym:"gambit_stage1.mym", video:"https://www.youtube.com/embed/OOXO-wkcP_0?si=l1OG1qFco0rvm652?autoplay=0&mute=1", downloads:"gambit.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Garfield", ID:"GRFLD1", mainimg:"garfield.avif", secondaryimg:"garfield.png", mym:"garfield.mym", video:"https://www.youtube.com/embed/lZZ3f6G_Mhs?si=xBNAGvmT06-w9llh?autoplay=0&mute=1", downloads:"garfield.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Gears of War", ID:"GOWAR1", mainimg:"gearsofwar.avif", secondaryimg:"gearsofwar.png", mym:"gears_of_war.mym", video:"https://www.youtube.com/embed/0AUq2xqwlEc?autoplay=0&mute=1", downloads:"gears_of_war.txt", trans_chans:"1", filter:"game"},
 	{name:"Ghost Busters", ID:"GBUST1", mainimg:"ghostbusters.avif", secondaryimg:"ghostbusters.png", mym:"ghost_busters.mym", video:"https://www.youtube.com/embed/q1Y3VAmsXxM?autoplay=0&mute=1", downloads:"ghost_busters.txt", trans_chans:"1", filter:"movie"},
@@ -117,6 +119,7 @@ const completethemeinfo = [
 	{name:"Gothic", ID:"GOTH01", mainimg:"gothic.avif", secondaryimg:"gothic.png", mym:"gothic.mym", video:"https://www.youtube.com/embed/Ko3ZcoCmwPI?si=QROVEdiG91ky82_V?autoplay=0&mute=1", downloads:"gothic.txt", trans_chans:"0", filter:"misc"},
 	{name:"Grateful Dead", ID:"GRTFL1", mainimg:"gratefuldead.avif", secondaryimg:"gratefuldead.png", mym:"grateful_dead_stage1.mym", video:"https://www.youtube.com/embed/LURcBb9sF98?si=oebw46IB5hS1hxDU?autoplay=0&mute=1", downloads:"gratefuldead.txt", trans_chans:"1", filter:"music"},
 	{name:"Green Bay Packers", ID:"PCKRS1", mainimg:"greenbay_packers.avif", secondaryimg:"greenbay_packers.png", mym:"packers_stage1.mym", video:"https://www.youtube.com/embed/mfmglgxpV3M?si=yKq_eYg4s0BnJQFU?autoplay=0&mute=1", downloads:"packers.txt", trans_chans:"1", filter:"sports"},
+	{name:"Gundam", ID:"GUNDAM", mainimg:"gundam.avif", secondaryimg:"gundam.png", mym:"gundam.mym", video:"https://www.youtube.com/embed/tQlAEvAz9QQ?si=p_aUX8mTYaHzT-DS?autoplay=0&mute=1", downloads:"gundam.txt", trans_chans:"1", filter:"anime/new"},
 	{name:"Hand Drawn", ID:"HDRAW1", mainimg:"HandDrawn.avif", secondaryimg:"handdrawn.png", mym:"hand_drawn.mym", video:"https://www.youtube.com/embed/e19Hk1Zbp0c?autoplay=0&mute=1", downloads:"hand_drawn.txt", trans_chans:"1", filter:"game"},
 	{name:"Happy Tree Friends", ID:"HAPYTF", mainimg:"treefriends.avif", secondaryimg:"treefriends.png", mym:"treefriends.mym", video:"https://www.youtube.com/embed/wygXrk94WQ8?si=xoZvuME_ZENtZir6?autoplay=0&mute=1", downloads:"treefriends.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Hello Kitty", ID:"HKITY1", mainimg:"HelloKitty.avif", secondaryimg:"hellokitty.png", mym:"hello_kitty.mym", video:"https://www.youtube.com/embed/Rh-_PneEKCY?autoplay=0&mute=1", downloads:"hello_kitty.txt", trans_chans:"0", filter:"cartoon"},
@@ -130,6 +133,7 @@ const completethemeinfo = [
 	{name:"Illusions of Gaia", ID:"ILLOG1", mainimg:"illusionsofgaia.avif", secondaryimg:"illusionsofgaia.png", mym:"illusionsofgaia.mym", video:"https://www.youtube.com/embed/nPaNCfmKKIA?si=yN1ldPBI9TR4uOBH?autoplay=0&mute=1", downloads:"illusionsofgaia.txt", trans_chans:"1", filter:"game"},
 	{name:"Imports", ID:"IMPOR1", mainimg:"imports.avif", secondaryimg:"imports.png", mym:"imports.mym", video:"https://www.youtube.com/embed/49LLOgWKxJI?si=ZaPDRGHkUVw4QDTb?autoplay=0&mute=1", downloads:"imports.txt", trans_chans:"1", filter:"misc"},
 	{name:"In Betweeners", ID:"INBET1", mainimg:"inbetweeners.avif", secondaryimg:"inbetweeners.png", mym:"in_betweeners.mym", video:"https://www.youtube.com/embed/Ng8-yaNi1gE?autoplay=0&mute=1",downloads:"in_betweeners.txt", trans_chans:"1", filter:"movie"},
+	{name:"Indiana Jones", ID:"INDYJO", mainimg:"indianajones.avif", secondaryimg:"indianajones.png", mym:"indianajones.mym", video:"https://www.youtube.com/embed/oRwbH8QNMTo?si=BI2wmhSj343W4ne8?autoplay=0&mute=1", downloads:"indianajones.txt", trans_chans:"1", filter:"movie/new"},
 	{name:"Indianapolis Colts", ID:"COLTS1", mainimg:"colts.avif", secondaryimg:"colts.png", mym:"colts.mym", video:"https://www.youtube.com/embed/qOdHo5u2vI4?si=R61cyZlCzCVapG3N?autoplay=0&mute=1", downloads:"colts.txt", trans_chans:"1", filter:"sports"},
 	{name:"Insane Clown Posse", ID:"ICP001", mainimg:"icp.avif", secondaryimg:"icp.png", mym:"insane_clown_posse.mym", video:"https://www.youtube.com/embed/nKo90-C1d8U?autoplay=0&mute=1", downloads:"insane_clown_posse.txt", trans_chans:"1", filter:"music"},
 	{name:"Its A Me Mario", ID:"IMMAR1", mainimg:"itsamemario.avif", secondaryimg:"itsamemario.png", mym:"itsamemario.mym", video:"https://www.youtube.com/embed/RXxxwKtNPJk?autoplay=0&mute=1", downloads:"itsamemario.txt", trans_chans:"1", filter:"top20/game"},
@@ -175,6 +179,7 @@ const completethemeinfo = [
 	{name:"Metroid Prime", ID:"METPR1", mainimg:"metroid_prime.avif", secondaryimg:"metroid_prime.png", mym:"metroid_prime.mym", video:"https://www.youtube.com/embed/973MdQ0fl1w?si=NAbEs3JG9CZtbvig?autoplay=0&mute=1", downloads:"metroid_prime.txt", trans_chans:"1", filter:"game"},
 	{name:"Metroid: Samus's Visor", ID:"MTDSV1", mainimg:"metroid_samusvisor.avif", secondaryimg:"metroid_samusvisor.png", mym:"metroid_samus_visor.mym", video:"https://www.youtube.com/embed/-3yRj55z_FY?si=GwnRB730HdOWELw-?autoplay=0&mute=1", downloads:"metroid_samusvisor.txt", trans_chans:"1", filter:"game"},
 	{name:"Mets", ID:"METS01", mainimg:"mets.avif", secondaryimg:"mets.png", mym:"mets.mym", video:"https://www.youtube.com/embed/FcQjIgcvYNg?si=udSlA8iwpqR6kgA8?autoplay=0&mute=1", downloads:"mets.txt", trans_chans:"1", filter:"sports"},
+	{name:"MineCraft", ID:"MINECR", mainimg:"minecraft.avif", secondaryimg:"minecraft.png", mym:"minecraft.mym", video:"https://www.youtube.com/embed/Pt8abcg2a7c?si=9wPKbyZ7sjzmXmHh?autoplay=0&mute=1", downloads:"minecraft.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Minions", ID:"MINION", mainimg:"minions.avif", secondaryimg:"minions.png", mym:"minions.mym", video:"https://www.youtube.com/embed/lrCv9wOBdJ4?si=u0E8QQrJKIMUGtz5?autoplay=0&mute=1", downloads:"minions.txt", trans_chans:"1", filter:"movie"},
 	{name:"Mist Forest", ID:"MISTF1", mainimg:"mistforest.avif", secondaryimg:"mistforest.png", mym:"mistforest.mym", video:"https://www.youtube.com/embed/ON0jmvFGWSk?si=YGUJ9oMMmPsH0iRZ?autoplay=0&mute=1", downloads:"mistforest.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"ModMii", ID:"MODMII", mainimg:"modmii.avif", secondaryimg:"modmii.png", mym:"modmii.mym", video:"https://www.youtube.com/embed/JMtoDNvcsO4?si=2wq6mKUa_sfEAMuY?autoplay=0&mute=1", downloads:"modmii.txt", trans_chans:"1", filter:"misc"},
@@ -227,6 +232,7 @@ const completethemeinfo = [
 	{name:"Rey Mysterio", ID:"RMYST1", mainimg:"rey_mysterio.avif", secondaryimg:"rey_mysterio.png", mym:"rey_mysterio.mym", video:"https://www.youtube.com/embed/9nP6maLtFpo?si=3IYQfVBTs7HYUkg7?autoplay=0&mute=1", downloads:"rey_mysterio.txt", trans_chans:"1", filter:"individual"},
 	{name:"Rhythm Heaven", ID:"RHYTH1", mainimg:"rhythmheaven.avif", secondaryimg:"rhythmheaven.png", mym:"rhythm_heaven.mym", video:"https://www.youtube.com/embed/8JJ4CpvZuog?si=riGPHoFJIcn804nD?autoplay=0&mute=1", downloads:"rhythmheaven.txt", trans_chans:"1", filter:"game"},
 	{name:"Rick and Morty", ID:"RMORT1", mainimg:"ricknmorty.avif", secondaryimg:"ricknmorty.png", mym:"ricknmorty.mym", video:"https://www.youtube.com/embed/ut2-QJWKy8s?si=G8aKdj3r_ysDp-xm?autoplay=0&mute=1", downloads:"ricknmorty.txt", trans_chans:"1", filter:"cartoon"},
+	{name:"Roblox", ID:"ROBLOX", mainimg:"roblox.avif", secondaryimg:"roblox.png", mym:"roblox.mym", video:"https://www.youtube.com/embed/1_mInpdGtHI?si=fCmmB7-gBf2wogBM?autoplay=0&mute=1", downloads:"roblox.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Robot Chicken", ID:"RCHCK1", mainimg:"robotchicken.avif", secondaryimg:"robotchicken.png", mym:"robot_chicken.mym", video:"https://www.youtube.com/embed/FNNp-U3oVoA?si=9i1qyazsGQwT5e0J?autoplay=0&mute=1", downloads:"robot_chicken.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Rockband 2", ID:"RBAND1", mainimg:"rockband2.avif", secondaryimg:"rockband2.png", mym:"rockband_2.mym", video:"https://www.youtube.com/embed/HojBuUxihp0?autoplay=0&mute=1", downloads:"rockband_2.txt", trans_chans:"1", filter:"game"},
 	{name:"Rolling Stones", ID:"STONES", mainimg:"rollingstones.avif", secondaryimg:"rollingstones.png", mym:"rolling_stones.mym", video:"https://www.youtube.com/embed/Df19BIkRABo?si=T1C-_09Qi3dLp2BW?autoplay=0&mute=1", downloads:"rollingstones.txt", trans_chans:"1", filter:"music"},
@@ -258,6 +264,7 @@ const completethemeinfo = [
 	{name:"SpongeBob", ID:"SPONG1", mainimg:"spongebob.avif", secondaryimg:"spongebob.png", mym:"spongebob.mym", video:"https://www.youtube.com/embed/9uTA4kcxy7s?si=L855-PxHBxFVYZAa?autoplay=0&mute=1", downloads:"spongebob.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Squid Billies", ID:"SQUBL1", mainimg:"squidbillies.avif", secondaryimg:"squidbillies.png", mym:"squid_billies_stage1.mym", video:"https://www.youtube.com/embed/Si1EK-0t_l4?si=xXq63txbpE2kF6Jo?autoplay=0&mute=1", downloads:"squidbillies.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"StarCraft", ID:"STCFT1", mainimg:"starcraft.avif", secondaryimg:"starcraft.png", mym:"star_craft.mym", video:"https://www.youtube.com/embed/Skg45dVotEQ?si=3mqJ_jgB2bXH9Hn9?autoplay=0&mute=1", downloads:"starcraft.txt", trans_chans:"0", filter:"game"},
+	{name:"Star Fox Zero", ID:"STARFX", mainimg:"starfoxzero.avif", secondaryimg:"starfoxzero.png", mym:"starfoxzero.mym", video:"https://www.youtube.com/embed/j4XWXbi3v-E?si=h_oDuSmjtE2qcH4x?autoplay=0&mute=1", downloads:"starfoxzero.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Star Gate", ID:"STGTE1", mainimg:"stargate.avif", secondaryimg:"stargate.png", mym:"star_gate.mym", video:"https://www.youtube.com/embed/6LwuadUQlME?si=kDPm8DudqC4U1401?autoplay=0&mute=1", downloads:"stargate.txt", trans_chans:"1", filter:"movie"},
 	{name:"Star Wars", ID:"STWRS1", mainimg:"starwars.avif", secondaryimg:"starwars.png", mym:"star_wars.mym", video:"https://www.youtube.com/embed/DYSM94FogyE?si=Y_IWo8pldhinyw0o?autoplay=0&mute=1", downloads:"starwars.txt", trans_chans:"1", filter:"movie"},
 	{name:"Star Wars Unleashed", ID:"STWRS2", mainimg:"starwarsunleashed.avif", secondaryimg:"starwarsunleashed.png", mym:"star_wars_unleashed.mym", video:"https://www.youtube.com/embed/rEzDAw0MGDo?si=mFL6Jj29KfGEz3A9?autoplay=0&mute=1", downloads:"starwarsunleashed.txt", trans_chans:"1", filter:"movie"},
@@ -291,6 +298,7 @@ const completethemeinfo = [
 	{name:"Tropical Teal", ID:"TRPTL1", mainimg:"tropicalteal.avif", secondaryimg:"tropicalteal.png", mym:"tropicalteal.mym", video:"https://www.youtube.com/embed/kjqP3xHl02I?si=TXvwIOrQ4xv0KSiE?autoplay=0&mute=1", downloads:"tropicalteal.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"True Blood", ID:"TBLOD1", mainimg:"trueblood.avif", secondaryimg:"trueblood.png", mym:"true_blood.mym", video:"https://www.youtube.com/embed/9h0TWXmV80E?autoplay=0&mute=1", downloads:"true_blood.txt", trans_chans:"1", filter:"movie"},
 	{name:"Ultimate Dark Wii", ID:"UDWII1", mainimg:"ultimatedarkwii.avif", secondaryimg:"ultimatedarkwii.png", mym:"ultimate_dark_wii_stage1.mym", video:"https://www.youtube.com/embed/2-CDQr4YMJ4?si=qp3dj9ijyVunPuHG?autoplay=0&mute=1", downloads:"ultimatedarkwii.txt", trans_chans:"1", filter:"darkwii/views"},
+	{name:"USB Animals", ID:"USBANI", mainimg:"usbanimals.avif", secondaryimg:"usbanimals.png", mym:"usbanimals.mym", video:"https://www.youtube.com/embed/e6iEmBu-LaU?si=rzK40a1VPpt2Sk5_?autoplay=0&mute=1", downloads:"usbanimals.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Vancouver Canucks", ID:"CANUCK", mainimg:"canucks.avif", secondaryimg:"canucks.png", mym:"canucks.mym", video:"https://www.youtube.com/embed/F2l1sAKWrvo?si=LXUvTCvCFmduAfLC?autoplay=0&mute=1", downloads:"canucks.txt", trans_chans:"1", filter:"sports"},
 	{name:"Vegeta", ID:"VEGET1", mainimg:"vegeta.avif", secondaryimg:"vegeta.png", mym:"vegeta.mym", video:"https://www.youtube.com/embed/QO3Zf1XGBVs?si=Gxc3002G73FKOPbP?autoplay=0&mute=1", downloads:"vegeta.txt", trans_chans:"1", filter:"anime"},
 	{name:"Vista", ID:"VISTA1", mainimg:"vista.avif", secondaryimg:"vista.png", mym:"vista.mym", video:"https://www.youtube.com/embed/Il6_-qWc1FM?si=iOQATO9ISemWG7vR?autoplay=0&mute=1", downloads:"vista.txt", trans_chans:"0", filter:"os/views"},
@@ -305,6 +313,7 @@ const completethemeinfo = [
 	{name:"Wii Party", ID:"WIIPT1", mainimg:"wiiparty.avif", secondaryimg:"wiiparty.png", mym:"wiiparty.mym", video:"https://www.youtube.com/embed/Tty1Kfv0Hmc?si=w6YWKjMjFCpJeNPZ?autoplay=0&mute=1", downloads:"wiiparty.txt", trans_chans:"1", filter:"game"},
 	{name:"Wii Party v2", ID:"WIIPT2", mainimg:"wiipartyv2.avif", secondaryimg:"wiipartyv2.png", mym:"wiipartyv2.mym", video:"https://www.youtube.com/embed/tfBqRua-dD4?si=GJXSxsYqam6OQPwY?autoplay=0&mute=1", downloads:"wiipartyv2.txt", trans_chans:"1", filter:"game"},
 	{name:"Wii Sports", ID:"WSPOR1", mainimg:"wiisports.avif", secondaryimg:"wiisports.png", mym:"wii_sports.mym", video:"https://www.youtube.com/embed/nijDjtXZwTE?si=W6Ayevn-1xZUNo1D?autoplay=0&mute=1", downloads:"wiisports.txt", trans_chans:"1", filter:"top20/game/views"},
+	{name:"Wii Start Fires", ID:"WIISTR", mainimg:"wiistartfires.avif", secondaryimg:"wiistartfires.png", mym:"wiistartfires.mym", video:"https://www.youtube.com/embed/UOytxHJeOak?si=WP6JekSccDF9U7Uo?autoplay=0&mute=1", downloads:"wiistartfires.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Wii U", ID:"WIIU01", mainimg:"wiiu.avif", secondaryimg:"wiiu.png", mym:"wii_u.mym", video:"https://www.youtube.com/embed/eAwrGrJQa3I?si=p--wxO_ygmTeAox_?autoplay=0&mute=1", downloads:"wiiu.txt", trans_chans:"1", filter:"top20/os/views"},
 	{name:"Windows 7", ID:"WIN701", mainimg:"windows7.avif", secondaryimg:"windows7.png", mym:"windows7.mym", video:"https://www.youtube.com/embed/DjSX6lB9FrM?si=OG2ZTzbFgaBLHj6o?autoplay=0&mute=1", downloads:"windows7.txt", trans_chans:"1", filter:"top20/os"},
 	{name:"Win XP OS", ID:"WINXP1", mainimg:"winxpos.avif", secondaryimg:"windowsxp.png", mym:"win_xp_os.mym", video:"https://www.youtube.com/embed/CpMXYTumKEE?autoplay=0&mute=1", downloads:"win_xp_os.txt", trans_chans:"0", filter:"top20/os"},
@@ -765,6 +774,8 @@ function load_theme_list(filter_type) {
 				if(completethemeinfo[i].filter != "misc") {
 					if(completethemeinfo[i].filter == "misc/views")
 						filtered_list_position.push(i);
+					else if(completethemeinfo[i].filter == "misc/new")
+						filtered_list_position.push(i);
 					else continue;
 				}
 				else filtered_list_position.push(i); // if filter set to misc, add this theme to filtered list
@@ -823,6 +834,8 @@ function load_theme_list(filter_type) {
 					filtered_list_position.push(i);
 				else if(completethemeinfo[i].filter == "anime/new")
 					filtered_list_position.push(i);
+				else if(completethemeinfo[i].filter == "misc/new")
+						filtered_list_position.push(i);
 				else continue;
 			}
 			else continue; // if no filter set, skip this theme
@@ -1187,7 +1200,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 59) && theme_num <= 66) || (theme_num == 56)  || (theme_num == 105) || (theme_num == 261))
+    if(((theme_num >= 60) && theme_num <= 67) || (theme_num == 57)  || (theme_num == 106) || (theme_num == 268))
 		return true;
 	return false;
 }
@@ -1325,6 +1338,15 @@ function set_build_gui() {
 		if(versionIndex == 0 || regionIndex == 0)
 			return;
 		build_theme_setup(theme_position);
+	}
+	document.getElementById("trans_channels").onclick = function() {
+		let is_checked = document.getElementById("trans_channels").checked;
+		if(is_checked) {
+			if(completethemeinfo[theme_position].trans_chans == "0") {
+				document.getElementById("trans_channels").checked = false;
+				alert("Transparent Channels has already been applied to this theme .");
+			}
+		}
 	}
 	return;
 }
@@ -1510,7 +1532,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 				console.log("theme_index: " + theme_index);
 			};
 			document.getElementById("preview_select").onchange = function() { // theme names
-				//alert(document.getElementById("preview_select").selectedIndex);
+				alert(document.getElementById("preview_select").selectedIndex);
 				var theme = 0;
 				let is_filtered = is_themelist_filtered();
 				if(is_filtered) {
