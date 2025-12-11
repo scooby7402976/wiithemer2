@@ -418,7 +418,7 @@ function load_installer_count(theme_count_file) {
 function load_single_theme_count(theme_file) {
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {
-		document.getElementById("num_theme_downloads").innerHTML = "&nbsp;&nbsp;&nbsp;" + this.responseText + "&nbsp;Downloads&nbsp;&nbsp;&nbsp;";
+		document.getElementById("num_theme_downloads").innerHTML = "&nbsp;&nbsp;&nbsp;" + xhttp.responseText + "&nbsp;Downloads&nbsp;&nbsp;&nbsp;";
 	}
 	xhttp.open("GET", theme_file);
 	xhttp.send();
@@ -567,7 +567,7 @@ function set_data(which_data) {
 	
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState === 4 && xhttp.status === 200) {
-			
+			console.log("Data updated: " + which_data + " -> " + xhttp.responseText);
 		}
 	}
 	
@@ -1136,6 +1136,7 @@ function close_download() {
 			set_data("kwii");
 	}
 	set_data("single");
+	load_single_theme_count("resources/stats/indthemecnt/" + completethemeinfo[theme_index].downloads);
 	delete_session_folder();
 	return;
 }
@@ -1323,7 +1324,8 @@ function set_build_gui() {
 		tab_locked = false;
 		theme_index = 0;
 		//document.getElementById('tab3').innerText = "";
-		wiithemer_navigate_page_tabs(1);
+		//wiithemer_navigate_page_tabs(1);
+		window.open("www.wiithemer.org/beta/");
 	};
 	document.getElementById("begin_build_btn").onclick = function() {
 		let versionIndex, regionIndex;
@@ -1461,11 +1463,11 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 			// add theme.video to iframe src above /**/
 			if(is_filtered) {
 				theme_position = filtered_list_position[theme_index];
-				load_single_theme_count("resources/stats/indthemecnt/" + theme.downloads, filtered_list_position[0]);
+				load_single_theme_count("resources/stats/indthemecnt/" + theme.downloads);
 			}
 			else  {
 				theme_position = 0;
-				load_single_theme_count("resources/stats/indthemecnt/" + theme.downloads, 0);
+				load_single_theme_count("resources/stats/indthemecnt/" + theme.downloads);
 			}
 			load_filter_list();
             load_theme_list("All");
@@ -1532,7 +1534,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 				console.log("theme_index: " + theme_index);
 			};
 			document.getElementById("preview_select").onchange = function() { // theme names
-				alert(document.getElementById("preview_select").selectedIndex);
+				//alert(document.getElementById("preview_select").selectedIndex);
 				var theme = 0;
 				let is_filtered = is_themelist_filtered();
 				if(is_filtered) {
