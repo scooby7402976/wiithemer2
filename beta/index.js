@@ -44,6 +44,7 @@ const completethemeinfo = [
 	{name:"Chicago Bears", ID:"BEARS1", mainimg:"chicago_bears.avif", secondaryimg:"chicago_bears.png", mym:"bears.mym", video:"https://www.youtube.com/embed/Yk3tXxSTtiY?si=cs5jn-Ku6a-CqaGq?autoplay=0&mute=1", downloads:"bears.txt", trans_chans:"1", filter:"sports"},
 	{name:"Chicago Black Hawks", ID:"HAWKS1", mainimg:"chicago_blackhawks.avif", secondaryimg:"chicago_blackhawks.png", mym:"blackhawks.mym", video:"https://www.youtube.com/embed/8TdU3BidMpA?si=Ca92r3-FMrRtSFOq?autoplay=0&mute=1", downloads:"blackhawks.txt", trans_chans:"1", filter:"sports"},
 	{name:"Chicago Bulls", ID:"BULLS1", mainimg:"chicago_bulls.avif", secondaryimg:"chicago_bulls.png", mym:"bulls.mym", video:"https://www.youtube.com/embed/uhiT3OWR_ec?si=tMtc4W2QuNCvbgCK?autoplay=0&mute=1", downloads:"bulls.txt", trans_chans:"1", filter:"sports"},
+	{name:"Christmas", ID:"XMASSE", mainimg:"xmas.avif", secondaryimg:"xmas.png", mym:"xmas.mym", video:"https://www.youtube.com/embed/SH7Usakp_lY?si=GiL26dsfQKicD6Z2?autoplay=0&mute=1", downloads:"xmas.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Chrono Trigger", ID:"CRTRG1", mainimg:"chronotrigger.avif", secondaryimg:"chronotrigger.png", mym:"chronotrigger.mym", video:"https://www.youtube.com/embed/98X7CwDem_8?si=m-SBfPqR3tmt9ohw?autoplay=0&mute=1", downloads:"chronotrigger.txt", trans_chans:"0", filter:"game"},
 	{name:"Clock Work Orange", ID:"CLKWK1", mainimg:"clockworkorange.avif", secondaryimg:"clockworkorange.png", mym:"clockwork_orange.mym", video:"https://www.youtube.com/embed/uIRzAfn0CE0?si=bjUfrDRLTfDkpSp0?autoplay=0&mute=1", downloads:"clockworkorange.txt", trans_chans:"1", filter:"movie"},
 	{name:"Club Penguin", ID:"CLBPN1", mainimg:"clubpenguin.avif", secondaryimg:"clubpenguin.png", mym:"clubpenguin.mym", video:"https://www.youtube.com/embed/QwJMxmJ4tqg?si=EPT7yC-o_K9JViug?autoplay=0&mute=1", downloads:"clubpenguin.txt", trans_chans:"1", filter:"game"},
@@ -673,7 +674,7 @@ function load_theme_list(filter_type) {
 				}
 				else filtered_list_position.push(i); // if filter set to anime, add this theme to filtered list
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "anime") {
 			if(completethemeinfo[i].filter) {
@@ -685,7 +686,7 @@ function load_theme_list(filter_type) {
 				else filtered_list_position.push(i); // if filter set to music, add this theme to filtered list
 				
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "music") {
 			if(completethemeinfo[i].filter) {
@@ -697,7 +698,7 @@ function load_theme_list(filter_type) {
 				else filtered_list_position.push(i); // if filter set to music, add this theme to filtered list
 				
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 			//
 		}
 		else if( filter_type == "sports") {
@@ -705,7 +706,7 @@ function load_theme_list(filter_type) {
 				if(completethemeinfo[i].filter != "sports") continue;
 				else filtered_list_position.push(i); // if filter set to sports, add this theme to filtered list
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 			//filtered_list_position.push(i);
 		}
 		else if( filter_type == "movie") {
@@ -719,20 +720,20 @@ function load_theme_list(filter_type) {
 				}
 				else filtered_list_position.push(i); // if filter set to movie, add this theme to filtered list
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "cartoon") {
 			if(completethemeinfo[i].filter) {
 				if(completethemeinfo[i].filter != "cartoon") {
 					if(completethemeinfo[i].filter == "cartoon/views")
 						filtered_list_position.push(i);
-					if(completethemeinfo[i].filter == "cartoon/new")
+					else if(completethemeinfo[i].filter == "cartoon/new")
 						filtered_list_position.push(i);
 					else continue; 
 				}
 				else filtered_list_position.push(i); // if filter set to cartoon, add this theme to filtered list
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "darkwii") {
 			if(completethemeinfo[i].filter) {
@@ -745,7 +746,7 @@ function load_theme_list(filter_type) {
 				}
 				else filtered_list_position.push(i); // if filter set to darkwii, add this theme to filtered list
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "os") {
 			if(completethemeinfo[i].filter) {
@@ -760,14 +761,14 @@ function load_theme_list(filter_type) {
 				}
 				else filtered_list_position.push(i); // if filter set to os, add this theme to filtered list
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "individual") {
 			if(completethemeinfo[i].filter) {
 				if(completethemeinfo[i].filter != "individual") continue;
 				else filtered_list_position.push(i); // if filter set to individual, add this theme to filtered list
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "misc") {
 			if(completethemeinfo[i].filter) {
@@ -780,7 +781,7 @@ function load_theme_list(filter_type) {
 				}
 				else filtered_list_position.push(i); // if filter set to misc, add this theme to filtered list
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "top20") {
 			if(completethemeinfo[i].filter) {
@@ -798,7 +799,7 @@ function load_theme_list(filter_type) {
 					filtered_list_position.push(i); 
 				else continue;
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "views") {
 			if(completethemeinfo[i].filter) {
@@ -818,7 +819,7 @@ function load_theme_list(filter_type) {
 					filtered_list_position.push(i);
 				else continue;
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		else if( filter_type == "new") {
 			if(completethemeinfo[i].filter) {
@@ -838,7 +839,7 @@ function load_theme_list(filter_type) {
 						filtered_list_position.push(i);
 				else continue;
 			}
-			else continue; // if no filter set, skip this theme
+			//else continue; // if no filter set, skip this theme
 		}
 		
 		let option = document.createElement("option");
@@ -1201,7 +1202,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 60) && theme_num <= 67) || (theme_num == 57)  || (theme_num == 106) || (theme_num == 268))
+    if(((theme_num >= 61) && theme_num <= 68) || (theme_num == 58)  || (theme_num == 107) || (theme_num == 269))
 		return true;
 	return false;
 }
@@ -1325,7 +1326,7 @@ function set_build_gui() {
 		theme_index = 0;
 		//document.getElementById('tab3').innerText = "";
 		//wiithemer_navigate_page_tabs(1);
-		window.open("www.wiithemer.org/beta/");
+		location.reload(true);
 	};
 	document.getElementById("begin_build_btn").onclick = function() {
 		let versionIndex, regionIndex;
