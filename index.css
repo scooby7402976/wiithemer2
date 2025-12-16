@@ -1,571 +1,582 @@
-@charset "UTF-8";
-
+/* main tab container */
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 body {
-	font-family: sans-serif, Helvetica, Arial;
-	margin: 0;
-	cursor: url("img/wii_cursors/wiiopen.cur"), default;
-	height: 100%;
-	width: 100%;
-}
-.mainBG {
-	background-color: whitesmoke;
-	height: 100%;
-	width: 100%;
-}
-.channel_container_row1, .channel_container_row2, .channel_container_row3 {
-	display: flex;
-	flex-flow: row;
-	align-content: space-evenly;
-	justify-items: center;
-}
-.channel_container a {
-	text-decoration: none;
-	cursor: url("img/wii_cursors/wiiopen.cur"), default;
-	color: black;
-	width: 22vw;
-	height: 23vh;
-}
-.containers {
-	width: 22vw;
-	height: 23vh;
-	border: 2px solid black;
-	border-radius: 10px;
-	margin: 5px auto;
-	background-image: url("img/w_laugh.avif");
-	opacity: .9;
-	background-size: cover;
-	background-repeat: no-repeat;
-	text-decoration: none;
-	box-shadow: 1px 2px 2px black;
-}
- @media screen and (max-width: 1000px) {
-	#container_2, #container_3, #container_5, #container_8, #container_10, #container_11 {
-		display: none;
-	}
-	.containers {
-		width: 45vw;
-	}
-	.main_buttons {
-		width: 50px;
-		height: 50px;
-	}
-	#sd_image {
-		width: 50px;
-		height: 50px;
-	}
-	#time_date {
-		font-size: 16px;
-		margin: 0px auto;
-	}
-}
-#container_2:hover, #container_3:hover, #container_5:hover, #container_8:hover, #container_11:hover {
-	background-image: url("img/w_laugh.gif");
-}
-#container_1 {
-	background-image: url("img/disc.avif");
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-#container_1:hover {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#container_4 {
-	background-image: url("img/The_Homebrew_Channel.avif");
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-#container_4:hover {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#container_6 {
-	background-image: url("img/build.gif");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-}
-#container_6:hover {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#container_7 {
-	background-image: url("img/modmii.avif");
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-#container_7:hover {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#container_9 {
-	background-image: url("img/wiithemer.avif");
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-#container_9:hover {
-	cursor: url("img/wii_cursors/wiigrab.cur"), default;
-}
-#container_10 {
-	background-image: url("img/csminstaller.avif");
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-#container_10:hover {
-	cursor: url("img/wii_cursors/wiigrab.cur"), default;
-}
-#container_12 {
-	background-image: url("img/mymenuifymod.avif");
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-#container_12:hover {
-	cursor: url("img/wii_cursors/wiigrab.cur"), default;
-}
-.footer_container {
-	height: auto;
-	margin: 0px auto;
-	display: flex;
-	flex-flow: row;
-	justify-items: center;
-	align-content: space-evenly;
-}
-#left_button:hover {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-	border: 1px solid black;
-	color: black;
-	background-color: whitesmoke;
-	box-shadow: 3px 6px 8px gray;
-}
-#left_button {
-	font-size: 60px;
-	padding-top: 40px;
-}
-#right_button {
-	margin-right: 30px;
-}
-#right_button:hover {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-	border: 1px solid black;
-	color: black;
-	background-color: whitesmoke;
-	box-shadow: 3px 6px 8px gray;
-	
-}
-.main_buttons {
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
-	border: 3px solid whitesmoke;
-	margin: 10px;
-	text-align: center;
-	font-weight: bold;
-	padding-top: 60px;
-	font-size: 22px;
-	color: whitesmoke;
-	background-color: black;
-	text-shadow: -2px 4px 4px gold;
-	box-shadow: 3px 6px 5px black;
-}
-#time_date {
-	font-size: 30px;
-	float: left;
-	margin: 10px auto;
-	text-align: center;
-	font-family: monospace;
-	font-weight: bold;
-}
-#page_title_cont {
-	width: 99%;
-	margin: 0px auto;
-}
-#page_title {
-	width: 100%;
-	border: 1px solid white;
-	border-radius: 10px;
-	text-shadow: -2px 4px 4px gold;
-	text-align: center;
-	font-size: 48px;
-	font-weight: bold;
-	color: whitesmoke;
-	background-color: black;
-	margin: 0px auto;
-	padding: 10px 0px;
-}
-#sd_image {
-	background: url("img/no_sd.png");
-	background-size: cover;
-	width: 100px;
-	height: 100px;
-	float: left;
-	margin-left: 5vw;
-	margin-top: 30px;
-	box-shadow: 2px 4px 8px black;
-	border-radius: 15px;
-}
-#sd_image:hover {
-	background: url("img/sd.png");
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-	box-shadow: none;
-}
-.close {
-	color: black;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-	height: auto;
-	border: 1px solid black;
-	padding: 3px;
-	border-radius: 5px;
-	margin: 15px;
-	background-color: white;
-	box-shadow: 1px 2px 2px black;
-  }
-.hidden, .hide_bubble {
-	display: none;
-}
-.smallcaps {
-	font-variant: small-caps;
-}
-.close:hover, .close:focus {
-  color: rgb(255, 0, 0);
-  text-decoration: none;
-  cursor: url("img/wii_cursors/wiigrab.cur"), default;
-}
-#container_1_bubble, #container_4_bubble, #container_6_bubble, #container_7_bubble, #container_9_bubble, #container_10_bubble, #container_12_bubble {
-	position: relative;
-	padding: 5px 15px;
-	text-align: center;
-	color: whitesmoke;
-	background-color: black;
-	border: 1px solid whitesmoke;
-	border-radius: 5px;
-	width: 75%;
-	margin: 25% auto;
-	box-shadow: 2px 4px 8px black;
-}
-.modal-content, .downloadtextmodal-content {
-	position: relative;
-	background-color: white;
-	margin: 3px auto;
-	padding: 0;
-	height: auto;
-	-webkit-animation-name: animatetop;
-	-webkit-animation-duration: 0.4s;
-	animation-name: animatetop;
-	animation-duration: 1s;
-	border-radius: 5px;
-}
- @-webkit-keyframes animatetop {
-	from {top:-300px; opacity:0} 
-	to {top:0; opacity:1}
-}
-@keyframes animatetop {
-	from {top:-300px; opacity:0}
-	to {top:0; opacity:1}
-}
-.modal, .downloadtextmodal {
-	display: none;
-	position: fixed; 
-	z-index: 1; 
-	padding-top: 5%; 
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto; 
-	background-color: rgb(0,0,0); 
-	background-color: rgba(0,0,0,0.4);
-	border-radius: 5px;
-}
-.modal-header, .downloadtextmodal-header {
-	background-color: lightsteelblue;
-	color: black;
-	text-align: center;
-	border-radius: 5px;
-	border: 2px solid black;
-}
-  .modal-body, .downloadtextmodal-body {
-	border-radius: 5px;
-	content: none;
-	border: 2px solid black;
-	padding: 5px 0px;
-}
-#mymenuifymoddownloads, #wiithemerdownloads, #visitors, #wii_downloads, #csminstallerdownloads, #u_region, #e_region, #j_region, #k_region, #vwii_u_region, #vwii_e_region, #vwii_j_region, #vwii_downloads {
-	float: right;
-	padding: 0px 10px;
-	clear: left;
-}
-#checkpreview {
-	margin: 10px auto;
-	padding: 5px 15px;
-	font-size: 18px;
-	width: 65%;
-	border: 1px solid black;
-	border-radius: 5px;
-	text-align: center;
-}
-#larrow {
-	padding: 5px 15px;
-	font-size: 18px;
-	float: left;
-	margin: 10px auto;
-	border: 1px solid black;
-	border-radius: 5px;
-}
-#rarrow {
-	padding: 5px 15px;
-	font-size: 18px;
-	float: right;
-	margin: 10px auto;
-	border: 1px solid black;
-	border-radius: 5px;
-}
-#continue {
-	display: none;
-	font-size: 18px;
-	padding: 5px 10px;
-	margin: 0px auto;
-	width: 90%;
-}
-#continue:hover, #checkpreview:hover, #larrow:hover, #rarrow:hover {
-	border: 1px solid #000000;
-	border-radius: 5px;
-	box-shadow: 3px 1px 5px black;
-	color: whitesmoke;
-	background-color: black;
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#buildingcontainer {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-around;
-	position: relative;
-}
-#building {
-	display: flex;
-	flex-flow: column;
-	font-size: 18px;
-	width: 15%;
-	justify-content: space-evenly;
-	position: relative;
-	height: auto;
-	margin: 0px auto;
-	overflow: scroll;
-	text-align: center;
-}
-#themevideocontainer {
-	border-radius: 5px;
-	width: 55%;
-}
-.preview {
-	display: none;
-	border-radius: 5px;
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 0, 0);
-	text-align: center;
-}
-#preview1 {
-	width: 100%;
-	height: 540px;
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#previewcontainer {
-	width:60%;
-	height: auto;
-	margin: 5px;
-}
-#spinoption {
-	width: 10%;
-	height: auto;
-	margin: 5px;
-	overflow: scroll;
-	align-content: space-evenly;
-}
-#optionlabel{
-	width: 100%;
-	margin-top: 40%;
-}
-#fastspin, #spin, #nospin {
-	text-align: center;
-}
-.links {
-	padding: 0px 10px;
-}
-.links a {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-.buildselect {
-	margin: 0px auto;
-	padding: 3px;
-	width: fit-content;
-	font-size: 18px;
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-.buildlabel {
-	width: fit-content;
-	padding: 3px;
-	margin: 0px auto;
-	cursor: url("img/wii_cursors/wiiopen.cur"), default;
-}
-#csmsourcelabel, #trans_spinboxlabel {
-	margin: 5px auto;
-	width: 100%;
-}
-#csmsourcebox, #csmsourceboxlabel, #fastspin, #fastspinlabel, #spin, #spinlabel,#nospin, #nospinlabel, #trans_spinboxlabel, #trans_spinbox, #spin_color, #spin_colorlabel {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#downloadtext {
-	display: none;
-	overflow: scroll;
-	margin: auto;
-	padding: 15px;
-	font-size: 18px;
-}
-#csmfile {
-	margin: 5px;
-	padding: 8px;
-	text-decoration: none;
-	border: 1px solid black;
-	box-shadow: -2px 4px 4px black;
-	background-color: whitesmoke;
-	color: black;
-	text-shadow: -1px 1px 0px gold;
-}
-#csmfile:hover {
-	border: 1px solid rgb(255, 255, 255);
-	border-radius: 5px;
-	box-shadow: -2px 4px 4px gray;
-	background-color: rgb(0, 0, 0);
-	color: rgb(255, 255, 255);
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#message {
-	width: fit-content;
-	padding: 5px;
-	margin: 10% auto;
-	overflow:hidden;
-}
-#downloadcnt {
-	margin: 25px auto;
-	width: 100%;
-	padding: 3px 8px;
-	font-size: 18px;
-	justify-content: flex-end;
-}
-#about_right {
-	width: 50%;
-	padding-left: 5px;
-} 
-#about_right p {
-	padding-left: 5px;
-}
-#about_left {
-	width: 50%;
-	padding-left: 5px;
-}
-#about_left p {
-	padding-left: 5px;
-}
-#about_container {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-around;
-	position: relative;
-	justify-items: center;
-}
-#contact_container, #links_container {
-	width: fit-content;
-	margin: 0px auto;
-	text-align: start;
-}
-#usage_title {
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
-}
-#dualpicmodal {
-	text-align: center;
-  }
-  .dualpicmodal {
-	display: none;
-	position: fixed; 
-	z-index: 1; 
-	padding-top: 2.5%; 
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto; 
-	background-color: rgba(0,0,0,0.9);
-	border-radius: 5px;
-  }
-  .dualpic-content {
-	position: relative;
-  background-color: transparent;
-  margin: auto;
-  padding: 0;
-  width: 90%;
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 1s;
-  animation-name: animatetop;
-  animation-duration: 1s
-  }
-  .dualpicmodal-body {
-	padding: 10px;
-	border-radius: 5px;
-	text-align: center;
-	margin: 5px;
-  }
- #dualpic1, #dualpic2 {
-	width: 45%;
-	margin: 0px auto;
-	border-radius: 5px;
- }
- @keyframes warning {
-	0% {opacity:.5;color:rgb(255, 0, 0);}
-	11% {opacity:1;color:rgb(255, 0, 0);}
-	22% {opacity:0.5;color:rgb(255, 255, 35);}
-	33% {opacity:1;color:rgb(255, 255, 35);}
-	44% {opacity:0.5;color:rgb(0, 0, 0);}
-	55% {opacity:1;color:rgb(0, 0, 0);}
-	55% {opacity:.5;color:rgb(255, 0, 0);}
-	66% {opacity:1;color:rgb(255, 0, 0);}
-	77% {opacity:.5;color:rgb(255, 255, 35);}
-	88% {opacity:01;color:rgb(255, 255, 35);}
-	95% {opacity:0.5;color:rgb(0, 0, 0);}
-	100% {opacity:1;color:rgb(0, 0, 0);}
-}
-.warninglight {
-	animation: warning 3s ease-in-out infinite;
-}
-#infocontainer {
-	font-size: 22px;
-	text-align: center;
-	margin: 0px auto;
-}
-#infocontainer p, h4 {
-	text-align: center;
-}
-.text-center {
-	text-align: center;
-}
-.text-blue {
-	color: rgb(102, 217, 255);
-	text-shadow: -1px 1px 0px rgb(0, 0, 0);
-}
-.text-black {
-	color: rgb(0, 0, 0);
-	text-shadow: -1px 1px 0px gold;
-}
-#theme {
-	cursor: url("img/wii_cursors/wiipointer.cur"), default;
-}
-#maintenance {
-	width: 90%;
-	color: red;
-	margin: auto;
-	margin-top: 20px;
-	padding: 15px;
-	background-color: whitesmoke;
-	text-align: center;
-	border-radius: 5px;
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 230);
+    background-color: rgba(0, 0, 0, 1);
+}
+#maincontainer {
+    width: 98vw;
+    height: 98vh;
+    border-radius: 10px;
+    border-color: rgb(0, 255, 0);
+    border-bottom-style: outset;
+    border-width: 5px;
+    margin: 1vh auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 2px 4px 10px rgba(0, 255, 0, 1);
+}
+#maincontainer h1 {
+    text-align: center;
+    font-size: 30px;
+    margin: auto;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: rgb(0, 255, 0);
+    border-bottom-style: outset;
+    border-width: 2px;
+    width: 90vw;
+}
+/* all tabs */
+#tabcontainer {
+    width: 85vw;
+    justify-content: center;
+    padding: 5px;
+    align-items: center;
+    display: flex;
+}
+#tabcontainer div {
+    text-align: center;
+    flex: content;
+    padding: 8px 15px;
+    margin: 5px;
+    font-weight: bold;
+}
+#tab1, #tab2, #tab3, #tab4, #tab5, #tab6, #tab7 {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 230);
+    border-radius: 10px;
+    border-top: 5px outset rgb(255, 235, 220);
+    cursor: pointer;
+}
+#tab1:hover, #tab2:hover, #tab3:hover, #tab4:hover, #tab5:hover, #tab6:hover, #tab7:hover {
+    background-blend-mode: lighten;
+    background-color: rgb(53, 62, 67);
+}
+#tab1:hover {
+    border-top-color: rgb(255, 165, 0);
+    box-shadow: 1px 1px 3px rgb(255, 165, 0);
+}
+#tab2:hover {
+    border-top-color: rgb(255, 106, 180);
+    box-shadow: 1px 1px 3px rgb(255, 106, 180);
+}
+#tab3:hover {
+    border-top-color: rgb(57, 255, 20);
+    box-shadow: 1px 1px 3px rgb(57, 255, 20);
+}
+#tab4:hover {
+    border-top-color: rgb(0, 0, 255);
+    box-shadow: 1px 1px 3px rgb(0, 0, 255);
+}
+#tab5:hover {
+    border-top-color: rgb(157, 0, 255);
+    box-shadow: 1px 1px 3px rgb(157, 0, 255);
+}
+#tab6:hover {
+    border-top-color: rgb(255, 255, 0);
+    box-shadow: 1px 1px 3px rgb(255, 255, 0);
+}
+#tab7:hover {
+    border-top-color: rgb(255, 0, 0);
+    box-shadow: 1px 1px 3px rgb(255, 0, 0);
+}
+/* all tabs content */
+#tabcontent {
+    width: 90%;
+    height: 95%;
+    margin: .5% auto;
+    padding: 15px;
+    background-color: rgba(52, 63, 67, 0.75);
+    border-radius: 10px;
+    border-color: rgb(255, 255, 255);
+    border-bottom-style: outset;
+    border-width: 4px;
+    overflow-y: scroll;
+    text-align: center;
+    box-shadow: 2px 4px 10px rgba(255, 255, 255, 1);
+}
+#tabcontent h2 {
+    margin: 5px auto;
+    padding: 10px;
+    background-color: black;
+    text-align: center;
+    font-size: 22px;
+}
+/* home tab */
+#home_container {
+    margin: 1.5% auto;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    border-top: 3px outset rgb(255 128 0);
+    border-bottom: 5px outset rgb(255 128 0);
+    box-shadow: 1px 3px 6px rgb(255 128 0);
+    width: 95%;
+    height: 90%;
+    text-align: center;
+}
+#homeimg1, #homeimg2, #homeimg3 {
+    border-top: 3px outset rgb(255 128 0);
+    border-bottom: 5px outset rgb(255 128 0);
+    box-shadow: 1px 3px 6px rgb(255 128 0);
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+#homeimg1:hover, #homeimg2:hover, #homeimg3:hover {
+    border-top-color: rgb(255 255 0);
+    border-bottom-color: rgb(255 255 0);
+    box-shadow: 1px 3px 6px rgb(255 255 0);
+}
+#home_tab_img_container {
+    margin: 5% auto;
+    padding: 5px;
+    gap: 10px;
+}
+/* build theme */
+#build_container {
+    margin: 1% auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-top: 3px outset rgb(57, 255, 20);
+    border-bottom: 5px outset rgb(57, 255, 20);
+    box-shadow: 1px 1px 3px rgb(57, 255, 20);
+    width: 95%;
+    height: 90%;
+    text-align: center;
+}
+#download_csm_btn {
+    padding: 5px 10px;
+    margin: 10px auto;
+    border-radius: 10px;
+    border-top: 3px outset rgb(57, 255, 20);
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer;
+    display: none;
+    width: 25%;
+}
+#download_csm_btn:hover {
+    box-shadow: 1px 1px 3px rgb(255, 255, 0);
+    background-color: rgb(53, 62, 67);
+}
+/* build gui */
+#build_gui_container {
+    margin: 1.5% auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-top: 3px outset rgb(57, 255, 20);
+    border-bottom: 5px outset rgb(57, 255, 20);
+    box-shadow: 2px 4px 10px rgb(57, 255, 20);
+    width: 94%;
+    height: 90%;
+    text-align: center;
+}
+#build_gui_container h1 {
+    font-size: 24px;
+    width: 50%;
+    margin: 5px auto;
+    border-color: rgb(57, 255, 20);
+}
+#save_menu_btn, #delete_menu_btn {
+    border-radius: 10px;
+    border-top: 3px outset rgb(57, 255, 20);
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer;
+    padding: 5px 15px;
+}
+#save_menu_btn:hover, #delete_menu_btn:hover {
+    background-color: rgb(53, 62, 67);
+    box-shadow: 1px 1px 3px rgb(255, 255, 0);
+}
+#select_version, #select_region {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    border-top: 3px outset rgb(57, 255, 20);
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer;
+}
+#select_version:hover, #select_region:hover {
+    background-color: rgb(53, 62, 67);
+    box-shadow: 1px 1px 3px rgb(255, 255, 0);
+    cursor: pointer;
+}
+#select_version option, #select_region option {
+    background-color: black;
+    color: rgb(255 255 230);
+}
+#spin_color {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    border-top: 3px outset rgb(57, 255, 20);
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer;
+}
+#spin_color:hover {
+    box-shadow: 1px 1px 3px rgb(255, 255, 0);
+    background-color: rgb(53, 62, 67);
+}
+#spin_color option {
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer; 
+}
+#spin_color_container, #spin_option_container {
+    width: 45%;
+    text-align: center;
+    display: inline-block;
+}
+#spin_color_label, #spin_color {
+    margin: 0 5px;
+}
+#fastspin, #spin, #nospin, #fastspinlabel, #spinlabel, #nospinlabel {
+    margin: 0 5px;
+    cursor: pointer;
+}
+#source_file_save, #trans_channels {
+    margin: 5px;
+}
+#source_file_save_label, #trans_channels_label {
+    margin: 5px;
+}
+#source_file_container, #trans_channels_container {
+    width: 40%;
+    text-align: center;
+    display: inline-block;
+}
+#begin_build_btn {
+    padding: 5px 20px;
+    margin: 10px auto;
+    border-radius: 10px;
+    border-top: 3px outset rgb(57, 255, 20);
+    background-color: black;
+    color: rgb(255 255 230);
+    width: 25%;
+    cursor: pointer;
+}
+#begin_build_btn:hover {
+    box-shadow: 1px 1px 3px rgb(255, 255, 0);
+    background-color: rgb(53, 62, 67);
+}
+/* gallery tab */
+#theme_img_enlarged {
+    width: 85vw;
+    height: 80vh;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: rgba(52, 63, 67, 0.75);
+    border-radius: 10px;
+    border-top: 10px outset rgb(255, 165, 0);
+    border-bottom: 15px outset rgb(255, 165, 0);
+    overflow-y: scroll;
+    display:none;
+    z-index: 20;
+    position: absolute;
+    top: 13vh;
+    left: 7.5vw;
+}
+#theme_gallery {
+    margin: 25px auto;
+    padding: 10px 20px;
+    background-color: black;
+    border-radius: 10px;
+    border-top: 3px outset rgb(255, 106, 180);
+    border-bottom: 5px outset rgb(255, 106, 180);
+    box-shadow: 1px 3px 6px rgb(255, 106, 180);
+    width: 95%;
+    text-align: center;
+}
+#preview_filter option:hover, #spin_color option:hover {
+    background-color: rgb(53, 62, 67);
+}
+#loadnextbtn, #loadprevbtn {
+    padding: 5px 10px;
+    margin: 5px 15px;
+    border-radius: 10px;
+    border-top: 2px solid rgb(255 106 180);
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer;
+    font-weight: bold;
+}
+#loadnextbtn:hover, #loadprevbtn:hover {
+    background-color: rgb(53, 62, 67);
+    box-shadow: 1px 1px 3px rgb(255 106 180);
+}
+#preview_select, #preview_filter {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    border-top: 2px solid rgb(255 106 180);
+    background-color: black;
+    color: rgb(255 255 230);
+    font-weight: bold;
+    cursor: pointer;
+}
+#preview_select:hover, #preview_select option, #preview_filter:hover, #preview_filter option {
+    background-color: rgb(53, 62, 67);
+    box-shadow: 1px 1px 3px rgb(255 106 180);
+    color: rgb(241, 150, 196);
+    cursor: pointer;
+}
+#preview_select option, #preview_filter option {
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer;
+    text-align: center;
+}
+#gallery_header_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-evenly;
+    justify-content: space-evenly;
+}
+/* build theme button */
+#preview_get_theme_btn {
+    padding: 5px 15px;
+    border-radius: 10px;
+    border-top: 3px outset rgb(255 106 180);
+    background-color: black;
+    color: rgb(255 255 230);
+    cursor: pointer;
+    margin: 5px auto;
+    font-weight: bold;
+}
+#preview_get_theme_btn:hover {
+    background-color: rgb(53, 62, 67);
+    box-shadow: 1px 1px 3px rgb(255 106 180);
+}
+#num_theme_downloads {
+    margin: 5px auto;
+    border-radius: 10px;
+    border-bottom: 2px outset rgb(255 106 180);
+    font-weight: bold;
+}
+#gallery_header {
+    border-radius: 10px;
+    border-bottom: 2px outset rgb(255 106 180);
+    width: 50%;
+    text-align: center;
+    margin: 5px auto;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+#preview_mainimg, #preview_secondaryimg {
+    box-shadow: 1px 1px 3px rgb(255 106 180);
+    width: 75%;
+    height: 45%;
+    margin: 10px auto;
+    cursor: pointer;
+}
+#preview_mainimg:hover, #preview_secondaryimg:hover {
+    box-shadow: 1px 1px 3px rgb(255 255 0);
+    cursor: pointer;
+}
+#img_main, #img_secondary {
+    width: 90%;
+    height: 45%;
+}
+#preview_video {
+    box-shadow: 1px 1px 3px rgb(255 106 180);
+}
+#preview_imgs_container {
+    flex-wrap: nowrap;
+    width: 95%;
+    height: 90%;
+}
+#preview_imgs {
+    width: 40%;
+    height: 90%;
+}
+/* downloads tab */
+#theme_installers {
+    margin: 2.5% auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(0 0 255);
+    border-bottom-style: outset;
+    border-top-style: outset;
+    box-shadow: 2px 3px 8px rgb(0 0 255);
+    border-width: 3px;
+    width: 95%;
+    height: 90%;
+    text-align: center;
+}
+#downloadimg1, #downloadimg2, #downloadimg3 {
+    border-bottom: 5px outset rgb(0 0 255);
+    border-top: 3px outset rgb(0 0 255);
+    box-shadow: 1px 3px 6px rgb(0 0 255);
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+#downloadimg1:hover, #downloadimg2:hover, #downloadimg3:hover {
+    border-top-color: rgb(255 255 0);
+    border-bottom-color: rgb(255 255 0);
+    box-shadow: 1px 3px 6px rgb(255 255 0);
+    cursor: pointer;
+}
+/* stats tab */
+#stats_message{
+    margin: 2.5% auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-top-color: rgb(255 255 0);
+    border-bottom-color: rgb(255 255 0);
+    box-shadow: 2px 3px 8px rgb(255 255 0);
+    border-bottom-style: outset;
+    border-top-style: outset;
+    border-width: 3px;
+    width: 95%;
+    height: max-content;
+    text-align: left;
+}
+#show_more_wii, #show_more_vwii, #showlessbtn1, #showlessbtn2 {
+    display: none;
+}
+#showmorebtn1, #showmorebtn2, #showlessbtn1, #showlessbtn2 {
+    background-color: black;
+    color: rgb(255 255 230);
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 10px;
+    border-top: 3px outset rgb(255 255 0);
+    padding: 5px 10px;
+    width: 10%;
+    text-align: center;
+}
+#showmorebtn1:hover, #showmorebtn2:hover, #showlessbtn1:hover, #showlessbtn2:hover {
+    background-color: rgb(53, 62, 67);
+    border-top-color: rgb(255 255 0);
+    box-shadow: 1px 1px 3px rgb(255 255 0);
+}
+#visitor_count, #wii_downloads, #vwii_downloads, #themecount, #uwii, #ewii, #jwii, #kwii, #uvwii, #evwii, #jvwii {
+    float: right;
+    margin-right: 10px;
+    clear: both;
+}
+/* links tab */
+#links_container {
+    margin: 1.5% auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(157 0 255);
+    box-shadow: 2px 3px 8px rgb(157, 0, 255);
+    border-bottom-style: outset;
+    border-top-style: outset;
+    border-width: 3px;
+    width: 95%;
+    height: 90%;
+    text-align: left;
+}
+#links_container  h3 {
+    text-decoration: underline;
+}
+#links_container a {
+    text-decoration: none;
+    color: rgb(255 255 230);
+}
+#links_container a:hover {
+    color: rgb(255 248 0);
+}
+#arrow {
+    text-align: center;
+}
+/* mail tab */
+#mail_img_container {
+    margin: 10px auto; 
+    width: 30%;
+}
+#mail_message {
+    margin: 2% auto;
+    padding: 15px;
+    background-color: black;
+    border-radius: 10px;
+    border-top-color: rgb(255 0 0);
+    border-bottom-color: rgb(255 0 0);
+    border-bottom-style: outset;
+    border-top-style: outset;
+    border-width: 3px;
+    width: 95%;
+    height: 90%;
+    text-align: center;
+    box-shadow: 2px 3px 8px rgb(255 0 0);
+}
+#mail_message a{
+    text-decoration: none;
+    color: rgb(255 255 230);
+}
+#mail_message a:hover {
+    text-decoration: underline;
+    color: rgb(214, 67, 67);
+}
+/* footer */
+#footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+#footer p {
+    width: 30vw;
+    margin: 0 auto;
+    background-color: black;
+    border-radius: 10px;
+    border-color: rgb(0 255 0);
+    border-bottom-style: outset;
+    border-width: 2px;
+    padding: 5px 0;
+    text-align: center;
+    height: max-content;
+}
+
+/* classes */
+/* --------------------------------------------------------- */
+/* element display */
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/* close button */
+.closepreviewbtn {
+    float:right;
+    background-color: black;
+    color: rgb(255 255 230);
+    border: 2px solid rgb(255 255 240);
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 5;
+}
+.closepreviewbtn:hover {
+    background-color: rgb(53, 62, 67);
+}
+/* links tab */
+.links_page {
+    width: 60%;
+    margin: 10px auto;
 }
