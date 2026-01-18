@@ -1140,7 +1140,10 @@ function close_download() {
 	}
 	set_data("single");
 	load_single_theme_count("resources/stats/indthemecnt/" + completethemeinfo[theme_index].downloads);
-	delete_session_folder();
+	setTimeout(function() {
+		delete_session_folder();
+	}, 2000);
+	
 	return;
 }
 function download_timer() {
@@ -1204,7 +1207,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 61) && theme_num <= 68) || (theme_num == 58)  || (theme_num == 107) || (theme_num == 269))
+    if(((theme_num >= 61) && theme_num <= 68) || (theme_num == 58)  || (theme_num == 107) || (theme_num == 270))
 		return true;
 	return false;
 }
