@@ -33,8 +33,8 @@
         "", "u", "e", "j", "k"
     );
     $spin_first_themes = array(
-        "black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedU.mym", "darkwii_extendedE.mym"
-    ); //"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
+        "black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedu.mym", "darkwii_extendede.mym"
+     );//"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
     $spin_display = array(
         "", "_nospin", "_spin", "_fastspin"
     );
