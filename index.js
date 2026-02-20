@@ -89,6 +89,7 @@ const completethemeinfo = [
 	{name:"Eagles", ID:"EGLES1", mainimg:"eagles.avif", secondaryimg:"eagles.png", mym:"eagles_stage1.mym", video:"https://www.youtube.com/embed/H2zvZ1b9dHo?si=6HrAJUG0BwuJsNKi?autoplay=0&mute=1", downloads:"eagles.txt", trans_chans:"0", filter:"sports"},
 	{name:"Earth Bound", ID:"ETHBD1", mainimg:"earthbound.avif", secondaryimg:"earthbound.png", mym:"earth_bound.mym", video:"https://www.youtube.com/embed/gO4k6ggnL0U?autoplay=0&mute=1", downloads:"earth_bound.txt", trans_chans:"1", filter:"game"},
 	{name:"Earth Bound v2", ID:"ETHBD2", mainimg:"earthboundv2.avif", secondaryimg:"earthboundv2.png", mym:"earth_boundv2.mym", video:"https://www.youtube.com/embed/Oim0ewCMzlg?si=XOlP0tHsydIr9zfN?autoplay=0&mute=1", downloads:"earth_boundv2.txt", trans_chans:"1", filter:"game"},
+	{name:"Earth Bound v3", ID:"ETHBD3", mainimg:"earthboundv3.avif", secondaryimg:"earthboundv3.png", mym:"earthboundv3.mym", video:"https://www.youtube.com/embed/jHPzdvLQi-E?si=cYaJOd7k5PlwCrGu?autoplay=0&mute=1", downloads:"earth_boundv3.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Emo Blue", ID:"EMOBL1", mainimg:"emoblue.avif", secondaryimg:"emoblue.png", mym:"emoblue.mym", video:"https://www.youtube.com/embed/7EpLqmqxwes?si=wYUqFxKmwEZ0Yw-h?autoplay=0&mute=1", downloads:"emoblue.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Emo Green", ID:"EMOGR1", mainimg:"emogreen.avif", secondaryimg:"emogreen.png", mym:"emogreen.mym", video:"https://www.youtube.com/embed/j4oaXwXi9Zg?si=rtxSbP-DeTcrsaZx?autoplay=0&mute=1", downloads:"emogreen.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Emo Pink", ID:"EMOPK1", mainimg:"emopink.avif", secondaryimg:"emopink.png", mym:"emopink.mym", video:"https://www.youtube.com/embed/GG2aRdXmgic?si=gl_deznBXMXAtB8g?autoplay=0&mute=1", downloads:"emopink.txt", trans_chans:"1", filter:"darkwii"},
@@ -158,6 +159,7 @@ const completethemeinfo = [
 	{name:"Lego Batman", ID:"LGOBTM", mainimg:"legobatman.avif", secondaryimg:"legobatman.png", mym:"legobatman.mym", video:"https://www.youtube.com/embed/jUeylIJ-cZc?si=RUqFpnC5GrYYGhhj?autoplay=0&mute=1", downloads:"legobatman.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Leopard OS", ID:"LEOPA1", mainimg:"leopardos.avif", secondaryimg:"leopardos.png", mym:"leopard_os.mym", video:"https://www.youtube.com/embed/yZsh5Eiys04?autoplay=0&mute=1", downloads:"leopard_os.txt", trans_chans:"0", filter:"top20/os"},
 	{name:"Lime Wii", ID:"LIME01", mainimg:"limewii.avif", secondaryimg:"limewii.png", mym:"lime_wii.mym", video:"https://www.youtube.com/embed/_L1V84YnIi4?autoplay=0&mute=1", downloads:"lime_wii.txt", trans_chans:"1", filter:"darkwii"},
+	{name:"Limp Bizkit", ID:"LMPBIZ", mainimg:"limpbizkit.avif", secondaryimg:"limpbizkit.png", mym:"limpbizkit.mym", video:"https://www.youtube.com/embed/jHPzdvLQi-E?si=jUS5EhyUEIejmGGK?autoplay=0&mute=1", downloads:"limpbizkit.txt", trans_chans:"0", filter:"music/new"},
 	{name:"Looney Toons", ID:"LTOON1", mainimg:"looneytoons.avif", secondaryimg:"looneytoons.png", mym:"looney_toons.mym", video:"https://www.youtube.com/embed/D5dFtKsQhYE?autoplay=0&mute=1", downloads:"looney_toons.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Lost", ID:"LOST01", mainimg:"lost.avif", secondaryimg:"lost.png", mym:"lost.mym", video:"https://www.youtube.com/embed/MGjEbT6j5U4?autoplay=0&mute=1", downloads:"lost.txt", trans_chans:"1", filter:"movie"},
 	{name:"Luigi v1", ID:"LUIGI1", mainimg:"luigi.avif", secondaryimg:"luigi.png", mym:"luigi_v1.mym", video:"https://www.youtube.com/embed/kIQWI1lfvN8?autoplay=0&mute=1", downloads:"luigi.txt", trans_chans:"1", filter:"game"},
@@ -1225,7 +1227,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 63) && theme_num <= 70) || (theme_num == 60)  || (theme_num == 109) || (theme_num == 278))
+    if(((theme_num >= 63) && theme_num <= 70) || (theme_num == 60)  || (theme_num == 110) || (theme_num == 280))
 		return true;
 	return false;
 }
