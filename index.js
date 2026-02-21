@@ -226,6 +226,7 @@ const completethemeinfo = [
 	{name:"Pittsburgh Penguins", ID:"PENGUN", mainimg:"penguins.avif", secondaryimg:"penguins.png", mym:"penguins.mym", video:"https://www.youtube.com/embed/lvZfLnIBoI4?si=vqBy0oEkULIAo0t-?autoplay=0&mute=1", downloads:"penguins.txt", trans_chans:"1", filter:"sports"},
 	{name:"Pittsburgh Steelers", ID:"STELR1", mainimg:"steelers.avif", secondaryimg:"steelers.png", mym:"steelers_stage1.mym", video:"https://www.youtube.com/embed/2iRmunSmf1c?si=FQRhgCgtt67SQm1i?autoplay=0&mute=1", downloads:"steelers.txt", trans_chans:"0", filter:"sports"},
 	{name:"Pizza Tower", ID:"PIZTR1", mainimg:"pizzatower.avif", secondaryimg:"pizzatower.png", mym:"pizzatower.mym", video:"https://www.youtube.com/embed/f_cW-8lp1b4?si=932VvV03RpKo0cfy?autoplay=0&mute=1", downloads:"pizzatower.txt", trans_chans:"1", filter:"game/views"},
+	{name:"Pokemon", ID:"POKEMN", mainimg:"pokemon.avif", secondaryimg:"pokemon.png", mym:"pokemon.mym", video:"https://www.youtube.com/embed/HmzKqwj9oJo?si=k2i-Vth3FjhyRQ4h?autoplay=0&mute=1", downloads:"pokemon.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Predator", ID:"PREDR1", mainimg:"predator.avif", secondaryimg:"predator.png", mym:"predator.mym", video:"https://www.youtube.com/embed/QmCt75ROOxc?si=T7b3hggOhc9acsE9?autoplay=0&mute=1" ,downloads:"predator.txt", trans_chans:"1", filter:"movie"},
 	{name:"Princess Ariel v1", ID:"PARIE1", mainimg:"princess_ariel_v1.avif", secondaryimg:"princess_ariel_v1.png", mym:"princess_ariel_v1.mym", video:"https://www.youtube.com/embed/gTVq66QoR0k?si=Nb3yILXlOUIPYX6D?autoplay=0&mute=1", downloads:"princess_ariel_v1.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Princess Ariel v2", ID:"PARIE2", mainimg:"princess_ariel_v2.avif", secondaryimg:"princess_ariel_v2.png", mym:"princess_ariel_v2.mym", video:"https://www.youtube.com/embed/OvJgxkaySdE?si=f4cuyHBvc87CmpJR?autoplay=0&mute=1", downloads:"princess_ariel_v2.txt", trans_chans:"1", filter:"cartoon"},
@@ -1227,7 +1228,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 63) && theme_num <= 70) || (theme_num == 60)  || (theme_num == 110) || (theme_num == 280))
+    if(((theme_num >= 63) && theme_num <= 70) || (theme_num == 60)  || (theme_num == 110) || (theme_num == 281))
 		return true;
 	return false;
 }
