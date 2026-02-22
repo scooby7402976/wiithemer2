@@ -557,7 +557,7 @@
             return false;
 	}
     function theme_needs_mym_Extension($theme_Selected) : bool {
-		if((($theme_Selected >= 63) && $theme_Selected <= 70) || ($theme_Selected == 60)  || ($theme_Selected == 110) || ($theme_Selected == 281))
+		if((($theme_Selected >= 63) && $theme_Selected <= 70) || ($theme_Selected == 60)  || ($theme_Selected == 111) || ($theme_Selected == 283))
 			return true;
 		return false;
 	}

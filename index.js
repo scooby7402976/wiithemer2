@@ -102,6 +102,7 @@ const completethemeinfo = [
 	{name:"Family Guy", ID:"FMGUY1", mainimg:"familyguy.avif", secondaryimg:"familyguy.png", mym:"family_guy.mym", video:"https://www.youtube.com/embed/SHgd0t4BENI?autoplay=0&mute=1", downloads:"family_guy.txt", trans_chans:"1", filter:"cartoon/views"},
 	{name:"Fantastic Four", ID:"FAN4V1", mainimg:"fantasticfour.avif", secondaryimg:"fantasticfour.png", mym:"fantasticfour.mym", video:"https://www.youtube.com/embed/UDPNxL6s_JA?si=Zk1RCelpG9FdcwPr?autoplay=0&mute=1", downloads:"fantasticfour.txt", trans_chans:"1", filter:"movie"},
 	{name:"Fantasy", ID:"FANTA1", mainimg:"Fantasy.avif", secondaryimg:"fantasy.png", mym:"fantasy.mym", video:"https://www.youtube.com/embed/hGqk0wQL9Us?autoplay=0&mute=1", downloads:"fantasy.txt", trans_chans:"0", filter:"misc"},
+	{name:"Fat Albert", ID:"FATALB", mainimg:"fatalbert.avif", secondaryimg:"fatalbert.png", mym:"fatalbert.mym", video:"https://www.youtube.com/embed/IYPP7xVbLaY?si=2o9bRmd_exWMJxdX?autoplay=0&mute=1", downloads:"fatalbert.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Felix the Cat", ID:"FELIX1", mainimg:"felix.avif", secondaryimg:"felix.png", mym:"felix.mym", video:"https://www.youtube.com/embed/ncpFbPlT91s?si=BGhXo6Og2bxaR-_v?autoplay=0&mute=1", downloads:"felix.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Fight Club", ID:"FCLUB1", mainimg:"FightClub.avif", secondaryimg:"fightclub.png", mym:"fight_club.mym", video:"https://www.youtube.com/embed/WVY8mcnJmu8?autoplay=0&mute=1", downloads:"fight_club.txt", trans_chans:"0", filter:"movie"},
 	{name:"Final Fantasy 7", ID:"FFVII1", mainimg:"FinalFantasy7.avif", secondaryimg:"finalfantasy7.png", mym:"final_fantasy_7.mym", video:"https://www.youtube.com/embed/bymdnStOo9U?autoplay=0&mute=1", downloads:"final_fantasy_7.txt", trans_chans:"1", filter:"game"},
@@ -279,6 +280,7 @@ const completethemeinfo = [
 	{name:"StarCraft", ID:"STCFT1", mainimg:"starcraft.avif", secondaryimg:"starcraft.png", mym:"star_craft.mym", video:"https://www.youtube.com/embed/Skg45dVotEQ?si=3mqJ_jgB2bXH9Hn9?autoplay=0&mute=1", downloads:"starcraft.txt", trans_chans:"0", filter:"game"},
 	{name:"Star Fox Zero", ID:"STARFX", mainimg:"starfoxzero.avif", secondaryimg:"starfoxzero.png", mym:"starfoxzero.mym", video:"https://www.youtube.com/embed/j4XWXbi3v-E?si=h_oDuSmjtE2qcH4x?autoplay=0&mute=1", downloads:"starfoxzero.txt", trans_chans:"1", filter:"game"},
 	{name:"Star Gate", ID:"STGTE1", mainimg:"stargate.avif", secondaryimg:"stargate.png", mym:"star_gate.mym", video:"https://www.youtube.com/embed/6LwuadUQlME?si=kDPm8DudqC4U1401?autoplay=0&mute=1", downloads:"stargate.txt", trans_chans:"1", filter:"movie"},
+	{name:"Star Trek", ID:"STRTRK", mainimg:"startrek.avif", secondaryimg:"startrek.png", mym:"startrek.mym", video:"https://www.youtube.com/embed/YgqBfzfSJ7k?si=XD9q1r9KAUBw7Ffp?autoplay=0&mute=1", downloads:"startrek.txt", trans_chans:"1", filter:"movie/new"},
 	{name:"Star Wars", ID:"STWRS1", mainimg:"starwars.avif", secondaryimg:"starwars.png", mym:"star_wars.mym", video:"https://www.youtube.com/embed/DYSM94FogyE?si=Y_IWo8pldhinyw0o?autoplay=0&mute=1", downloads:"starwars.txt", trans_chans:"1", filter:"movie"},
 	{name:"Star Wars Unleashed", ID:"STWRS2", mainimg:"starwarsunleashed.avif", secondaryimg:"starwarsunleashed.png", mym:"star_wars_unleashed.mym", video:"https://www.youtube.com/embed/rEzDAw0MGDo?si=mFL6Jj29KfGEz3A9?autoplay=0&mute=1", downloads:"starwarsunleashed.txt", trans_chans:"1", filter:"movie"},
 	{name:"Steel Wii", ID:"STWII1", mainimg:"steelwii.avif", secondaryimg:"steelwii.png", mym:"steel_wii.mym", video:"https://www.youtube.com/embed/xPt3KYIEG3s?si=tE6mo4fh9V-_q4Ci?autoplay=0&mute=1", downloads:"steelwii.txt", trans_chans:"1", filter:"darkwii"},
@@ -1228,7 +1230,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 63) && theme_num <= 70) || (theme_num == 60)  || (theme_num == 110) || (theme_num == 281))
+    if(((theme_num >= 63) && theme_num <= 70) || (theme_num == 60)  || (theme_num == 111) || (theme_num == 283))
 		return true;
 	return false;
 }
