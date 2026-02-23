@@ -40,12 +40,14 @@ const completethemeinfo = [
 	{name:"Carolina Panthers", ID:"PNTHR1", mainimg:"carolina_panthers.avif", secondaryimg:"carolina_panthers.png", mym:"panthers.mym", video:"https://www.youtube.com/embed/SVfQNEQ8I5g?si=0osMMhk3QiwaTYRR?autoplay=0&mute=1", downloads:"panthers.txt", trans_chans:"1", filter:"sports"},
 	{name:"Cars", ID:"CARS01", mainimg:"cars.avif", secondaryimg:"cars.png", mym:"cars_stage1.mym", video:"https://www.youtube.com/embed/FNyt_khFHsI?autoplay=0&mute=1", downloads:"cars.txt", trans_chans:"1", filter:"movie"},
 	{name:"Castlevania", ID:"CSTLV1", mainimg:"castlevania.avif", secondaryimg:"castlevania.png", mym:"castlevania.mym", video:"https://www.youtube.com/embed/fjRqwJrtcgw?si=2t1vXfBq-34lDzax?autoplay=0&mute=1", downloads:"castlevania.txt", trans_chans:"1", filter:"game"},
+	{name:"CatDog", ID:"CATDOG", mainimg:"catdog.avif", secondaryimg:"catdog.png", mym:"catdog.mym", video:"https://www.youtube.com/embed/wu-0nK0FetA?si=HhLw3YiWlvc1hj4x?autoplay=0&mute=1", downloads:"catdog.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Celtic FC", ID:"CELTIC", mainimg:"celtic.avif", secondaryimg:"celtic.png", mym:"celtic.mym", video:"https://www.youtube.com/embed/4JrQhqZvGOA?si=vAIYlGtdft3S6i-a?autoplay=0&mute=1", downloads:"celtic.txt", trans_chans:"1", filter:"sports"},
 	{name:"Chainsaw Man", ID:"CHNSAW", mainimg:"chainsaw_man.avif", secondaryimg:"chainsaw_man.png", mym:"chainsaw_man.mym", video:"https://www.youtube.com/embed/59v8dXH1aK0?si=G5XkmwZ0C2hvYYcj?autoplay=0&mute=1", downloads:"chainsaw_man.txt", trans_chans:"1", filter:"anime"},
 	{name:"Check Mii Out", ID:"CKMO01", mainimg:"check_mii_out.avif", secondaryimg:"check_mii_out.png", mym:"check_mii_out.mym", video:"https://www.youtube.com/embed/Og-xmUTZt6o?si=Tv2DHxvW458-FGzN?autoplay=0&mute=1", downloads:"check_mii_out.txt", trans_chans:"1", filter:"misc/views"},
 	{name:"Chicago Bears", ID:"BEARS1", mainimg:"chicago_bears.avif", secondaryimg:"chicago_bears.png", mym:"bears.mym", video:"https://www.youtube.com/embed/Yk3tXxSTtiY?si=cs5jn-Ku6a-CqaGq?autoplay=0&mute=1", downloads:"bears.txt", trans_chans:"1", filter:"sports"},
 	{name:"Chicago Black Hawks", ID:"HAWKS1", mainimg:"chicago_blackhawks.avif", secondaryimg:"chicago_blackhawks.png", mym:"blackhawks.mym", video:"https://www.youtube.com/embed/8TdU3BidMpA?si=Ca92r3-FMrRtSFOq?autoplay=0&mute=1", downloads:"blackhawks.txt", trans_chans:"1", filter:"sports"},
 	{name:"Chicago Bulls", ID:"BULLS1", mainimg:"chicago_bulls.avif", secondaryimg:"chicago_bulls.png", mym:"bulls.mym", video:"https://www.youtube.com/embed/uhiT3OWR_ec?si=tMtc4W2QuNCvbgCK?autoplay=0&mute=1", downloads:"bulls.txt", trans_chans:"1", filter:"sports"},
+	{name:"Chowder", ID:"CHOWDR", mainimg:"chowder.avif", secondaryimg:"chowder.png", mym:"chowder.mym", video:"https://www.youtube.com/embed/mBeSY6gf7TQ?si=LFNKZXGqmoo5U7oF?autoplay=0&mute=1", downloads:"chowder.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Christmas", ID:"XMASSE", mainimg:"xmas.avif", secondaryimg:"xmas.png", mym:"xmas.mym", video:"https://www.youtube.com/embed/SH7Usakp_lY?si=GiL26dsfQKicD6Z2?autoplay=0&mute=1", downloads:"xmas.txt", trans_chans:"1", filter:"misc"},
 	{name:"Chrono Trigger", ID:"CRTRG1", mainimg:"chronotrigger.avif", secondaryimg:"chronotrigger.png", mym:"chronotrigger.mym", video:"https://www.youtube.com/embed/98X7CwDem_8?si=m-SBfPqR3tmt9ohw?autoplay=0&mute=1", downloads:"chronotrigger.txt", trans_chans:"0", filter:"game"},
 	{name:"Clock Work Orange", ID:"CLKWK1", mainimg:"clockworkorange.avif", secondaryimg:"clockworkorange.png", mym:"clockwork_orange.mym", video:"https://www.youtube.com/embed/uIRzAfn0CE0?si=bjUfrDRLTfDkpSp0?autoplay=0&mute=1", downloads:"clockworkorange.txt", trans_chans:"1", filter:"movie"},
@@ -89,7 +91,7 @@ const completethemeinfo = [
 	{name:"Eagles", ID:"EGLES1", mainimg:"eagles.avif", secondaryimg:"eagles.png", mym:"eagles_stage1.mym", video:"https://www.youtube.com/embed/H2zvZ1b9dHo?si=6HrAJUG0BwuJsNKi?autoplay=0&mute=1", downloads:"eagles.txt", trans_chans:"0", filter:"sports"},
 	{name:"Earth Bound", ID:"ETHBD1", mainimg:"earthbound.avif", secondaryimg:"earthbound.png", mym:"earth_bound.mym", video:"https://www.youtube.com/embed/gO4k6ggnL0U?autoplay=0&mute=1", downloads:"earth_bound.txt", trans_chans:"1", filter:"game"},
 	{name:"Earth Bound v2", ID:"ETHBD2", mainimg:"earthboundv2.avif", secondaryimg:"earthboundv2.png", mym:"earth_boundv2.mym", video:"https://www.youtube.com/embed/Oim0ewCMzlg?si=XOlP0tHsydIr9zfN?autoplay=0&mute=1", downloads:"earth_boundv2.txt", trans_chans:"1", filter:"game"},
-	{name:"Earth Bound v3", ID:"ETHBD3", mainimg:"earthboundv3.avif", secondaryimg:"earthboundv3.png", mym:"earthboundv3.mym", video:"https://www.youtube.com/embed/jHPzdvLQi-E?si=cYaJOd7k5PlwCrGu?autoplay=0&mute=1", downloads:"earth_boundv3.txt", trans_chans:"1", filter:"game/new"},
+	{name:"Earth Bound v3", ID:"ETHBD3", mainimg:"earthboundv3.avif", secondaryimg:"earthboundv3.png", mym:"earthboundv3.mym", video:"https://www.youtube.com/embed/bPRAmYYcdDU?si=jyK0mh1YMASM9JJx?autoplay=0&mute=1", downloads:"earth_boundv3.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Emo Blue", ID:"EMOBL1", mainimg:"emoblue.avif", secondaryimg:"emoblue.png", mym:"emoblue.mym", video:"https://www.youtube.com/embed/7EpLqmqxwes?si=wYUqFxKmwEZ0Yw-h?autoplay=0&mute=1", downloads:"emoblue.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Emo Green", ID:"EMOGR1", mainimg:"emogreen.avif", secondaryimg:"emogreen.png", mym:"emogreen.mym", video:"https://www.youtube.com/embed/j4oaXwXi9Zg?si=rtxSbP-DeTcrsaZx?autoplay=0&mute=1", downloads:"emogreen.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Emo Pink", ID:"EMOPK1", mainimg:"emopink.avif", secondaryimg:"emopink.png", mym:"emopink.mym", video:"https://www.youtube.com/embed/GG2aRdXmgic?si=gl_deznBXMXAtB8g?autoplay=0&mute=1", downloads:"emopink.txt", trans_chans:"1", filter:"darkwii"},
@@ -1230,7 +1232,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 63) && theme_num <= 70) || (theme_num == 60)  || (theme_num == 111) || (theme_num == 283))
+    if(((theme_num >= 65) && theme_num <= 72) || (theme_num == 62)  || (theme_num == 113) || (theme_num == 285))
 		return true;
 	return false;
 }
