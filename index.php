@@ -112,7 +112,11 @@
         if(file_exists($data_file_path))
             $data_file_contents = intval(file_get_contents($data_file_path));
         $temp_data = $data_file_contents + 1;
-        file_put_contents($data_file_path, $temp_data, LOCK_EX);
+        file_put_contents("tmp_file.txt", $temp_data, LOCK_EX);
+        if(!rename("tmp_file.txt", $data_file_path)) {
+            echo "Failed .";
+            return;
+        }
         #echo "set_data-temp_data: " . $temp_data . "\n";
         echo $temp_data;
         //sleep(1);
@@ -557,7 +561,7 @@
             return false;
 	}
     function theme_needs_mym_Extension($theme_Selected) : bool {
-		if((($theme_Selected >= 65) && $theme_Selected <= 72) || ($theme_Selected == 62)  || ($theme_Selected == 113) || ($theme_Selected == 285))
+		if((($theme_Selected >= 66) && $theme_Selected <= 73) || ($theme_Selected == 63)  || ($theme_Selected == 114) || ($theme_Selected == 286))
 			return true;
 		return false;
 	}
