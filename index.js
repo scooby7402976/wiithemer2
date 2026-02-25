@@ -127,6 +127,7 @@ const completethemeinfo = [
 	{name:"Gothic", ID:"GOTH01", mainimg:"gothic.avif", secondaryimg:"gothic.png", mym:"gothic.mym", video:"https://www.youtube.com/embed/Ko3ZcoCmwPI?si=QROVEdiG91ky82_V?autoplay=0&mute=1", downloads:"gothic.txt", trans_chans:"0", filter:"misc"},
 	{name:"Grateful Dead", ID:"GRTFL1", mainimg:"gratefuldead.avif", secondaryimg:"gratefuldead.png", mym:"grateful_dead_stage1.mym", video:"https://www.youtube.com/embed/LURcBb9sF98?si=oebw46IB5hS1hxDU?autoplay=0&mute=1", downloads:"gratefuldead.txt", trans_chans:"1", filter:"music"},
 	{name:"Green Bay Packers", ID:"PCKRS1", mainimg:"greenbay_packers.avif", secondaryimg:"greenbay_packers.png", mym:"packers_stage1.mym", video:"https://www.youtube.com/embed/mfmglgxpV3M?si=yKq_eYg4s0BnJQFU?autoplay=0&mute=1", downloads:"packers.txt", trans_chans:"1", filter:"sports"},
+	{name:"GumBall", ID:"GUMBLL", mainimg:"gumball.avif", secondaryimg:"gumball.png", mym:"gumball.mym", video:"https://www.youtube.com/embed/g29POUg6YBo?si=irxZxt73bBi2fRPL?autoplay=0&mute=1", downloads:"gumball.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Gundam", ID:"GUNDAM", mainimg:"gundam.avif", secondaryimg:"gundam.png", mym:"gundam.mym", video:"https://www.youtube.com/embed/tQlAEvAz9QQ?si=p_aUX8mTYaHzT-DS?autoplay=0&mute=1", downloads:"gundam.txt", trans_chans:"1", filter:"anime"},
 	{name:"Hand Drawn", ID:"HDRAW1", mainimg:"HandDrawn.avif", secondaryimg:"handdrawn.png", mym:"hand_drawn.mym", video:"https://www.youtube.com/embed/e19Hk1Zbp0c?autoplay=0&mute=1", downloads:"hand_drawn.txt", trans_chans:"1", filter:"game"},
 	{name:"Happy Tree Friends", ID:"HAPYTF", mainimg:"treefriends.avif", secondaryimg:"treefriends.png", mym:"treefriends.mym", video:"https://www.youtube.com/embed/wygXrk94WQ8?si=xoZvuME_ZENtZir6?autoplay=0&mute=1", downloads:"treefriends.txt", trans_chans:"1", filter:"cartoon"},
@@ -1234,7 +1235,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 66) && theme_num <= 73) || (theme_num == 63)  || (theme_num == 114) || (theme_num == 286))
+    if(((theme_num >= 66) && theme_num <= 73) || (theme_num == 63)  || (theme_num == 114) || (theme_num == 287))
 		return true;
 	return false;
 }
