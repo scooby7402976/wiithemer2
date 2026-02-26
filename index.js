@@ -57,6 +57,7 @@ const completethemeinfo = [
 	{name:"Conduit", ID:"CONDT1", mainimg:"conduit.avif", secondaryimg:"conduit.png", mym:"conduit.mym", video:"https://www.youtube.com/embed/z2Tu0qbCgg0?si=7t8ZT5OpR-ngUjUu?autoplay=0&mute=1", downloads:"conduit.txt", trans_chans:"0", filter:"game"},
 	{name:"Conduit v2", ID:"CONDT2", mainimg:"conduitv2.avif", secondaryimg:"conduitv2.png", mym:"conduitv2.mym", video:"https://www.youtube.com/embed/dttj-sfiSJk?si=Z1qkmrHw5nkU3RSp?autoplay=0&mute=1", downloads:"conduitv2.txt", trans_chans:"1", filter:"game"},
 	{name:"Constantine", ID:"CONST1", mainimg:"constantine.avif", secondaryimg:"constantine.png", mym:"constantine.mym", video:"https://www.youtube.com/embed/fR8xS8I8vgU?autoplay=0&mute=1", downloads:"constantine.txt", trans_chans:"1", filter:"movie"},
+	{name:"Courage", ID:"CURAGE", mainimg:"courage.avif", secondaryimg:"courage.png", mym:"courage.mym", video:"https://www.youtube.com/embed/_AyiI7-ePMc?si=Q7Y0MokjKqZxOeJC?autoplay=0&mute=1", downloads:"courage.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Creature Cases", ID:"CRETUR", mainimg:"creature_cases.avif", secondaryimg:"creature_cases.png", mym:"creature_cases.mym", video:"https://www.youtube.com/embed/o3mAkQ2zqek?si=xOOE4dAzydc-0iQJ?autoplay=0&mute=1", downloads:"creature_cases.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Daisy Blaize", ID:"DAISYB", mainimg:"daisy.avif", secondaryimg:"daisy.png", mym:"daisy.mym", video:"https://www.youtube.com/embed/Q3UNVtwsHX8?si=9q7YpspZgUniO-sC?autoplay=0&mute=1", downloads:"daisy.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Dallas Cowboys", ID:"CWBYS1", mainimg:"dallas_cowboys.avif", secondaryimg:"dallas_cowboys.png", mym:"dallas.mym", video:"https://www.youtube.com/embed/fNys6Go7yFc?si=vMl4ZK02wcrxamxh?autoplay=0&mute=1", downloads:"cowboys.txt", trans_chans:"1", filter:"sports"},
@@ -1235,7 +1236,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 66) && theme_num <= 73) || (theme_num == 63)  || (theme_num == 114) || (theme_num == 287))
+    if(((theme_num >= 67) && theme_num <= 74) || (theme_num == 64)  || (theme_num == 115) || (theme_num == 288))
 		return true;
 	return false;
 }
