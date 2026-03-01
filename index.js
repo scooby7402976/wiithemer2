@@ -245,7 +245,7 @@ const completethemeinfo = [
 	{name:"Ratchet and Clank", ID:"RCLNK1", mainimg:"ratchetandclank.avif", secondaryimg:"ratchetnclank.png", mym:"ratchet_and_clank.mym", video:"https://www.youtube.com/embed/G_z6DopJRRo?autoplay=0&mute=1", downloads:"ratchet_and_clank.txt", trans_chans:"0", filter:"game"},
 	{name:"Reconnect 24 Blue", ID:"RC2402", mainimg:"rc24_blue.avif", secondaryimg:"rc24blue.png", mym:"rc24_blue.mym", video:"https://www.youtube.com/embed/DAjytOLv1r0?si=__5iuVTUmvWLDa2m?autoplay=0&mute=1", downloads:"rc24_blue.txt", trans_chans:"1", filter:"misc"},
 	{name:"Reconnect 24 Red", ID:"RC2401", mainimg:"rc24_red.avif", secondaryimg:"rc24red.png", mym:"rc24_red.mym", video:"https://www.youtube.com/embed/CF2R3WsNga0?si=MA3yerCcYqtqJjKL?autoplay=0&mute=1", downloads:"rc24_red.txt", trans_chans:"1", filter:"misc"},
-	//{name:"Ren and Stimpy", ID:"RENSTM", mainimg:"renstimpy.avif", secondaryimg:"renstimpy.png", mym:"renstimpy.mym", video:"?autoplay=0&mute=1", downloads:"renstimpy.txt", trans_chans:"1", filter:"cartoon/new"},
+	{name:"Ren and Stimpy", ID:"RENSTM", mainimg:"renstimpy.avif", secondaryimg:"renstimpy.png", mym:"renstimpy.mym", video:"https://www.youtube.com/embed/dtZkWOhhkeQ?si=5bGUjz5t46otv8rV?autoplay=0&mute=1", downloads:"renstimpy.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Resident Evil 4", ID:"RESEVE", mainimg:"re4.avif", secondaryimg:"re4.png", mym:"re4.mym", video:"https://www.youtube.com/embed/CAW7_AWXaGA?si=DZphIXiqpJ2OB0vj?autoplay=0&mute=1", downloads:"re4.txt", trans_chans:"1", filter:"game"},
 	{name:"Rey Mysterio", ID:"RMYST1", mainimg:"rey_mysterio.avif", secondaryimg:"rey_mysterio.png", mym:"rey_mysterio.mym", video:"https://www.youtube.com/embed/9nP6maLtFpo?si=3IYQfVBTs7HYUkg7?autoplay=0&mute=1", downloads:"rey_mysterio.txt", trans_chans:"1", filter:"individual"},
 	{name:"Rhythm Heaven", ID:"RHYTH1", mainimg:"rhythmheaven.avif", secondaryimg:"rhythmheaven.png", mym:"rhythm_heaven.mym", video:"https://www.youtube.com/embed/8JJ4CpvZuog?si=riGPHoFJIcn804nD?autoplay=0&mute=1", downloads:"rhythmheaven.txt", trans_chans:"1", filter:"game"},
@@ -309,6 +309,7 @@ const completethemeinfo = [
 	{name:"Terra Nigma", ID:"TERNG1", mainimg:"terranigma.avif", secondaryimg:"terranigma.png", mym:"terranigma.mym", video:"https://www.youtube.com/embed/LazxNXpRXvw?si=p-itpgveVeMGe5XD?autoplay=0&mute=1", downloads:"terranigma.txt", trans_chans:"1", filter:"game"},
 	{name:"Thunder Cats", ID:"TCATS1", mainimg:"thundercats.avif", secondaryimg:"thundercats.png", mym:"thunder_cats.mym", video:"https://www.youtube.com/embed/LJW-3B1Vooo?autoplay=0&mute=1", downloads:"thunder_cats.txt", trans_chans:"0", filter:"cartoon"},
 	{name:"Teenage Mutant Ninja Turtles", ID:"TMNT01", mainimg:"tmnt.avif", secondaryimg:"tmnt.png", mym:"tmnt.mym", video:"https://www.youtube.com/embed/6cF81fjLRO4?autoplay=0&mute=1", downloads:"tmnt.txt", trans_chans:"1", filter:"cartoon"},
+	{name:"Tenacious D", ID:"TENACD", mainimg:"tenaciousD.avif", secondaryimg:"tenaciousD.png", mym:"tenaciousD.mym", video:"https://www.youtube.com/embed/Em80E-LTHSA?si=EbgRCafN6_8GKDKt?autoplay=0&mute=1", downloads:"tenaciousD.txt", trans_chans:"1", filter:"music/new"},
 	{name:"Tom and Jerry", ID:"TOMJER", mainimg:"tomandjerry.avif", secondaryimg:"tomandjerry.png", mym:"tomandjerry.mym", video:"https://www.youtube.com/embed/U-9OBtVNJLU?si=D_8YLg64vGEbT07Z?autoplay=0&mute=1", downloads:"tomandjerry.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Tom and Jerry v2", ID:"TMJER2", mainimg:"tomandjerryv2.avif", secondaryimg:"tomandjerryv2.png", mym:"tomandjerryv2.mym", video:"https://www.youtube.com/embed/NLLqMjSKWZI?si=T4Y6_2RQTXhbKF2I?autoplay=0&mute=1", downloads:"tomandjerryv2.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Tomb Raider", ID:"TRAID1", mainimg:"tombraider.avif ", secondaryimg:"tombraider.png", mym:"tomb_raider.mym", video:"https://www.youtube.com/embed/-H16kD1wlKc?autoplay=0&mute=1", downloads:"tomb_raider.txt", trans_chans:"1", filter:"game"},
@@ -1238,7 +1239,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 67) && theme_num <= 74) || (theme_num == 64)  || (theme_num == 115) || (theme_num == 289))
+    if(((theme_num >= 67) && theme_num <= 74) || (theme_num == 64)  || (theme_num == 115) || (theme_num == 290))
 		return true;
 	return false;
 }
