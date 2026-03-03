@@ -130,6 +130,7 @@ const completethemeinfo = [
 	{name:"Gothic", ID:"GOTH01", mainimg:"gothic.avif", secondaryimg:"gothic.png", mym:"gothic.mym", video:"https://www.youtube.com/embed/Ko3ZcoCmwPI?si=QROVEdiG91ky82_V?autoplay=0&mute=1", downloads:"gothic.txt", trans_chans:"0", filter:"misc"},
 	{name:"Grateful Dead", ID:"GRTFL1", mainimg:"gratefuldead.avif", secondaryimg:"gratefuldead.png", mym:"grateful_dead_stage1.mym", video:"https://www.youtube.com/embed/LURcBb9sF98?si=oebw46IB5hS1hxDU?autoplay=0&mute=1", downloads:"gratefuldead.txt", trans_chans:"1", filter:"music"},
 	{name:"Green Bay Packers", ID:"PCKRS1", mainimg:"greenbay_packers.avif", secondaryimg:"greenbay_packers.png", mym:"packers_stage1.mym", video:"https://www.youtube.com/embed/mfmglgxpV3M?si=yKq_eYg4s0BnJQFU?autoplay=0&mute=1", downloads:"packers.txt", trans_chans:"1", filter:"sports"},
+	{name:"Grim Adventures of Billy and Mandy", ID:"GABLMD", mainimg:"grim.avif", secondaryimg:"grim.png", mym:"grim.mym", video:"https://www.youtube.com/embed/Xs2tOg4ZceY?si=BjtKJ9LpvSRNhG3Z?autoplay=0&mute=1", downloads:"grim.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"GumBall", ID:"GUMBLL", mainimg:"gumball.avif", secondaryimg:"gumball.png", mym:"gumball.mym", video:"https://www.youtube.com/embed/g29POUg6YBo?si=irxZxt73bBi2fRPL?autoplay=0&mute=1", downloads:"gumball.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Gundam", ID:"GUNDAM", mainimg:"gundam.avif", secondaryimg:"gundam.png", mym:"gundam.mym", video:"https://www.youtube.com/embed/tQlAEvAz9QQ?si=p_aUX8mTYaHzT-DS?autoplay=0&mute=1", downloads:"gundam.txt", trans_chans:"1", filter:"anime"},
 	{name:"Hand Drawn", ID:"HDRAW1", mainimg:"HandDrawn.avif", secondaryimg:"handdrawn.png", mym:"hand_drawn.mym", video:"https://www.youtube.com/embed/e19Hk1Zbp0c?autoplay=0&mute=1", downloads:"hand_drawn.txt", trans_chans:"1", filter:"game"},
@@ -350,6 +351,7 @@ const completethemeinfo = [
 	{name:"Wii U", ID:"WIIU01", mainimg:"wiiu.avif", secondaryimg:"wiiu.png", mym:"wii_u.mym", video:"https://www.youtube.com/embed/eAwrGrJQa3I?si=p--wxO_ygmTeAox_?autoplay=0&mute=1", downloads:"wiiu.txt", trans_chans:"1", filter:"top20/os/views"},
 	{name:"Windows 7", ID:"WIN701", mainimg:"windows7.avif", secondaryimg:"windows7.png", mym:"windows7.mym", video:"https://www.youtube.com/embed/DjSX6lB9FrM?si=OG2ZTzbFgaBLHj6o?autoplay=0&mute=1", downloads:"windows7.txt", trans_chans:"1", filter:"top20/os"},
 	{name:"Win XP OS", ID:"WINXP1", mainimg:"winxpos.avif", secondaryimg:"windowsxp.png", mym:"win_xp_os.mym", video:"https://www.youtube.com/embed/CpMXYTumKEE?autoplay=0&mute=1", downloads:"win_xp_os.txt", trans_chans:"0", filter:"top20/os"},
+	{name:"Wooden Wii", ID:"WOODWI", mainimg:"woodwii.avif", secondaryimg:"woodwii.png", mym:"woodwii.nyn", video:"https://www.youtube.com/embed/5ZD8Yp128qg?si=SAa7ZF4e0JJNLDnJ?autoplay=0&mute=1", downloads:"woodwii.txt", trans_chans:"1", filter:"darkwii/new"},
 	{name:"Wolverine", ID:"WOLVE1", mainimg:"wolverine.avif", secondaryimg:"wolverine.png", mym:"wolverine.mym", video:"https://www.youtube.com/embed/S60LeJR6a54?autoplay=0&mute=1", downloads:"wolverine.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"WWE Raw", ID:"WWERW1", mainimg:"wweraw.avif", secondaryimg:"wweraw.png", mym:"wwe_raw.mym", video:"https://www.youtube.com/embed/-wOT9u73m1M?si=cJSm8nPVI90DaOMr?autoplay=0&mute=1", downloads:"wweraw.txt", trans_chans:"0", filter:"sports"},
 	{name:"Xbox 360", ID:"XBOX01", mainimg:"xbox360.avif", secondaryimg:"xbox360.png", mym:"xbox360.mym", video:"https://www.youtube.com/embed/X0If0IgP8uQ?si=9rrlUcNi_V833qXN?autoplay=0&mute=1", downloads:"xbox360.txt", trans_chans:"0", filter:"os/views"},
@@ -1243,7 +1245,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 69) && theme_num <= 76) || (theme_num == 66)  || (theme_num == 117) || (theme_num == 293))
+    if(((theme_num >= 69) && theme_num <= 76) || (theme_num == 66)  || (theme_num == 117) || (theme_num == 294))
 		return true;
 	return false;
 }
