@@ -233,6 +233,7 @@ const completethemeinfo = [
 	{name:"Pikmin", ID:"PIKMN1", mainimg:"pikmin.avif", secondaryimg:"pikmin.png", mym:"pikmin.mym", video:"https://www.youtube.com/embed/243IWjOtVW0?autoplay=0&mute=1", downloads:"pikmin.txt", trans_chans:"1", filter:"game"},
 	{name:"Pink Floyd", ID:"PKFLD1", mainimg:"pinkfloyd.avif", secondaryimg:"pinkfloyd.png", mym:"pinkfloyd_stage1.mym", video:"https://www.youtube.com/embed/QifE1VJskB4?si=j1bR3fmv7Oa7J1mX?autoplay=0&mute=1", downloads:"pinkfloyd.txt", trans_chans:"0", filter:"music"},
 	{name:"Pink Wii", ID:"PNKWI1", mainimg:"pinkwii.avif", secondaryimg:"pinkwii.png", mym:"pinkwii.mym", video:"https://www.youtube.com/embed/6KIc0Ti_yek?si=8Rm43KU7WHDQwgsV?autoplay=0&mute=1", downloads:"pinkwii.txt", trans_chans:"1", filter: "darkwii/views"},
+	{name:"Pinky and The Brain", ID:"PNKBRN", mainimg:"pinkybrain.avif", secondaryimg:"pinkybrain.png", mym:"pinkybrain.mym", video:"https://www.youtube.com/embed/Glvt-zuF0T8?si=EVoqKzPdk8d1mqX8?autoplay=0&mute=1", downloads:"pinkybrain.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Pirate Skulls", ID:"PRSKL1", mainimg:"pirateskulls.avif", secondaryimg:"piratesskulls.png", mym:"pirateskulls_stage1.mym", video:"https://www.youtube.com/embed/_92PsnJB0N4?si=2S3TqVFy-X23KAJH?autoplay=0&mute=1", downloads:"pirateskulls.txt", trans_chans:"1", filter:"misc"},
 	{name:"Pittsburgh Penguins", ID:"PENGUN", mainimg:"penguins.avif", secondaryimg:"penguins.png", mym:"penguins.mym", video:"https://www.youtube.com/embed/lvZfLnIBoI4?si=vqBy0oEkULIAo0t-?autoplay=0&mute=1", downloads:"penguins.txt", trans_chans:"1", filter:"sports"},
 	{name:"Pittsburgh Steelers", ID:"STELR1", mainimg:"steelers.avif", secondaryimg:"steelers.png", mym:"steelers_stage1.mym", video:"https://www.youtube.com/embed/2iRmunSmf1c?si=FQRhgCgtt67SQm1i?autoplay=0&mute=1", downloads:"steelers.txt", trans_chans:"0", filter:"sports"},
@@ -353,6 +354,7 @@ const completethemeinfo = [
 	{name:"Win XP OS", ID:"WINXP1", mainimg:"winxpos.avif", secondaryimg:"windowsxp.png", mym:"win_xp_os.mym", video:"https://www.youtube.com/embed/CpMXYTumKEE?autoplay=0&mute=1", downloads:"win_xp_os.txt", trans_chans:"0", filter:"top20/os"},
 	{name:"Wooden Wii", ID:"WOODWI", mainimg:"woodwii.avif", secondaryimg:"woodwii.png", mym:"woodwii.mym", video:"https://www.youtube.com/embed/5ZD8Yp128qg?si=SAa7ZF4e0JJNLDnJ?autoplay=0&mute=1", downloads:"woodwii.txt", trans_chans:"1", filter:"darkwii/new"},
 	{name:"Wolverine", ID:"WOLVE1", mainimg:"wolverine.avif", secondaryimg:"wolverine.png", mym:"wolverine.mym", video:"https://www.youtube.com/embed/S60LeJR6a54?autoplay=0&mute=1", downloads:"wolverine.txt", trans_chans:"1", filter:"cartoon"},
+	{name:"Wolverine v2", ID:"WOLVE2", mainimg:"wolverinev2.avif", secondaryimg:"wolverinev2.png", mym:"wolverinev2.mym", video:"https://www.youtube.com/embed/HMK7Mzhho1A?si=esr9X5SpDhPy7jnI?autoplay=0&mute=1", downloads:"wolverinev2.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"WWE Raw", ID:"WWERW1", mainimg:"wweraw.avif", secondaryimg:"wweraw.png", mym:"wwe_raw.mym", video:"https://www.youtube.com/embed/-wOT9u73m1M?si=cJSm8nPVI90DaOMr?autoplay=0&mute=1", downloads:"wweraw.txt", trans_chans:"0", filter:"sports"},
 	{name:"Xbox 360", ID:"XBOX01", mainimg:"xbox360.avif", secondaryimg:"xbox360.png", mym:"xbox360.mym", video:"https://www.youtube.com/embed/X0If0IgP8uQ?si=9rrlUcNi_V833qXN?autoplay=0&mute=1", downloads:"xbox360.txt", trans_chans:"0", filter:"os/views"},
 	{name:"X Men", ID:"XMENV1", mainimg:"xmen.avif", secondaryimg:"xmen.png", mym:"xmen.mym", video:"https://www.youtube.com/embed/Lv2SaqdR3iE?si=2kUMuOHE1VTvlNkV?autoplay=0&mute=1", downloads:"xmen.txt", trans_chans:"1", filter:"movie"},
@@ -1245,7 +1247,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 69) && theme_num <= 76) || (theme_num == 66)  || (theme_num == 117) || (theme_num == 294))
+    if(((theme_num >= 69) && theme_num <= 76) || (theme_num == 66)  || (theme_num == 117) || (theme_num == 295))
 		return true;
 	return false;
 }
