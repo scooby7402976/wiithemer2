@@ -184,6 +184,7 @@ const completethemeinfo = [
 	{name:"Maria", ID:"MARIA1", mainimg:"maria.avif", secondaryimg:"maria.png", mym:"maria_stage1.mym", video:"https://www.youtube.com/embed/LG2A1xP9-rI?si=hJWOit_pJvwQGuER?autoplay=0&mute=1", downloads:"maria.txt", trans_chans:"1", filter:"individual"},
 	{name:"Mario", ID:"MARIO2", mainimg:"mario.avif", secondaryimg:"mariojeb.png", mym:"mario.mym", video:"https://www.youtube.com/embed/mbT0hzSG2AU?autoplay=0&mute=1", downloads:"mario.txt", trans_chans:"1", filter:"top20/game"},
 	{name:"Mario Kart", ID:"MKART1", mainimg:"mariokart.avif", secondaryimg:"mariokart.png", mym:"mario_kart.mym", video:"https://www.youtube.com/embed/dCfbtnEWnLI?autoplay=0&mute=1", downloads:"mario_kart.txt", trans_chans:"1", filter:"top20/game/views"},
+	{name:"Mario Party 8", ID:"PARTY8", mainimg:"marioparty8.avif", secondaryimg:"marioparty8.png", mym:"marioparty8.mym", video:"https://www.youtube.com/embed/9x8ehIPz-Sw?si=YLSEbplVhxldm70h?autoplay=0&mute=1", downloads:"marioparty8.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Martin Abel Art", ID:"MABEL1", mainimg:"martin_abel.avif", secondaryimg:"martin_abel.png", mym:"martin_abel.mym", video:"https://www.youtube.com/embed/hiX6VQWN7W4?si=KRn_MEOQmLaBvFYO?autoplay=0&mute=1" , downloads:"martin_abel.txt", trans_chans:"1", filter:"individual"},
 	{name:"Matrix", ID:"MATRX1", mainimg:"matrix.avif", secondaryimg:"matrix.png", mym:"matrix.mym", video:"https://www.youtube.com/embed/X2qGmB8Bc9k?autoplay=0&mute=1", downloads:"matrix.txt", trans_chans:"1", filter:"top20/movie"},
 	{name:"Matrix Reloaded", ID:"MATRX2", mainimg:"matrixreloaded.avif", secondaryimg:"matrixreloaded.png", mym:"matrix_reloaded.mym", video:"https://www.youtube.com/embed/mIn8GGGGZ8k?autoplay=0&mute=1", downloads:"matrix_reloaded.txt", trans_chans:"1", filter:"movie"},
@@ -224,6 +225,7 @@ const completethemeinfo = [
 	{name:"Okami", ID:"OKAMI1", mainimg:"okami.avif", secondaryimg:"okami.png", mym:"okami.mym", video:"https://www.youtube.com/embed/TkcnWGy-ujQ?autoplay=0&mute=1", downloads:"okami.txt", trans_chans:"0", filter:"game"},
 	{name:"Old School Nintendo", ID:"OSNIN1", mainimg:"oldschoolnintendo.avif", secondaryimg:"oldschoolnintendo.png", mym:"old_school_nintendo.mym", video:"https://www.youtube.com/embed/mJ5oMzBG1ZU?autoplay=0&mute=1", downloads:"old_school_nintendo.txt", trans_chans:"1", filter:"game"},
 	{name:"Outlaw Star", ID:"OTLWS1", mainimg:"outlawstar.avif", secondaryimg:"outlawstar.png", mym:"outlawstar.mym", video:"https://www.youtube.com/embed/io4mdaMfeVY?si=OXdT9P49YZ9MDm2T?autoplay=0&mute=1", downloads:"outlawstar.txt", trans_chans:"1", filter:"anime"},
+	{name:"Outer Space", ID:"SPACE1", mainimg:"outerspace.avif", secondaryimg:"outerspace.png", mym:"outerspace.mym", video:"https://www.youtube.com/embed/d9vgJ4OVAB8?si=Hor_fzr7somQLXjR?autoplay=0&mute=1", downloads:"outerspace.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Ozzy", ID:"OZZY01", mainimg:"ozzy.avif", secondaryimg:"ozzy.png", mym:"ozzy.mym", video:"https://www.youtube.com/embed/fsoy-ba__Ws?si=6DdTQtgYvRVHdTd3?autoplay=0&mute=1", downloads:"ozzy.txt", trans_chans:"1", filter:"music"},
 	{name:"Pac Man", ID:"PACMAN", mainimg:"pacman.avif", secondaryimg:"pacman.png", mym:"pacman.mym", video:"https://www.youtube.com/embed/5c5TduAWEjQ?si=zUE84cbvh8DzSTrv?autoplay=0&mute=1", downloads:"pacman.txt", trans_chans:"1", filter:"game"},
 	{name:"Paw Patrol", ID:"PWPTRL", mainimg:"pawpatrol.avif", secondaryimg:"pawpatrol.png", mym:"pawpatrol.mym", video:"https://www.youtube.com/embed/0-j0OxljibE?si=lFeGsKjDmVKFC3n7?autoplay=0&mute=1", downloads:"pawpatrol.txt", trans_chans:"1", filter:"cartoon/new"},
@@ -1247,7 +1249,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 69) && theme_num <= 76) || (theme_num == 66)  || (theme_num == 117) || (theme_num == 295))
+    if(((theme_num >= 69) && theme_num <= 76) || (theme_num == 66)  || (theme_num == 117) || (theme_num == 297))
 		return true;
 	return false;
 }
