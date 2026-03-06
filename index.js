@@ -28,6 +28,7 @@ const completethemeinfo = [
 	{name:"Black Pirate v2", ID:"BLPR02", mainimg:"blackpirate.avif", secondaryimg:"blackpiratev2.png", mym:"black_pirate_v2.mym", video:"https://www.youtube.com/embed/evvP1zxZLyI?si=tBiFVdA9eg0zDItV?autoplay=0&mute=1", downloads:"black_piratev2.txt", trans_chans:"1", filter:"misc"},
 	{name:"Black Sabbath", ID:"BLKSAB", mainimg:"blacksabbath.avif", secondaryimg:"blacksabbath.png", mym:"blacksabbath.mym", video:"https://www.youtube.com/embed/kElrIbFHdXg?si=BAPzsEo4AjGFt5hb?autoplay=0&mute=1", downloads:"blacksabbath.txt", trans_chans:"1", filter:"music/new"},
 	{name:"Bleach", ID:"BLCH01", mainimg:"bleach.avif", secondaryimg:"bleach.png", mym:"bleach.mym", video:"https://www.youtube.com/embed/6R7Zgni2vbQ?autoplay=0&mute=1", downloads:"bleach.txt", trans_chans:"1", filter:"anime"},
+	{name:"Blue's Clue's", ID:"BLUCLU", mainimg:"bluesclues.avif", secondaryimg:"bluesclues.png", mym:"bluesclues.mym", video:"https://www.youtube.com/embed/eHrixf_RX-0?si=pUYQDlYkUQvNjC8V?autoplay=0&mute=1", downloads:"bluesclues.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Blue Wii Beta", ID:"BWBETA", mainimg:"bluewii_beta.avif", secondaryimg:"bluewii_beta.png", mym:"bluewii_beta.mym", video:"https://www.youtube.com/embed/t9Imo7fYrSQ?si=DVYigIErvIMwm3Mm?autoplay=0&mute=1", downloads:"bluewii_beta.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"BoBoBo", ID:"BOBO01", mainimg:"bobobo.avif", secondaryimg:"bobobo.png", mym:"bobobo_stage1.mym",  video:"https://www.youtube.com/embed/owSsTt5E19c?si=rC0VFf1FUHF6GU73?autoplay=0&mute=1", downloads:"bobobo.txt", trans_chans:"1", filter:"anime"},
 	{name:"Boondock Saints", ID:"BDSTS1", mainimg:"boondocksaints.avif", secondaryimg:"boondocksaints.png", mym:"boondock_saints.mym", video:"https://www.youtube.com/embed/5tk08eRKYNI?autoplay=0&mute=1", downloads:"boondock_saints.txt", trans_chans:"0", filter:"movie"},
@@ -252,6 +253,7 @@ const completethemeinfo = [
 	{name:"Ratchet and Clank", ID:"RCLNK1", mainimg:"ratchetandclank.avif", secondaryimg:"ratchetnclank.png", mym:"ratchet_and_clank.mym", video:"https://www.youtube.com/embed/G_z6DopJRRo?autoplay=0&mute=1", downloads:"ratchet_and_clank.txt", trans_chans:"0", filter:"game"},
 	{name:"Reconnect 24 Blue", ID:"RC2402", mainimg:"rc24_blue.avif", secondaryimg:"rc24blue.png", mym:"rc24_blue.mym", video:"https://www.youtube.com/embed/DAjytOLv1r0?si=__5iuVTUmvWLDa2m?autoplay=0&mute=1", downloads:"rc24_blue.txt", trans_chans:"1", filter:"misc"},
 	{name:"Reconnect 24 Red", ID:"RC2401", mainimg:"rc24_red.avif", secondaryimg:"rc24red.png", mym:"rc24_red.mym", video:"https://www.youtube.com/embed/CF2R3WsNga0?si=MA3yerCcYqtqJjKL?autoplay=0&mute=1", downloads:"rc24_red.txt", trans_chans:"1", filter:"misc"},
+	{name:"Red Wii Motion", ID:"REDMO1", mainimg:"redwiimotion.avif", secondaryimg:"redwiimotion.png", mym:"redwiimotion.mym", video:"https://www.youtube.com/embed/pdBgAfl8B1U?si=w3aUH3Kj_epMl8Cm?autoplay=0&mute=1", downloads:"redwiimotion.txt", trans_chans:"1", filter:"darkwii/new"},
 	{name:"Ren and Stimpy", ID:"RENSTM", mainimg:"renstimpy.avif", secondaryimg:"renstimpy.png", mym:"renstimpy.mym", video:"https://www.youtube.com/embed/dtZkWOhhkeQ?si=5bGUjz5t46otv8rV?autoplay=0&mute=1", downloads:"renstimpy.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Resident Evil 4", ID:"RESEVE", mainimg:"re4.avif", secondaryimg:"re4.png", mym:"re4.mym", video:"https://www.youtube.com/embed/CAW7_AWXaGA?si=DZphIXiqpJ2OB0vj?autoplay=0&mute=1", downloads:"re4.txt", trans_chans:"1", filter:"game"},
 	{name:"Rey Mysterio", ID:"RMYST1", mainimg:"rey_mysterio.avif", secondaryimg:"rey_mysterio.png", mym:"rey_mysterio.mym", video:"https://www.youtube.com/embed/9nP6maLtFpo?si=3IYQfVBTs7HYUkg7?autoplay=0&mute=1", downloads:"rey_mysterio.txt", trans_chans:"1", filter:"individual"},
@@ -1249,7 +1251,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 69) && theme_num <= 76) || (theme_num == 66)  || (theme_num == 117) || (theme_num == 297))
+    if(((theme_num >= 70) && theme_num <= 77) || (theme_num == 67)  || (theme_num == 118) || (theme_num == 299))
 		return true;
 	return false;
 }
