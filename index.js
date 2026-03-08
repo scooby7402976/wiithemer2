@@ -1,5 +1,6 @@
 const completethemeinfo = [
 	//{name:"", ID:"", mainimg:"", secondaryimg:"", mym:"", video:"", downloads:"", trans_chans:"1""0", filter:""},
+	{name:"Adventure Time", ID:"ADVTIM", mainimg:"adventuretime.avif", secondaryimg:"adventuretime.png", mym:"adventuretime.mym", video:"https://www.youtube.com/embed/rdJkOf_o_OI?si=OgV6-XzICa830L3o?autoplay=0&mute=1", downloads:"adventuretime.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Ahh Real Monsters", ID:"RLMSTR", mainimg:"realmonsters.avif", secondaryimg:"realmonsters.png", mym:"realmonsters.mym", video:"https://www.youtube.com/embed/SSIpFltAtfY?si=l9TNQdc_X0JYnUZG?autoplay=0&mute=1", downloads:"realmonsters.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"American Dad", ID:"AMDAD1", mainimg:"american_dad.avif", secondaryimg:"american_dad.png", mym:"american_dad.mym", video:"https://www.youtube.com/embed/QmxQemy9PiU?si=f8PpyWVy81sMd5sP?autoplay=0&mute=1", downloads:"american_dad.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"American Dad v2", ID:"AMDAD2", mainimg:"american_dadv2.avif", secondaryimg:"american_dadv2.png", mym:"american_dadv2.mym", video:"https://www.youtube.com/embed/9UPowmhPhL4?si=7bfbp4tEACIdsQmq?autoplay=0&mute=1", downloads:"american_dadv2.txt", trans_chans:"1", filter:"cartoon"},
@@ -1253,7 +1254,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 70) && theme_num <= 77) || (theme_num == 67)  || (theme_num == 118) || (theme_num == 300))
+    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 119) || (theme_num == 301))
 		return true;
 	return false;
 }
