@@ -141,6 +141,7 @@ const completethemeinfo = [
 	{name:"Hell's Kitchen", ID:"HELLK1", mainimg:"hellskitchen.avif", secondaryimg:"hellskitchen.png", mym:"hellskitchen.mym", video:"https://www.youtube.com/embed/rhZvXoDqJx4?si=dsfWlztTT2Fz_RR3?autoplay=0&mute=1", downloads:"hellskitchen.txt", trans_chans:"1", filter:"movie"},
 	{name:"He-Man", ID:"HEMAN1", mainimg:"heman.avif", secondaryimg:"heman.png", mym:"he-man_stage1.mym", video:"https://www.youtube.com/embed/vUzusxTYj9w?si=UNjjoXBw-c4BJBWc?autoplay=0&mute=1", downloads:"heman.txt", transchans:"1", filter:"cartoon"},
 	{name:"Heros", ID:"HEROS1", mainimg:"heros.avif", secondaryimg:"heros.png", mym:"heros.mym", video: "https://www.youtube.com/embed/kM-Sgb2wRig?autoplay=0&mute=1",downloads:"heros.txt", trans_chans:"0", filter:"movie"},
+	{name:"Hey Arnold", ID:"ARMOLD", mainimg:"arnold.avif", secondaryimg:"arnold.png", mym:"arnold.mym", video:"https://www.youtube.com/embed/qPbEqayHaAo?si=R-0VccPPI0ajORcN?autoplay=0&mute=1", downloads:"arnold.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"HomeStar Runner", ID:"HMESTR", mainimg:"homestar.avif", secondaryimg:"homestar.png", mym:"homestar.mym", video:"https://www.youtube.com/embed/Em-DkvRXLxs?si=mu8hYkot2jPougyA?autoplay=0&mute=1", downloads:"homestar.txt", trans_chans:"1", filter:"game"},
 	{name:"Hot Wheels", ID:"WHEEL1", mainimg:"hot_wheels.avif", secondaryimg:"hot_wheels.png", mym:"hot_wheels.mym", video:"https://www.youtube.com/embed/TT5XIN6xk9E?si=Ec0YZ4cNa58m2I0u?autoplay=0&mute=1", downloads:"hot_wheels.txt", trans_chans:"1", filter:"game"},
 	{name:"The Hundreds", ID:"HNDRD1", mainimg:"hundreds.avif", secondaryimg:"hundreds.png", mym:"hundreds.mym", video:"https://www.youtube.com/embed/mCGMAJkoQp4?si=qq2S6uyJYOkl3mBk?autoplay=0&mute=1", downloads:"hundreds.txt", trans_chans:"0", filter:"anime"},
@@ -1254,7 +1255,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 119) || (theme_num == 301))
+    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 119) || (theme_num == 302))
 		return true;
 	return false;
 }
