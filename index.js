@@ -98,7 +98,7 @@ const completethemeinfo = [
 	{name:"Earth Bound", ID:"ETHBD1", mainimg:"earthbound.avif", secondaryimg:"earthbound.png", mym:"earth_bound.mym", video:"https://www.youtube.com/embed/gO4k6ggnL0U?autoplay=0&mute=1", downloads:"earth_bound.txt", trans_chans:"1", filter:"game"},
 	{name:"Earth Bound v2", ID:"ETHBD2", mainimg:"earthboundv2.avif", secondaryimg:"earthboundv2.png", mym:"earth_boundv2.mym", video:"https://www.youtube.com/embed/Oim0ewCMzlg?si=XOlP0tHsydIr9zfN?autoplay=0&mute=1", downloads:"earth_boundv2.txt", trans_chans:"1", filter:"game"},
 	{name:"Earth Bound v3", ID:"ETHBD3", mainimg:"earthboundv3.avif", secondaryimg:"earthboundv3.png", mym:"earthboundv3.mym", video:"https://www.youtube.com/embed/bPRAmYYcdDU?si=jyK0mh1YMASM9JJx?autoplay=0&mute=1", downloads:"earth_boundv3.txt", trans_chans:"1", filter:"game"},
-	//{name:"Ed Edd n' Eddy", ID:"EDEDDY", mainimg:"ededdeddy.avif", secondaryimg:"ededdeddy.png", mym:"ededdeddy.mym", video:"?autoplay=0&mute=1", downloads:"ededdeddy.txt", trans_chans:"1", filter:"cartoon/new"},
+	{name:"Ed, Edd, n' Eddy", ID:"EDEDDY", mainimg:"ededdeddy.avif", secondaryimg:"ededdeddy.png", mym:"ededdeddy.mym", video:"https://www.youtube.com/embed/Gx9ICnOToAg?si=b8XOdFcChPOMlu8P?autoplay=0&mute=1", downloads:"ededdeddy.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Emo Blue", ID:"EMOBL1", mainimg:"emoblue.avif", secondaryimg:"emoblue.png", mym:"emoblue.mym", video:"https://www.youtube.com/embed/7EpLqmqxwes?si=wYUqFxKmwEZ0Yw-h?autoplay=0&mute=1", downloads:"emoblue.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Emo Green", ID:"EMOGR1", mainimg:"emogreen.avif", secondaryimg:"emogreen.png", mym:"emogreen.mym", video:"https://www.youtube.com/embed/j4oaXwXi9Zg?si=rtxSbP-DeTcrsaZx?autoplay=0&mute=1", downloads:"emogreen.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Emo Pink", ID:"EMOPK1", mainimg:"emopink.avif", secondaryimg:"emopink.png", mym:"emopink.mym", video:"https://www.youtube.com/embed/GG2aRdXmgic?si=gl_deznBXMXAtB8g?autoplay=0&mute=1", downloads:"emopink.txt", trans_chans:"1", filter:"darkwii"},
@@ -1258,7 +1258,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 119) || (theme_num == 303))
+    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 120) || (theme_num == 304))
 		return true;
 	return false;
 }
