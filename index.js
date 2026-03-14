@@ -230,6 +230,7 @@ const completethemeinfo = [
 	{name:"Old School Nintendo", ID:"OSNIN1", mainimg:"oldschoolnintendo.avif", secondaryimg:"oldschoolnintendo.png", mym:"old_school_nintendo.mym", video:"https://www.youtube.com/embed/mJ5oMzBG1ZU?autoplay=0&mute=1", downloads:"old_school_nintendo.txt", trans_chans:"1", filter:"game"},
 	{name:"Outlaw Star", ID:"OTLWS1", mainimg:"outlawstar.avif", secondaryimg:"outlawstar.png", mym:"outlawstar.mym", video:"https://www.youtube.com/embed/io4mdaMfeVY?si=OXdT9P49YZ9MDm2T?autoplay=0&mute=1", downloads:"outlawstar.txt", trans_chans:"1", filter:"anime"},
 	{name:"Outer Space", ID:"SPACE1", mainimg:"outerspace.avif", secondaryimg:"outerspace.png", mym:"outerspace.mym", video:"https://www.youtube.com/embed/d9vgJ4OVAB8?si=Hor_fzr7somQLXjR?autoplay=0&mute=1", downloads:"outerspace.txt", trans_chans:"1", filter:"misc/new"},
+	{name:"Outer Space v2", ID:"SPACE2", mainimg:"spacev2.avif", secondaryimg:"spacev2.png", mym:"spacev2.mym", video:"https://www.youtube.com/embed/hml2cvzLgvo?si=bjqpXYj3dUHnkewu?autoplay=0&mute=1", downloads:"spacev2.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Ozzy", ID:"OZZY01", mainimg:"ozzy.avif", secondaryimg:"ozzy.png", mym:"ozzy.mym", video:"https://www.youtube.com/embed/fsoy-ba__Ws?si=6DdTQtgYvRVHdTd3?autoplay=0&mute=1", downloads:"ozzy.txt", trans_chans:"1", filter:"music"},
 	{name:"Pac Man", ID:"PACMAN", mainimg:"pacman.avif", secondaryimg:"pacman.png", mym:"pacman.mym", video:"https://www.youtube.com/embed/5c5TduAWEjQ?si=zUE84cbvh8DzSTrv?autoplay=0&mute=1", downloads:"pacman.txt", trans_chans:"1", filter:"game"},
 	{name:"Paw Patrol", ID:"PWPTRL", mainimg:"pawpatrol.avif", secondaryimg:"pawpatrol.png", mym:"pawpatrol.mym", video:"https://www.youtube.com/embed/0-j0OxljibE?si=lFeGsKjDmVKFC3n7?autoplay=0&mute=1", downloads:"pawpatrol.txt", trans_chans:"1", filter:"cartoon/new"},
@@ -418,7 +419,8 @@ var userId = null;
 var saved_menu_version = 0;
 var saved_region = 0;
 var data_saved = false;
-var show_more_btn_clicked = false;
+var show_more_btn1_clicked = false;
+var show_more_btn2_clicked = false;
 var build_theme_info = [];
 var downloadtimer = null;
 var closecntr = 180;
@@ -427,14 +429,16 @@ var seccntr = 0;
 var session_id = null;
 var settings_saved = false;
 var prev_tab = -1;
+var img_position = -1;
 
 // enlarging all images ========
-function show_theme_img(img_file) {
+function show_theme_img(img_file, theme_name) {
 	document.getElementById("theme_img_enlarged").innerHTML = "<span title='Close Window' class='closepreviewbtn' onclick='close_theme_img()'>&times;</span>";
 	document.getElementById("theme_img_enlarged").style.backgroundImage = "url('" + img_file + "')";
 	document.getElementById("theme_img_enlarged").style.backgroundSize = "100% 100%";
 	document.getElementById("theme_img_enlarged").style.backgroundRepeat = "no-repeat";
 	document.getElementById("theme_img_enlarged").style.display = "block";
+	document.getElementById("theme_img_enlarged").title = "The " + theme_name + " Theme";
 	return
 }
 // close img container ---------
@@ -442,7 +446,6 @@ function close_theme_img() {
 	document.getElementById("theme_img_enlarged").style.display = "none";
 	return;
 }
-// -----------------------------
 // all download counts ---------
 function load_installer_count(theme_count_file) {
 	const xhttp = new XMLHttpRequest();
@@ -1258,7 +1261,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 120) || (theme_num == 304))
+    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 120) || (theme_num == 305))
 		return true;
 	return false;
 }
@@ -1414,22 +1417,37 @@ function set_build_gui() {
 // -----------------------------
 // stats more/less buttons -----
 function show_more_btn(btn_number) {
-	if(!show_more_btn_clicked) {
-		(btn_number == 1) ? document.getElementById("show_more_wii").style.display = "block" : document.getElementById("show_more_vwii").style.display = "block";
-		document.getElementById("showmorebtn" + btn_number).innerHTML = "Show Less";
-		show_more_btn_clicked = true;
-		load_wii_u_region_stats();
-		load_wii_e_region_stats();
-		load_wii_j_region_stats();
-		load_wii_k_region_stats();
-		load_vwii_u_region_stats();
-		load_vwii_e_region_stats();
-		load_vwii_j_region_stats();
+	
+	if(btn_number == 1) {
+		if(!show_more_btn1_clicked) {
+			document.getElementById("show_more_wii").style.display = "block";
+			document.getElementById("showmorebtn" + btn_number).innerHTML = "Show Less";
+			show_more_btn1_clicked = true;
+			load_wii_u_region_stats();
+			load_wii_e_region_stats();
+			load_wii_j_region_stats();
+			load_wii_k_region_stats();
+		}
+		else {
+			document.getElementById("show_more_wii").style.display = "none";
+			document.getElementById("showmorebtn" + btn_number).innerHTML = "Show More";
+			show_more_btn1_clicked = false;
+		}
 	}
 	else {
-		(btn_number == 1) ? document.getElementById("show_more_wii").style.display = "none" : document.getElementById("show_more_vwii").style.display = "none";
-		document.getElementById("showmorebtn" + btn_number).innerHTML = "Show More";
-		show_more_btn_clicked = false;
+		if(!show_more_btn2_clicked) {
+			document.getElementById("show_more_vwii").style.display = "block";
+			document.getElementById("showmorebtn" + btn_number).innerHTML = "Show Less";
+			show_more_btn2_clicked = true;
+			load_vwii_u_region_stats();
+			load_vwii_e_region_stats();
+			load_vwii_j_region_stats();
+		}
+		else {
+			document.getElementById("show_more_vwii").style.display = "none";
+			document.getElementById("showmorebtn" + btn_number).innerHTML = "Show More";
+			show_more_btn2_clicked = false;
+		}
 	}
 	
 	return;
@@ -1482,6 +1500,18 @@ function toggle_active_tab(tab_num) {
 	return;
 }
 // -----------------------------
+// random theme preview -------------
+function getRandomImg_Link(min, max) {
+  const minCeiled = Math.ceil(min); // Rounds up min
+  const maxFloored = Math.floor(max); // Rounds down max
+  // The value is no lower than min and no greater than max
+  const randomValue = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+  console.log(randomValue);
+  const mym_dir = "resources/theme_main/";
+  var img_link = mym_dir + completethemeinfo[randomValue].mainimg;
+  img_position = randomValue;
+  return img_link;
+}
 function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 	// lock tabs when building theme - clicks do nothing
 	if (tab_locked)
@@ -1491,19 +1521,29 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 	toggle_active_tab(tab_num);
 	// remove tab content
 	document.getElementById("tabcontent").innerHTML = " ";
+	// load new tab content
 	switch (tab_num) {
 		// home tab
 		case 1:
+			let img_link1 = getRandomImg_Link(0, theme_count - 1);
+			let img_position1 = img_position;
+			console.log(img_link1 + "\n" + img_position1 + "\n" + completethemeinfo[img_position1].name);
+			let img_link2 = getRandomImg_Link(0, theme_count - 1);
+			let img_position2 = img_position;
+			console.log(img_link2 + "\n" + img_position2 + "\n" + completethemeinfo[img_position2].name);
+			let img_link3 = getRandomImg_Link(0, theme_count - 1);
+			let img_position3 = img_position;
+			console.log(img_link3 + "\n" + img_position3 + "\n" + completethemeinfo[img_position3].name);
 			document.getElementById("tabcontent").innerHTML = "<div id='home_container'></div>";
-			document.getElementById("home_container").innerHTML = "<h2>Welcome to the Wii System Menu Theme Building Home page !</h2><hr></hr><br /><img title='Click to enlarge Luigi v2 Theme Image.' id='homeimg1' alt='homeimage1' src='resources/home/luigiv2.avif'></img><img title='Click to enlarge ChainSaw Man Theme Image.' id='homeimg2' alt='homeimage2' src='resources/home/chain.avif'></img><img title='Click to enlarge Windows XP Theme Image.' id='homeimg3' alt='homeimage3' src='resources/home/windowsxp.avif'></img><br /><br /><hr></hr><br></br><p>Here, you can build and download custom themes for your Wii System Menu. Explore our collection of themes and enhance your Wii experience!<br></br>These are just a few examples of the "+ theme_count +" themes available. More Themes Coming Soon.....</p>";
+			document.getElementById("home_container").innerHTML = "<h2>Welcome to the Wii System Menu Theme Building Home page !</h2><hr></hr><br /><img title='Click to enlarge " + completethemeinfo[img_position1].name + " Theme Image.' id='homeimg1' alt='homeimage1' src='" + img_link1 + "' width='400' height='300'></img><img title='Click to enlarge " + completethemeinfo[img_position2].name + " Theme Image.' id='homeimg2' alt='homeimage2' src='" + img_link2 + "' width='400' height='300'></img><img title='Click to enlarge " + completethemeinfo[img_position3].name + " Theme Image.' id='homeimg3' alt='homeimage3' src='" + img_link3 + "' width='400' height='300'></img><br /><br /><hr></hr><br></br><p>Here, you can build and download custom themes for your Wii System Menu. Explore our collection of themes and enhance your Wii experience!<br></br>These are just a few examples of the "+ theme_count +" themes available. More Themes Coming Soon.....</p>";
 			document.getElementById("homeimg1").onclick = function() {
-				show_theme_img("resources/home/luigiv2.avif");
+				show_theme_img(img_link1, completethemeinfo[img_position1].name);
 			}
 			document.getElementById("homeimg2").onclick = function() {
-				show_theme_img("resources/home/chain.avif");
+				show_theme_img(img_link2, completethemeinfo[img_position2].name);
 			}
 			document.getElementById("homeimg3").onclick = function() {
-				show_theme_img("resources/home/windowsxp.avif");
+				show_theme_img(img_link3, completethemeinfo[img_position3].name);
 			}
 			
 			break;
@@ -1674,11 +1714,11 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 		// stats tab
 		case 6:
             document.getElementById("tabcontent").innerHTML = "<div id='stats_message'></div>";
-			document.getElementById("stats_message").innerHTML = "<h2>Site Stats</h2><hr /><br /><p>Current Total Themes Available : <span id='themecount'>" + theme_count + "</span></p><hr></hr><br></br><p>Site Visits :<span id='visitor_count'></span></p><hr></hr><br></br><p>Wii Themes Downloaded <button id='showmorebtn1' onclick='show_more_btn(1)'>Show More</button><span id='wii_downloads'></span></p><hr></hr><p><div id='show_more_wii'>U Region Downloads<span id='uwii'></span></p><p>E Region Downloads<span id='ewii'></span></p><p>J Region Downloads<span id='jwii'></span></p><p>K Region Downloads<span id='kwii'></span></div><br></br><p>vWii Themes Downloaded <button id='showmorebtn2' onclick='show_more_btn(2)'>Show More</button><span id='vwii_downloads'></span></p><hr></hr><p><div id='show_more_vwii'>U Region Downloads<span id='uvwii'></span></p><p>E Region Downloads<span id='evwii'></span></p><p>J Region Downloads<span id='jvwii'></span></p></div>";
+			document.getElementById("stats_message").innerHTML = "<h2>Site Stats</h2><hr /><br /><p>Current Total Themes Available : <span id='themecount'>" + theme_count + "</span></p><hr></hr><br></br><p>Site Visits :<span id='visitor_count'>" + load_visitor_stats() + "</span></p><hr></hr><br></br><p>Wii Themes Downloaded <button id='showmorebtn1' onclick='show_more_btn(1)'>Show More</button><span id='wii_downloads'>" + load_wii_stats() + "</span></p><hr></hr><p><div id='show_more_wii'>U Region Downloads<span id='uwii'></span></p><p>E Region Downloads<span id='ewii'></span></p><p>J Region Downloads<span id='jwii'></span></p><p>K Region Downloads<span id='kwii'></span></div><br></br><p>vWii Themes Downloaded <button id='showmorebtn2' onclick='show_more_btn(2)'>Show More</button><span id='vwii_downloads'>" + load_vwii_stats() + "</span></p><hr></hr><p><div id='show_more_vwii'>U Region Downloads<span id='uvwii'></span></p><p>E Region Downloads<span id='evwii'></span></p><p>J Region Downloads<span id='jvwii'></span></p></div>";
 			
-			load_visitor_stats();
-			load_wii_stats();
-			load_vwii_stats();
+			//load_visitor_stats();
+			//load_wii_stats();
+			//load_vwii_stats();
 
 			break;
 		// contact tab
