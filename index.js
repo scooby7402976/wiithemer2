@@ -1107,14 +1107,7 @@ async function server_setup(_response) {
 }
 function build_theme_setup(theme_num) {
 	let versionIndex, regionIndex;
-	/*
-	let content_name = [
-        [],
-        ["","00000097", "00000087", "0000007b", "00000072", "0000001f"], // U
-        ["","0000009a", "0000008a", "0000007e", "00000075", "00000022"], // E
-        ["","00000094", "00000084", "00000078", "0000006f", "0000001c"], // J
-        ["","0000009d", "0000008d", "00000081"] // K
-    ];*/
+
 	if(!data_saved) {
 		versionIndex = document.getElementById("select_version").selectedIndex;
     	regionIndex = document.getElementById("select_region").selectedIndex;
@@ -1528,12 +1521,32 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 			let img_link1 = getRandomImg_Link(0, theme_count - 1);
 			let img_position1 = img_position;
 			console.log(img_link1 + "\n" + img_position1 + "\n" + completethemeinfo[img_position1].name);
+
 			let img_link2 = getRandomImg_Link(0, theme_count - 1);
 			let img_position2 = img_position;
 			console.log(img_link2 + "\n" + img_position2 + "\n" + completethemeinfo[img_position2].name);
+			for(let i = 0; i < 10; i++) { // ensure all 3 preview images are different
+				if(img_position1 != img_position2)
+					break;
+				img_link2 = getRandomImg_Link(0, theme_count - 1);
+				img_position2 = img_position;
+				console.log(img_link2 + "\n" + img_position2 + "\n" + completethemeinfo[img_position2].name);
+				if(img_position1 != img_position2)
+					break;
+			}
 			let img_link3 = getRandomImg_Link(0, theme_count - 1);
 			let img_position3 = img_position;
 			console.log(img_link3 + "\n" + img_position3 + "\n" + completethemeinfo[img_position3].name);
+			for(let i = 0; i < 10; i++) {
+				if(img_position2 != img_position3)
+					break;
+				img_link3 = getRandomImg_Link(0, theme_count - 1);
+				img_position3 = img_position;
+				console.log(img_link3 + "\n" + img_position3 + "\n" + completethemeinfo[img_position3].name);
+				if(img_position2 != img_position3)
+					break;
+			}
+			
 			document.getElementById("tabcontent").innerHTML = "<div id='home_container'></div>";
 			document.getElementById("home_container").innerHTML = "<h2>Welcome to the Wii System Menu Theme Building Home page !</h2><hr></hr><br /><img title='Click to enlarge " + completethemeinfo[img_position1].name + " Theme Image.' id='homeimg1' alt='homeimage1' src='" + img_link1 + "' width='400' height='300'></img><img title='Click to enlarge " + completethemeinfo[img_position2].name + " Theme Image.' id='homeimg2' alt='homeimage2' src='" + img_link2 + "' width='400' height='300'></img><img title='Click to enlarge " + completethemeinfo[img_position3].name + " Theme Image.' id='homeimg3' alt='homeimage3' src='" + img_link3 + "' width='400' height='300'></img><br /><br /><hr></hr><br></br><p>Here, you can build and download custom themes for your Wii System Menu. Explore our collection of themes and enhance your Wii experience!<br></br>These are just a few examples of the "+ theme_count +" themes available. More Themes Coming Soon.....</p>";
 			document.getElementById("homeimg1").onclick = function() {
@@ -1551,14 +1564,17 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 		case 2:
 			let theme_position = 0;
 			let is_filtered = is_themelist_filtered();
-			theme = completethemeinfo[theme_position];
-			
+			if(is_filtered)
+				theme = completethemeinfo[filtered_list_position[theme_index]];
+			else
+				theme = completethemeinfo[theme_position];
+
 			document.getElementById("tabcontent").innerHTML = "<div id='theme_gallery'></div>";
 			document.getElementById("theme_gallery").innerHTML = 
 			"<div id='gallery_header_container'><div id='preview_get_theme_btn' onclick='set_build_gui()' title='Click to start building this theme .'>&nbsp;&nbsp;Build Theme&nbsp;&nbsp;</div><div id='gallery_header'>" + theme.name + "</div><div id='num_theme_downloads'></div></div><hr></hr>";
 			document.getElementById("theme_gallery").innerHTML += "<div id='theme_controls_container' class='flexrow'><div id='loadprevbtn' title='Click to see previous Theme .'>&lt;&lt;</div><select id='preview_filter' onchange='get_filter_option()' title='Click to filter the theme list .'></select><select id='preview_select' name='preview_select' title='Click to select a theme .'></select><div id='loadnextbtn' title='Click to see next Theme .'> &gt;&gt;</div></div>";
 			document.getElementById("theme_gallery").innerHTML += "<div id='preview_imgs_container' class='flexrow'></div>";
-			document.getElementById("preview_imgs_container").innerHTML = "<div id='preview_imgs'><div id='preview_mainimg' title='Click to enlarge image .'><img id='img_main' src='resources/theme_main/" + theme.mainimg + "' alt='theme_img_1' width='' height=''></img></div><div id='preview_secondaryimg' title='Click to enlarge image .'><img id='img_secondary' src='resources/theme_secondary/" + theme.secondaryimg + "' alt='theme_img_2' width='' height=''></img></div></div><iframe id='preview_video' width='780' height='430' src='" + theme.video + "' title='YouTube Theme video player' frameborder='0' allowfullscreen></iframe>";
+			document.getElementById("preview_imgs_container").innerHTML = "<div id='preview_imgs'><div id='preview_mainimg' title='Click to enlarge Theme Image.'><img id='img_main' src='resources/theme_main/" + theme.mainimg + "' alt='theme_img_1' width='' height=''></img></div><div id='preview_secondaryimg' title='Click to enlarge Theme Image	.'><img id='img_secondary' src='resources/theme_secondary/" + theme.secondaryimg + "' alt='theme_img_2' width='' height=''></img></div></div><iframe id='preview_video' width='780' height='430' src='" + theme.video + "' title='YouTube Theme video player' frameborder='0' allowfullscreen></iframe>";
 			// add theme.video to iframe src above /**/
 			if(is_filtered) {
 				theme_position = filtered_list_position[theme_index];
@@ -1674,7 +1690,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 					theme = completethemeinfo[filtered_list_position[document.getElementById("preview_select").selectedIndex]];
 				else
 					theme = completethemeinfo[document.getElementById("preview_select").selectedIndex];
-				show_theme_img("resources/theme_main/" + theme.mainimg);
+				show_theme_img("resources/theme_main/" + theme.mainimg, theme.name);
 			}
 			document.getElementById("preview_secondaryimg").onclick = function() {
 				let is_filtered = is_themelist_filtered();
@@ -1682,7 +1698,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 					theme = completethemeinfo[filtered_list_position[document.getElementById("preview_select").selectedIndex]];
 				else
 					theme = completethemeinfo[document.getElementById("preview_select").selectedIndex];
-				show_theme_img("resources/theme_secondary/" + theme.secondaryimg);
+				show_theme_img("resources/theme_secondary/" + theme.secondaryimg, theme.name);
 			}
 
 			break;
