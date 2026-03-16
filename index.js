@@ -155,6 +155,7 @@ const completethemeinfo = [
 	{name:"Insane Clown Posse", ID:"ICP001", mainimg:"icp.avif", secondaryimg:"icp.png", mym:"insane_clown_posse.mym", video:"https://www.youtube.com/embed/nKo90-C1d8U?autoplay=0&mute=1", downloads:"insane_clown_posse.txt", trans_chans:"1", filter:"music"},
 	{name:"Its A Me Mario", ID:"IMMAR1", mainimg:"itsamemario.avif", secondaryimg:"itsamemario.png", mym:"itsamemario.mym", video:"https://www.youtube.com/embed/RXxxwKtNPJk?autoplay=0&mute=1", downloads:"itsamemario.txt", trans_chans:"1", filter:"top20/game"},
 	{name:"Jay & Silent Bob", ID:"JNSBOB", mainimg:"jaybob.avif", secondaryimg:"jaybob.png", mym:"jaybob_stage1.mym", video:"https://www.youtube.com/embed/AqMK45kspoc?si=Le3klHxmxZxgE_OA?autoplay=0&mute=1", downloads:"jaybob.txt", trans_chans:"1", filter:"movie"},
+	//{name:"The Jetson's", ID:"JETSON", mainimg:"jetsons.avif", secondaryimg:"jetsons.png", mym:"jetsons.mym", video:"?autoplay=0&mute=1", downloads:"jetsons.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Jet Set Radio", ID:"JSRAD1", mainimg:"jetsetradio.avif", secondaryimg:"jetsetradio.png", mym:"jetsetradio.mym", video:"https://www.youtube.com/embed/3KtwBglT7OI?si=kPvE5kMgZwc78GAW?autoplay=0&mute=1", downloads:"jetsetradio.txt", trans_chans:"1", filter:"game"},
 	{name:"Jimmy Neutron", ID:"JNUTR1", mainimg:"jimmyneutron.avif", secondaryimg:"jimmyneutron.png", mym:"jimmyneutron.mym", video:"https://www.youtube.com/embed/j1JtKOE1XgA?si=eoPN5xB5H-Wu3h98?autoplay=0&mute=1", downloads:"jimmyneutron.txt", trans_chans:"1", filter:"cartoon/views"},
 	{name:"Jimmy Neutron v2", ID:"JNUTR2", mainimg:"jimmyneutronv2.avif", secondaryimg:"jimmyneutronv2.png", mym:"jimmyneutronv2.mym", video:"https://www.youtube.com/embed/Y_zRNiXOXlQ?si=9fNPeb_zIm-1iMRs?autoplay=0&mute=1", downloads:"jimmyneutronv2.txt", trans_chans:"1", filter:"cartoon"},
@@ -1746,8 +1747,6 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 	
 	return;
 }
-// tab hovering ---------------
-// -----------------------------
 // check for site visitors------
 function check_4_new_visitor() {
 	//let stored_info_found = false;
