@@ -38,7 +38,6 @@
     $spin_display = array(
         "", "_nospin", "_spin", "_fastspin"
     );
-
     if(isset($_GET["command"])) {
         $command = $_GET["command"];
         $id = null;
@@ -561,7 +560,7 @@
             return false;
 	}
     function theme_needs_mym_Extension($theme_Selected) : bool {
-		if((($theme_Selected >= 71) && $theme_Selected <= 78) || ($theme_Selected == 68)  || ($theme_Selected == 120) || ($theme_Selected == 306))
+		if((($theme_Selected >= 71) && $theme_Selected <= 78) || ($theme_Selected == 68)  || ($theme_Selected == 121) || ($theme_Selected == 307))
 			return true;
 		return false;
 	}

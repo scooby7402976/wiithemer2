@@ -110,7 +110,7 @@ body {
 }
 /* home tab */
 #home_container {
-    margin: 1.5% auto;
+    margin: .5% auto;
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.75);
     border-radius: 10px;
@@ -126,7 +126,7 @@ body {
     border-bottom: 5px outset rgb(255 128 0);
     box-shadow: 1px 3px 6px rgb(255 128 0);
     border-radius: 10px;
-    margin: 20px;
+    margin: 10px 20px;
     cursor: pointer;
 }
 #homeimg1:hover, #homeimg2:hover, #homeimg3:hover {

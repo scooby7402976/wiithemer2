@@ -116,6 +116,7 @@ const completethemeinfo = [
 	{name:"Fight Club", ID:"FCLUB1", mainimg:"FightClub.avif", secondaryimg:"fightclub.png", mym:"fight_club.mym", video:"https://www.youtube.com/embed/WVY8mcnJmu8?autoplay=0&mute=1", downloads:"fight_club.txt", trans_chans:"0", filter:"movie"},
 	{name:"Final Fantasy 7", ID:"FFVII1", mainimg:"FinalFantasy7.avif", secondaryimg:"finalfantasy7.png", mym:"final_fantasy_7.mym", video:"https://www.youtube.com/embed/bymdnStOo9U?autoplay=0&mute=1", downloads:"final_fantasy_7.txt", trans_chans:"1", filter:"game"},
 	{name:"Fire Wii", ID:"FIRE01", mainimg:"firewii.avif", secondaryimg:"firewii.png", mym:"fire_wii.mym", video:"https://www.youtube.com/embed/eJLl2_ZMf6s?autoplay=0&mute=1", downloads:"fire_wii.txt", trans_chans:"0", filter:"misc/views"},
+	{name:"The Flintstones", ID:"FLINTS", mainimg:"flintstones.avif", secondaryimg:"flintstones.png", mym:"flintstones.mym", video:"https://www.youtube.com/embed/wXRJ0I4TWrI?si=Wa8CyWavOx0VFFl0?autoplay=0&mute=1", downloads:"flintstones.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Flower Power", ID:"FLOPO1", mainimg:"flowerpower.avif", secondaryimg:"flowerpower.png", mym:"flower_power_stage1.mym", video:"https://www.youtube.com/embed/lpoNMkhUYhA?si=B4fltaw9eZfFDkQY?autoplay=0&mute=1", downloads:"flowerpower.txt", trans_chans:"0", filter:"misc"},
 	{name:"Foster's Home", ID:"FOSTER", mainimg:"fosters_home.avif", secondaryimg:"fosters_home.png", mym:"fosters_home.mym", video:"https://www.youtube.com/embed/uLuEL2g7-gk?si=V-AzZ6Bai_PC06RY?autoplay=0&mute=1", downloads:"fosters_home.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Friday Night Funkin", ID:"FNFNK1", mainimg:"fridaynightfunkin.avif", secondaryimg:"fridaynightfunkin.png", mym:"friday_night_funkin.mym", video:"https://www.youtube.com/embed/VkbcQsz57nM?si=yqN-PFAOKuyVn1EV?autoplay=0&mute=1", downloads:"fridaynightfunkin.txt", trans_chans:"1", filter:"game"},
@@ -1255,7 +1256,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 120) || (theme_num == 306))
+    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 121) || (theme_num == 307))
 		return true;
 	return false;
 }
@@ -1549,7 +1550,7 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 			}
 			
 			document.getElementById("tabcontent").innerHTML = "<div id='home_container'></div>";
-			document.getElementById("home_container").innerHTML = "<h2>Welcome to the Wii System Menu Theme Building Home page !</h2><hr></hr><br /><img title='Click to enlarge " + completethemeinfo[img_position1].name + " Theme Image.' id='homeimg1' alt='homeimage1' src='" + img_link1 + "' width='400' height='300'></img><img title='Click to enlarge " + completethemeinfo[img_position2].name + " Theme Image.' id='homeimg2' alt='homeimage2' src='" + img_link2 + "' width='400' height='300'></img><img title='Click to enlarge " + completethemeinfo[img_position3].name + " Theme Image.' id='homeimg3' alt='homeimage3' src='" + img_link3 + "' width='400' height='300'></img><br /><br /><hr></hr><br></br><p>Here, you can build and download custom themes for your Wii System Menu. Explore our collection of themes and enhance your Wii experience!<br></br>These are just a few examples of the "+ theme_count +" themes available. More Themes Coming Soon.....</p>";
+			document.getElementById("home_container").innerHTML = "<h2>Welcome to the Wii System Menu Theme Building Home page !</h2><hr></hr><br /><img title='Click to enlarge " + completethemeinfo[img_position1].name + " Theme Image.' id='homeimg1' alt='homeimage1' src='" + img_link1 + "' width='400' height='300'></img><img title='Click to enlarge " + completethemeinfo[img_position2].name + " Theme Image.' id='homeimg2' alt='homeimage2' src='" + img_link2 + "' width='400' height='300'></img><img title='Click to enlarge " + completethemeinfo[img_position3].name + " Theme Image.' id='homeimg3' alt='homeimage3' src='" + img_link3 + "' width='400' height='300'></img><br /><br /><hr></hr><br></br><p>Here, you can build and download custom themes for your Wii System Menu. Explore our collection of themes and enhance your Wii experience!</p></p>These are just a few examples of the "+ theme_count +" themes available. More Themes Coming Soon.....</p>";
 			document.getElementById("homeimg1").onclick = function() {
 				show_theme_img(img_link1, completethemeinfo[img_position1].name);
 			}
@@ -1840,6 +1841,47 @@ function delete_session_folder() {
 	}
 	delete_folder.open("GET", "index.php?command=delete_session_folder");
 	delete_folder.send();
+
+	return;
+}
+function show_theme_info(titles_only, ids_only, title_id_only, mym_only, video_only, png_only, txt_only) {
+	let titles = "";
+	let ids = "";
+	let title_id = "";
+	let mym = "";	
+	let video = "";
+	let png = "";
+	let txt = "";
+
+	for(let i = 0; i < theme_count; i++) {
+		titles += '"' + completethemeinfo[i].name +'",\n' ;
+	}
+	for(let i = 0; i < theme_count; i++) {
+		ids += '"' + completethemeinfo[i].ID +'",\n' ;
+	}
+	for(let i = 0; i < theme_count; i++) {
+		title_id += '"' + completethemeinfo[i].ID +"-" + completethemeinfo[i].name +'",\n' ;
+	}
+	for(let i = 0; i < theme_count; i++) {
+		mym += '"' + completethemeinfo[i].mym +'",\n' ;
+	}
+	for(let i = 0; i < theme_count; i++) {
+		video += '"' + completethemeinfo[i].video +'",\n' ;
+	}
+	for(let i = 0; i < theme_count; i++) {
+		png += '"' + completethemeinfo[i].secondaryimg +'",\n' ;
+	}
+	for(let i = 0; i < theme_count; i++) {
+		txt += '"' + completethemeinfo[i].downloads +'",\n' ;
+	}
+
+	if(titles_only) console.log(titles);
+	if(ids_only) console.log(ids);
+	if(title_id_only) console.log(title_id);
+	if(mym_only) console.log(mym);
+	if(video_only) console.log(video);
+	if(png_only) console.log(png);
+	if(txt_only) console.log(txt);
 
 	return;
 }
