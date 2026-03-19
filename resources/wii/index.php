@@ -9,7 +9,9 @@
 		$action = $_GET['action'];
 		$tooldir = "../tools";
 		$themedir = "../mym";
-		$runfirstthemes = array("black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym");
+		$spin_first_themes = array(
+			"black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedu.mym", "darkwii_extendede.mym"
+		);//"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
 		$themeNoext = NULL;
 		$str = NULL;
 		$spinmym = NULL;
@@ -215,8 +217,8 @@
 						}
 					}
 					else {
-						for($i = 0; $i < 7; $i++) {
-							if($theme == $runfirstthemes[$i]) {
+						for($i = 0; $i < count($spin_first_themes); $i++) {
+							if($theme == $spin_first_themes[$i]) {
 								$runfirst = true;
 								break;
 							}
@@ -279,8 +281,8 @@
 							}
 						}
 					}
-					if($multistage_theme) echo "http://wiithemer.org/wii/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
-					else echo "http://wiithemer.org/wii/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+					if($multistage_theme) echo "http://www.wiithemer.org/resources/wii/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
+					else echo "http://www.wiithemer.org/resources/wii/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
 				}
 			break;
 			case "remove_session_Dir":  
@@ -415,7 +417,7 @@
 		else return false;
 	}
 	function add_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 51) && $theme_Selected <= 58) || ($theme_Selected == 48)  || ($theme_Selected == 92) || ($theme_Selected == 231))
+		if((($theme_Selected >= 71) && $theme_Selected <= 78) || ($theme_Selected == 68)  || ($theme_Selected == 121) || ($theme_Selected == 307))
 			return true;
 		return false;
 	}
