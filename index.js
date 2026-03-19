@@ -176,6 +176,7 @@ const completethemeinfo = [
 	{name:"Lime Wii", ID:"LIME01", mainimg:"limewii.avif", secondaryimg:"limewii.png", mym:"lime_wii.mym", video:"https://www.youtube.com/embed/_L1V84YnIi4?autoplay=0&mute=1", downloads:"lime_wii.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Limp Bizkit", ID:"LMPBIZ", mainimg:"limpbizkit.avif", secondaryimg:"limpbizkit.png", mym:"limpbizkit.mym", video:"https://www.youtube.com/embed/jHPzdvLQi-E?si=jUS5EhyUEIejmGGK?autoplay=0&mute=1", downloads:"limpbizkit.txt", trans_chans:"0", filter:"music"},
 	{name:"Looney Toons", ID:"LTOON1", mainimg:"looneytoons.avif", secondaryimg:"looneytoons.png", mym:"looney_toons.mym", video:"https://www.youtube.com/embed/D5dFtKsQhYE?autoplay=0&mute=1", downloads:"looney_toons.txt", trans_chans:"1", filter:"cartoon"},
+	{name:"L.A. Rams", ID:"LARAMS", mainimg:"larams.avif", secondaryimg:"larams.png", mym:"larams.mym", video:"https://www.youtube.com/embed/HcWUy6hjCbg?si=4TmmJwct5vJuh2iH?autoplay=0&mute=1", downloads:"larams.txt", trans_chans:"1", filter:"sports/new"},
 	{name:"Lost", ID:"LOST01", mainimg:"lost.avif", secondaryimg:"lost.png", mym:"lost.mym", video:"https://www.youtube.com/embed/MGjEbT6j5U4?autoplay=0&mute=1", downloads:"lost.txt", trans_chans:"1", filter:"movie"},
 	{name:"Luigi v1", ID:"LUIGI1", mainimg:"luigi.avif", secondaryimg:"luigi.png", mym:"luigi_v1.mym", video:"https://www.youtube.com/embed/kIQWI1lfvN8?autoplay=0&mute=1", downloads:"luigi.txt", trans_chans:"1", filter:"game"},
 	{name:"Luigi v2", ID:"LUIGI2", mainimg:"luigiv2.avif", secondaryimg:"luigiv2.png", mym:"luigi_v2_stage1.mym", video:"https://www.youtube.com/embed/T-0HcukGFvs?si=kgnGp1US233zqxmo?autoplay=0&mute=1", downloads:"luigiv2.txt", trans_chans:"1", filter:"game/views"},
@@ -755,11 +756,13 @@ function load_theme_list(filter_type) {
 		}
 		else if( filter_type == "sports") {
 			if(completethemeinfo[i].filter) {
-				if(completethemeinfo[i].filter != "sports") continue;
+				if(completethemeinfo[i].filter != "sports") {
+					if(completethemeinfo[i].filter == "sports/new")
+						filtered_list_position.push(i);
+					else continue; 
+				}
 				else filtered_list_position.push(i); // if filter set to sports, add this theme to filtered list
 			}
-			//else continue; // if no filter set, skip this theme
-			//filtered_list_position.push(i);
 		}
 		else if( filter_type == "movie") {
 			if(completethemeinfo[i].filter) {
@@ -888,6 +891,8 @@ function load_theme_list(filter_type) {
 				else if(completethemeinfo[i].filter == "anime/new")
 					filtered_list_position.push(i);
 				else if(completethemeinfo[i].filter == "misc/new")
+						filtered_list_position.push(i);
+				else if(completethemeinfo[i].filter == "sports/new")
 						filtered_list_position.push(i);
 				else continue;
 			}
@@ -1256,7 +1261,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 121) || (theme_num == 307))
+    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 121) || (theme_num == 308))
 		return true;
 	return false;
 }
