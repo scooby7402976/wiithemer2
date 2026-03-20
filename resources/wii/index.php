@@ -336,7 +336,7 @@
 		switch($version) {
 			case 609: 
 				$GLOBALS['app'] = "1f"; // U 4.3
-				$GLOBALS['displayname'] = "vWii_U";
+				$GLOBALS['displayname'] = "v609_U";
 			break;
 			case 513: 
 				$GLOBALS['app'] = "97"; // U 4.3
@@ -356,7 +356,7 @@
 			break;
 			case 610:
 				$GLOBALS['app'] = "22";// E 4.3
-				$GLOBALS['displayname'] = "vWii_E";
+				$GLOBALS['displayname'] = "v510_E";
 			break;
 			case 514:
 				$GLOBALS['app'] = "9a";// E 4.3
@@ -376,7 +376,7 @@
 			break;
 			case 608:
 				$GLOBALS['app'] = "1c"; // J vwii
-				$GLOBALS['displayname'] = "vWii_J";
+				$GLOBALS['displayname'] = "v608_J";
 			break;
 			case 512:
 				$GLOBALS['app'] = "94"; // J 4.3
@@ -417,7 +417,7 @@
 		else return false;
 	}
 	function add_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 71) && $theme_Selected <= 78) || ($theme_Selected == 68)  || ($theme_Selected == 121) || ($theme_Selected == 308))
+		if((($theme_Selected >= 71) && $theme_Selected <= 78) || ($theme_Selected == 68)  || ($theme_Selected == 122) || ($theme_Selected == 309))
 			return true;
 		return false;
 	}
