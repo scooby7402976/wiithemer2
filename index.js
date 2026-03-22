@@ -35,6 +35,7 @@ const completethemeinfo = [
 	{name:"Boondock Saints", ID:"BDSTS1", mainimg:"boondocksaints.avif", secondaryimg:"boondocksaints.png", mym:"boondock_saints.mym", video:"https://www.youtube.com/embed/5tk08eRKYNI?autoplay=0&mute=1", downloads:"boondock_saints.txt", trans_chans:"0", filter:"movie"},
 	{name:"Boston Red Socks", ID:"BSTRD1", mainimg:"boston_redsocks.avif", secondaryimg:"boston_redsocks.png", mym:"boston.mym", video:"https://www.youtube.com/embed/YJMNtT4gPDU?si=Obp6ZLFlnPhbtf4o?autoplay=0&mute=1", downloads:"boston_redsocks.txt", trans_chans:"0", filter:"sports"},
 	{name:"Bowser", ID:"BWSR01", mainimg:"bowser.avif", secondaryimg:"bowser.png", mym:"bowser.mym", video:"https://www.youtube.com/embed/tdYdYU1KKdw?autoplay=0&mute=1", downloads:"bowser.txt", trans_chans:"0", filter:"game"},
+	{name:"Bratz", ID:"BRATZ1", mainimg:"bratz.avif", secondaryimg:"bratz.png", mym:"bratz.mym", video:"https://www.youtube.com/embed/IoTcWKfSYr4?si=RkZPrMmy-jipLRhp?autoplay=0&mute=1", downloads:"bratz.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Broly", ID:"BRLY01", mainimg:"broly.avif", secondaryimg:"broly.png", mym:"broly.mym", video:"https://www.youtube.com/embed/-rd2YPJ9jOE?autoplay=0&mute=1", downloads:"broly.txt", trans_chans:"1", filter:"anime"},
 	{name:"Buffalo Bills", ID:"BILLS1", mainimg:"buffalo_bills.avif", secondaryimg:"buffalo_bills.png", mym:"bills.mym", video:"https://www.youtube.com/embed/F6-XuSJcC20?si=-l2Sb2MsnF-kQAJZ?autoplay=0&mute=1", downloads:"buffalo_bills.txt", trans_chans:"0", filter:"sports"},
 	{name:"Busy Town", ID:"BUSYTN", mainimg:"busytown.avif", secondaryimg:"busytown.png", mym:"busytown.mym", video:"https://www.youtube.com/embed/MkyvRJvlb3E?si=aJlELKxE98BAH02R?autoplay=0&mute=1", downloads:"busytown.txt", trans_chans:"1", filter:"cartoon"},
@@ -1262,7 +1263,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 71) && theme_num <= 78) || (theme_num == 68)  || (theme_num == 122) || (theme_num == 309))
+    if(((theme_num >= 72) && theme_num <= 79) || (theme_num == 69)  || (theme_num == 123) || (theme_num == 310))
 		return true;
 	return false;
 }
