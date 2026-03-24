@@ -264,6 +264,7 @@ const completethemeinfo = [
 	{name:"Reconnect 24 Blue", ID:"RC2402", mainimg:"rc24_blue.avif", secondaryimg:"rc24blue.png", mym:"rc24_blue.mym", video:"https://www.youtube.com/embed/DAjytOLv1r0?si=__5iuVTUmvWLDa2m?autoplay=0&mute=1", downloads:"rc24_blue.txt", trans_chans:"1", filter:"misc"},
 	{name:"Reconnect 24 Red", ID:"RC2401", mainimg:"rc24_red.avif", secondaryimg:"rc24red.png", mym:"rc24_red.mym", video:"https://www.youtube.com/embed/CF2R3WsNga0?si=MA3yerCcYqtqJjKL?autoplay=0&mute=1", downloads:"rc24_red.txt", trans_chans:"1", filter:"misc"},
 	{name:"Red Wii Motion", ID:"REDMO1", mainimg:"redwiimotion.avif", secondaryimg:"redwiimotion.png", mym:"redwiimotion.mym", video:"https://www.youtube.com/embed/pdBgAfl8B1U?si=w3aUH3Kj_epMl8Cm?autoplay=0&mute=1", downloads:"redwiimotion.txt", trans_chans:"1", filter:"darkwii/new"},
+	{name:"Regular Show", ID:"REGSHW", mainimg:"regularshow.avif", secondaryimg:"regularshow.png", mym:"regularshow.mym", video:"https://www.youtube.com/embed/hRlk4PL6RoQ?si=NOM_BGcAtzbklZjU?autoplay=0&mute=1", downloads:"regularshow.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Ren and Stimpy", ID:"RENSTM", mainimg:"renstimpy.avif", secondaryimg:"renstimpy.png", mym:"renstimpy.mym", video:"https://www.youtube.com/embed/dtZkWOhhkeQ?si=5bGUjz5t46otv8rV?autoplay=0&mute=1", downloads:"renstimpy.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Resident Evil 4", ID:"RESEVE", mainimg:"re4.avif", secondaryimg:"re4.png", mym:"re4.mym", video:"https://www.youtube.com/embed/CAW7_AWXaGA?si=DZphIXiqpJ2OB0vj?autoplay=0&mute=1", downloads:"re4.txt", trans_chans:"1", filter:"game"},
 	{name:"Rey Mysterio", ID:"RMYST1", mainimg:"rey_mysterio.avif", secondaryimg:"rey_mysterio.png", mym:"rey_mysterio.mym", video:"https://www.youtube.com/embed/9nP6maLtFpo?si=3IYQfVBTs7HYUkg7?autoplay=0&mute=1", downloads:"rey_mysterio.txt", trans_chans:"1", filter:"individual"},
@@ -1263,7 +1264,7 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 72) && theme_num <= 79) || (theme_num == 69)  || (theme_num == 123) || (theme_num == 310))
+    if(((theme_num >= 72) && theme_num <= 79) || (theme_num == 69)  || (theme_num == 123) || (theme_num == 311))
 		return true;
 	return false;
 }
