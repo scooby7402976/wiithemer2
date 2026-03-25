@@ -356,7 +356,7 @@
 			break;
 			case 610:
 				$GLOBALS['app'] = "22";// E 4.3
-				$GLOBALS['displayname'] = "v510_E";
+				$GLOBALS['displayname'] = "v610_E";
 			break;
 			case 514:
 				$GLOBALS['app'] = "9a";// E 4.3
