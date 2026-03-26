@@ -417,8 +417,13 @@
 		else return false;
 	}
 	function add_mym_Extension($theme_Selected) {
-		if((($theme_Selected >= 72) && $theme_Selected <= 79) || ($theme_Selected == 69)  || ($theme_Selected == 123) || ($theme_Selected == 311))
-			return true;
+		$selected = intval($theme_Selected);
+        $theme_needs_extension = array(73, 74, 75, 76, 77, 78, 79, 80, 70, 124, 312);
+        $int = null;
+        for($int = 0; $int < count($theme_needs_extension); $int++) {
+            if($selected == $theme_needs_extension[$int])
+                return true;
+        }
 		return false;
 	}
 	function increase_data_File($which_file) {

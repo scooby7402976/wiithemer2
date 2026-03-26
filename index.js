@@ -38,6 +38,7 @@ const completethemeinfo = [
 	{name:"Bratz", ID:"BRATZ1", mainimg:"bratz.avif", secondaryimg:"bratz.png", mym:"bratz.mym", video:"https://www.youtube.com/embed/IoTcWKfSYr4?si=RkZPrMmy-jipLRhp?autoplay=0&mute=1", downloads:"bratz.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Broly", ID:"BRLY01", mainimg:"broly.avif", secondaryimg:"broly.png", mym:"broly.mym", video:"https://www.youtube.com/embed/-rd2YPJ9jOE?autoplay=0&mute=1", downloads:"broly.txt", trans_chans:"1", filter:"anime"},
 	{name:"Buffalo Bills", ID:"BILLS1", mainimg:"buffalo_bills.avif", secondaryimg:"buffalo_bills.png", mym:"bills.mym", video:"https://www.youtube.com/embed/F6-XuSJcC20?si=-l2Sb2MsnF-kQAJZ?autoplay=0&mute=1", downloads:"buffalo_bills.txt", trans_chans:"0", filter:"sports"},
+	{name:"Buffy the Vampire Slayer", ID:"BUFFY1", mainimg:"buffy.avif", secondaryimg:"buffy.png", mym:"buffy.mym", video:"https://www.youtube.com/embed/h3UKn4XMdqU?si=StXU-nE-PySmrg6e?autoplay=0&mute=1", downloads:"buffy.txt", trans_chans:"1", filter:"movie/new"},
 	{name:"Busy Town", ID:"BUSYTN", mainimg:"busytown.avif", secondaryimg:"busytown.png", mym:"busytown.mym", video:"https://www.youtube.com/embed/MkyvRJvlb3E?si=aJlELKxE98BAH02R?autoplay=0&mute=1", downloads:"busytown.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Call of Duty", ID:"CODTY1", mainimg:"callofduty.avif", secondaryimg:"callofduty.png", mym:"call_of_duty.mym", video:"https://www.youtube.com/embed/zaHUh0pinlA?autoplay=0&mute=1", downloads:"call_of_duty.txt", trans_chans:"1", filter:"game"},
 	{name:"Captain Caveman", ID:"CPTCMN", mainimg:"caveman.avif", secondaryimg:"caveman.png", mym:"caveman.mym", video:"https://www.youtube.com/embed/TG4SbaW8Zho?si=8cR8EzgIjrClSnJf?autoplay=0&mute=1", downloads:"caveman.txt", trans_chans:"1", filter:"cartoon"},
@@ -1264,8 +1265,12 @@ function is_theme_2_stage(mym_file) {
 	else return true;
 }
 function is_theme_region_specific(theme_num) {
-    if(((theme_num >= 72) && theme_num <= 79) || (theme_num == 69)  || (theme_num == 123) || (theme_num == 311))
-		return true;
+    let i = null;
+	let region_specific_themes = [73, 74, 75, 76, 777, 78, 79, 80, 70, 124, 312];
+	for(i = 0; i < region_specific_themes.length; i++) {
+		if(theme_num == region_specific_themes[i])
+			return true;
+	}
 	return false;
 }
 function start_download() { // remove beta @ release time
@@ -1860,27 +1865,31 @@ function show_theme_info(titles_only, ids_only, title_id_only, mym_only, video_o
 	let video = "";
 	let png = "";
 	let txt = "";
-
+	let theme_info = "";
+	
 	for(let i = 0; i < theme_count; i++) {
 		titles += '"' + completethemeinfo[i].name +'",\n' ;
 	}
 	for(let i = 0; i < theme_count; i++) {
-		ids += '"' + completethemeinfo[i].ID +'",\n' ;
+		ids += completethemeinfo[i].ID +'\n' ;
 	}
 	for(let i = 0; i < theme_count; i++) {
 		title_id += '"' + completethemeinfo[i].ID +"-" + completethemeinfo[i].name +'",\n' ;
 	}
 	for(let i = 0; i < theme_count; i++) {
-		mym += '"' + completethemeinfo[i].mym +'",\n' ;
+		mym += '"' + completethemeinfo[i].ID +"-" + completethemeinfo[i].mym +'",\n' ;
 	}
 	for(let i = 0; i < theme_count; i++) {
 		video += '"' + completethemeinfo[i].video +'",\n' ;
 	}
 	for(let i = 0; i < theme_count; i++) {
-		png += '"' + completethemeinfo[i].secondaryimg +'",\n' ;
+		png += '"' + completethemeinfo[i].ID +"-" + completethemeinfo[i].secondaryimg +'",\n' ;
 	}
 	for(let i = 0; i < theme_count; i++) {
-		txt += '"' + completethemeinfo[i].downloads +'",\n' ;
+		txt += '"' + completethemeinfo[i].ID +"-" + completethemeinfo[i].downloads +'",\n' ;
+	}
+	for(let i = 0; i < theme_count; i++) {
+		theme_info += completethemeinfo[i].ID + "-" + completethemeinfo[i].name + "-" + completethemeinfo[i].mym + "-" + completethemeinfo[i].secondaryimg + "-" + completethemeinfo[i].downloads + '\n' ;
 	}
 
 	if(titles_only) console.log(titles);
@@ -1890,6 +1899,6 @@ function show_theme_info(titles_only, ids_only, title_id_only, mym_only, video_o
 	if(video_only) console.log(video);
 	if(png_only) console.log(png);
 	if(txt_only) console.log(txt);
-
+	//if(!txt_only) console.log(theme_info);
 	return;
 }
