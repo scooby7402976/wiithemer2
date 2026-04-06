@@ -1889,7 +1889,7 @@ function show_theme_info(titles_only, ids_only, title_id_only, mym_only, video_o
 		txt += '"' + completethemeinfo[i].ID +"-" + completethemeinfo[i].downloads +'",\n' ;
 	}
 	for(let i = 0; i < theme_count; i++) {
-		theme_info += completethemeinfo[i].ID + "-" + completethemeinfo[i].name + "-" + completethemeinfo[i].mym + "-" + completethemeinfo[i].secondaryimg + "-" + completethemeinfo[i].downloads + '\n' ;
+		theme_info += completethemeinfo[i].name + "," + completethemeinfo[i].ID + "," + completethemeinfo[i].mym + "," + completethemeinfo[i].secondaryimg + "," + completethemeinfo[i].downloads + '\n' ;
 	}
 
 	if(titles_only) console.log(titles);
@@ -1899,6 +1899,6 @@ function show_theme_info(titles_only, ids_only, title_id_only, mym_only, video_o
 	if(video_only) console.log(video);
 	if(png_only) console.log(png);
 	if(txt_only) console.log(txt);
-	//if(!txt_only) console.log(theme_info);
+	//console.log(theme_info);
 	return;
 }

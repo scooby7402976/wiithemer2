@@ -3,7 +3,9 @@
 	$app = NULL;
 	$displayname = NULL;
 	$action = NULL;
-
+	$spincolors = array(
+        "", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym"
+    );
 	if(isset($_GET['action'])) {
 
 		$action = $_GET['action'];
@@ -18,28 +20,29 @@
 		$spindisplay = NULL;
 		$runfirst = false;
 		$multistage_theme = null;
+		$sesId = null;
 
 		switch($action) {
 			case "prep_Dir": 
 				$copytools = NULL;
 				session_start();
 				$sesId = session_id();
-				if(!empty($sesId)) {  // make session directory and copy needed files to it
-					if(!is_dir($sesId)) {
-						mkdir($sesId);
+				if(!empty("working/" . $sesId)) {  // make session directory and copy needed files to it
+					if(!is_dir("working/" . $sesId)) {
+						mkdir("working/" . $sesId);
 					}
 					if(is_dir($tooldir)) {
 						if ($dh = opendir($tooldir)){
 							while(($file = readdir($dh)) !== false) {
 								if($file == "." or $file == "..")
 									continue;
-								$copytools = copy($tooldir . "/" . $file, $sesId . "/" . $file );
+								$copytools = copy($tooldir . "/" . $file, "working/" . $sesId . "/" . $file );
 								usleep(1000);
 							}
 							closedir($dh);
 						}
 					}
-					if(is_dir($sesId)) {
+					if(is_dir("working/" . $sesId)) {
 						if($copytools)
 							echo $sesId;
 						else
@@ -55,16 +58,16 @@
 				if(isset($theme)) {
 					$copytheme = NULL;
 					$themewdir = $themedir . "/" . $theme;
-					$copytheme = copy($themewdir, $sesId . "/" . $theme);
+					$copytheme = copy($themewdir, "working/" . $sesId . "/" . $theme);
 					if($multistage_theme) {
 						$theme = $themedir . "/" . $multistage_theme . "stage2.mym";
 						$themenodir = $multistage_theme . "stage2.mym";
-						$copytheme = copy($theme, $sesId . "/" . $themenodir);	
+						$copytheme = copy($theme, "working/" . $sesId . "/" . $themenodir);	
 					}
 					if($copytheme)
 						echo "OK";
 					else
-						echo "ERROR - copy theme";
+						echo "ERROR";
 				}
 				if(isset($_GET['spin'])) $spinselected = $_GET['spin'];
 				if(isset($spinselected)) {
@@ -80,11 +83,54 @@
 						$spinmym = "../mym/spins/nospin.mym";
 					}
 
-					$copyspin = copy($spinmym, $sesId . "/" . $spinselected);
+					$copyspin = copy($spinmym, "working/" . $sesId . "/" . $spinselected);
 					if($copyspin)
 						echo "OK";
 					else
-						echo "ERROR - copy spin";
+						echo "ERROR";
+				}
+				if(isset($_GET['spincolor'])) $spincolorselected = $_GET['spincolor'];
+				//echo $spincolorselected . " - spin color\n";
+				if($spincolorselected == "None")
+					echo "OK";
+				else {
+				if(isset($spincolorselected)) {
+					$copyspincolor = NULL;
+
+					if($spincolorselected == "outline_Black.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Black.mym";
+					}
+					else if($spincolorselected == "outline_Blue.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Blue.mym";
+					}
+					else if($spincolorselected == "outline_Green.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Green.mym";
+					}
+					else if($spincolorselected == "outline_Orange.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Orange.mym";
+					}
+					else if($spincolorselected == "outline_Pink.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Pink.mym";
+					}
+					else if($spincolorselected == "outline_Purple.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Purple.mym";
+					}
+					else if($spincolorselected == "outline_Red.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Red.mym";
+					}
+					else if($spincolorselected == "outline_White.mym") {
+						$spincolormym = "../mym/outline_colors/outline_White.mym";
+					}
+					else if($spincolorselected == "outline_Yellow.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Yellow.mym";
+					}
+
+					$copyspincolor = copy($spincolormym, "working/" . $sesId . "/" . $spincolorselected);
+					if($copyspincolor)
+						echo "OK";
+					else
+						echo "ERROR";
+				}
 				}
 			break;
 			case "download_content": 
@@ -95,20 +141,22 @@
 				if(isset($_GET['version'])) $version = $_GET['version'];
 				if(isset($_GET['mymfile'])) $theme = $_GET['mymfile'];
 				if(isset($_GET['spin'])) $spinselected = $_GET['spin'];
-				echo $spinselected . "<br>\n";
+				//if(isset($_GET['spincolor'])) $spincolorselected = $_GET['spincolor'];
+				//echo $spinselected . "<br>\n";
+				//echo $spincolorselected . "<br>\n";
 				if(isset($version)) { # download .app file from nus servers
 					getappndisplayname($version);
-					$str = $sesId . "/000000" . $GLOBALS['app'];
+					$str = "working/" . $sesId . "/000000" . $GLOBALS['app'];
 					$myfile = file_exists($str);
 					if(!$myfile) {
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						$str = null;
 						$str = "themething c 000000" . $GLOBALS['app'];
-						echo $str . "\n";
+						//echo $str . "\n";
 						execInBackground($str);
 						chdir($homedir);
-						$str = $sesId . "/000000" . $GLOBALS['app'];
+						$str = "working/" . $sesId . "/000000" . $GLOBALS['app'];
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and ($seccntr < $optimeout)) {
 							$myfile = file_exists($str);
@@ -121,15 +169,26 @@
 						}
 						$appfile = $GLOBALS['app'];
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						$str = null;
 						$str = "themething s 000000" . $GLOBALS['app'] . " " . $theme . " " . $spinselected . " Theme_Manager";
-						echo $str . "\n";
+						//echo $str . "\n";
 						execInBackground($str);
 						chdir($homedir);
+						$str = "working/" . $sesId . "/000000" . $GLOBALS['app'];
+						$myfile = file_exists($str);
+						while((!$myfile and filesize($myfile) == 0) and ($seccntr < $optimeout)) {
+							$myfile = file_exists($str);
+							sleep(1);
+							$seccntr += 1;
+						}
+						if(!$myfile and ($seccntr == $optimeout)) {
+							echo "Error";
+							return;
+						}
 						clearstatcache();
 					}
-					echo "Appfile download Complete .\n";
+					echo "Complete";
 				}
 			break;
 			case "build_theme":  
@@ -139,6 +198,8 @@
 				//echo $sesId . "<br>\n";
 				if(isset($_GET['spin'])) $spinselected = $_GET['spin'];
 				//echo $spinselected . "<br>\n";
+				if(isset($_GET['spincolor'])) $spincolorselected = $_GET['spincolor'];
+				//echo $spincolorselected . " - build theme\n";
 				if(isset($_GET['version'])) $version = $_GET['version'];
 				//echo $version . "<br>\n";
 				if(isset($_GET['selected'])) $selected = $_GET['selected'];
@@ -147,7 +208,8 @@
 				if(isset($theme)) {
 					$seccntr = NULL;
 					$optimeout = 60;
-					getappndisplayname($version);	
+					getappndisplayname($version);
+					// spin selection	
 					if($spinselected == "fastspin.mym") {
 						$spinmym = "../mym/spins/fastspin.mym";
 						$spindisplay = "_fastspin";
@@ -160,15 +222,53 @@
 						$spinmym = "../mym/spins/nospin.mym";
 						$spindisplay = "_nospin";
 					}
+					// spin color selection
+					if($spincolorselected == "outline_Black.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Black.mym";
+						$spincolordisplay = "_outline_Black";
+					}
+					else if($spincolorselected == "outline_Blue.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Blue.mym";
+						$spincolordisplay = "_outline_Blue";
+					}
+					else if($spincolorselected == "outline_Green.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Green.mym";
+						$spincolordisplay = "_outline_Green";
+					}
+					else if($spincolorselected == "outline_Orange.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Orange.mym";
+						$spincolordisplay = "_outline_Orange";
+					}
+					else if($spincolorselected == "outline_Pink.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Pink.mym";
+						$spincolordisplay = "_outline_Pink";
+					}
+					else if($spincolorselected == "outline_Purple.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Purple.mym";
+						$spincolordisplay = "_outline_Purple";
+					}
+					else if($spincolorselected == "outline_Red.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Red.mym";
+						$spincolordisplay = "_outline_Red";
+					}
+					else if($spincolorselected == "outline_White.mym") {
+						$spincolormym = "../mym/outline_colors/outline_White.mym";
+						$spincolordisplay = "_outline_White";
+					}
+					else if($spincolorselected == "outline_Yellow.mym") {
+						$spincolormym = "../mym/outline_colors/outline_Yellow.mym";
+						$spincolordisplay = "_outline_Yellow";
+					}
+
 					$multistage_theme = checkfor2stagetheme($theme);
 					if($multistage_theme) {
 						$str = "themething b 000000" . $app . " " . $theme . " stage1.app";
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						execInBackground($str);
 						chdir($homedir);
 						$str = null;
-						$str = $sesId . "/stage1.app";
+						$str = "working/" . $sesId . "/stage1.app";
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 							$myfile = file_exists($str);
@@ -180,13 +280,15 @@
 							return;
 						}
 						$str = null;
-						$str = "themething b stage1.app " . $multistage_theme . "stage2.mym stage2.app";
+						if($spincolorselected != "None") $str = "themething b stage1.app " . $multistage_theme . "stage2.mym stage2.app";
+						else $str = "themething b stage1.app " . $multistage_theme . "stage2.mym stage3.app";
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						execInBackground($str);
 						chdir($homedir);
 						$str = null;
-						$str = $sesId . "/stage2.app";
+						if($spincolorselected != "None") $str = "working/" . $sesId . "/stage2.app";
+						else $str = "working/" . $sesId . "/stage3.app";
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 							$myfile = file_exists($str);
@@ -197,14 +299,38 @@
 							echo "Error = building multi section 2";
 							return;
 						}
+						if($spincolorselected != "None") {
+							$str = null;
+							//echo "spincolorselected = " . $spincolorselected . "\n";
+							$str = "themething b stage2.app " . $spincolorselected . " stage3.app";
+							//echo $str . " - section 3 build str\nspincolorselected = " . $spincolorselected . "\n";
+							$homedir = getcwd();
+							chdir("working/" . $sesId);
+							execInBackground($str);
+							chdir($homedir);
+							$str = null;
+							$str = "working/" . $sesId . "/stage3.app";
+							$myfile = file_exists($str);
+							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
+								$myfile = file_exists($str);
+								sleep(1);
+								$seccntr += 1;
+							}
+							if(!$myfile and $seccntr == $optimeout) {
+								echo "Error = building multi section 3";
+								return;
+							}
+						}
 						$str = null;
-						$str = "themething b stage2.app " . $spinselected . " " . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
+						if($spincolorselected != "None") $str = "themething b stage3.app " . $spinselected . " " . $multistage_theme . "_" . $displayname . $spindisplay . $spincolordisplay . ".csm";
+						else $str = "themething b stage3.app " . $spinselected . " " . $multistage_theme . "_" . $displayname . $spindisplay  . ".csm";
 						$homedir = getcwd();
-						chdir($sesId);
+						chdir("working/" . $sesId);
 						execInBackground($str);
 						chdir($homedir);
 						$str = null;
-						$str = $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
+						if($spincolorselected != "None") $str = "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . $spincolordisplay . ".csm";
+						else $str = "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay  . ".csm";
 						$myfile = file_exists($str);
 						while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 							$myfile = file_exists($str);
@@ -212,7 +338,7 @@
 							$seccntr += 1;
 						}
 						if(!$myfile and $seccntr == $optimeout) {
-							echo "Error = building multi section 3";
+							echo "Error = building multi section 4";
 							return;
 						}
 					}
@@ -224,65 +350,139 @@
 							}
 						}
 						if($runfirst) {
-							$str = "themething b 000000" . $app . " " . $spinselected . " 000000" . $app . ".app";
+							if($spincolorselected != "None") $str = "themething b 000000" . $app . " " . $spinselected . " stage1.app";
+							else $str = "themething b 000000" . $app . " " . $spinselected . " stage2.app";
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							execInBackground($str);
 							chdir($homedir);
 							$str = NULL;
-							$str = $sesId . "/000000" . $app . ".app";
+							if($spincolorselected != "None") $str = "working/" . $sesId . "/stage1.app";
+							else $str = "working/" . $sesId . "/stage2.app";
 							$myfile = file_exists($str);
-							while(!$myfile and filesize($myfile) == 0) {
+							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 								$myfile = file_exists($str);
+								sleep(1);
+								$seccntr += 1;
+							}
+							if(!$myfile and $seccntr == $optimeout) {
+								echo "Error = building stage 1";
+								return;
+							}
+							if($spincolorselected != "None") {
+								$str = NULL;
+								$str = "themething b stage1.app " . $spincolorselected . " stage2.app";
+								$homedir = getcwd();
+								chdir("working/" . $sesId);
+								execInBackground($str);
+								chdir($homedir);
+								$str = NULL;
+								$str = "working/" . $sesId . "/stage2.app";
+								$myfile = file_exists($str);
+								while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
+									$myfile = file_exists($str);
+									sleep(1);
+									$seccntr += 1;
+								}
+								if(!$myfile and $seccntr == $optimeout) {
+									echo "Error = building stage 2";
+									return;
+								}
 							}
 							if(add_mym_Extension($selected))
 								$themeNoext = substr($theme, 0, strlen($theme) - 5);
 							else $themeNoext = substr($theme, 0, strlen($theme) - 4);
 							$str = NULL;
-							$str = "themething b 000000" . $app . ".app " . $theme . " ". $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+							if($spincolorselected != "None") $str = "themething b stage2.app " . $theme . " ". $themeNoext . "_" . $displayname . $spindisplay . $spincolordisplay . ".csm";
+							else $str = "themething b stage2.app " . $theme . " ". $themeNoext . "_" . $displayname . $spindisplay  . ".csm";
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							execInBackground($str);
 							chdir($homedir);
 							$str = NULL;
-							$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+							if($spincolorselected != "None") $str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . $spincolordisplay . ".csm";
+							else $str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay  . ".csm";
 							$myfile = file_exists($str);
-							while(!$myfile and filesize($myfile) == 0) {
+							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 								$myfile = file_exists($str);
+								sleep(1);
+								$seccntr += 1;
+							}
+							if(!$myfile and $seccntr == $optimeout) {
+								echo "Error = building stage 3";
+								return;
 							}
 						}
 						else {
-							$str = "themething b 000000" . $app . " " . $theme . " 000000" . $app . ".app";
+							if($spincolorselected != "None") $str = "themething b 000000" . $app . " " . $theme . " stage1.app";
+							else $str = "themething b 000000" . $app . " " . $theme . " stage2.app";
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							execInBackground($str);
 							chdir($homedir);
 							
 							$str = NULL;
-							$str = $sesId . "/000000" . $app . ".app";
+							if($spincolorselected != "None") $str = "working/" . $sesId . "/stage1.app";
+							else $str = "working/" . $sesId . "/stage2.app";
 							$myfile = file_exists($str);
-							while(!$myfile and filesize($myfile) == 0) {
+							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 								$myfile = file_exists($str);
+								sleep(1);
+								$seccntr += 1;
+							}
+							if(!$myfile and $seccntr == $optimeout) {
+								echo "Error = building stage 1";
+								return;
+							}
+							if($spincolorselected != "None"){
+								$str = NULL;
+								$str = "themething b stage1.app " . $spincolorselected . " stage2.app";
+								$homedir = getcwd();
+								chdir("working/" . $sesId);
+								execInBackground($str);
+								chdir($homedir);
+								$str = NULL;
+								$str = "working/" . $sesId . "/stage2.app";
+								$myfile = file_exists($str);
+								while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
+									$myfile = file_exists($str);
+									sleep(1);
+									$seccntr += 1;
+								}
+								if(!$myfile and $seccntr == $optimeout) {
+									echo "Error = building stage 2";
+									return;
+								}
 							}
 							if(add_mym_Extension($selected))
 								$themeNoext = substr($theme, 0, strlen($theme) - 5);
 							else $themeNoext = substr($theme, 0, strlen($theme) - 4);
 							$str = NULL;
-							$str = "themething b 000000" . $app . ".app " . $spinselected . " ". $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+							if($spincolorselected != "None") $str = "themething b stage2.app " . $spinselected . " ". $themeNoext . "_" . $displayname . $spindisplay . $spincolordisplay . ".csm";
+							else $str = "themething b stage2.app " . $spinselected . " ". $themeNoext . "_" . $displayname . $spindisplay  . ".csm";
 							$homedir = getcwd();
-							chdir($sesId);
+							chdir("working/" . $sesId);
 							execInBackground($str);
 							chdir($homedir);
 							$str = NULL;
-							$str = $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+							if($spincolorselected != "None") $str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . $spincolordisplay . ".csm";
+							else $str = "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay  . ".csm";
 							$myfile = file_exists($str);
-							while(!$myfile and filesize($myfile) == 0) {
+							while((!$myfile and filesize($myfile) == 0) and $seccntr < $optimeout) {
 								$myfile = file_exists($str);
+								sleep(1);
+								$seccntr += 1;
 							}
 						}
 					}
-					if($multistage_theme) echo "http://www.wiithemer.org/resources/wii/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . ".csm";
-					else echo "http://www.wiithemer.org/resources/wii/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . ".csm";
+					if($spincolorselected != "None") {
+						if($multistage_theme) echo "http://www.wiithemer.org/resources/wii/" . "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay . $spincolordisplay . ".csm";
+						else echo "http://www.wiithemer.org/resources/wii/" . "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay . $spincolordisplay . ".csm";
+					}
+					else {
+						if($multistage_theme) echo "http://www.wiithemer.org/resources/wii/" . "working/" . $sesId . "/" . $multistage_theme . "_" . $displayname . $spindisplay  . ".csm";
+						else echo "http://www.wiithemer.org/resources/wii/" . "working/" . $sesId . "/" . $themeNoext . "_" . $displayname . $spindisplay  . ".csm";
+					}
 				}
 			break;
 			case "remove_session_Dir":  
@@ -296,7 +496,7 @@
 						}
 						closedir($dh);
 					}
-					usleep(1000);
+					usleep(5000);
 					rmdir($sesId);
 					echo "Session Dir. and files removal complete .\n";
 				}
