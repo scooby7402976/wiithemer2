@@ -21,7 +21,8 @@
 		$runfirst = false;
 		$multistage_theme = null;
 		$sesId = null;
-
+		$themetocheck = null;
+		
 		switch($action) {
 			case "prep_Dir": 
 				$copytools = NULL;
@@ -519,9 +520,9 @@
 				$readCount = file_get_contents("wiithememanager/" . $themetocheck . "/downloads.txt");
 				echo $readCount;
 			break;
-			case "getthemefilesize":
+			case "getfilesize":
 				if(isset($_GET['themetocheck'])) $themetocheck = $_GET['themetocheck'];
-				$readsize = file_get_contents("wiithememanager/" . $themetocheck . "/filesize.txt");
+				$readsize = filesize($themedir . "/" . $_GET['themetocheck']);
 				echo $readsize;
 			break;
 		}
