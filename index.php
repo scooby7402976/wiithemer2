@@ -561,7 +561,7 @@
 	}
     function theme_needs_mym_Extension($theme_Selected) : bool {
 		$selected = intval($theme_Selected);
-        $theme_needs_extension = array(73, 74, 75, 76, 77, 78, 79, 80, 70, 124, 312);
+        $theme_needs_extension = array(74, 75, 76, 77, 78, 79, 80, 81, 71, 125, 313);
         $int = null;
         for($int = 0; $int < count($theme_needs_extension); $int++) {
             if($selected == $theme_needs_extension[$int])

@@ -21,6 +21,7 @@ const completethemeinfo = [
 	{name:"Battle for Dream Island", ID:"BATDRI", mainimg:"battlefordreamisland.avif", secondaryimg:"battlefordreamisland.png", mym:"battle_4_dream_island.mym", video:"https://www.youtube.com/embed/jkHkqRsY8fk?si=UvTceSyOYIJQXkNb?autoplay=0&mute=1", downloads:"battlefordreamisland.txt", trans_chans:"1", filter:"game"},
 	{name:"Batman v1", ID:"BTMN01", mainimg:"batmanv1.avif", secondaryimg:"batmanv1.png", mym:"batman_v1.mym", video:"https://www.youtube.com/embed/_O_pPfQe5Do?autoplay=0&mute=1", downloads:"batman_v1.txt", trans_chans:"1", filter:"movie"},
 	{name:"Batman v2", ID:"BTMN02", mainimg:"batmanv2.avif", secondaryimg:"batmanv2.png", mym:"batman_v2.mym", video:"https://www.youtube.com/embed/RhfS_ZdaDVU?autoplay=0&mute=1", downloads:"batman_v2.txt", trans_chans:"1", filter:"movie"},
+	{name:"Beavis and Butthead", ID:"BEABUT", mainimg:"beavisbutthead.avif", secondaryimg:"beavisbutthead.png", mym:"beavisbutthead.mym", video:"https://www.youtube.com/embed/DXgXzdVKqLQ?si=8XcI552EblU6Nfr_?autoplay=0&mute=1", downloads:"beavisbutthead.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Notorious B.I.G.", ID:"BIGG01", mainimg:"biggie.avif", secondaryimg:"biggie.png", mym:"biggie_stage1.mym", video:"https://www.youtube.com/embed/2mJFuiNnAo8?si=RLjpDy2p4Wbira0F?autoplay=0&mute=1", downloads:"biggie.txt", trans_chans:"0", filter:"music"},
 	{name:"Billy Mays", ID:"BILLY1", mainimg:"billymays.avif", secondaryimg:"billymays.png", mym:"billy_mays.mym", video:"https://www.youtube.com/embed/8lxUIOhhyY4?si=b9EtProCCiJ94XjG?autoplay=0&mute=1", downloads:"billymays.txt", trans_chans:"1", filter:"individual"},
 	{name:"Black Gold", ID:"BLKGD1", mainimg:"blackgold.avif", secondaryimg:"blackgold.png", mym:"blackgold.mym", video:"https://www.youtube.com/embed/S8FYX8l09Tg?si=gbfexY4AjjUCu3fN?autoplay=0&mute=1", downloads:"blackgold.txt", trans_chans:"1", filter:"misc"},
@@ -321,6 +322,7 @@ const completethemeinfo = [
 	{name:"Super Mario Sunshine", ID:"SMSUN1", mainimg:"supermariosunshine.avif", secondaryimg:"supermariosunshine.png", mym:"supermariosunshine.mym", video:"https://www.youtube.com/embed/wq_LWUynBx0?si=zRKrg60DvGEq_R7X?autoplay=0&mute=1", downloads:"supermariosunshine.txt", trans_chans:"1", filter:"game"},
 	{name:"Super Paper Mario", ID:"SPAPM1", mainimg:"superpapermario.avif", secondaryimg:"superpapermario.png", mym:"superpapermario.mym", video:"https://www.youtube.com/embed/C89isBnmq6Q?si=oIaDZhf2nVaQJf3o?autoplay=0&mute=1", downloads:"superpapermario.txt", trans_chans:"1", filter:"game"},
 	{name:"Super Sonic", ID:"SSONI1", mainimg:"supersonic.avif", secondaryimg:"supersonic.png", mym:"super_sonic.mym", video:"https://www.youtube.com/embed/h0OdHk8D0aQ?autoplay=0&mute=1", downloads:"super_sonic.txt", trans_chans:"1", filter:"game"},
+	{name:"SynthWiive", ID:"SYNWII", mainimg:"synthwiive.avif", secondaryimg:"synthwiive.png", mym:"synthwiive.mym", video:"https://www.youtube.com/embed/22rSjh9nmIs?si=0FbDu7u6kJmTXaGP?autoplay=0&mute=1", downloads:"synthwiive.txt", trans_chans:"1", filter:"darkwii/new"},
 	{name:"The Simpsons v1", ID:"SIMPS1", mainimg:"thesimpsons_v1.avif", secondaryimg:"simpsons_v1.png", mym:"the_simpsons_v1.mym", video:"https://www.youtube.com/embed/Akl4tZ9eJio?autoplay=0&mute=1", downloads:"the_simpsons_v1.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"The Simpsons v2", ID:"SIMPS2", mainimg:"thesimpsons_v2.avif", secondaryimg:"simpsons_v2.png", mym:"the_simpsons_v2.mym", video:"https://www.youtube.com/embed/9mgBLlYSGh8?si=jKVxOEHhvAGYwhbn?autoplay=0&mute=1", downloads:"the_simpsons_v2.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"The Simpsons v3", ID:"SIMPS3", mainimg:"thesimpsons_v3.avif", secondaryimg:"simpsons_v3.png", mym:"the_simpsons_v3.mym", video:"https://www.youtube.com/embed/CHfKSOvrlI0?si=cEb_ysPl5PzT2txB?autoplay=0&mute=1", downloads:"the_simpsons_v3.txt", trans_chans:"1", filter:"cartoon"},
@@ -1266,7 +1268,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [73, 74, 75, 76, 777, 78, 79, 80, 70, 124, 312];
+	let region_specific_themes = [74, 75, 76, 77, 78, 79, 80, 81, 71, 125, 313];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
