@@ -123,6 +123,7 @@ const completethemeinfo = [
 	{name:"The Flintstones", ID:"FLINTS", mainimg:"flintstones.avif", secondaryimg:"flintstones.png", mym:"flintstones.mym", video:"https://www.youtube.com/embed/wXRJ0I4TWrI?si=Wa8CyWavOx0VFFl0?autoplay=0&mute=1", downloads:"flintstones.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Flower Power", ID:"FLOPO1", mainimg:"flowerpower.avif", secondaryimg:"flowerpower.png", mym:"flower_power_stage1.mym", video:"https://www.youtube.com/embed/lpoNMkhUYhA?si=B4fltaw9eZfFDkQY?autoplay=0&mute=1", downloads:"flowerpower.txt", trans_chans:"0", filter:"misc"},
 	{name:"Foster's Home", ID:"FOSTER", mainimg:"fosters_home.avif", secondaryimg:"fosters_home.png", mym:"fosters_home.mym", video:"https://www.youtube.com/embed/uLuEL2g7-gk?si=V-AzZ6Bai_PC06RY?autoplay=0&mute=1", downloads:"fosters_home.txt", trans_chans:"1", filter:"cartoon"},
+	{name:"Freakazoid", ID:"FREAKA", mainimg:"freakazoid.avif", secondaryimg:"freakazoid.png", mym:"freakazoid.mym", video:"https://www.youtube.com/embed/VCK1dn_fVC0?si=kiM9hdfTjQmfJkG4?autoplay=0&mute=1", downloads:"freakazoid.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Friday Night Funkin", ID:"FNFNK1", mainimg:"fridaynightfunkin.avif", secondaryimg:"fridaynightfunkin.png", mym:"friday_night_funkin.mym", video:"https://www.youtube.com/embed/VkbcQsz57nM?si=yqN-PFAOKuyVn1EV?autoplay=0&mute=1", downloads:"fridaynightfunkin.txt", trans_chans:"1", filter:"game"},
 	{name:"Friday the 13th", ID:"F13TH1", mainimg:"fridaythe13th.avif", secondaryimg:"fridaythe13th.png", mym:"friday_the_13th_stage1.mym", video:"https://www.youtube.com/embed/SKT-nmQC68o?si=fWW98k2AViFDSKAO?autoplay=0&mute=1", downloads:"fridaythe13th.txt", trans_chans:"1", filter:"movie"},
 	{name:"Full Metal Alchemist", ID:"FMTL", mainimg:"fullmetalalchemist.avif", secondaryimg:"fullmetalalchemist.png", mym:"full_metal_alchemist", video:"https://www.youtube.com/embed/ZpPcjebgEUY?autoplay=0&mute=1", downloads:"full_metal_alchemist.txt", trans_chans:"1", filter:"anime"},
@@ -1268,7 +1269,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [74, 75, 76, 77, 78, 79, 80, 81, 71, 125, 313];
+	let region_specific_themes = [74, 75, 76, 77, 78, 79, 80, 81, 71, 126, 314];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
