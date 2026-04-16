@@ -1004,6 +1004,16 @@ function load_outline_Color() {
 	}
 	return;
 }
+function load_cursor_Color() {
+	document.getElementById("cursor_color").options.length = 0; // clear existing options
+	for(let i = 0; i < outline_Color.length; i++) { 
+		let option = document.createElement("option");
+        option.text = outline_Color[i];
+        option.value = i;
+        document.getElementById("cursor_color").add(option);
+	}
+	return;
+}
 function load_regions_no_K() {
 	document.getElementById("select_region").options.length = 0; // clear existing options
 	for(let i = 0; i < regions.length - 1; i++) {
@@ -1052,7 +1062,7 @@ async function theme_builder(build_response, mym_file, spin_option, spin_color, 
 			build_response("Error: " + xhttp.status);
 		}
 	}
-	xhttp.open("GET", "index.php?command=theme_builder&mym_theme=" + mym_file + "&spinindex=" + spin_option + "&spincolor=" + spin_color + "&trans_channels=" + trans_channels + "&save_source=" + save_source + "&theme_position=" + theme_position + "&version_index=" + version + "&region_index=" + region);
+	xhttp.open("GET", "index.php?command=theme_builder&mym_theme=" + mym_file + "&spinindex=" + spin_option + "&spincolor=" + spin_color + "&trans_channels=" + trans_channels + "&save_source=" + save_source + "&theme_position=" + theme_position + "&version_index=" + version + "&region_index=" + region + "&cursorshadow=" + build_theme_info.cursorColorIndex);
 	xhttp.send();
 return;
 }
@@ -1093,7 +1103,7 @@ async function copy_theme_files(copy_responce, mym_file, spin_option, spin_color
 			copy_responce("Error: " + xhttp.status);
 		}
 	}
-	xhttp.open("GET", "index.php?command=copy_theme_files&mym_theme=" + mym_file + "&spinindex=" + spin_option + "&spincolor=" + spin_color + "&trans_channels=" + trans_channels + "&region_index=" + region + "&theme_position=" + theme_position);
+	xhttp.open("GET", "index.php?command=copy_theme_files&mym_theme=" + mym_file + "&spinindex=" + spin_option + "&spincolor=" + spin_color + "&trans_channels=" + trans_channels + "&region_index=" + region + "&theme_position=" + theme_position + "&cursorshadow=" + build_theme_info.cursorColorIndex);
 	xhttp.send();
 	return;
 }
@@ -1137,6 +1147,7 @@ function build_theme_setup(theme_num) {
     build_theme_info.transChannels = document.getElementById("trans_channels").checked;
     build_theme_info.spinOption = document.querySelector('input[name="option"]:checked').value;
     build_theme_info.outlineColorIndex = document.getElementById("spin_color").selectedIndex;
+	build_theme_info.cursorColorIndex = document.getElementById("cursor_color").selectedIndex;
 	build_theme_info.name = completethemeinfo[theme_num].name;
 	build_theme_info.mym = completethemeinfo[theme_num].mym;
 
@@ -1378,7 +1389,7 @@ function set_build_gui() {
 	document.getElementById("tabcontent").innerHTML = "";
 	// Load Build GUI here .
 	document.getElementById("tabcontent").innerHTML = "<span title='Close Window' class='closepreviewbtn'>&times;</span><div id='build_gui_container'></div>";
-	document.getElementById("build_gui_container").innerHTML = "<h1>" + theme.name + "</h1><br /><hr></hr><div id='save_menu_code' class='flexrow'></div><hr></hr><br></br><b><i>Optional</i></b> :<br></br><div id='spin_color_container'><label for='spin_color' id='spin_color_label' title='Click to choose spinning outline color .'>Spinning Outline Color</label><select id='spin_color'  title='Choose spinning outline color .'></select></div><div id='spin_option_container'><label for='fastspin' id='fastspinlabel' title='A fast spinning channel outline'>Fast Spin Channels</label><input type='radio' name='option' id='fastspin' value='3'></input><label for='spin' id='spinlabel' title='A spinning chanel outline'>Spin Channels</label><input type='radio' name='option' id='spin' value='2'></input><label for='nospin' id='nospinlabel' title='A none spinning channel outline'>No Spin Channels</label><input type='radio' name='option' id='nospin' value='1' checked></input></div><hr></hr><br></br><b><i>Optional</i></b> :<br></br><div id='source_file_container'><label for='source_file_save' id='source_file_save_label' title='Click to save csm,app,mym files .'>Save Source Files</label><input type='checkbox' id='source_file_save' title='Click to save csm,app,mym files .'></input></div><div id='trans_channels_container'><label for='trans_channels' id='trans_channels_label' title='Click to make channels trans-parent .'>Transparent Channels</label><input type='checkbox' id='trans_channels' title='Click to make channels trans-parent .'></input></div><hr></hr><br></br><div id='begin_build_btn' title='Click to build theme with these options .'>Build Theme</div>";
+	document.getElementById("build_gui_container").innerHTML = "<h1>" + theme.name + "</h1><br /><hr></hr><div id='save_menu_code' class='flexrow'></div><hr></hr><br></br><b><i>Optional</i></b> :<br></br><div id='cursor_shadow_container'><label for='cursor_color' id='cursor_color_label' title='Click to choose cursor shadow color .'>Cursor Shadow Color</label><select id='cursor_color'  title='Choose cursor shadow color .' disabled></select></div><div id='spin_color_container'><label for='spin_color' id='spin_color_label' title='Click to choose spinning outline color .'>Spinning Outline Color</label><select id='spin_color'  title='Choose spinning outline color .'></select></div><div id='spin_option_container'><label for='fastspin' id='fastspinlabel' title='A fast spinning channel outline'>Fast Spin Channels</label><input type='radio' name='option' id='fastspin' value='3'></input><label for='spin' id='spinlabel' title='A spinning chanel outline'>Spin Channels</label><input type='radio' name='option' id='spin' value='2'></input><label for='nospin' id='nospinlabel' title='A none spinning channel outline'>No Spin Channels</label><input type='radio' name='option' id='nospin' value='1' checked></input></div><hr></hr><br></br><b><i>Optional</i></b> :<br></br><div id='source_file_container'><label for='source_file_save' id='source_file_save_label' title='Click to save csm,app,mym files .'>Save Source Files</label><input type='checkbox' id='source_file_save' title='Click to save csm,app,mym files .'></input></div><div id='trans_channels_container'><label for='trans_channels' id='trans_channels_label' title='Click to make channels trans-parent .'>Transparent Channels</label><input type='checkbox' id='trans_channels' title='Click to make channels trans-parent .'></input></div><hr></hr><br></br><div id='begin_build_btn' title='Click to build theme with these options .'>Build Theme</div>";
 	if(!data_saved)
 		document.getElementById("save_menu_code").innerHTML = "<div id='save_menu_btn' onclick='save_user_data()' title='Click to save System Info'>Save Menu Info</div><p>Select System Menu Version<select id='select_version' onclick='check_main_options()' title='Click to select Menu Version .'></select></p><p>Select System Menu Region<select id='select_region' title='Click to select Menu Region .'></select></p>";
 	else
@@ -1390,6 +1401,7 @@ function set_build_gui() {
 		load_versions();
 	}
 	load_outline_Color();
+	load_cursor_Color();
 	
 	document.getElementsByClassName("closepreviewbtn")[0].onclick = function() {
 		tab_locked = false;

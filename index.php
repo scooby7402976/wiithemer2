@@ -5,6 +5,9 @@
     $spincolors = array(
         "", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym"
     );
+    $shadowcolors = array(
+        "", "black_shadow.mym", "blue_shadow.mym", "green_shadow.mym", "orange_shadow.mym", "pink_shadow.mym", "purple_shadow.mym", "red_shadow.mym", "white_shadow.mym", "yellow_shadow.mym"
+    );
     $spinmym_src_file = array(
         "", "nospin.mym", "spin.mym", "fastspin.mym"
     );
@@ -63,8 +66,8 @@
                 if(isset($_GET["trans_channels"])) $transchannels = $_GET["trans_channels"];
                 if(isset($_GET["region_index"])) $region_index = intval($_GET["region_index"]);
                 if(isset($_GET["theme_position"])) $theme_position = intval($_GET["theme_position"]);
-
-                copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels, $region_index, $theme_position);
+                if(isset($_GET["cursorshadow"])) $cursor_shadow_index = intval($_GET["cursorshadow"]);
+                copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels, $region_index, $theme_position, $cursor_shadow_index);
                 break;
             case "download_content":
                 if(isset($_GET["mym_theme"])) $mym_theme = $_GET["mym_theme"];
@@ -83,8 +86,9 @@
                 if(isset($_GET["theme_position"])) $theme_position = intval($_GET["theme_position"]);
                 if(isset($_GET["version_index"])) $version_index = intval($_GET["version_index"]);
                 if(isset($_GET["region_index"])) $region_index = intval($_GET["region_index"]);
+                if(isset($_GET["cursorshadow"])) $cursor_shadow_index = intval($_GET["cursorshadow"]);
 
-                theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index);
+                theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index, $cursor_shadow_index);
                 break;
             case "delete_session_folder":
                 $id = session_id();
@@ -157,11 +161,12 @@
            echo "Complete .\n";
         return;
     }
-    function  copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels , $region_index, $theme_position) {
+    function  copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels , $region_index, $theme_position, $cursor_shadow_index) {
         global $spinmym_src_file;
         global $spincolors;
         global $regions;
-        
+        global $shadowcolors;
+
         $id = session_id();
         $multi_region_theme = theme_needs_mym_Extension($theme_position);
         //echo $multi_region_theme . " <<< multi_region_theme (copy).<br></br>";
@@ -206,7 +211,11 @@
             if(!copy($trans_src_pth, $trans_dst_pth))
                 echo "Failed .";
         }
-        
+        $cursor_shadow_pth = "resources/mym/cursor_shadows/" . $shadowcolors[$cursor_shadow_index];
+        $cursor_shadow_dst_pth = "resources/working/" . $id . "/" . $shadowcolors[$cursor_shadow_index];
+        //if(!copy($cursor_shadow_pth, $cursor_shadow_dst_pth))
+        //    echo "Failed .";
+
         return;
     }
     function download_content($mym_theme, $spin_index, $version_index, $region_index) {
@@ -234,7 +243,7 @@
             echo "Complete .\n";
         return;
     }
-    function  theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index) { // remove beta @ release
+    function  theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index, $cursor_shadow_index) {
         global $theme_is_2_stage;
         global $spin_first_themes;
         global $spincolors;
@@ -244,6 +253,7 @@
         global $download_version;
         global $display_version;
         global $spin_display;
+        global $shadowcolors;
 
         $theme_is_2_stage = is_theme_2_stage($mym_theme);
         $id = session_id();
@@ -263,6 +273,7 @@
         $cmd_2_stage1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " stage1.app";
         $cmd_2_stage2 = "themething b stage1.app " . $theme_no_extension . "_stage2.mym stage2.app";
         $cmd_2_stage3 = "themething b stage2.app " . $spinmym_src_file[$spin_index] . " stage3.app";
+        $cmd_2_stage4 = "themething b stage3.app " . $shadowcolors[$cursor_shadow_index] . " stage4.app";
         # spin first themes
         $cmd_spin1 = "themething b " . ($content_name[$region_index][$version_index] ?? '') . " " . $spinmym_src_file[$spin_index] . " stage1.app";
         # regular theme themething commands
@@ -277,14 +288,17 @@
 		}
         if($theme_is_2_stage) {
             $passes = 3;
+            //$passes = 4;
             $theme_type = 2;
         } 
         else if($is_spin_first) {
             $passes = 4;
+            //$passes = 5;
             $theme_type = 1;
         } 
         else {
             $passes = 2;
+            //$passes = 3;
             $theme_type = 0;
         }
 

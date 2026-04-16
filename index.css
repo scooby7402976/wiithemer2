@@ -216,7 +216,7 @@ body {
     background-color: black;
     color: rgb(255 255 230);
 }
-#spin_color {
+#spin_color, #cursor_color {
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
@@ -225,21 +225,21 @@ body {
     color: rgb(255 255 230);
     cursor: pointer;
 }
-#spin_color:hover {
+#spin_color:hover, #cursor_color:hover {
     box-shadow: 1px 1px 3px rgb(255, 255, 0);
     background-color: rgb(53, 62, 67);
 }
-#spin_color option {
+#spin_color option, #cursor_color option {
     background-color: black;
     color: rgb(255 255 230);
     cursor: pointer; 
 }
-#spin_color_container, #spin_option_container {
-    width: 45%;
+#spin_color_container, #spin_option_container, #cursor_shadow_container {
+    width: 33%;
     text-align: center;
     display: inline-block;
 }
-#spin_color_label, #spin_color {
+#spin_color_label, #spin_color, #cursor_color_label, #cursor_color {
     margin: 0 5px;
 }
 #fastspin, #spin, #nospin, #fastspinlabel, #spinlabel, #nospinlabel {
