@@ -213,8 +213,8 @@
         }
         $cursor_shadow_pth = "resources/mym/cursor_shadows/" . $shadowcolors[$cursor_shadow_index];
         $cursor_shadow_dst_pth = "resources/working/" . $id . "/" . $shadowcolors[$cursor_shadow_index];
-        //if(!copy($cursor_shadow_pth, $cursor_shadow_dst_pth))
-        //    echo "Failed .";
+        if(!copy($cursor_shadow_pth, $cursor_shadow_dst_pth))
+            echo "Failed .";
 
         return;
     }
@@ -288,17 +288,14 @@
 		}
         if($theme_is_2_stage) {
             $passes = 3;
-            //$passes = 4;
             $theme_type = 2;
         } 
         else if($is_spin_first) {
             $passes = 4;
-            //$passes = 5;
             $theme_type = 1;
         } 
         else {
             $passes = 2;
-            //$passes = 3;
             $theme_type = 0;
         }
 
@@ -428,7 +425,6 @@
                         $wait_file = "stage5.app";
                         $theme_finished_stage = 5;
                     }
-                    
                     break;
             }
             $wait_file_exists = file_exists($wait_file);
@@ -467,6 +463,11 @@
                 $source_file = $spincolors[$spincolor_index];
                 if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
                     echo "Failed .(copy spin_colr)<br></br>";
+            }
+            if($cursor_shadow_index >= 1) {
+                $source_file = $shadowcolors[$cursor_shadow_index];
+                if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
+                    echo "Failed .(copy cursor_shadow)<br></br>";
             }
             $source_file = $mym_theme;
             if(!copy("resources/working/" . $id . "/" . $source_file, $save_dir . "/" . $source_file))
@@ -515,6 +516,10 @@
         $save_dir = "resources/working/" . $id;
         $csm = "";
         $source_file = "resources/working/" . $id . "/stage" . $theme_finished_stage . ".app";
+        if(!execute_themething_cmd("stage" . $theme_finished_stage . ".app", $id, "themething b stage" . $theme_finished_stage . ".app " . $shadowcolors[$cursor_shadow_index] . " stage" . $theme_finished_stage . ".app")) {
+            echo "Failed .<br></br> cmd -> " . "themething b stage" . $theme_finished_stage . ".app " . $shadowcolors[$cursor_shadow_index] . " stage" . $theme_finished_stage . ".app";
+            return;
+        }
         if($theme_is_2_stage) $csm = $save_dir . "/" . $theme_no_extension . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
         else if($multi_region_theme) $csm = $save_dir . "/" . $multi_region_save_dir . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
         else $csm = $save_dir . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4) . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
