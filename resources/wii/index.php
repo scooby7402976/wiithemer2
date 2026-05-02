@@ -515,16 +515,6 @@
 				file_put_contents("wiithememanager/" . $themetoupdate . "/downloads.txt", $count, LOCK_EX);
 				echo $count;
 			break;
-			case "getdownloadcount":
-				if(isset($_GET['themetocheck'])) $themetocheck = $_GET['themetocheck'];
-				$readCount = file_get_contents("wiithememanager/" . $themetocheck . "/downloads.txt");
-				echo $readCount;
-			break;
-			case "getfilesize":
-				if(isset($_GET['themetocheck'])) $themetocheck = $_GET['themetocheck'];
-				$readsize = filesize($themedir . "/" . $_GET['themetocheck']);
-				echo $readsize;
-			break;
 		}
 	}
 	function execInBackground($cmd) {

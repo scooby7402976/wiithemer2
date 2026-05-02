@@ -1,8 +1,8 @@
-downloads/
-beta/downloads/
-deletesessionfolder.ahk
-licensse
+license
 readme.md
 .vscode/
 beta/png
 .well-known
+.vs
+.gitignore
+resources/downloads

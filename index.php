@@ -43,9 +43,10 @@
     );
     if(isset($_GET["command"])) {
         $command = $_GET["command"];
-        $id = null;
+        $id = "";
         $theme_is_2_stage = false;
-        $mym_theme = null;
+        $mym_theme = "";
+        $data_file_path = "";
 
         switch($command) {
             case "get_user_id":
@@ -213,8 +214,9 @@
         }
         $cursor_shadow_pth = "resources/mym/cursor_shadows/" . $shadowcolors[$cursor_shadow_index];
         $cursor_shadow_dst_pth = "resources/working/" . $id . "/" . $shadowcolors[$cursor_shadow_index];
-        if(!copy($cursor_shadow_pth, $cursor_shadow_dst_pth))
-            echo "Failed .";
+        if($cursor_shadow_index)
+            if(!copy($cursor_shadow_pth, $cursor_shadow_dst_pth))
+                echo "Failed .";
 
         return;
     }
