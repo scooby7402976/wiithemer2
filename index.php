@@ -546,7 +546,7 @@
         }
         return true;
     }
-    function is_theme_2_stage($mym_file) : bool {
+    function is_theme_2_stage(string $mym_file) : bool {
         $str = null;
 		$str = strstr($mym_file, "_stage1", true);
 		if($str) {
