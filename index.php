@@ -1,7 +1,7 @@
 <?php
     session_start();
-    $session_id = null;
-    $command = null;
+    $session_id = "";
+    $command = "";
     $spincolors = array(
         "", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym"
     );
@@ -37,7 +37,7 @@
     );
     $spin_first_themes = array(
         "black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedu.mym", "darkwii_extendede.mym"
-     );//"darkwii_extendedJ.mym", "darkwii_extendedK.mym");
+    );
     $spin_display = array(
         "", "_nospin", "_spin", "_fastspin"
     );
@@ -47,6 +47,12 @@
         $theme_is_2_stage = false;
         $mym_theme = "";
         $data_file_path = "";
+        $spin_index = 0;
+        $spincolor_index = 0;
+        $region_index = 0;
+        $theme_position = 0;
+        $cursor_shadow_index = 0;
+        $version_index = 0;
 
         switch($command) {
             case "get_user_id":
@@ -80,7 +86,7 @@
                 break;
             case "theme_builder":
                 if(isset($_GET["mym_theme"])) $mym_theme = $_GET["mym_theme"];
-               if(isset($_GET["spinindex"])) $spin_index = intval($_GET["spinindex"]);
+                if(isset($_GET["spinindex"])) $spin_index = intval($_GET["spinindex"]);
                 if(isset($_GET["spincolor"])) $spincolor_index = intval($_GET["spincolor"]);
                 if(isset($_GET["trans_channels"])) $transchannels = $_GET["trans_channels"];
                 if(isset($_GET["save_source"])) $save_source = $_GET["save_source"];
@@ -110,7 +116,7 @@
         }
         return;
     }
-    function set_data($data_file_path) {
+    function set_data(string $data_file_path) {
         #echo "set_data-data_file_path: " . $data_file_path . "\n";
         $data_file_contents = 0;
         if(file_exists($data_file_path))
@@ -162,7 +168,7 @@
            echo "Complete .\n";
         return;
     }
-    function  copy_theme_files($mym_theme, $spin_index, $spincolor_index, $transchannels , $region_index, $theme_position, $cursor_shadow_index) {
+    function  copy_theme_files(string $mym_theme, int $spin_index, int $spincolor_index, string $transchannels , int $region_index, int $theme_position, int $cursor_shadow_index) {
         global $spinmym_src_file;
         global $spincolors;
         global $regions;
@@ -220,9 +226,10 @@
 
         return;
     }
-    function download_content($mym_theme, $spin_index, $version_index, $region_index) {
+    function download_content(string $mym_theme, int $spin_index, int $version_index, int $region_index) {
         $id = session_id();
         global $content_name;
+        $timed_out = false;
         $themething_cmd = "themething c " . ($content_name[$region_index][$version_index] ?? '');
         $download_file = file_exists(($content_name[$region_index][$version_index] ?? ''));
         if(!$download_file) {
@@ -245,7 +252,7 @@
             echo "Complete .\n";
         return;
     }
-    function  theme_builder($mym_theme, $spin_index, $spincolor_index, $transchannels, $save_source, $theme_position, $version_index, $region_index, $cursor_shadow_index) {
+    function  theme_builder(string $mym_theme,int $spin_index, int $spincolor_index, string $transchannels, string $save_source, int $theme_position, int $version_index, int $region_index, int $cursor_shadow_index) {
         global $theme_is_2_stage;
         global $spin_first_themes;
         global $spincolors;
@@ -530,7 +537,7 @@
             echo "Failed .(rename csm)<br></br>";
         return;
     }
-    function  execute_themething_cmd($wait_file, $working_id, $themething_cmd) : bool {
+    function  execute_themething_cmd(string $wait_file, string $working_id, string   $themething_cmd) : bool {
         if($wait_file == "continue") return true;
         $wait_file_exists = file_exists($wait_file);
         if(!$wait_file_exists) {
@@ -561,13 +568,13 @@
             return $str;
         return false;
     }
-    function execInBackground($cmd) {
+    function execInBackground(string $cmd) {
 		if (substr(php_uname(), 0, 7) == "Windows"){
 			pclose(popen($cmd, "r"));
 		}
 		return;
 	}
-    function wait_for_file($file, $timeout) : bool {
+    function wait_for_file(string $file, int $timeout) : bool {
 		$seccntr = 0;
 		$myfile = file_exists($file);
 		while((!$myfile and filesize($myfile) == 0) and ($seccntr < $timeout)) {
@@ -580,7 +587,7 @@
         else
             return false;
 	}
-    function theme_needs_mym_Extension($theme_Selected) : bool {
+    function theme_needs_mym_Extension(int $theme_Selected) : bool {
 		$selected = intval($theme_Selected);
         $theme_needs_extension = array(74, 75, 76, 77, 78, 79, 80, 81, 71, 126, 314);
         $int = null;
