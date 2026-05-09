@@ -161,6 +161,7 @@ const completethemeinfo = [
 	{name:"Indiana Jones", ID:"INDYJO", mainimg:"indianajones.avif", secondaryimg:"indianajones.png", mym:"indianajones.mym", video:"https://www.youtube.com/embed/oRwbH8QNMTo?si=BI2wmhSj343W4ne8?autoplay=0&mute=1", downloads:"indianajones.txt", trans_chans:"1", filter:"movie"},
 	{name:"Indianapolis Colts", ID:"COLTS1", mainimg:"colts.avif", secondaryimg:"colts.png", mym:"colts.mym", video:"https://www.youtube.com/embed/qOdHo5u2vI4?si=R61cyZlCzCVapG3N?autoplay=0&mute=1", downloads:"colts.txt", trans_chans:"1", filter:"sports"},
 	{name:"Insane Clown Posse", ID:"ICP001", mainimg:"icp.avif", secondaryimg:"icp.png", mym:"insane_clown_posse.mym", video:"https://www.youtube.com/embed/nKo90-C1d8U?autoplay=0&mute=1", downloads:"insane_clown_posse.txt", trans_chans:"1", filter:"music"},
+	{name:"IOS6", ID:"APIOS6", mainimg:"ios6.avif", secondaryimg:"ios6.png", mym:"ios6.mym", video:"https://www.youtube.com/embed/ij6_ZZSeNGE?si=2khp92G43Vtwhgzb?autoplay=0&mute=1", downloads:"ios6.txt", trans_chans:"1", filter:"os/new"},
 	{name:"Its A Me Mario", ID:"IMMAR1", mainimg:"itsamemario.avif", secondaryimg:"itsamemario.png", mym:"itsamemario.mym", video:"https://www.youtube.com/embed/RXxxwKtNPJk?autoplay=0&mute=1", downloads:"itsamemario.txt", trans_chans:"1", filter:"top20/game"},
 	{name:"Jay & Silent Bob", ID:"JNSBOB", mainimg:"jaybob.avif", secondaryimg:"jaybob.png", mym:"jaybob_stage1.mym", video:"https://www.youtube.com/embed/AqMK45kspoc?si=Le3klHxmxZxgE_OA?autoplay=0&mute=1", downloads:"jaybob.txt", trans_chans:"1", filter:"movie"},
 	{name:"The Jetsons", ID:"JETSON", mainimg:"jetsons.avif", secondaryimg:"jetsons.png", mym:"jetsons.mym", video:"https://www.youtube.com/embed/duKL2Q7xJxA?si=JoqQrrowwOIdfoB4?autoplay=0&mute=1", downloads:"jetsons.txt", trans_chans:"1", filter:"cartoon"},
@@ -821,6 +822,8 @@ function load_theme_list(filter_type) {
 						filtered_list_position.push(i);
 					else if(completethemeinfo[i].filter == "os/views")
 						filtered_list_position.push(i);
+					else if(completethemeinfo[i].filter == "os/new")
+						filtered_list_position.push(i);
 					else continue;
 				}
 				else filtered_list_position.push(i); // if filter set to os, add this theme to filtered list
@@ -902,6 +905,8 @@ function load_theme_list(filter_type) {
 				else if(completethemeinfo[i].filter == "misc/new")
 						filtered_list_position.push(i);
 				else if(completethemeinfo[i].filter == "sports/new")
+						filtered_list_position.push(i);
+				else if(completethemeinfo[i].filter == "os/new")
 						filtered_list_position.push(i);
 				else continue;
 			}
@@ -1282,7 +1287,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 315];
+	let region_specific_themes = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 317];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
