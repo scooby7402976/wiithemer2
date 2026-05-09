@@ -71,6 +71,7 @@ const completethemeinfo = [
 	{name:"Dan Da Dan", ID:"DANDAN", mainimg:"dandadan.avif", secondaryimg:"dandadan.png", mym:"dandadan.mym", video:"https://www.youtube.com/embed/Yp6M5OJni3Q?si=W1LzJA0YKzTSC7Cr?autoplay=0&mute=1", downloads:"dandadan.txt", trans_chans:"1", filter:"anime"},
 	{name:"Dark Umbra v1", ID:"DKUB01", mainimg:"dark_umbra_v1.avif", secondaryimg:"dark_umbra_v1.png", mym:"dark_umbra_v1.mym", video:"https://www.youtube.com/embed/WD2SuUG4Mbs?si=8Gti_3j2T_DUnpsA?autoplay=0&mute=1", downloads:"dark_umbra_v1.txt", trans_chans:"1", filter:"misc"},
 	{name:"Dark Umbra v2", ID:"DKUB02", mainimg:"dark_umbra_v2.avif", secondaryimg:"dark_umbra_v2.png", mym:"dark_umbra_v2.mym", video:"https://www.youtube.com/embed/YYZiJ_I8c4U?si=KHhGf5nvYFaLGQwH?autoplay=0&mute=1", downloads:"dark_umbra_v2.txt", trans_chans:"1", filter:"misc"},
+	{name:"Dark Waves", ID:"DKWAVE", mainimg:"darkwaves.avif", secondaryimg:"darkwaves.png", mym:"darkwaves.mym", video:"https://www.youtube.com/embed/zfJA3Y0Tv5k?si=g1cAUf2DlIyUdynI?autoplay=0&mute=1", downloads:"darkwaves.txt", trans_chans:"1", filter:"darkwii/new"},
 	{name:"Dark Wii Extended", ID:"DWEXT1", mainimg:"darkwii_extended.avif", secondaryimg:"darkwii_extended.png", mym:"darkwii_extended", video:"https://www.youtube.com/embed/2-vB5O-T2S4?si=vrKNRxEEXP_6QjFe?autoplay=0&mute=1", downloads:"darkwii_extended.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Dark Wii Plus", ID:"DKWI+1", mainimg:"darkwii_plus.avif", secondaryimg:"darkwii_plus.png", mym:"darkwii_plus.mym", video:"https://www.youtube.com/embed/ZGkWgsCBCS0?si=ZZ-7UrLi3DWcAf-P?autoplay=0&mute=1", downloads:"darkwii_plus.txt", trans_chans:"1", filter:"top20/darkwii"},
 	{name:"Dark Wii Original", ID:"DWORI1", mainimg:"darkwiioriginal.avif", secondaryimg:"darkwiioriginal.png", mym:"dark_wii_original.mym", video:"https://www.youtube.com/embed/ckcWI1rsRqk?autoplay=0&mute=1", downloads:"dark_wii_original.txt", trans_chans:"1", filter:"top20/darkwii"},
@@ -113,6 +114,7 @@ const completethemeinfo = [
 	{name:"Eyes", ID:"EYES01", mainimg:"eyes.avif", secondaryimg:"eyes.png", mym:"eyes.mym", video:"https://www.youtube.com/embed/8nxP5ox3aVE?autoplay=0&mute=1", downloads:"eyes.txt", trans_chans:"1", filter:"misc"},
 	{name:"Fairly Odd Parents", ID:"FODDP1", mainimg:"fairlyoddparents.avif", secondaryimg:"fairlyoddparents.png", mym:"fairly_odd_parents_stage1.mym", video:"https://www.youtube.com/embed/ev9kNqy1VXY?si=MQ0YD-mLlIfgqW5s?autoplay=0&mute=1", downloads:"fairlyoddparents.txt", trans_chans:"1", filter:"cartoon/views"},
 	{name:"Family Guy", ID:"FMGUY1", mainimg:"familyguy.avif", secondaryimg:"familyguy.png", mym:"family_guy.mym", video:"https://www.youtube.com/embed/SHgd0t4BENI?autoplay=0&mute=1", downloads:"family_guy.txt", trans_chans:"1", filter:"cartoon/views"},
+	{name:"Family Guy (Star Wars)", ID:"FMGUY2", mainimg:"familyguySW.avif", secondaryimg:"familyguySW.png", mym:"familyguySW.mym", video:"https://www.youtube.com/embed/zkxchk8-LI4?si=aKTzS6W3vOJsrV5k?autoplay=0&mute=1", downloads:"familyguySW.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Fantastic Four", ID:"FAN4V1", mainimg:"fantasticfour.avif", secondaryimg:"fantasticfour.png", mym:"fantasticfour.mym", video:"https://www.youtube.com/embed/UDPNxL6s_JA?si=Zk1RCelpG9FdcwPr?autoplay=0&mute=1", downloads:"fantasticfour.txt", trans_chans:"1", filter:"movie"},
 	{name:"Fantasy", ID:"FANTA1", mainimg:"Fantasy.avif", secondaryimg:"fantasy.png", mym:"fantasy.mym", video:"https://www.youtube.com/embed/hGqk0wQL9Us?autoplay=0&mute=1", downloads:"fantasy.txt", trans_chans:"0", filter:"misc"},
 	{name:"Fat Albert", ID:"FATALB", mainimg:"fatalbert.avif", secondaryimg:"fatalbert.png", mym:"fatalbert.mym", video:"https://www.youtube.com/embed/IYPP7xVbLaY?si=2o9bRmd_exWMJxdX?autoplay=0&mute=1", downloads:"fatalbert.txt", trans_chans:"1", filter:"cartoon"},
@@ -1280,7 +1282,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [74, 75, 76, 77, 78, 79, 80, 81, 71, 126, 314];
+	let region_specific_themes = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 315];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;

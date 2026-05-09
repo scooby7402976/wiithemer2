@@ -2,45 +2,45 @@
     session_start();
     $session_id = "";
     $command = "";
-    $spincolors = array(
+    $spincolors = [
         "", "outline_Black.mym", "outline_Blue.mym", "outline_Green.mym", "outline_Orange.mym", "outline_Pink.mym", "outline_Purple.mym", "outline_Red.mym", "outline_White.mym", "outline_Yellow.mym"
-    );
-    $shadowcolors = array(
+    ];
+    $shadowcolors = [
         "", "black_shadow.mym", "blue_shadow.mym", "green_shadow.mym", "orange_shadow.mym", "pink_shadow.mym", "purple_shadow.mym", "red_shadow.mym", "white_shadow.mym", "yellow_shadow.mym"
-    );
-    $spinmym_src_file = array(
+    ];
+    $spinmym_src_file = [
         "", "nospin.mym", "spin.mym", "fastspin.mym"
-    );
-    $download_version = array(
-        array(null), // placeholder for index 0
-        array(null, 513, 481, 449, 417, 609), // U
-        array(null, 514, 482, 450, 418, 610), // E
-        array(null, 512, 480, 448, 416, 608), // J
-        array(null, 518, 486, 454) // K
-    );
-    $display_version = array(
-        array(null), // placeholder for index 0
-        array(null, "4.3_U", "4.2_U", "4.1_U", "4.0_U", "4.3_U"), // U
-        array(null, "4.3_E", "4.2_E", "4.1_E", "4.0_E", "4.3_E"), // E
-        array(null, "4.3_J", "4.2_J", "4.1_J", "4.0_J", "4.3_J"), // J
-        array(null, "4.3_K", "4.2_K", "4.1_K") // K
-    );
-    $content_name = array(
-        array(null),// placeholder for index 0
-        array(null,"00000097", "00000087", "0000007b", "00000072", "0000001f"), // U
-        array(null,"0000009a", "0000008a", "0000007e", "00000075", "00000022"), // E
-        array(null,"00000094", "00000084", "00000078", "0000006f", "0000001c"), // J
-        array(null,"0000009d", "0000008d", "00000081") // K
-    );
-    $regions = array(
+    ];
+    $download_version = [
+        [null], // placeholder for index 0
+        [null, 513, 481, 449, 417, 609], // U
+        [null, 514, 482, 450, 418, 610], // E
+        [null, 512, 480, 448, 416, 608], // J
+        [null, 518, 486, 454] // K
+    ];
+    $display_version = [
+        [null], // placeholder for index 0
+        [null, "4.3_U", "4.2_U", "4.1_U", "4.0_U", "4.3_U"], // U
+        [null, "4.3_E", "4.2_E", "4.1_E", "4.0_E", "4.3_E"], // E
+        [null, "4.3_J", "4.2_J", "4.1_J", "4.0_J", "4.3_J"], // J
+        [null, "4.3_K", "4.2_K", "4.1_K"] // K
+    ];
+    $content_name = [
+        [null],// placeholder for index 0
+        [null,"00000097", "00000087", "0000007b", "00000072", "0000001f"], // U
+        [null,"0000009a", "0000008a", "0000007e", "00000075", "00000022"], // E
+        [null,"00000094", "00000084", "00000078", "0000006f", "0000001c"], // J
+        [null,"0000009d", "0000008d", "00000081"] // K
+    ];
+    $regions = [
         "", "u", "e", "j", "k"
-    );
-    $spin_first_themes = array(
+    ];
+    $spin_first_themes = [
         "black_pirate.mym", "matrix.mym", "matrix_reloaded.mym", "muse.mym", "lime_wii.mym", "diablo_3.mym", "star_craft.mym", "darkwii_extendedu.mym", "darkwii_extendede.mym"
-    );
-    $spin_display = array(
+    ];
+    $spin_display = [
         "", "_nospin", "_spin", "_fastspin"
-    );
+    ];
     if(isset($_GET["command"])) {
         $command = $_GET["command"];
         $id = "";
@@ -589,7 +589,7 @@
 	}
     function theme_needs_mym_Extension(int $theme_Selected) : bool {
 		$selected = intval($theme_Selected);
-        $theme_needs_extension = array(74, 75, 76, 77, 78, 79, 80, 81, 71, 126, 314);
+        $theme_needs_extension = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 315];
         $int = null;
         for($int = 0; $int < count($theme_needs_extension); $int++) {
             if($selected == $theme_needs_extension[$int])
