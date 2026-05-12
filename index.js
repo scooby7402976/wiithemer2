@@ -142,6 +142,7 @@ const completethemeinfo = [
 	{name:"Grateful Dead", ID:"GRTFL1", mainimg:"gratefuldead.avif", secondaryimg:"gratefuldead.png", mym:"grateful_dead_stage1.mym", video:"https://www.youtube.com/embed/LURcBb9sF98?si=oebw46IB5hS1hxDU?autoplay=0&mute=1", downloads:"gratefuldead.txt", trans_chans:"1", filter:"music"},
 	{name:"Green Bay Packers", ID:"PCKRS1", mainimg:"greenbay_packers.avif", secondaryimg:"greenbay_packers.png", mym:"packers_stage1.mym", video:"https://www.youtube.com/embed/mfmglgxpV3M?si=yKq_eYg4s0BnJQFU?autoplay=0&mute=1", downloads:"packers.txt", trans_chans:"1", filter:"sports"},
 	{name:"Grim Adventures of Billy and Mandy", ID:"GABLMD", mainimg:"grim.avif", secondaryimg:"grim.png", mym:"grim.mym", video:"https://www.youtube.com/embed/Xs2tOg4ZceY?si=BjtKJ9LpvSRNhG3Z?autoplay=0&mute=1", downloads:"grim.txt", trans_chans:"1", filter:"cartoon"},
+	{name:"Guitar Hero", ID:"GTHERO", mainimg:"guitar_hero.avif", secondaryimg:"guitar_hero.png", mym:"guitar_hero.mym", video:"https://www.youtube.com/embed/BbgDqa0LHFU?si=pGxVz1DupDHknd-w?autoplay=0&mute=1", downloads:"guitar_hero.txt", trans_chans:"0", filter:"game/new"},
 	{name:"GumBall", ID:"GUMBLL", mainimg:"gumball.avif", secondaryimg:"gumball.png", mym:"gumball.mym", video:"https://www.youtube.com/embed/g29POUg6YBo?si=irxZxt73bBi2fRPL?autoplay=0&mute=1", downloads:"gumball.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Gundam", ID:"GUNDAM", mainimg:"gundam.avif", secondaryimg:"gundam.png", mym:"gundam.mym", video:"https://www.youtube.com/embed/tQlAEvAz9QQ?si=p_aUX8mTYaHzT-DS?autoplay=0&mute=1", downloads:"gundam.txt", trans_chans:"1", filter:"anime"},
 	{name:"Hand Drawn", ID:"HDRAW1", mainimg:"HandDrawn.avif", secondaryimg:"handdrawn.png", mym:"hand_drawn.mym", video:"https://www.youtube.com/embed/e19Hk1Zbp0c?autoplay=0&mute=1", downloads:"hand_drawn.txt", trans_chans:"1", filter:"game"},
@@ -301,6 +302,7 @@ const completethemeinfo = [
 	{name:"Snoopy", ID:"SNOOP1", mainimg:"snoopy.avif", secondaryimg:"snoopy.png", mym:"snoopy.mym", video:"https://www.youtube.com/embed/R4Q3qtGEdcY?si=GfMZojNlX3aaVe6L?autoplay=0&mute=1", downloads:"snoopy.txt", trans_chans:"0", filter:"cartoon"},
 	{name:"Sonic 3", ID:"SONIC3", mainimg:"sonic3.avif", secondaryimg:"sonic3.png", mym:"sonic3.mym", video:"https://www.youtube.com/embed/0msM2kAnPh4?si=_eXGLbMZIrB0_pGI?autoplay=0&mute=1", downloads:"sonic3.txt", trans_chans:"1", filter:"game"},
 	{name:"Sonic Frontiers", ID:"SNCFT1", mainimg:"sonicfrontiers.avif", secondaryimg:"sonicfrontiers.png", mym:"sonicfrontiers.mym", video:"https://www.youtube.com/embed/M0O_gZVsvD8?si=yiKvqA03X17y8k1b?autoplay=0&mute=1", downloads:"sonicfrontiers.txt", trans_chans:"1", filter:"game"},
+	{name:"Sonic Generations", ID:"SNCGEN", mainimg:"sonic_gens.avif", secondaryimg:"sonic_gens.png", mym:"sonic_gens.mym", video:"https://www.youtube.com/embed/If-BchrCMnE?si=nIEfPLRBnsYLAzJ8?autoplay=0&mute=1", downloads:"sonic_gens.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Sonic Riders", ID:"SNCRD1", mainimg:"sonicriders.avif", secondaryimg:"sonicriders.png", mym:"sonicriders.mym", video:"https://www.youtube.com/embed/amt6z0G3XxM?si=pkHn7BI-wyPp_4hn?autoplay=0&mute=1", downloads:"sonicriders.txt", trans_chans:"1", filter:"game"},
 	{name:"Sons of Anarchy", ID:"SONOA1", mainimg:"sonsofanarchy.avif", secondaryimg:"sonsofanarchy.png", mym:"sonsofanarchy_stage1.mym", video:"https://www.youtube.com/embed/5PS-w8NF-ZU?si=M1l1WqFuCtTuQj4Y?autoplay=0&mute=1", downloads:"sonsofanarchy.txt", trans_chans:"0", filter:"movie"},
 	{name:"South Park", ID:"STHPK1", mainimg:"southpark.avif", secondaryimg:"southpark.png", mym:"southpark.mym", video:"https://www.youtube.com/embed/hGaZ6dzp7A0?si=Ft6dZ78gAII1_Lqv?autoplay=0&mute=1", downloads:"southpark.txt", trans_chans:"1", filter:"cartoon"},
@@ -1288,7 +1290,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 317];
+	let region_specific_themes = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 319];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
@@ -1576,12 +1578,12 @@ function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 			let img_position3 = img_position;
 			console.log(img_link3 + "\n" + img_position3 + "\n" + completethemeinfo[img_position3].name);
 			for(let i = 0; i < 10; i++) {
-				if(img_position2 != img_position3)
+				if((img_position2 != img_position3) && (img_position1 != img_position3))
 					break;
 				img_link3 = getRandomImg_Link(0, theme_count - 1);
 				img_position3 = img_position;
 				console.log(img_link3 + "\n" + img_position3 + "\n" + completethemeinfo[img_position3].name);
-				if(img_position2 != img_position3)
+				if((img_position2 != img_position3) && (img_position1 != img_position3))
 					break;
 			}
 			
