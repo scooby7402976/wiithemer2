@@ -304,6 +304,7 @@ const completethemeinfo = [
 	{name:"Sonic Frontiers", ID:"SNCFT1", mainimg:"sonicfrontiers.avif", secondaryimg:"sonicfrontiers.png", mym:"sonicfrontiers.mym", video:"https://www.youtube.com/embed/M0O_gZVsvD8?si=yiKvqA03X17y8k1b?autoplay=0&mute=1", downloads:"sonicfrontiers.txt", trans_chans:"1", filter:"game"},
 	{name:"Sonic Generations", ID:"SNCGEN", mainimg:"sonic_gens.avif", secondaryimg:"sonic_gens.png", mym:"sonic_gens.mym", video:"https://www.youtube.com/embed/If-BchrCMnE?si=nIEfPLRBnsYLAzJ8?autoplay=0&mute=1", downloads:"sonic_gens.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Sonic Riders", ID:"SNCRD1", mainimg:"sonicriders.avif", secondaryimg:"sonicriders.png", mym:"sonicriders.mym", video:"https://www.youtube.com/embed/amt6z0G3XxM?si=pkHn7BI-wyPp_4hn?autoplay=0&mute=1", downloads:"sonicriders.txt", trans_chans:"1", filter:"game"},
+	{name:"Sonic Unleashed", ID:"SNCUNL", mainimg:"sonic_unleashed.avif", secondaryimg:"sonic_unleashed.png", mym:"sonic_unleashed.mym", video:"https://www.youtube.com/embed/mYsRQx8lYSQ?si=5QLF_Vl778H1UZCy?autoplay=0&mute=1", downloads:"sonic_unleashed.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Sons of Anarchy", ID:"SONOA1", mainimg:"sonsofanarchy.avif", secondaryimg:"sonsofanarchy.png", mym:"sonsofanarchy_stage1.mym", video:"https://www.youtube.com/embed/5PS-w8NF-ZU?si=M1l1WqFuCtTuQj4Y?autoplay=0&mute=1", downloads:"sonsofanarchy.txt", trans_chans:"0", filter:"movie"},
 	{name:"South Park", ID:"STHPK1", mainimg:"southpark.avif", secondaryimg:"southpark.png", mym:"southpark.mym", video:"https://www.youtube.com/embed/hGaZ6dzp7A0?si=Ft6dZ78gAII1_Lqv?autoplay=0&mute=1", downloads:"southpark.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"South Park v2", ID:"STHPK2", mainimg:"southparkv2.avif", secondaryimg:"southparkv2.png", mym:"southparkv2.mym", video:"https://www.youtube.com/embed/foiDmlTSLuc?si=9NSZ3oSbpxofpPO2?autoplay=0&mute=1", downloads:"southparkv2.txt", trans_chans:"1", filter:"cartoon"},
@@ -1290,7 +1291,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 319];
+	let region_specific_themes = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 320];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
