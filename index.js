@@ -15,6 +15,7 @@ const completethemeinfo = [
 	{name:"Arsenal FC", ID:"ARSNFC", mainimg:"arsenal.avif", secondaryimg:"arsenal.png", mym:"arsenal_stage1.mym", video:"https://www.youtube.com/embed/gfKm1a3p6Ik?si=RGSCVhnbBZV-G2zt?autoplay=0&mute=1", downloads:"arsenal.txt", trans_chans:"1", filter:"sports"},
 	{name:"Atlanta Falcons", ID:"FALCON", mainimg:"falcons.avif", secondaryimg:"falcons.png", mym:"falcons.mym", video:"https://www.youtube.com/embed/cO8wosfN1gQ?si=J4Txn133oqt4hS7y?autoplay=0&mute=1", downloads:"falcons.txt", trans_chans:"1", filter:"sports"},
 	{name:"Avengers", ID:"AVENG1", mainimg:"avengers.avif", secondaryimg:"avengers.png", mym:"avengers.mym", video:"https://www.youtube.com/embed/QTvDd5FtiV0?si=47AaRbESv7lwQm3X?autoplay=0&mute=1", downloads:"avengers.txt", trans_chans:"1", filter:"movie"},
+	{name:"Azure Night", ID:"AZRNIT", mainimg:"azurenight.avif", secondaryimg:"azurenight.png", mym:"azurenight.mym", video:"https://www.youtube.com/embed/ZK2FF_003YI?si=3L-jrf9vlaHoMxol?autoplay=0&mute=1", downloads:"azurenight.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Back to the Future", ID:"BACFUT", mainimg:"backtothefuture.avif", secondaryimg:"backtothefuture.png", mym:"back_to_the_future.mym", video:"https://www.youtube.com/embed/HLNla6TnGuA?si=ObMchG50XqOlx8RS?autoplay=0&mute=1", downloads:"backtothefuture.txt", trans_chans:"1", filter:"movie"},
 	{name:"Bakugan", ID:"BKGN01", mainimg:"bakugan.avif", secondaryimg:"bakugan.png", mym:"bakugan.mym", video:"https://www.youtube.com/embed/1sje3UaUNK4?autoplay=0&mute=1", downloads:"bakugan.txt", trans_chans:"1", filter:"anime"},
 	{name:"FC Barcelona", ID:"BRCLNA", mainimg:"barcelona.avif", secondaryimg:"barcelona.png", mym:"barcelona_stage1.mym", video:"https://www.youtube.com/embed/fLAYnFr-Bm8?si=bjS9b-JgE8kXFVUS?autoplay=0&mute=1", downloads:"barcelona.txt", trans_chans:"1", filter:"sports"},
@@ -1291,7 +1292,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [72, 74, 75, 76, 77, 78, 79, 80, 81, 82, 127, 320];
+	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 128, 321];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
