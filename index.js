@@ -293,6 +293,7 @@ const completethemeinfo = [
 	{name:"Seinfeld", ID:"SEINF1", mainimg:"Seinfeld.avif", secondaryimg:"seinfeld.png", mym:"Seinfeld.mym", video:"https://www.youtube.com/embed/eOaZT1FxPpg?si=uIcRH1bDJj5cRluR?autoplay=0&mute=1", downloads:"Seinfeld.txt", trans_chans:"0", filter:"movie"},
 	{name:"Sendo World", ID:"SENDO1", mainimg:"sendo.avif", secondaryimg:"sendo.png", mym:"sendo.mym", video:"https://www.youtube.com/embed/0V8MT5j6IXw?si=zJqP_NIE6TEGX557?autoplay=0&mute=1", downloads:"sendo.txt", trans_chans:"1", filter:"misc"},
 	{name:"Sesame Street", ID:"SESAME", mainimg:"sesamestreet.avif", secondaryimg:"sesamestreet.png", mym:"sesamestreet.mym", video:"https://www.youtube.com/embed/pRYEFKEMbwE?si=Oh8wVBYEeED6m4D6?autoplay=0&mute=1", downloads:"sesamestreet.txt", trans_chans:"1", filter:"movie"},
+	{name:"Shadow Generations", ID:"SHDWGN", mainimg:"shadow_gens.avif", secondaryimg:"shadow_gens.png", mym:"shadow_gens.mym", video:"https://www.youtube.com/embed/a8EfUsvTdDY?si=A9087N4-5oSUOGm3?autoplay=0&mute=1", downloads:"shadow_gens.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Shadow The Hedgehog", ID:"SHADH1", mainimg:"shadowthehedgehog.avif", secondaryimg:"shadowthehedgehog.png", mym:"shadow_the_hedgehog.mym", video:"https://www.youtube.com/embed/yOXIGrcxR8A?autoplay=0&mute=1", 
 	downloads:"shadow_the_hedgehog.txt", trans_chans:"1", filter:"game"},
 	{name:"Shakugan no Shana", ID:"SHANA1", mainimg:"shana.avif", secondaryimg:"shana.png", mym:"shana_stage1.mym", video:"https://www.youtube.com/embed/C3-nCcGBZAw?si=oFJr0xaJKS0txMd2?autoplay=0&mute=1", downloads:"shana.txt", trans_chans:"0", filter:"anime"},
@@ -1292,7 +1293,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 128, 321];
+	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 128, 322];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
