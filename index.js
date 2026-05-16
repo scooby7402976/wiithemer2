@@ -305,6 +305,7 @@ const completethemeinfo = [
 	{name:"Sonic 3", ID:"SONIC3", mainimg:"sonic3.avif", secondaryimg:"sonic3.png", mym:"sonic3.mym", video:"https://www.youtube.com/embed/0msM2kAnPh4?si=_eXGLbMZIrB0_pGI?autoplay=0&mute=1", downloads:"sonic3.txt", trans_chans:"1", filter:"game"},
 	{name:"Sonic Frontiers", ID:"SNCFT1", mainimg:"sonicfrontiers.avif", secondaryimg:"sonicfrontiers.png", mym:"sonicfrontiers.mym", video:"https://www.youtube.com/embed/M0O_gZVsvD8?si=yiKvqA03X17y8k1b?autoplay=0&mute=1", downloads:"sonicfrontiers.txt", trans_chans:"1", filter:"game"},
 	{name:"Sonic Generations", ID:"SNCGEN", mainimg:"sonic_gens.avif", secondaryimg:"sonic_gens.png", mym:"sonic_gens.mym", video:"https://www.youtube.com/embed/If-BchrCMnE?si=nIEfPLRBnsYLAzJ8?autoplay=0&mute=1", downloads:"sonic_gens.txt", trans_chans:"1", filter:"game/new"},
+	{name:"Sonic Movie", ID:"SNCMOV", mainimg:"sonicmovie.avif", secondaryimg:"sonicmovie.png", mym:"sonicmovie.mym", video:"https://www.youtube.com/embed/WuD2B6RLKZc?si=up32afd4wKQ20DTZ?autoplay=0&mute=1", downloads:"sonicmovie.txt", trans_chans:"1", filter:"movie/new"},
 	{name:"Sonic Riders", ID:"SNCRD1", mainimg:"sonicriders.avif", secondaryimg:"sonicriders.png", mym:"sonicriders.mym", video:"https://www.youtube.com/embed/amt6z0G3XxM?si=pkHn7BI-wyPp_4hn?autoplay=0&mute=1", downloads:"sonicriders.txt", trans_chans:"1", filter:"game"},
 	{name:"Sonic Unleashed", ID:"SNCUNL", mainimg:"sonic_unleashed.avif", secondaryimg:"sonic_unleashed.png", mym:"sonic_unleashed.mym", video:"https://www.youtube.com/embed/mYsRQx8lYSQ?si=5QLF_Vl778H1UZCy?autoplay=0&mute=1", downloads:"sonic_unleashed.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Sons of Anarchy", ID:"SONOA1", mainimg:"sonsofanarchy.avif", secondaryimg:"sonsofanarchy.png", mym:"sonsofanarchy_stage1.mym", video:"https://www.youtube.com/embed/5PS-w8NF-ZU?si=M1l1WqFuCtTuQj4Y?autoplay=0&mute=1", downloads:"sonsofanarchy.txt", trans_chans:"0", filter:"movie"},
@@ -1293,7 +1294,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 128, 322];
+	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 128, 323];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
