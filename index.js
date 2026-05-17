@@ -100,6 +100,7 @@ const completethemeinfo = [
 	{name:"Dr Who", ID:"DRWHO1", mainimg:"drwho.avif", secondaryimg:"drwho.png", mym:"dr_who.mym", video:"https://www.youtube.com/embed/um4V5Wu8fq8?autoplay=0&mute=1", downloads:"dr_who.txt", trans_chans:"1", filter:"individual"},
 	{name:"Dukes of Hazzard", ID:"DUKES1", mainimg:"dukes.avif", secondaryimg:"dukes.png", mym:"dukes_stage1.mym", video:"https://www.youtube.com/embed/ivm_TdCs8jw?si=giFtZSrHyIQcs2hW?autoplay=0&mute=1", downloads:"dukes.txt", trans_chans:"1", filter:"movie"},
 	{name:"De-Generation X", ID:"DGENX1", mainimg:"dx.avif", secondaryimg:"dx.png", mym:"dx_stage1.mym", video:"https://www.youtube.com/embed/Ikiv1vkJd1w?si=RriJhX94ADqf8iHK?autoplay=0&mute=1", downloads:"dx.txt", trans_chans:"0", filter:"sports"},
+	{name:"Dxrkmenu", ID:"DRKMEN", mainimg:"dxrkmenu.avif", secondaryimg:"dxrkmenu.png", mym:"dxrkmenu.mym", video:"https://www.youtube.com/embed/ydzAeeEjBrU?si=fA7aguRY-2RkHweZ?autoplay=0&mute=1", downloads:"dxrkmenu.txt", trans_chans:"1", filter:"darkwii/new"},
 	{name:"Eagles", ID:"EGLES1", mainimg:"eagles.avif", secondaryimg:"eagles.png", mym:"eagles_stage1.mym", video:"https://www.youtube.com/embed/H2zvZ1b9dHo?si=6HrAJUG0BwuJsNKi?autoplay=0&mute=1", downloads:"eagles.txt", trans_chans:"0", filter:"sports"},
 	{name:"Earth Bound", ID:"ETHBD1", mainimg:"earthbound.avif", secondaryimg:"earthbound.png", mym:"earth_bound.mym", video:"https://www.youtube.com/embed/gO4k6ggnL0U?autoplay=0&mute=1", downloads:"earth_bound.txt", trans_chans:"1", filter:"game"},
 	{name:"Earth Bound v2", ID:"ETHBD2", mainimg:"earthboundv2.avif", secondaryimg:"earthboundv2.png", mym:"earth_boundv2.mym", video:"https://www.youtube.com/embed/Oim0ewCMzlg?si=XOlP0tHsydIr9zfN?autoplay=0&mute=1", downloads:"earth_boundv2.txt", trans_chans:"1", filter:"game"},
@@ -1294,7 +1295,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 128, 323];
+	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 129, 324];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
