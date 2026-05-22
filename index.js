@@ -261,6 +261,7 @@ const completethemeinfo = [
 	{name:"Pizza Tower", ID:"PIZTR1", mainimg:"pizzatower.avif", secondaryimg:"pizzatower.png", mym:"pizzatower.mym", video:"https://www.youtube.com/embed/f_cW-8lp1b4?si=932VvV03RpKo0cfy?autoplay=0&mute=1", downloads:"pizzatower.txt", trans_chans:"1", filter:"game/views"},
 	{name:"Popeye", ID:"POPEYE", mainimg:"popeye.avif", secondaryimg:"popeye.png", mym:"popeye.mym", video:"https://www.youtube.com/embed/eCPK8Jinwkc?si=kYht9qdRYJrwhtSb?autoplay=0&mute=1", downloads:"popeye.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Pokemon", ID:"POKEMN", mainimg:"pokemon.avif", secondaryimg:"pokemon.png", mym:"pokemon.mym", video:"https://www.youtube.com/embed/HmzKqwj9oJo?si=k2i-Vth3FjhyRQ4h?autoplay=0&mute=1", downloads:"pokemon.txt", trans_chans:"1", filter:"game"},
+	{name:"PowerPuff Girls", ID:"PUFGRL", mainimg:"powerpuff.avif", secondaryimg:"powerpuff.png", mym:"powerpuff.mym", video:"https://www.youtube.com/embed/TUfA4Ed4b0I?si=QIZ1tdJZoZepPecx?autoplay=0&mute=1", downloads:"powerpuff.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Predator", ID:"PREDR1", mainimg:"predator.avif", secondaryimg:"predator.png", mym:"predator.mym", video:"https://www.youtube.com/embed/QmCt75ROOxc?si=T7b3hggOhc9acsE9?autoplay=0&mute=1" ,downloads:"predator.txt", trans_chans:"1", filter:"movie"},
 	{name:"Princess Ariel v1", ID:"PARIE1", mainimg:"princess_ariel_v1.avif", secondaryimg:"princess_ariel_v1.png", mym:"princess_ariel_v1.mym", video:"https://www.youtube.com/embed/gTVq66QoR0k?si=Nb3yILXlOUIPYX6D?autoplay=0&mute=1", downloads:"princess_ariel_v1.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Princess Ariel v2", ID:"PARIE2", mainimg:"princess_ariel_v2.avif", secondaryimg:"princess_ariel_v2.png", mym:"princess_ariel_v2.mym", video:"https://www.youtube.com/embed/OvJgxkaySdE?si=f4cuyHBvc87CmpJR?autoplay=0&mute=1", downloads:"princess_ariel_v2.txt", trans_chans:"1", filter:"cartoon"},
@@ -1295,7 +1296,7 @@ function is_theme_2_stage(mym_file) {
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
-	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 129, 324];
+	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 129, 325];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			return true;
