@@ -1288,20 +1288,22 @@ function set_download_button(version, region, spin_option, theme_name, spin_colo
 }
 function is_theme_2_stage(mym_file) {
     let str = null;
+	let theme_is = true;
 	str = mym_file.search("_stage1");
 	console.log("is_theme_2_stage-str : " + str);
 	if(str == -1)
-		return false;
-	else return true;
+		theme_is = false;
+	return theme_is;
 }
 function is_theme_region_specific(theme_num) {
     let i = null;
+	let theme_is = false;
 	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 129, 325];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
-			return true;
+			theme_is = true;
 	}
-	return false;
+	return theme_is;
 }
 function start_download() { // remove beta @ release time
 	let csm_name = "";

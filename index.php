@@ -117,13 +117,21 @@
         return;
     }
     function set_data(string $data_file_path) {
-        #echo "set_data-data_file_path: " . $data_file_path . "\n";
+        // Security: Prevent Path Traversal by only allowing files in specific subdirectories
+        $base_dir = realpath("resources/");
+        $real_path = realpath($data_file_path);
+
+        if (!$real_path || strpos($real_path, $base_dir) !== 0) {
+            echo "Access Denied.";
+            return;
+        }
+
         $data_file_contents = 0;
-        if(file_exists($data_file_path))
-            $data_file_contents = intval(file_get_contents($data_file_path));
+        if(file_exists($real_path))
+            $data_file_contents = intval(file_get_contents($real_path));
         $temp_data = $data_file_contents + 1;
         file_put_contents("tmp_file.txt", $temp_data, LOCK_EX);
-        if(!rename("tmp_file.txt", $data_file_path)) {
+        if(!rename("tmp_file.txt", $real_path)) {
             echo "Failed .";
             return;
         }
@@ -185,6 +193,7 @@
         $theme_is_2_stage = is_theme_2_stage($mym_theme);
         
         # copy theme mym file(s) to working folder -----------
+        $mym_theme = basename($mym_theme); // Prevent traversal
         if(!copy($theme_src_pth, $theme_dst_pth)) {
             echo "Failed .";
             return;
@@ -230,19 +239,23 @@
         $id = session_id();
         global $content_name;
         $timed_out = false;
-        $themething_cmd = "themething c " . ($content_name[$region_index][$version_index] ?? '');
+        $content_file = $content_name[$region_index][$version_index] ?? '';
+        if (!$content_file) return;
+
+        // Security: Use escapeshellarg to prevent command injection
+        $themething_cmd = "themething c " . escapeshellarg($content_file);
         $download_file = file_exists(($content_name[$region_index][$version_index] ?? ''));
         if(!$download_file) {
             $homedir = getcwd();
 			chdir("resources/working/" . $id);
             # download content file
             execInBackground($themething_cmd);
-            $timed_out = wait_for_file(($content_name[$region_index][$version_index] ?? ''), 15);
+            $timed_out = wait_for_file($content_file, 15);
             global $spinmym_src_file;
-            $themething_cmd = "themething s " . ($content_name[$region_index][$version_index] ?? '') . " " . $mym_theme . " " . $spinmym_src_file[$spin_index] . " Wii_Themer";
+            $themething_cmd = "themething s " . escapeshellarg($content_file) . " " . escapeshellarg($mym_theme) . " " . escapeshellarg($spinmym_src_file[$spin_index]) . " Wii_Themer";
             # sign content file
             execInBackground($themething_cmd);
-            $timed_out = wait_for_file(($content_name[$region_index][$version_index] ?? ''), 15);
+            $timed_out = wait_for_file($content_file, 15);
             chdir($homedir);
         }
         
@@ -525,11 +538,12 @@
         $save_dir = "resources/working/" . $id;
         $csm = "";
         $source_file = "resources/working/" . $id . "/stage" . $theme_finished_stage . ".app";
-        if(!execute_themething_cmd("stage" . $theme_finished_stage . ".app", $id, "themething b stage" . $theme_finished_stage . ".app " . $shadowcolors[$cursor_shadow_index] . " stage" . $theme_finished_stage . ".app")) {
-            echo "Failed .<br></br> cmd -> " . "themething b stage" . $theme_finished_stage . ".app " . $shadowcolors[$cursor_shadow_index] . " stage" . $theme_finished_stage . ".app";
+        $cursor_cmd = "themething b stage" . $theme_finished_stage . ".app " . escapeshellarg($shadowcolors[$cursor_shadow_index]) . " stage" . $theme_finished_stage . ".app";
+        if(!execute_themething_cmd("stage" . $theme_finished_stage . ".app", $id, $cursor_cmd)) {
+            echo "Failed .<br></br> cmd -> " . $cursor_cmd;
             return;
         }
-        if($theme_is_2_stage) $csm = $save_dir . "/" . $theme_no_extension . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
+        if($theme_is_2_stage) $csm = $save_dir . "/" . basename($theme_no_extension) . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
         else if($multi_region_theme) $csm = $save_dir . "/" . $multi_region_save_dir . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
         else $csm = $save_dir . "/" . substr($mym_theme, 0, strlen($mym_theme) - 4) . "_" . ($display_version[$region_index][$version_index] ?? '') . "_v" . ($download_version[$region_index][$version_index] ?? ''). $spin_display[$spin_index]  . ".csm";
         $save_source = $csm;
@@ -555,11 +569,12 @@
     }
     function is_theme_2_stage(string $mym_file) : bool {
         $str = null;
+        $theme_is_2_stage = false;
 		$str = strstr($mym_file, "_stage1", true);
 		if($str) {
-			return true;
+			 $theme_is_2_stage = true;
 		}
-		else return false;
+		return $theme_is_2_stage;
 	}
     function name_2_stage_theme(string $name) : string|bool {
         $str = null;
@@ -576,13 +591,11 @@
 	}
     function wait_for_file(string $file, int $timeout) : bool {
 		$seccntr = 0;
-		$myfile = file_exists($file);
-		while((!$myfile and filesize($myfile) == 0) and ($seccntr < $timeout)) {
-			$myfile = file_exists($file);
+		while(!file_exists($file) && ($seccntr < $timeout)) {
 			sleep(1);
 			$seccntr += 1;
 		}
-        if($seccntr == $timeout)
+        if(!file_exists($file))
             return true;
         else
             return false;
@@ -591,10 +604,10 @@
 		$selected = intval($theme_Selected);
         $theme_needs_extension = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 129, 325];
         $int = null;
+        $theme_is = false;
         for($int = 0; $int < count($theme_needs_extension); $int++) {
             if($selected == $theme_needs_extension[$int])
-                return true;
+                $theme_is = true;
         }
-		return false;
+		return $theme_is;
 	}
-?>
