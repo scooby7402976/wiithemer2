@@ -84,7 +84,9 @@ const completethemeinfo = [
 	{name:"Dark Wii Red", ID:"DWRD", mainimg:"darkwiired.avif", secondaryimg:"darkwiired.png", mym:"dark_wii_red", video:"https://www.youtube.com/embed/9odLhr49Wak?autoplay=0&mute=1", downloads:"dark_wii_red.txt", trans_chans:"1", filter:"top20/darkwii"},
 	{name:"Dark Wii White", ID:"DWWH", mainimg:"darkwiiwhite.avif", secondaryimg:"darkwiiwhite.png", mym:"dark_wii_white", video:"https://www.youtube.com/embed/wrwDwTXkPUQ?autoplay=0&mute=1", downloads:"dark_wii_white.txt", trans_chans:"1", filter:"darkwii"},
 	{name:"Dark Wii Yellow", ID:"DWYL", mainimg:"darkwiiyellow.avif", secondaryimg:"darkwiiyellow.png", mym:"dark_wii_yellow", video:"https://www.youtube.com/embed/R9sX3SzzzKA?autoplay=0&mute=1", downloads:"dark_wii_yellow.txt", trans_chans:"1", filter:"darkwii"},
+	{name:"Dark Wii Red Mod", ID:"DWRMOD", mainimg:"dkwiiredmod.avif", secondaryimg:"dkwiiredmod.png", mym:"dkwiiredmod.mym", video:"https://www.youtube.com/embed/ScegbTgsxwo?si=dWzH42hzWv7sDzsa?autoplay=0&mute=1", downloads:"dkwiiredmod.txt", trans_chans:"1", filter:"darkwii/new"},
 	{name:"Dark Wii SE", ID:"DKWSCB", mainimg:"dark_scooby.avif", secondaryimg:"dark_scooby.png", mym:"darkwii_SE.mym", video:"https://www.youtube.com/embed/066_rRBLMcg?si=Tu4o_7S7bJ--eVDT?autoplay=0&mute=1", downloads:"dark_scooby.txt", trans_chans:"1", filter:"darkwii"},
+	{name:"DarkWing Duck", ID:"DRKDCK", mainimg:"darkwingduck.avif", secondaryimg:"darkwingduck.png", mym:"darkwingduck.mym", video:"https://www.youtube.com/embed/lbxYPmywDN8?si=JDZk8beXhTTIjCQZ?autoplay=0&mute=1", downloads:"darkwingduck.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Death Note", ID:"DNOTE1", mainimg:"deathnote.avif", secondaryimg:"deathnote.png", mym:"deathnote.mym", video:"https://www.youtube.com/embed/29RXZSyLnUc?si=6ZJQUSM2QRaYh0G5?autoplay=0&mute=1", downloads:"deathnote.txt", trans_chans:"1", filter:"anime"},
 	{name:"Demon Slayer", ID:"DMNSLR", mainimg:"demonslayer.avif", secondaryimg:"demonslayer.png", mym:"demonslayer.mym", video:"https://www.youtube.com/embed/ix6a9FVNHxY?si=qKokFR5jqg2tjAXE?autoplay=0&mute=1", downloads:"demonslayer.txt", trans_chans:"1", filter:"anime"},
 	{name:"Deth Klok", ID:"DKLOK1", mainimg:"dethklok.avif", secondaryimg:"dethklok.png", mym:"deth_klok.mym", video:"https://www.youtube.com/embed/gvJGiuJiEbA?autoplay=0&mute=1", downloads:"deth_klok.txt", trans_chans:"1", filter:"cartoon"},
@@ -1298,7 +1300,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 129, 325];
+	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 131, 327];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
