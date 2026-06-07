@@ -1,5 +1,6 @@
 const completethemeinfo = [
 	//{name:"", ID:"", mainimg:"", secondaryimg:"", mym:"", video:"", downloads:"", trans_chans:"1""0", filter:""},
+	{name:"007 Night Fire", ID:"007NFR", mainimg:"007nightfire.avif", secondaryimg:"007nightfire.png", mym:"007nightfire.mym", video:"https://www.youtube.com/embed/qjDUuBBFhgs?si=Sx0FspOKvUcmQJNx?autoplay=0&mute=1", downloads:"007nightfire.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Adventure Time", ID:"ADVTIM", mainimg:"adventuretime.avif", secondaryimg:"adventuretime.png", mym:"adventuretime.mym", video:"https://www.youtube.com/embed/rdJkOf_o_OI?si=OgV6-XzICa830L3o?autoplay=0&mute=1", downloads:"adventuretime.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Ahh Real Monsters", ID:"RLMSTR", mainimg:"realmonsters.avif", secondaryimg:"realmonsters.png", mym:"realmonsters.mym", video:"https://www.youtube.com/embed/SSIpFltAtfY?si=l9TNQdc_X0JYnUZG?autoplay=0&mute=1", downloads:"realmonsters.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"American Dad", ID:"AMDAD1", mainimg:"american_dad.avif", secondaryimg:"american_dad.png", mym:"american_dad.mym", video:"https://www.youtube.com/embed/QmxQemy9PiU?si=f8PpyWVy81sMd5sP?autoplay=0&mute=1", downloads:"american_dad.txt", trans_chans:"1", filter:"cartoon"},
@@ -1300,7 +1301,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 131, 327];
+	let region_specific_themes = [74, 76, 77, 78, 79, 80, 81, 82, 83, 84, 132, 328];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
