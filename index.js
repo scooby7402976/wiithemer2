@@ -1509,7 +1509,6 @@ function mouse_out(link_num) {
 	return;
 }
 // -----------------------------
-// main site navigation---------
 // tab color change ------------
 function toggle_active_tab(tab_num) {
 	let tab_active_color = "";
@@ -1556,6 +1555,7 @@ function getRandomImg_Link(min, max) {
   img_position = randomValue;
   return img_link;
 }
+// main site navigation---------
 function wiithemer_navigate_page_tabs(tab_num) { // remove beta at release
 	// lock tabs when building theme - clicks do nothing
 	if (tab_locked)
