@@ -13,42 +13,90 @@ body {
     width: 98vw;
     height: 98vh;
     border-radius: 10px;
-    border-color: rgb(0, 255, 0);
+    border-color: rgb(40, 255, 10);
     border-bottom-style: outset;
     border-width: 5px;
     margin: 1vh auto;
-    padding: 10px;
     background-color: rgba(0, 0, 0, 1);
-    box-shadow: 2px 4px 10px rgba(0, 255, 0, 1);
+    box-shadow: 2px 4px 10px rgba(40, 255, 10, 1);
 }
 #maincontainer h1 {
     text-align: center;
     font-size: 30px;
     margin: auto;
-    padding: 5px;
     border-radius: 10px;
-    border-color: rgb(0, 255, 0);
+    border-color: rgb(40, 255, 10);
     border-bottom-style: outset;
     border-width: 2px;
     width: 90vw;
 }
+/* all tabs */
+#tabcontainer {
+    width: 85vw;
+    justify-content: center;
+    padding: 5px;
+    align-items: center;
+    display: flex;
+}
+#tabcontainer div {
+    text-align: center;
+    flex: content;
+    padding: 8px 15px;
+    margin: 5px;
+    font-weight: bold;
+}
+#tab1, #tab2, #tab3, #tab4, #tab5, #tab6, #tab7 {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 230);
+    border-radius: 10px;
+    border-top: 5px outset rgb(255, 235, 220);
+    cursor: pointer;
+}
+#tab1:hover, #tab2:hover, #tab3:hover, #tab4:hover, #tab5:hover, #tab6:hover, #tab7:hover {
+    background-blend-mode: lighten;
+    background-color: rgb(53, 62, 67);
+}
+#tab1:hover {
+    border-top-color: rgb(255, 165, 0);
+    box-shadow: 1px 1px 3px rgb(255, 165, 0);
+}
+#tab2:hover {
+    border-top-color: rgb(255, 106, 180);
+    box-shadow: 1px 1px 3px rgb(255, 106, 180);
+}
+#tab3:hover {
+    border-top-color: rgb(57, 255, 20);
+    box-shadow: 1px 1px 3px rgb(57, 255, 20);
+}
+#tab4:hover {
+    border-top-color: rgb(0, 0, 255);
+    box-shadow: 1px 1px 3px rgb(0, 0, 255);
+}
+#tab5:hover {
+    border-top-color: rgb(157, 0, 255);
+    box-shadow: 1px 1px 3px rgb(157, 0, 255);
+}
+#tab6:hover {
+    border-top-color: rgb(255, 255, 0);
+    box-shadow: 1px 1px 3px rgb(255, 255, 0);
+}
+#tab7:hover {
+    border-top-color: rgb(255, 0, 0);
+    box-shadow: 1px 1px 3px rgb(255, 0, 0);
+}
 /* footer */
 #footer {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
 }
 #footer p {
     width: 50vw;
     margin: 0 auto;
     background-color: black;
     border-radius: 10px;
-    border-color: rgb(0 255 0);
+    border-color: rgb(40, 255, 10);
     border-bottom-style: outset;
     border-width: 2px;
-    padding: 5px;
     text-align: center;
-    height: max-content;
 }
 
 /* classes */
