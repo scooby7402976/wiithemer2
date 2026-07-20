@@ -602,7 +602,7 @@
 	}
     function theme_needs_mym_Extension(int $theme_Selected) : bool {
 		$selected = intval($theme_Selected);
-        $theme_needs_extension = [74, 76, 77, 78, 79, 80, 81, 82, 83, 84, 132, 328];
+        $theme_needs_extension = [74, 76, 77, 78, 79, 80, 81, 82, 83, 84, 134, 331];
         $int = null;
         $theme_is = false;
         for($int = 0; $int < count($theme_needs_extension); $int++) {
