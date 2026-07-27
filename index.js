@@ -153,6 +153,7 @@ const completethemeinfo = [
 	{name:"Guitar Hero", ID:"GTHERO", mainimg:"guitar_hero.avif", secondaryimg:"guitar_hero.png", mym:"guitar_hero.mym", video:"https://www.youtube.com/embed/BbgDqa0LHFU?si=pGxVz1DupDHknd-w?autoplay=0&mute=1", downloads:"guitar_hero.txt", trans_chans:"0", filter:"game"},
 	{name:"GumBall", ID:"GUMBLL", mainimg:"gumball.avif", secondaryimg:"gumball.png", mym:"gumball.mym", video:"https://www.youtube.com/embed/g29POUg6YBo?si=irxZxt73bBi2fRPL?autoplay=0&mute=1", downloads:"gumball.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Gundam", ID:"GUNDAM", mainimg:"gundam.avif", secondaryimg:"gundam.png", mym:"gundam.mym", video:"https://www.youtube.com/embed/tQlAEvAz9QQ?si=p_aUX8mTYaHzT-DS?autoplay=0&mute=1", downloads:"gundam.txt", trans_chans:"1", filter:"anime"},
+	{name:"Halloween: Micheal Myers", ID:"HALWEN", mainimg:"halloween.avif", secondaryimg:"halloween.png", mym:"halloween.mym", video:"https://www.youtube.com/embed/qK9RtqTFNDY?si=vuafoXfjmZ4b7Top?autoplay=0&mute=1", downloads:"halloween.txt", trans_chans:"1", filter:"movie/new"},
 	{name:"Hand Drawn", ID:"HDRAW1", mainimg:"HandDrawn.avif", secondaryimg:"handdrawn.png", mym:"hand_drawn.mym", video:"https://www.youtube.com/embed/e19Hk1Zbp0c?autoplay=0&mute=1", downloads:"hand_drawn.txt", trans_chans:"1", filter:"game"},
 	{name:"Happy Tree Friends", ID:"HAPYTF", mainimg:"treefriends.avif", secondaryimg:"treefriends.png", mym:"treefriends.mym", video:"https://www.youtube.com/embed/wygXrk94WQ8?si=xoZvuME_ZENtZir6?autoplay=0&mute=1", downloads:"treefriends.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Hello Kitty", ID:"HKITY1", mainimg:"HelloKitty.avif", secondaryimg:"hellokitty.png", mym:"hello_kitty.mym", video:"https://www.youtube.com/embed/Rh-_PneEKCY?autoplay=0&mute=1", downloads:"hello_kitty.txt", trans_chans:"0", filter:"cartoon"},
@@ -1192,7 +1193,7 @@ function build_theme_setup(theme_num) {
 	document.getElementsByClassName("closepreviewbtn")[0].onclick = function() {
 		tab_locked = false;
 		theme_index = 0;
-		//document.getElementById('tab3').innerText = "";
+		filtered_list_position = []
 		wiithemer_navigate_page_tabs(1);
 	};
 	document.getElementById('server_message').innerHTML = "Setting Up Server to build theme ... <span id='responce_setup'></span><br></br>";
@@ -1315,7 +1316,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [74, 76, 77, 78, 79, 80, 81, 82, 83, 84, 134, 331];
+	let region_specific_themes = [75, 77, 78, 78, 80, 81, 82, 83, 84, 85, 136, 337];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
