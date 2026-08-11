@@ -172,6 +172,7 @@ const completethemeinfo = [
 	{name:"HomeStar Runner", ID:"HMESTR", mainimg:"homestar.avif", secondaryimg:"homestar.png", mym:"homestar.mym", video:"https://www.youtube.com/embed/Em-DkvRXLxs?si=mu8hYkot2jPougyA?autoplay=0&mute=1", downloads:"homestar.txt", trans_chans:"1", filter:"game"},
 	{name:"Hoshimachi Suisei", ID:"HOSSUE", mainimg:"suisei.avif", secondaryimg:"suisei.png", mym:"suisei.mym", video:"https://www.youtube.com/embed/S0GqZDrPU-0?si=WJJnbnk2n_AeX-PE?autoplay=0&mute=1", downloads:"suisei.txt", trans_chans:"1", filter:"individual/new"},
 	{name:"Hot Wheels", ID:"WHEEL1", mainimg:"hot_wheels.avif", secondaryimg:"hot_wheels.png", mym:"hot_wheels.mym", video:"https://www.youtube.com/embed/TT5XIN6xk9E?si=Ec0YZ4cNa58m2I0u?autoplay=0&mute=1", downloads:"hot_wheels.txt", trans_chans:"1", filter:"game"},
+	{name:"Hulk", ID:"HULKV1", mainimg:"hulk.avif", secondaryimg:"hulk.png", mym:"hulk.mym", video:"https://www.youtube.com/embed/mskSUNYrCVY?si=NLwsVcGYbebdJDLS?autoplay=0&mute=1", downloads:"hulk.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"The Hundreds", ID:"HNDRD1", mainimg:"hundreds.avif", secondaryimg:"hundreds.png", mym:"hundreds.mym", video:"https://www.youtube.com/embed/mCGMAJkoQp4?si=qq2S6uyJYOkl3mBk?autoplay=0&mute=1", downloads:"hundreds.txt", trans_chans:"0", filter:"anime"},
 	{name:"Icarly", ID:"ICARLY", mainimg:"icarly.avif", secondaryimg:"icarly.png", mym:"icarly.mym", video:"https://www.youtube.com/embed/CnNLT5LKF9Q?si=c5qI-WijHzx7VhPM?autoplay=0&mute=1", downloads:"icarly.txt", trans_chans:"0", filter:"movie"},
 	{name:"Illusions of Gaia", ID:"ILLOG1", mainimg:"illusionsofgaia.avif", secondaryimg:"illusionsofgaia.png", mym:"illusionsofgaia.mym", video:"https://www.youtube.com/embed/nPaNCfmKKIA?si=yN1ldPBI9TR4uOBH?autoplay=0&mute=1", downloads:"illusionsofgaia.txt", trans_chans:"1", filter:"game"},
@@ -1328,7 +1329,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [79, 81, 82, 84, 84, 85, 86, 87, 88, 89, 144, 349];
+	let region_specific_themes = [79, 81, 82, 84, 84, 85, 86, 87, 88, 89, 142, 350];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
