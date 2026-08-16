@@ -1335,7 +1335,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [80, 82, 83, 84, 85, 86, 87, 88, 89, 90, 144, 355];
+	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 355];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
