@@ -314,6 +314,7 @@ const completethemeinfo = [
 	{name:"Rocko's Modern Life", ID:"ROCKOS", mainimg:"rockosmodernlife.avif", secondaryimg:"rockosmodernlife.png", mym:"rockosmodernlife.mym", video:"https://www.youtube.com/embed/IW57d5BEyng?si=6WAJQe22bElIKH2I?autoplay=0&mute=1", downloads:"rockosmodernlife.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Rolling Stones", ID:"STONES", mainimg:"rollingstones.avif", secondaryimg:"rollingstones.png", mym:"rolling_stones.mym", video:"https://www.youtube.com/embed/Df19BIkRABo?si=T1C-_09Qi3dLp2BW?autoplay=0&mute=1", downloads:"rollingstones.txt", trans_chans:"1", filter:"music"},
 	{name:"Rondo of Blood", ID:"RBLOD1", mainimg:"rondo_of_blood.avif", secondaryimg:"rondo_of_blood.png", mym:"rondo_of_blood.mym", video:"https://www.youtube.com/embed/ujTz_RPfg3c?si=qnY_pEziyYULcIOO?autoplay=0&mute=1", downloads:"rondo_of_blood.txt", trans_chans:"1", filter:"game"},
+	{name:"Rosalina & Luma", ID:"ROSALU", mainimg:"rosalinaluma.avif", secondaryimg:"rosalinaluma.png", mym:"rosalinaluma.mym", video:"https://www.youtube.com/embed/bHFYfYASPbI?si=PcA-jdXOxq2Zk04A?autoplay=0&mute=1", downloads:"rosalinaluma.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Rugrats", ID:"RUGRAT", mainimg:"rugrats.avif", secondaryimg:"rugrats.png", mym:"rugrats.mym", video:"https://www.youtube.com/embed/suBuaGZJ7Hc?si=g07pogjNxdjXrGO3?autoplay=0&mute=1", downloads:"rugrats.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Sakura Dusk", ID:"SAKDSK", mainimg:"sakuradusk.avif", secondaryimg:"sakuradusk.png", mym:"sakuradusk.mym", video:"https://www.youtube.com/embed/TlbXdSri_YI?si=P1X3euullVJxKAnc?autoplay=0&mute=1", downloads:"sakuradusk.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Saw", ID:"SAW001", mainimg:"saw.avif", secondaryimg:"saw.png", mym:"saw.mym", video:"https://www.youtube.com/embed/eXwIhUHvR54?si=dfoML_2H9z_oAYtE?autoplay=0&mute=1", downloads:"saw.txt", trans_chans:"1", filter:"movie"},
@@ -1335,7 +1336,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 355];
+	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 356];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
