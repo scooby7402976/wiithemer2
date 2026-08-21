@@ -330,6 +330,7 @@ const completethemeinfo = [
 	downloads:"shadow_the_hedgehog.txt", trans_chans:"1", filter:"game"},
 	{name:"Shakugan no Shana", ID:"SHANA1", mainimg:"shana.avif", secondaryimg:"shana.png", mym:"shana_stage1.mym", video:"https://www.youtube.com/embed/C3-nCcGBZAw?si=oFJr0xaJKS0txMd2?autoplay=0&mute=1", downloads:"shana.txt", trans_chans:"0", filter:"anime"},
 	{name:"ShineDown", ID:"SHNDWN", mainimg:"shinedown.avif", secondaryimg:"shinedown.png", mym:"shinedown_stage1.mym", video:"https://www.youtube.com/embed/NY60BLYvOoo?si=MBrjPmchDXntevOV?autoplay=0&mute=1", downloads:"shinedown.txt", trans_chans:"0", filter:"music"},
+	{name:"Simplicity", ID:"SIMPCY", mainimg:"simplicity.avif", secondaryimg:"simplicity.png", mym:"simplicity.mym", video:"https://www.youtube.com/embed/ZzDczEphgek?si=r58wWpfBPF2zVnzt?autoplay=0&mute=1", downloads:"simplicity.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Silver The Hedgehog", ID:"SILVH1", mainimg:"silverthehedgehog.avif", secondaryimg:"silverthehedgehog.png", mym:"silver_the_hedgehog.mym", video:"https://www.youtube.com/embed/sUx2VXxMLr0?si=8_HUuPqHAL3ZFMRm?autoplay=0&mute=1", downloads:"silver_the_hedgehog.txt", trans_chans:"0", filter:"game"},
 	{name:"Smash Brothers Brawl", ID:"SMASH1", mainimg:"smashbros.avif", secondaryimg:"smashbros.png", mym:"smash_brothers_brawl.mym", video:"https://www.youtube.com/embed/03U2w5wxjBI?si=Gx5DCBH652Cz0fUq?autoplay=0&mute=1", downloads:"smashbros.txt", trans_chans:"1", filter:"game"},
 	{name:"SML", ID:"SML001", mainimg:"sml.avif", secondaryimg:"sml.png", mym:"sml.mym", video:"https://www.youtube.com/embed/SXQ9YR2_K8U?si=HyiJK8-B1MPfbtqy?autoplay=0&mute=1", downloads:"sml.txt", trans_chans:"1", filter:"movie/new"},
@@ -1336,7 +1337,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 356];
+	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 357];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
