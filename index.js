@@ -316,6 +316,7 @@ const completethemeinfo = [
 	{name:"Rondo of Blood", ID:"RBLOD1", mainimg:"rondo_of_blood.avif", secondaryimg:"rondo_of_blood.png", mym:"rondo_of_blood.mym", video:"https://www.youtube.com/embed/ujTz_RPfg3c?si=qnY_pEziyYULcIOO?autoplay=0&mute=1", downloads:"rondo_of_blood.txt", trans_chans:"1", filter:"game"},
 	{name:"Rosalina & Luma", ID:"ROSALU", mainimg:"rosalinaluma.avif", secondaryimg:"rosalinaluma.png", mym:"rosalinaluma.mym", video:"https://www.youtube.com/embed/bHFYfYASPbI?si=PcA-jdXOxq2Zk04A?autoplay=0&mute=1", downloads:"rosalinaluma.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Rugrats", ID:"RUGRAT", mainimg:"rugrats.avif", secondaryimg:"rugrats.png", mym:"rugrats.mym", video:"https://www.youtube.com/embed/suBuaGZJ7Hc?si=g07pogjNxdjXrGO3?autoplay=0&mute=1", downloads:"rugrats.txt", trans_chans:"1", filter:"cartoon"},
+	{name:"RWBY", ID:"RWBY01", mainimg:"rwby.avif", secondaryimg:"rwby.png", mym:"rwby.mym", video:"https://www.youtube.com/embed/Ui8NkbB0rug?si=1hpXvT6ev1jsDC0P?autoplay=0&mute=1", downloads:"rwby.txt", trans_chans:"1", filter:"anime/new"},
 	{name:"Sakura Dusk", ID:"SAKDSK", mainimg:"sakuradusk.avif", secondaryimg:"sakuradusk.png", mym:"sakuradusk.mym", video:"https://www.youtube.com/embed/TlbXdSri_YI?si=P1X3euullVJxKAnc?autoplay=0&mute=1", downloads:"sakuradusk.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Saw", ID:"SAW001", mainimg:"saw.avif", secondaryimg:"saw.png", mym:"saw.mym", video:"https://www.youtube.com/embed/eXwIhUHvR54?si=dfoML_2H9z_oAYtE?autoplay=0&mute=1", downloads:"saw.txt", trans_chans:"1", filter:"movie"},
 	{name:"ScarFace", ID:"SCRFC1", mainimg:"scarface.avif", secondaryimg:"scarface.png", mym:"scarface.mym", video:"https://www.youtube.com/embed/9RhlWGcj2kE?si=pewzRUj42jsPAiAd?autoplay=0&mute=1", downloads:"scarface.txt", trans_chans:"1", filter:"movie"},
@@ -1337,7 +1338,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 357];
+	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 358];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
