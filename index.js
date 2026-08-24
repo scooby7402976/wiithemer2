@@ -186,6 +186,7 @@ const completethemeinfo = [
 	{name:"Insane Clown Posse", ID:"ICP001", mainimg:"icp.avif", secondaryimg:"icp.png", mym:"insane_clown_posse.mym", video:"https://www.youtube.com/embed/nKo90-C1d8U?autoplay=0&mute=1", downloads:"insane_clown_posse.txt", trans_chans:"1", filter:"music"},
 	{name:"Iono", ID:"IONO01", mainimg:"iono.avif", secondaryimg:"iono.png", mym:"iono.mym", video:"https://www.youtube.com/embed/M-Uo_jueyPE?si=3gPeYMOhjCMcjfFB?autoplay=0&mute=1", downloads:"iono.txt", trans_chans:"1", filter:"game/new"},
 	{name:"IOS6", ID:"APIOS6", mainimg:"ios6.avif", secondaryimg:"ios6.png", mym:"ios6.mym", video:"https://www.youtube.com/embed/ij6_ZZSeNGE?si=2khp92G43Vtwhgzb?autoplay=0&mute=1", downloads:"ios6.txt", trans_chans:"1", filter:"os"},
+	{name:"It Chapter 1", ID:"IT0001", mainimg:"it.avif", secondaryimg:"it.png", mym:"it.mym", video:"https://www.youtube.com/embed/gYAlPzkAL3Q?si=qWdj31-D0ExOw0Y3?autoplay=0&mute=1", downloads:"it.txt", trans_chans:"1", filter:"movie/new"},
 	{name:"Its A Me Mario", ID:"IMMAR1", mainimg:"itsamemario.avif", secondaryimg:"itsamemario.png", mym:"itsamemario.mym", video:"https://www.youtube.com/embed/RXxxwKtNPJk?autoplay=0&mute=1", downloads:"itsamemario.txt", trans_chans:"1", filter:"top20/game"},
 	{name:"Jay & Silent Bob", ID:"JNSBOB", mainimg:"jaybob.avif", secondaryimg:"jaybob.png", mym:"jaybob_stage1.mym", video:"https://www.youtube.com/embed/AqMK45kspoc?si=Le3klHxmxZxgE_OA?autoplay=0&mute=1", downloads:"jaybob.txt", trans_chans:"1", filter:"movie"},
 	{name:"The Jetsons", ID:"JETSON", mainimg:"jetsons.avif", secondaryimg:"jetsons.png", mym:"jetsons.mym", video:"https://www.youtube.com/embed/duKL2Q7xJxA?si=JoqQrrowwOIdfoB4?autoplay=0&mute=1", downloads:"jetsons.txt", trans_chans:"1", filter:"cartoon"},
@@ -1338,7 +1339,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 358];
+	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 359];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
