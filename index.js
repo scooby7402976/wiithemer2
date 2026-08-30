@@ -166,6 +166,7 @@ const completethemeinfo = [
 	{name:"Halloween: Micheal Myers", ID:"HALWEN", mainimg:"halloween.avif", secondaryimg:"halloween.png", mym:"halloween.mym", video:"https://www.youtube.com/embed/qK9RtqTFNDY?si=vuafoXfjmZ4b7Top?autoplay=0&mute=1", downloads:"halloween.txt", trans_chans:"1", filter:"movie/new"},
 	{name:"Hand Drawn", ID:"HDRAW1", mainimg:"HandDrawn.avif", secondaryimg:"handdrawn.png", mym:"hand_drawn.mym", video:"https://www.youtube.com/embed/e19Hk1Zbp0c?autoplay=0&mute=1", downloads:"hand_drawn.txt", trans_chans:"1", filter:"game"},
 	{name:"Happy Tree Friends", ID:"HAPYTF", mainimg:"treefriends.avif", secondaryimg:"treefriends.png", mym:"treefriends.mym", video:"https://www.youtube.com/embed/wygXrk94WQ8?si=xoZvuME_ZENtZir6?autoplay=0&mute=1", downloads:"treefriends.txt", trans_chans:"1", filter:"cartoon"},
+	{name:"Happy Tree Friends v2", ID:"HPYTF2", mainimg:"happytreefriendsv2.avif", secondaryimg:"happytreefriendsv2.png", mym:"happytreefriendsv2.mym", video:"https://www.youtube.com/embed/L9GjAjDYWDE?si=iTQqy1kr2NdN0ULg?autoplay=0&mute=1", downloads:"happytreefriendsv2.txt", trans_chans:"1", filter:"cartoon/new"},
 	{name:"Hello Kitty", ID:"HKITY1", mainimg:"HelloKitty.avif", secondaryimg:"hellokitty.png", mym:"hello_kitty.mym", video:"https://www.youtube.com/embed/Rh-_PneEKCY?autoplay=0&mute=1", downloads:"hello_kitty.txt", trans_chans:"0", filter:"cartoon"},
 	{name:"Hell's Kitchen", ID:"HELLK1", mainimg:"hellskitchen.avif", secondaryimg:"hellskitchen.png", mym:"hellskitchen.mym", video:"https://www.youtube.com/embed/rhZvXoDqJx4?si=dsfWlztTT2Fz_RR3?autoplay=0&mute=1", downloads:"hellskitchen.txt", trans_chans:"1", filter:"movie"},
 	{name:"He-Man", ID:"HEMAN1", mainimg:"heman.avif", secondaryimg:"heman.png", mym:"he-man_stage1.mym", video:"https://www.youtube.com/embed/vUzusxTYj9w?si=UNjjoXBw-c4BJBWc?autoplay=0&mute=1", downloads:"heman.txt", transchans:"1", filter:"cartoon"},
@@ -328,8 +329,10 @@ const completethemeinfo = [
 	{name:"Sendo World", ID:"SENDO1", mainimg:"sendo.avif", secondaryimg:"sendo.png", mym:"sendo.mym", video:"https://www.youtube.com/embed/0V8MT5j6IXw?si=zJqP_NIE6TEGX557?autoplay=0&mute=1", downloads:"sendo.txt", trans_chans:"1", filter:"misc"},
 	{name:"Sesame Street", ID:"SESAME", mainimg:"sesamestreet.avif", secondaryimg:"sesamestreet.png", mym:"sesamestreet.mym", video:"https://www.youtube.com/embed/pRYEFKEMbwE?si=Oh8wVBYEeED6m4D6?autoplay=0&mute=1", downloads:"sesamestreet.txt", trans_chans:"1", filter:"movie"},
 	{name:"Shadow Generations", ID:"SHDWGN", mainimg:"shadow_gens.avif", secondaryimg:"shadow_gens.png", mym:"shadow_gens.mym", video:"https://www.youtube.com/embed/a8EfUsvTdDY?si=A9087N4-5oSUOGm3?autoplay=0&mute=1", downloads:"shadow_gens.txt", trans_chans:"1", filter:"game"},
-	{name:"Shadow The Hedgehog", ID:"SHADH1", mainimg:"shadowthehedgehog.avif", secondaryimg:"shadowthehedgehog.png", mym:"shadow_the_hedgehog.mym", video:"https://www.youtube.com/embed/yOXIGrcxR8A?autoplay=0&mute=1", 
+	{name:"Shadow The Hedgehog", ID:"SHADH1", mainimg:"shadowthehedgehog.avif", secondaryimg:"shadowthehedgehog.png", mym:"shadow_the_hedgehog.mym", video:"https://www.youtube.com/embed/yOXIGrcxR8A?si=wThSf7pWXv3WYwJ2?autoplay=0&mute=1", 
 	downloads:"shadow_the_hedgehog.txt", trans_chans:"1", filter:"game"},
+	{name:"Shadow The Hedgehog v2", ID:"SHADH2", mainimg:"shadowhh.avif", secondaryimg:"shadowhh.png", mym:"shadowhh.mym", video:"https://www.youtube.com/embed/qMPyL7ulJZI?si=ECCbN5FeOB_HsQ8A?autoplay=0&mute=1", 
+	downloads:"shadowhh.txt", trans_chans:"1", filter:"game/new"},
 	{name:"Shakugan no Shana", ID:"SHANA1", mainimg:"shana.avif", secondaryimg:"shana.png", mym:"shana_stage1.mym", video:"https://www.youtube.com/embed/C3-nCcGBZAw?si=oFJr0xaJKS0txMd2?autoplay=0&mute=1", downloads:"shana.txt", trans_chans:"0", filter:"anime"},
 	{name:"ShineDown", ID:"SHNDWN", mainimg:"shinedown.avif", secondaryimg:"shinedown.png", mym:"shinedown_stage1.mym", video:"https://www.youtube.com/embed/NY60BLYvOoo?si=MBrjPmchDXntevOV?autoplay=0&mute=1", downloads:"shinedown.txt", trans_chans:"0", filter:"music"},
 	{name:"Simplicity", ID:"SIMPCY", mainimg:"simplicity.avif", secondaryimg:"simplicity.png", mym:"simplicity.mym", video:"https://www.youtube.com/embed/ZzDczEphgek?si=r58wWpfBPF2zVnzt?autoplay=0&mute=1", downloads:"simplicity.txt", trans_chans:"1", filter:"misc/new"},
@@ -1339,7 +1342,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 359];
+	let region_specific_themes = [80, 83, 84, 85, 86, 87, 88, 89, 90, 144, 361];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
