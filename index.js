@@ -159,6 +159,7 @@ const completethemeinfo = [
 	{name:"Gothic", ID:"GOTH01", mainimg:"gothic.avif", secondaryimg:"gothic.png", mym:"gothic.mym", video:"https://www.youtube.com/embed/Ko3ZcoCmwPI?si=QROVEdiG91ky82_V?autoplay=0&mute=1", downloads:"gothic.txt", trans_chans:"0", filter:"misc"},
 	{name:"Grateful Dead", ID:"GRTFL1", mainimg:"gratefuldead.avif", secondaryimg:"gratefuldead.png", mym:"grateful_dead_stage1.mym", video:"https://www.youtube.com/embed/LURcBb9sF98?si=oebw46IB5hS1hxDU?autoplay=0&mute=1", downloads:"gratefuldead.txt", trans_chans:"1", filter:"music"},
 	{name:"Green Bay Packers", ID:"PCKRS1", mainimg:"greenbay_packers.avif", secondaryimg:"greenbay_packers.png", mym:"packers_stage1.mym", video:"https://www.youtube.com/embed/mfmglgxpV3M?si=yKq_eYg4s0BnJQFU?autoplay=0&mute=1", downloads:"packers.txt", trans_chans:"1", filter:"sports"},
+	{name:"Green Reality", ID:"GRNREL", mainimg:"greenreality.avif", secondaryimg:"greenreality.png", mym:"greenreality.mym", video:"https://www.youtube.com/embed/aNAzoetVrqM?si=INcSEc-KKdTRUcNE?autoplay=0&mute=1", downloads:"greenreality.txt", trans_chans:"1", filter:"misc/new"},
 	{name:"Grim Adventures of Billy and Mandy", ID:"GABLMD", mainimg:"grim.avif", secondaryimg:"grim.png", mym:"grim.mym", video:"https://www.youtube.com/embed/Xs2tOg4ZceY?si=BjtKJ9LpvSRNhG3Z?autoplay=0&mute=1", downloads:"grim.txt", trans_chans:"1", filter:"cartoon"},
 	{name:"Grand Theft Auto 5", ID:"GTA5V1", mainimg:"gta5.avif", secondaryimg:"gta5.png", mym:"gta5.mym", video:"https://www.youtube.com/embed/PZcWLasmqgw?si=CU8wsoN6NR1sKQ8p?autoplay=0&mute=1", downloads:"gta5.txt", trans_chans:"1", filter:"game"},
 	{name:"Guitar Hero", ID:"GTHERO", mainimg:"guitar_hero.avif", secondaryimg:"guitar_hero.png", mym:"guitar_hero.mym", video:"https://www.youtube.com/embed/BbgDqa0LHFU?si=pGxVz1DupDHknd-w?autoplay=0&mute=1", downloads:"guitar_hero.txt", trans_chans:"0", filter:"game"},
@@ -1344,7 +1345,7 @@ function is_theme_2_stage(mym_file) {
 function is_theme_region_specific(theme_num) {
     let i = null;
 	let theme_is = false;
-	let region_specific_themes = [81, 84, 85, 86, 87, 88, 89, 90, 91, 145, 362];
+	let region_specific_themes = [81, 84, 85, 86, 87, 88, 89, 90, 91, 146, 363];
 	for(i = 0; i < region_specific_themes.length; i++) {
 		if(theme_num == region_specific_themes[i])
 			theme_is = true;
