@@ -273,20 +273,19 @@ body {
 }
 /* gallery tab */
 #theme_img_enlarged {
-    width: 85vw;
-    height: 80vh;
+    width: 90vw;
+    height: 90vh;
     margin: 5px auto;
     padding: 5px;
     background-color: rgba(52, 63, 67, 0.75);
     border-radius: 10px;
     border-top: 10px outset rgb(255, 165, 0);
     border-bottom: 15px outset rgb(255, 165, 0);
-    overflow-y: scroll;
     display:none;
     z-index: 20;
     position: absolute;
-    top: 13vh;
-    left: 7.5vw;
+    top: 5vh;
+    left: 5vw;
 }
 #theme_gallery {
     margin: 25px auto;
@@ -573,7 +572,8 @@ body {
     z-index: 5;
 }
 .closepreviewbtn:hover {
-    background-color: rgb(53, 62, 67);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: red;
 }
 /* links tab */
 .links_page {
